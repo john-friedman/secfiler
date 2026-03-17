@@ -1,0 +1,1 @@
+from .parser import construct_document

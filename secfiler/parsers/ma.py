@@ -1,0 +1,539 @@
+import io
+import xml.etree.ElementTree as ET
+from ..constants import CREATED_WITH_SECFILER_COMMENT
+
+def _add_created_with_comment(root: ET.Element) -> None:
+    root.insert(0, ET.Comment(CREATED_WITH_SECFILER_COMMENT))
+
+
+
+def _is_present(value) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, tuple, set)):
+        return any(_is_present(item) for item in value)
+    return True
+
+
+def _to_text(value) -> str:
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    return str(value)
+
+
+def _normalize_values(value) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, (list, tuple, set)):
+        out = []
+        for item in value:
+            out.extend(_normalize_values(item))
+        return out
+
+    text = _to_text(value)
+    if text == "":
+        return [""]
+
+    stripped = text.strip()
+    if not stripped:
+        return []
+
+    if any(token in text for token in ("|", ";", "\n", "\r")):
+        normalized = (
+            text.replace("\r\n", "\n")
+            .replace("\r", "\n")
+            .replace(";", "|")
+            .replace("\n", "|")
+        )
+        return [part.strip() for part in normalized.split("|") if part.strip()]
+
+    return [text]
+
+
+def _first_across_rows(rows: list[dict], keys: list[str]):
+    for row in rows:
+        for key in keys:
+            value = row.get(key)
+            if _is_present(value):
+                return value
+    return None
+
+
+def _ensure_path(parent: ET.Element, tags: list[str], create_leaf: bool = False) -> ET.Element:
+    current = parent
+    total = len(tags)
+    for idx, tag in enumerate(tags):
+        found = None
+        if not (create_leaf and idx == total - 1):
+            for child in current:
+                if child.tag == tag:
+                    found = child
+                    break
+        if found is None:
+            found = ET.SubElement(current, tag)
+        current = found
+    return current
+
+
+def _add_path_text(root: ET.Element, tags: list[str], value) -> None:
+    if not _is_present(value):
+        return
+    target = _ensure_path(root, tags)
+    if not _is_present(target.text):
+        target.text = _to_text(value)
+
+
+def _add_path_attr(root: ET.Element, tags: list[str], attr_name: str, value) -> None:
+    if not _is_present(value):
+        return
+    target = _ensure_path(root, tags)
+    if attr_name not in target.attrib:
+        target.set(attr_name, _to_text(value))
+
+
+def _collect_records(rows: list[dict], key_names: list[str]) -> list[dict]:
+    records = []
+    for row in rows:
+        value_lists = {k: _normalize_values(row.get(k)) for k in key_names}
+        max_items = max((len(v) for v in value_lists.values()), default=0)
+        if max_items == 0:
+            continue
+        for i in range(max_items):
+            record = {}
+            for key, values in value_lists.items():
+                if not values:
+                    record[key] = None
+                elif len(values) == 1:
+                    record[key] = values[0]
+                elif i < len(values):
+                    record[key] = values[i]
+                else:
+                    record[key] = None
+            if any(_is_present(v) for v in record.values()):
+                records.append(record)
+    return records
+
+def construct_ma(rows: list) -> bytes:
+    normalized_rows = []
+    if rows:
+        for row in rows:
+            if isinstance(row, dict) or hasattr(row, "get"):
+                normalized_rows.append(row)
+            else:
+                normalized_rows.append(dict(row))
+    else:
+        normalized_rows = [{}]
+
+    root = ET.Element('edgarSubmission')
+    root.set('xmlns', 'http://www.sec.gov/edgar/mafiler')
+    root.set('xmlns:com', 'http://www.sec.gov/edgar/common_ma')
+    root.set('xmlns:com1', 'http://www.sec.gov/edgar/common')
+    _add_path_text(root, ['formData', 'calYearEnd'], _first_across_rows(normalized_rows, ['calYearEnd']))
+    _add_path_text(root, ['formData', 'clientsServedAsMA'], _first_across_rows(normalized_rows, ['clientsServedAsMA']))
+    _add_path_text(root, ['formData', 'dateOfOrganization'], _first_across_rows(normalized_rows, ['dateOfOrganization']))
+    _add_path_text(root, ['formData', 'dbaName'], _first_across_rows(normalized_rows, ['dbaName']))
+    _add_path_text(root, ['formData', 'employeesEngagedInMAA'], _first_across_rows(normalized_rows, ['employeesEngagedInMAA']))
+    _add_path_text(root, ['formData', 'firmCrdNumber'], _first_across_rows(normalized_rows, ['firmCrdNumber']))
+    _add_path_text(root, ['formData', 'firmName'], _first_across_rows(normalized_rows, ['firmName']))
+    _add_path_text(root, ['formData', 'fiscalYearEnd'], _first_across_rows(normalized_rows, ['fiscalYearEnd']))
+    _add_path_text(root, ['formData', 'hasAnnualReceiptsLessThan7Million'], _first_across_rows(normalized_rows, ['hasAnnualReceiptsLessThan7Million']))
+    _add_path_text(root, ['formData', 'hasChanges'], _first_across_rows(normalized_rows, ['hasChanges']))
+    _add_path_text(root, ['formData', 'irsNum'], _first_across_rows(normalized_rows, ['irsNum']))
+    _add_path_text(root, ['formData', 'isAffiliatedWithReceiptsMoreThan7Million'], _first_across_rows(normalized_rows, ['isAffiliatedWithReceiptsMoreThan7Million']))
+    _add_path_text(root, ['formData', 'isEngagedInOtherNonMAABusiness'], _first_across_rows(normalized_rows, ['isEngagedInOtherNonMAABusiness']))
+    _add_path_text(root, ['formData', 'isPrcApplicant'], _first_across_rows(normalized_rows, ['isPrcApplicant']))
+    _add_path_text(root, ['formData', 'maaEmployeesRegBD'], _first_across_rows(normalized_rows, ['maaEmployeesRegBD']))
+    _add_path_text(root, ['formData', 'maaRegIA'], _first_across_rows(normalized_rows, ['maaRegIA']))
+    _add_path_text(root, ['formData', 'mailingAddressDifferent'], _first_across_rows(normalized_rows, ['mailingAddressDifferent']))
+    _add_path_text(root, ['formData', 'miscellaneous'], _first_across_rows(normalized_rows, ['miscellaneous']))
+    _add_path_text(root, ['formData', 'monthOfFiscalYearEnd'], _first_across_rows(normalized_rows, ['monthOfFiscalYearEnd']))
+    _add_path_text(root, ['formData', 'numberOfAdditionalWebSites'], _first_across_rows(normalized_rows, ['numberOfAdditionalWebSites']))
+    _add_path_text(root, ['formData', 'numberOfEmployees'], _first_across_rows(normalized_rows, ['numberOfEmployees']))
+    _add_path_text(root, ['formData', 'numberOfSolicitedME'], _first_across_rows(normalized_rows, ['numberOfSolicitedME']))
+    _add_path_text(root, ['formData', 'numberOfSolicitedOP'], _first_across_rows(normalized_rows, ['numberOfSolicitedOP']))
+    _add_path_text(root, ['formData', 'numberOfSolicitingFirms'], _first_across_rows(normalized_rows, ['numberOfSolicitingFirms']))
+    _add_path_text(root, ['formData', 'otherNonMAABusinessPrimaryDescription'], _first_across_rows(normalized_rows, ['otherNonMAABusinessPrimaryDescription']))
+    _add_path_text(root, ['formData', 'previousDbaName'], _first_across_rows(normalized_rows, ['previousDbaName']))
+    _add_path_text(root, ['formData', 'previousLegalName'], _first_across_rows(normalized_rows, ['previousLegalName']))
+    _add_path_text(root, ['formData', 'primaryWebAddress'], _first_across_rows(normalized_rows, ['primaryWebAddress']))
+    _add_path_text(root, ['formData', 'receiveCompensationForMAAFromOtherClientsExplanation'], _first_across_rows(normalized_rows, ['receiveCompensationForMAAFromOtherClientsExplanation']))
+    _add_path_text(root, ['formData', 'totalFIAAssociatedPersons'], _first_across_rows(normalized_rows, ['totalFIAAssociatedPersons']))
+    _add_path_text(root, ['formData', 'totalNumberOfSolicitedMEAndOP'], _first_across_rows(normalized_rows, ['totalNumberOfSolicitedMEAndOP']))
+    _add_path_text(root, ['headerData', 'submissionType'], _first_across_rows(normalized_rows, ['submissionType']))
+    _add_path_text(root, ['formData', 'cco', 'email'], _first_across_rows(normalized_rows, ['email']))
+    _add_path_text(root, ['formData', 'cco', 'faxNumber'], _first_across_rows(normalized_rows, ['faxNumber']))
+    _add_path_text(root, ['formData', 'cco', 'phoneNumber'], _first_across_rows(normalized_rows, ['phoneNumber']))
+    _add_path_text(root, ['formData', 'contactPerson', 'email'], _first_across_rows(normalized_rows, ['contactPersonEmail']))
+    _add_path_text(root, ['formData', 'contactPerson', 'faxNumber'], _first_across_rows(normalized_rows, ['contactPersonFaxNumber']))
+    _add_path_text(root, ['formData', 'contactPerson', 'phoneNumber'], _first_across_rows(normalized_rows, ['contactPersonPhoneNumber']))
+    _add_path_text(root, ['formData', 'controls', 'additionalOffices'], _first_across_rows(normalized_rows, ['additionalOffices']))
+    _add_path_text(root, ['formData', 'controls', 'additionalRegs'], _first_across_rows(normalized_rows, ['additionalRegs']))
+    _add_path_text(root, ['formData', 'controls', 'hasAdditionalDBANames'], _first_across_rows(normalized_rows, ['hasAdditionalDBANames']))
+    _add_path_text(root, ['formData', 'controls', 'hasAdditionalWebsites'], _first_across_rows(normalized_rows, ['hasAdditionalWebsites']))
+    _add_path_text(root, ['formData', 'controls', 'hasBooksRecords'], _first_across_rows(normalized_rows, ['hasBooksRecords']))
+    _add_path_text(root, ['formData', 'controls', 'hasDBAName'], _first_across_rows(normalized_rows, ['hasDBAName']))
+    _add_path_text(root, ['formData', 'controls', 'hasMATReg'], _first_across_rows(normalized_rows, ['hasMATReg']))
+    _add_path_text(root, ['formData', 'controls', 'hasMailingAddress'], _first_across_rows(normalized_rows, ['hasMailingAddress']))
+    _add_path_text(root, ['formData', 'controls', 'hasNameChange'], _first_across_rows(normalized_rows, ['hasNameChange']))
+    _add_path_text(root, ['formData', 'controls', 'hasPreviousDBAName'], _first_across_rows(normalized_rows, ['hasPreviousDBAName']))
+    _add_path_text(root, ['formData', 'controls', 'hasScheduleB'], _first_across_rows(normalized_rows, ['hasScheduleB']))
+    _add_path_text(root, ['formData', 'controls', 'independentBusinessEmployee'], _first_across_rows(normalized_rows, ['independentBusinessEmployee']))
+    _add_path_text(root, ['formData', 'controls', 'isAffiliatedOtherBus'], _first_across_rows(normalized_rows, ['isAffiliatedOtherBus']))
+    _add_path_text(root, ['formData', 'controls', 'isCPForApplicantPolicy'], _first_across_rows(normalized_rows, ['isCPForApplicantPolicy']))
+    _add_path_text(root, ['formData', 'controls', 'isOtherNonMAABuisinesssPrimary'], _first_across_rows(normalized_rows, ['isOtherNonMAABuisinesssPrimary']))
+    _add_path_text(root, ['formData', 'controls', 'isPRCompanyUnder1215'], _first_across_rows(normalized_rows, ['isPRCompanyUnder1215']))
+    _add_path_text(root, ['formData', 'controls', 'isRegisteredFFRA'], _first_across_rows(normalized_rows, ['isRegisteredFFRA']))
+    _add_path_text(root, ['formData', 'controls', 'isSection12Or15ReportingCompany'], _first_across_rows(normalized_rows, ['isSection12Or15ReportingCompany']))
+    _add_path_text(root, ['formData', 'controls', 'isSolePropietor'], _first_across_rows(normalized_rows, ['isSolePropietor']))
+    _add_path_text(root, ['formData', 'controls', 'isSucceedingApplicant'], _first_across_rows(normalized_rows, ['isSucceedingApplicant']))
+    _add_path_text(root, ['formData', 'controls', 'receiveCompensationForMAAFromOtherClients'], _first_across_rows(normalized_rows, ['receiveCompensationForMAAFromOtherClients']))
+    _add_path_text(root, ['formData', 'engagedActivities', 'eaTypeOtherDescription'], _first_across_rows(normalized_rows, ['eaTypeOtherDescription']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersonsTypes', 'fiaAPTypes'], _first_across_rows(normalized_rows, ['fiaAPTypes']))
+    _add_path_text(root, ['formData', 'formOfOrganization', 'formOrgOtherDescription'], _first_across_rows(normalized_rows, ['formOrgOtherDescription']))
+    _add_path_text(root, ['formData', 'maExecutionPage', 'crdNumber'], _first_across_rows(normalized_rows, ['crdNumber']))
+    _add_path_text(root, ['formData', 'meOrOPCompensationTypes', 'COMP_TYPE_OTHER_DESCRIPTION'], _first_across_rows(normalized_rows, ['cOMPTYPEOTHERDESCRIPTION']))
+    _add_path_text(root, ['formData', 'organizedJurisdiction', 'stateOrCountry'], _first_across_rows(normalized_rows, ['stateOrCountry']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactBuySellFromClients'], _first_across_rows(normalized_rows, ['mactBuySellFromClients']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactBuySellRecommendToClients'], _first_across_rows(normalized_rows, ['mactBuySellRecommendToClients']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactCompensateForReferrals'], _first_across_rows(normalized_rows, ['mactCompensateForReferrals']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactDiscAuthBuySell'], _first_across_rows(normalized_rows, ['mactDiscAuthBuySell']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactDiscAuthBuySellAsMAA'], _first_across_rows(normalized_rows, ['mactDiscAuthBuySellAsMAA']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactDiscAuthDetermineBrokerDealer'], _first_across_rows(normalized_rows, ['mactDiscAuthDetermineBrokerDealer']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactDiscAuthDetermineBrokerDealerAreAP'], _first_across_rows(normalized_rows, ['mactDiscAuthDetermineBrokerDealerAreAP']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactDiscAuthDetermineCommissionToBrokerDealer'], _first_across_rows(normalized_rows, ['mactDiscAuthDetermineCommissionToBrokerDealer']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactEnterDerivativesWithClients'], _first_across_rows(normalized_rows, ['mactEnterDerivativesWithClients']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactReceiveCompensationForReferrals'], _first_across_rows(normalized_rows, ['mactReceiveCompensationForReferrals']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactRecommendBrokerDealerToClient'], _first_across_rows(normalized_rows, ['mactRecommendBrokerDealerToClient']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactRecommendBrokerDealerToClientAreAP'], _first_across_rows(normalized_rows, ['mactRecommendBrokerDealerToClientAreAP']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactRecommendOwnedInterestToClients'], _first_across_rows(normalized_rows, ['mactRecommendOwnedInterestToClients']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactRecommendToClientsHavingOtherSalesInterest'], _first_across_rows(normalized_rows, ['mactRecommendToClientsHavingOtherSalesInterest']))
+    _add_path_text(root, ['formData', 'participationInterestMACT', 'mactRecommendToClientsServing'], _first_across_rows(normalized_rows, ['mactRecommendToClientsServing']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'faxNumber'], _first_across_rows(normalized_rows, ['principalOfficeAddressFaxNumber']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'phoneNumber'], _first_across_rows(normalized_rows, ['principalOfficeAddressPhoneNumber']))
+    _add_path_text(root, ['formData', 'solicitationCompensationTypes', 'COMP_TYPE_OTHER_DESCRIPTION'], _first_across_rows(normalized_rows, ['solicitationCompensationTypesCOMPTYPEOTHERDESCRIPTION']))
+    _add_path_text(root, ['formData', 'typesOfClients', 'typesOfClientsOther'], _first_across_rows(normalized_rows, ['typesOfClientsOther']))
+    _add_path_text(root, ['formData', 'typesOfSolicitedPersons', 'spOtherDescription'], _first_across_rows(normalized_rows, ['spOtherDescription']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'contactEmail'], _first_across_rows(normalized_rows, ['contactEmail']))
+    _add_path_text(root, ['formData', 'additionalWebAddresses', 'additionalWebAddress', 'webAddress'], _first_across_rows(normalized_rows, ['webAddress']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'description'], _first_across_rows(normalized_rows, ['description']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'locationName'], _first_across_rows(normalized_rows, ['locationName']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'affiliateName'], _first_across_rows(normalized_rows, ['affiliateName']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'hasApplicableRegistration'], _first_across_rows(normalized_rows, ['hasApplicableRegistration']))
+    _add_path_text(root, ['formData', 'businessConductedOtherNames', 'businessConductedOtherName', 'jurisdictions'], _first_across_rows(normalized_rows, ['jurisdictions']))
+    _add_path_text(root, ['formData', 'businessConductedOtherNames', 'businessConductedOtherName', 'name'], _first_across_rows(normalized_rows, ['name']))
+    _add_path_text(root, ['formData', 'cco', 'name', 'firstName'], _first_across_rows(normalized_rows, ['firstName']))
+    _add_path_text(root, ['formData', 'cco', 'name', 'lastName'], _first_across_rows(normalized_rows, ['lastName']))
+    _add_path_text(root, ['formData', 'cco', 'name', 'middleName'], _first_across_rows(normalized_rows, ['middleName']))
+    _add_path_text(root, ['formData', 'cco', 'titles', 'title'], _first_across_rows(normalized_rows, ['title']))
+    _add_path_text(root, ['formData', 'contactPerson', 'name', 'firstName'], _first_across_rows(normalized_rows, ['nameFirstName']))
+    _add_path_text(root, ['formData', 'contactPerson', 'name', 'lastName'], _first_across_rows(normalized_rows, ['nameLastName']))
+    _add_path_text(root, ['formData', 'contactPerson', 'name', 'middleName'], _first_across_rows(normalized_rows, ['nameMiddleName']))
+    _add_path_text(root, ['formData', 'contactPerson', 'titles', 'title'], _first_across_rows(normalized_rows, ['titlesTitle']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'civilDisclosure', 'isDismissed'], _first_across_rows(normalized_rows, ['isDismissed']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'civilDisclosure', 'isEnjoined'], _first_across_rows(normalized_rows, ['isEnjoined']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'civilDisclosure', 'isFoundInViolationOfRegulation'], _first_across_rows(normalized_rows, ['isFoundInViolationOfRegulation']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'civilDisclosure', 'isNamedInCivilProceeding'], _first_across_rows(normalized_rows, ['isNamedInCivilProceeding']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'criminalDisclosure', 'isChargedWithFelony'], _first_across_rows(normalized_rows, ['isChargedWithFelony']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'criminalDisclosure', 'isConvictedOfFelony'], _first_across_rows(normalized_rows, ['isConvictedOfFelony']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'criminalDisclosure', 'isOrgChargedWithFelony'], _first_across_rows(normalized_rows, ['isOrgChargedWithFelony']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'criminalDisclosure', 'isOrgConvictedOfFelony'], _first_across_rows(normalized_rows, ['isOrgConvictedOfFelony']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isAuthorizedToActAttorney'], _first_across_rows(normalized_rows, ['isAuthorizedToActAttorney']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isCauseOfDenial'], _first_across_rows(normalized_rows, ['isCauseOfDenial']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isDeniedLicense'], _first_across_rows(normalized_rows, ['isDeniedLicense']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isDiscipliend'], _first_across_rows(normalized_rows, ['isDiscipliend']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isFoundInCauseOfDenial'], _first_across_rows(normalized_rows, ['isFoundInCauseOfDenial']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isFoundInCauseOfSuspension'], _first_across_rows(normalized_rows, ['isFoundInCauseOfSuspension']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isFoundInViolationOfRegulation'], _first_across_rows(normalized_rows, ['regulatoryDisclosureIsFoundInViolationOfRegulation']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isFoundInViolationOfRules'], _first_across_rows(normalized_rows, ['isFoundInViolationOfRules']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isFoundMadeFalseStatement'], _first_across_rows(normalized_rows, ['isFoundMadeFalseStatement']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isImposedPenalty'], _first_across_rows(normalized_rows, ['isImposedPenalty']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isMadeFalseStatement'], _first_across_rows(normalized_rows, ['isMadeFalseStatement']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isOrderAgainst'], _first_across_rows(normalized_rows, ['isOrderAgainst']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isOrderAgainstActivity'], _first_across_rows(normalized_rows, ['isOrderAgainstActivity']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isRegulatoryComplaint'], _first_across_rows(normalized_rows, ['isRegulatoryComplaint']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isUnEthical'], _first_across_rows(normalized_rows, ['isUnEthical']))
+    _add_path_text(root, ['formData', 'disclosureAnswers', 'regulatoryDisclosure', 'isViolatedRegulation'], _first_across_rows(normalized_rows, ['isViolatedRegulation']))
+    _add_path_text(root, ['formData', 'engagedActivities', 'engagedActivityTypes', 'engagedActivityType'], _first_across_rows(normalized_rows, ['engagedActivityType']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'legalName'], _first_across_rows(normalized_rows, ['legalName']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'primaryBusinessName'], _first_across_rows(normalized_rows, ['primaryBusinessName']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'ffraRegistrations', 'ffraRegistration', 'country'], _first_across_rows(normalized_rows, ['country']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'ffraRegistrations', 'ffraRegistration', 'registrationNum'], _first_across_rows(normalized_rows, ['registrationNum']))
+    _add_path_text(root, ['formData', 'registrations', 'maTregistration', 'fileNumber'], _first_across_rows(normalized_rows, ['fileNumber']))
+    _add_path_text(root, ['formData', 'section1215DPublicReportingCompanies', 'section1215DPublicReportingCompany', 'cik'], _first_across_rows(normalized_rows, ['cik']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'nonScheduleABCControlPersonNatural', 'crd'], _first_across_rows(normalized_rows, ['crd']))
+    _add_path_text(root, ['formData', 'maExecutionPage', 'signature', 'date'], _first_across_rows(normalized_rows, ['date']))
+    _add_path_text(root, ['formData', 'maExecutionPage', 'signature', 'signature'], _first_across_rows(normalized_rows, ['signature']))
+    _add_path_text(root, ['formData', 'maExecutionPage', 'signature', 'signerName'], _first_across_rows(normalized_rows, ['signerName']))
+    _add_path_text(root, ['formData', 'maExecutionPage', 'signature', 'title'], _first_across_rows(normalized_rows, ['signatureTitle']))
+    _add_path_text(root, ['formData', 'mailingAddress', 'address', 'city'], _first_across_rows(normalized_rows, ['city']))
+    _add_path_text(root, ['formData', 'mailingAddress', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['addressStateOrCountry']))
+    _add_path_text(root, ['formData', 'mailingAddress', 'address', 'street1'], _first_across_rows(normalized_rows, ['street1']))
+    _add_path_text(root, ['formData', 'mailingAddress', 'address', 'street2'], _first_across_rows(normalized_rows, ['street2']))
+    _add_path_text(root, ['formData', 'mailingAddress', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['zipCode']))
+    _add_path_text(root, ['formData', 'meOrOPCompensationTypes', 'compensationTypes', 'compensationTypes'], _first_across_rows(normalized_rows, ['compensationTypes']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'description'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonDescription']))
+    _add_path_text(root, ['formData', 'otherActivities', 'accounting', 'licensedJurisdictions'], _first_across_rows(normalized_rows, ['licensedJurisdictions']))
+    _add_path_text(root, ['formData', 'otherActivities', 'bankingThrift', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['isActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'bankingThrift', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['isPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'otherActivities', 'brokerDealers', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['brokerDealersIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'brokerDealers', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['brokerDealersIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'otherActivities', 'commidityTA', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['commidityTAIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'engineering', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['engineeringIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'investmentAdvisor', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['investmentAdvisorIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'otherActivities', 'insurance', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['insuranceIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'insurance', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['insuranceIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'otherActivities', 'investmentAdvisor', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['investmentAdvisorIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'lawyers', 'licensedJurisdictions'], _first_across_rows(normalized_rows, ['lawyersLicensedJurisdictions']))
+    _add_path_text(root, ['formData', 'otherActivities', 'otherFinancialProductAdvisor', 'licensedJurisdictions'], _first_across_rows(normalized_rows, ['otherFinancialProductAdvisorLicensedJurisdictions']))
+    _add_path_text(root, ['formData', 'otherActivities', 'trustCompany', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['realEstateIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'registeredBrokerDealerReps', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['registeredBrokerDealerRepsIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'registeredBrokerDealerReps', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['registeredBrokerDealerRepsIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'section1215DPublicReportingCompanies', 'section1215DPublicReportingCompany', 'name'], _first_across_rows(normalized_rows, ['section1215DPublicReportingCompanyName']))
+    _add_path_text(root, ['formData', 'soleProprietor', 'name', 'firstName'], _first_across_rows(normalized_rows, ['soleProprietorNameFirstName']))
+    _add_path_text(root, ['formData', 'soleProprietor', 'name', 'lastName'], _first_across_rows(normalized_rows, ['soleProprietorNameLastName']))
+    _add_path_text(root, ['formData', 'soleProprietor', 'name', 'middleName'], _first_across_rows(normalized_rows, ['soleProprietorNameMiddleName']))
+    _add_path_text(root, ['formData', 'solicitationCompensationTypes', 'compensationTypes', 'compensationTypes'], _first_across_rows(normalized_rows, ['compensationTypesCompensationTypes']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'contact', 'name'], _first_across_rows(normalized_rows, ['contactName']))
+    _add_path_text(root, ['formData', 'typesOfClients', 'typesOfClients', 'clientTypes'], _first_across_rows(normalized_rows, ['clientTypes']))
+    _add_path_text(root, ['formData', 'typesOfSolicitedPersons', 'solicitationPersonTypes', 'solicitationPersonTypes'], _first_across_rows(normalized_rows, ['solicitationPersonTypes']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'contact', 'phoneNumber'], _first_across_rows(normalized_rows, ['contactPhoneNumber']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCcc'], _first_across_rows(normalized_rows, ['filerCcc']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerId'], _first_across_rows(normalized_rows, ['filerId']))
+    _add_path_text(root, ['headerData', 'filerInfo', 'notifications', 'internetNotificationAddress'], _first_across_rows(normalized_rows, ['internetNotificationAddress']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'addDeleteAmend', 'add'], _first_across_rows(normalized_rows, ['add']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'addDeleteAmend', 'amend'], _first_across_rows(normalized_rows, ['amend']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'addDeleteAmend', 'delete'], _first_across_rows(normalized_rows, ['delete']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'addDeleteAmend', 'newAdd'], _first_across_rows(normalized_rows, ['newAdd']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'faxNumber'], _first_across_rows(normalized_rows, ['officeInfoFaxNumber']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'phoneNumber'], _first_across_rows(normalized_rows, ['officeInfoPhoneNumber']))
+    _add_path_text(root, ['formData', 'additionalRegistrations', 'additionalRegistration', 'nameAndRegistration', 'name'], _first_across_rows(normalized_rows, ['nameAndRegistrationName']))
+    _add_path_text(root, ['formData', 'additionalRegistrations', 'additionalRegistration', 'nameAndRegistration', 'registrationId'], _first_across_rows(normalized_rows, ['registrationId']))
+    _add_path_text(root, ['formData', 'additionalWebAddresses', 'additionalWebAddress', 'addDeleteAmend', 'add'], _first_across_rows(normalized_rows, ['addDeleteAmendAdd']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'faxNumber'], _first_across_rows(normalized_rows, ['contactFaxNumber']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'phoneNumber'], _first_across_rows(normalized_rows, ['booksAndRecordsLocationContactPhoneNumber']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'type', 'add'], _first_across_rows(normalized_rows, ['typeAdd']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'type', 'amend'], _first_across_rows(normalized_rows, ['typeAmend']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'type', 'delete'], _first_across_rows(normalized_rows, ['typeDelete']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'type', 'newAdd'], _first_across_rows(normalized_rows, ['typeNewAdd']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'applicableRegistration', 'issuingAgencyName'], _first_across_rows(normalized_rows, ['issuingAgencyName']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'applicableRegistration', 'registrationNumber'], _first_across_rows(normalized_rows, ['registrationNumber']))
+    _add_path_text(root, ['formData', 'businessConductedOtherNames', 'businessConductedOtherName', 'addDeleteAmend', 'add'], _first_across_rows(normalized_rows, ['businessConductedOtherNameAddDeleteAmendAdd']))
+    _add_path_text(root, ['formData', 'cco', 'address', 'address', 'city'], _first_across_rows(normalized_rows, ['addressCity']))
+    _add_path_text(root, ['formData', 'cco', 'address', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['addressAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'cco', 'address', 'address', 'street1'], _first_across_rows(normalized_rows, ['addressStreet1']))
+    _add_path_text(root, ['formData', 'cco', 'address', 'address', 'street2'], _first_across_rows(normalized_rows, ['addressStreet2']))
+    _add_path_text(root, ['formData', 'cco', 'address', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['addressZipCode']))
+    _add_path_text(root, ['formData', 'contactPerson', 'address', 'address', 'city'], _first_across_rows(normalized_rows, ['addressAddressCity']))
+    _add_path_text(root, ['formData', 'contactPerson', 'address', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['contactPersonAddressAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'contactPerson', 'address', 'address', 'street1'], _first_across_rows(normalized_rows, ['addressAddressStreet1']))
+    _add_path_text(root, ['formData', 'contactPerson', 'address', 'address', 'street2'], _first_across_rows(normalized_rows, ['addressAddressStreet2']))
+    _add_path_text(root, ['formData', 'contactPerson', 'address', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['addressAddressZipCode']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'apTypes', 'fiaAPTypes'], _first_across_rows(normalized_rows, ['apTypesFiaAPTypes']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'isControlOrControlled'], _first_across_rows(normalized_rows, ['isControlOrControlled']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'isRegisteredWithFFRA'], _first_across_rows(normalized_rows, ['isRegisteredWithFFRA']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'isUnderCommonControl'], _first_across_rows(normalized_rows, ['isUnderCommonControl']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'type', 'add'], _first_across_rows(normalized_rows, ['fiaAssociatedPersonTypeAdd']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'type', 'amend'], _first_across_rows(normalized_rows, ['fiaAssociatedPersonTypeAmend']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'type', 'newAdd'], _first_across_rows(normalized_rows, ['fiaAssociatedPersonTypeNewAdd']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'faxNumber'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactFaxNumber']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'phoneNumber'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactPhoneNumber']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'type', 'add'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonTypeAdd']))
+    _add_path_text(root, ['formData', 'otherActivities', 'accounting', 'activelyEngagedPrimaryBusiness', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['activelyEngagedPrimaryBusinessIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'accounting', 'activelyEngagedPrimaryBusiness', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['activelyEngagedPrimaryBusinessIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'otherActivities', 'otherFinancialProductAdvisor', 'activelyEngagedPrimaryBusiness', 'isActivelyEngaged'], _first_across_rows(normalized_rows, ['otherFinancialProductAdvisorActivelyEngagedPrimaryBusinessIsActivelyEngaged']))
+    _add_path_text(root, ['formData', 'otherActivities', 'otherFinancialProductAdvisor', 'activelyEngagedPrimaryBusiness', 'isPrimaryBusiness'], _first_across_rows(normalized_rows, ['otherFinancialProductAdvisorActivelyEngagedPrimaryBusinessIsPrimaryBusiness']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'addressInfo', 'address', 'city'], _first_across_rows(normalized_rows, ['addressInfoAddressCity']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'addressInfo', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['addressInfoAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'addressInfo', 'address', 'street1'], _first_across_rows(normalized_rows, ['addressInfoAddressStreet1']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'addressInfo', 'address', 'street2'], _first_across_rows(normalized_rows, ['addressInfoAddressStreet2']))
+    _add_path_text(root, ['formData', 'principalOfficeAddress', 'addressInfo', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['addressInfoAddressZipCode']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'maRegistration', 'fileNumber'], _first_across_rows(normalized_rows, ['maRegistrationFileNumber']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'controPersonPR'], _first_across_rows(normalized_rows, ['controPersonPR']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'empIDNumber'], _first_across_rows(normalized_rows, ['empIDNumber']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'irsNum'], _first_across_rows(normalized_rows, ['businessIrsNum']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'name'], _first_across_rows(normalized_rows, ['businessName']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'owningEntity'], _first_across_rows(normalized_rows, ['owningEntity']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'owningEntity'], _first_across_rows(normalized_rows, ['personOwningEntity']))
+    _add_path_text(root, ['formData', 'section1215DPublicReportingCompanies', 'section1215DPublicReportingCompany', 'reportingSchedules', 'reportingSchedule'], _first_across_rows(normalized_rows, ['reportingSchedule']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'applicableRegistration', 'jurisdiction', 'ForeignCountry'], _first_across_rows(normalized_rows, ['foreignCountry']))
+    _add_path_text(root, ['formData', 'businessAffiliates', 'businessAffiliate', 'applicableRegistration', 'jurisdiction', 'US_State'], _first_across_rows(normalized_rows, ['uSState']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'nonScheduleABCControlPersonNatural', 'dateInfo', 'effectiveDate'], _first_across_rows(normalized_rows, ['effectiveDate']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'nonScheduleABCControlPersonNatural', 'name', 'firstName'], _first_across_rows(normalized_rows, ['nonScheduleABCControlPersonNaturalNameFirstName']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'nonScheduleABCControlPersonNatural', 'name', 'lastName'], _first_across_rows(normalized_rows, ['nonScheduleABCControlPersonNaturalNameLastName']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'nonScheduleABCControlPersonNatural', 'name', 'middleName'], _first_across_rows(normalized_rows, ['nonScheduleABCControlPersonNaturalNameMiddleName']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'anotherRegistration', 'description'], _first_across_rows(normalized_rows, ['anotherRegistrationDescription']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'anotherRegistration', 'registrationId'], _first_across_rows(normalized_rows, ['anotherRegistrationRegistrationId']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'bdRegistration', 'crdNumber'], _first_across_rows(normalized_rows, ['bdRegistrationCrdNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'bdRegistration', 'fileNumber'], _first_across_rows(normalized_rows, ['bdRegistrationFileNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'otherRegistration', 'cik'], _first_across_rows(normalized_rows, ['otherRegistrationCik']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'otherRegistration', 'description'], _first_across_rows(normalized_rows, ['otherRegistrationDescription']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'otherRegistration', 'fileNumber'], _first_across_rows(normalized_rows, ['otherRegistrationFileNumber']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['baseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['statusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['isControPerson']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['ownershipCode']))
+    _add_path_text(root, ['formData', 'scheduleA', 'businesses', 'business', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['titleStatus']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['personBaseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['baseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['baseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['baseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['baseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'name', 'firstName'], _first_across_rows(normalized_rows, ['personNameFirstName']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'name', 'lastName'], _first_across_rows(normalized_rows, ['personNameLastName']))
+    _add_path_text(root, ['formData', 'scheduleA', 'persons', 'person', 'name', 'middleName'], _first_across_rows(normalized_rows, ['personNameMiddleName']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'controPersonPR'], _first_across_rows(normalized_rows, ['baseInfoControPersonPR']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'empIDNumber'], _first_across_rows(normalized_rows, ['baseInfoEmpIDNumber']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'irsNum'], _first_across_rows(normalized_rows, ['baseInfoIrsNum']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'name'], _first_across_rows(normalized_rows, ['baseInfoName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'controPersonPR'], _first_across_rows(normalized_rows, ['baseInformationControPersonPR']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'empIDNumber'], _first_across_rows(normalized_rows, ['baseInformationEmpIDNumber']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'irsNum'], _first_across_rows(normalized_rows, ['baseInformationIrsNum']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'name'], _first_across_rows(normalized_rows, ['baseInformationName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'type', 'add'], _first_across_rows(normalized_rows, ['businessTypeAdd']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'type', 'amend'], _first_across_rows(normalized_rows, ['businessTypeAmend']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'type', 'delete'], _first_across_rows(normalized_rows, ['personTypeDelete']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'type', 'newAdd'], _first_across_rows(normalized_rows, ['personTypeNewAdd']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'type', 'add'], _first_across_rows(normalized_rows, ['personTypeAdd']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'type', 'amend'], _first_across_rows(normalized_rows, ['personTypeAmend']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'owningEntity'], _first_across_rows(normalized_rows, ['baseInformationOwningEntity']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'type', 'add'], _first_across_rows(normalized_rows, ['indirectBusinessesBusinessTypeAdd']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'type', 'amend'], _first_across_rows(normalized_rows, ['indirectBusinessesBusinessTypeAmend']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'owningEntity'], _first_across_rows(normalized_rows, ['personBaseInformationOwningEntity']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'type', 'add'], _first_across_rows(normalized_rows, ['indirectPersonsPersonTypeAdd']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'type', 'amend'], _first_across_rows(normalized_rows, ['indirectPersonsPersonTypeAmend']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'addressInfo', 'address', 'city'], _first_across_rows(normalized_rows, ['officeInfoAddressInfoAddressCity']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'addressInfo', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['officeInfoAddressInfoAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'addressInfo', 'address', 'street1'], _first_across_rows(normalized_rows, ['officeInfoAddressInfoAddressStreet1']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'addressInfo', 'address', 'street2'], _first_across_rows(normalized_rows, ['officeInfoAddressInfoAddressStreet2']))
+    _add_path_text(root, ['formData', 'additionalOffices', 'additionalOffice', 'officeInfo', 'addressInfo', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['officeInfoAddressInfoAddressZipCode']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'addressInfo', 'address', 'city'], _first_across_rows(normalized_rows, ['contactAddressInfoAddressCity']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'addressInfo', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['contactAddressInfoAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'addressInfo', 'address', 'street1'], _first_across_rows(normalized_rows, ['contactAddressInfoAddressStreet1']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'addressInfo', 'address', 'street2'], _first_across_rows(normalized_rows, ['contactAddressInfoAddressStreet2']))
+    _add_path_text(root, ['formData', 'booksAndRecordsLocations', 'booksAndRecordsLocation', 'contact', 'addressInfo', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['contactAddressInfoAddressZipCode']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'headerData', 'baseHeader', 'apDrpFiledCount'], _first_across_rows(normalized_rows, ['apDrpFiledCount']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'headerData', 'respondingTo', 'responseQuestion'], _first_across_rows(normalized_rows, ['responseQuestion']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'headerData', 'baseHeader', 'apDrpFiledCount'], _first_across_rows(normalized_rows, ['baseHeaderApDrpFiledCount']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'headerData', 'respondingTo', 'responseQuestion'], _first_across_rows(normalized_rows, ['respondingToResponseQuestion']))
+    _add_path_text(root, ['formData', 'fiaAssociatedPersons', 'fiaAssociatedPerson', 'otherMunicipalAdviser', 'ffraRegistrations', 'ffraRegistration', 'name'], _first_across_rows(normalized_rows, ['ffraRegistrationName']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'addressInfo', 'address', 'city'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactAddressInfoAddressCity']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'addressInfo', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactAddressInfoAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'addressInfo', 'address', 'street1'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactAddressInfoAddressStreet1']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'addressInfo', 'address', 'street2'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactAddressInfoAddressStreet2']))
+    _add_path_text(root, ['formData', 'nonScheduleABCControllingPersons', 'nonScheduleABCControllingPerson', 'contact', 'addressInfo', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['nonScheduleABCControllingPersonContactAddressInfoAddressZipCode']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['baseInfoBaseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['baseInfoBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['baseInfoBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['baseInfoBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleB', 'businesses', 'business', 'baseInfo', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['baseInfoBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['personBaseInfoBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['personBaseInfoBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['personBaseInfoBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['personBaseInfoBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'name', 'firstName'], _first_across_rows(normalized_rows, ['baseInfoNameFirstName']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'name', 'lastName'], _first_across_rows(normalized_rows, ['baseInfoNameLastName']))
+    _add_path_text(root, ['formData', 'scheduleB', 'persons', 'person', 'baseInfo', 'name', 'middleName'], _first_across_rows(normalized_rows, ['baseInfoNameMiddleName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['baseInformationBaseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['baseInformationBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['baseInformationBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['baseInformationBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directBusinesses', 'business', 'baseInformation', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['baseInformationBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'name', 'firstName'], _first_across_rows(normalized_rows, ['baseInformationNameFirstName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'name', 'lastName'], _first_across_rows(normalized_rows, ['baseInformationNameLastName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'directPersons', 'person', 'baseInformation', 'name', 'middleName'], _first_across_rows(normalized_rows, ['baseInformationNameMiddleName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'controPersonPR'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoControPersonPR']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'empIDNumber'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoEmpIDNumber']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'irsNum'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoIrsNum']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'name'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'apType', 'firmInfo'], _first_across_rows(normalized_rows, ['firmInfo']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'registrationInfo', 'crdNumber'], _first_across_rows(normalized_rows, ['registrationInfoCrdNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'apInfo', 'associatedPerson', 'registrationInfo', 'isSECRegistered'], _first_across_rows(normalized_rows, ['isSECRegistered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'registrationInfo', 'secRegistrationNumber'], _first_across_rows(normalized_rows, ['secRegistrationNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'allegationsDescription'], _first_across_rows(normalized_rows, ['allegationsDescription']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'principalProductTypes', 'product'], _first_across_rows(normalized_rows, ['product']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'registrationInfo', 'isSECRegistered'], _first_across_rows(normalized_rows, ['registrationInfoIsSECRegistered']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'baseInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoBaseInformationCrdNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'iaRegistration', 'nonExempt', 'secRegistration', 'fileNumber'], _first_across_rows(normalized_rows, ['secRegistrationFileNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'iaRegistration', 'nonExempt', 'secRegistration', 'crdNumber'], _first_across_rows(normalized_rows, ['secRegistrationCrdNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'iaRegistration', 'nonExempt', 'stateRegistration', 'crdNumber'], _first_across_rows(normalized_rows, ['stateRegistrationCrdNumber']))
+    _add_path_text(root, ['formData', 'registrations', 'baseRegistrations', 'baseRegistrations', 'iaRegistration', 'nonExempt', 'stateRegistration', 'state'], _first_across_rows(normalized_rows, ['state']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectBusinesses', 'business', 'baseInformation', 'baseInfo', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'baseInformation', 'isControPerson'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInfoBaseInformationIsControPerson']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'baseInformation', 'ownershipCode'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInfoBaseInformationOwnershipCode']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'baseInformation', 'statusAcquired'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInfoBaseInformationStatusAcquired']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'baseInformation', 'titleStatus'], _first_across_rows(normalized_rows, ['personBaseInformationBaseInfoBaseInformationTitleStatus']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'name', 'firstName'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoNameFirstName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'name', 'lastName'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoNameLastName']))
+    _add_path_text(root, ['formData', 'scheduleC', 'indirectPersons', 'person', 'baseInformation', 'baseInfo', 'name', 'middleName'], _first_across_rows(normalized_rows, ['baseInformationBaseInfoNameMiddleName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'firstName'], _first_across_rows(normalized_rows, ['naturalPersonInfoFirstName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'lastName'], _first_across_rows(normalized_rows, ['naturalPersonInfoLastName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'civilJudicialDisclosure', 'civilJudicialDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'middleName'], _first_across_rows(normalized_rows, ['naturalPersonInfoMiddleName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'suffix'], _first_across_rows(normalized_rows, ['suffix']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'allegationsDescription'], _first_across_rows(normalized_rows, ['initiatedDRPAllegationsDescription']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'principalProductTypes', 'product'], _first_across_rows(normalized_rows, ['principalProductTypesProduct']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'name'], _first_across_rows(normalized_rows, ['advBDU4FilingName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'summary'], _first_across_rows(normalized_rows, ['summary']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'dateInitiated', 'date'], _first_across_rows(normalized_rows, ['dateInitiatedDate']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'sanctionsSought', 'sanction'], _first_across_rows(normalized_rows, ['sanction']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'crdNumber'], _first_across_rows(normalized_rows, ['advBDU4FilingCrdNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'disclosureNumber'], _first_across_rows(normalized_rows, ['disclosureNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'firstName'], _first_across_rows(normalized_rows, ['apTypeNaturalPersonInfoFirstName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'lastName'], _first_across_rows(normalized_rows, ['apTypeNaturalPersonInfoLastName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'apType', 'naturalPersonInfo', 'middleName'], _first_across_rows(normalized_rows, ['apTypeNaturalPersonInfoMiddleName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'name'], _first_across_rows(normalized_rows, ['filedDisclosureAdvBDU4FilingName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'summary'], _first_across_rows(normalized_rows, ['baseInformationSummary']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'dateInitiated', 'date'], _first_across_rows(normalized_rows, ['initiatedDRPDateInitiatedDate']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'sanctionsSought', 'sanction'], _first_across_rows(normalized_rows, ['sanctionsSoughtSanction']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'crdNumber'], _first_across_rows(normalized_rows, ['filedDisclosureAdvBDU4FilingCrdNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'filedDisclosure', 'advBDU4Filing', 'disclosureNumber'], _first_across_rows(normalized_rows, ['advBDU4FilingDisclosureNumber']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'docketOrCaseNo'], _first_across_rows(normalized_rows, ['docketOrCaseNo']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'name'], _first_across_rows(normalized_rows, ['chargesBroughtInName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'date', 'date'], _first_across_rows(normalized_rows, ['dateDate']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'explanation'], _first_across_rows(normalized_rows, ['explanation']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionsOrdered'], _first_across_rows(normalized_rows, ['sanctionsOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'totalAmountOrdered'], _first_across_rows(normalized_rows, ['totalAmountOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'judgement'], _first_across_rows(normalized_rows, ['judgement']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'isFinalOrder'], _first_across_rows(normalized_rows, ['isFinalOrder']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'initiatedBy', 'name'], _first_across_rows(normalized_rows, ['initiatedByName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'docketOrCaseNo'], _first_across_rows(normalized_rows, ['chargesBroughtInDocketOrCaseNo']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'name'], _first_across_rows(normalized_rows, ['baseInformationChargesBroughtInName']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'date', 'date'], _first_across_rows(normalized_rows, ['resolutionInformationDateDate']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'explanation'], _first_across_rows(normalized_rows, ['typesExplanation']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionsOrdered'], _first_across_rows(normalized_rows, ['detailsSanctionsOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'totalAmountOrdered'], _first_across_rows(normalized_rows, ['detailsTotalAmountOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'judgement'], _first_across_rows(normalized_rows, ['typesJudgement']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'types', 'isFinalOrder'], _first_across_rows(normalized_rows, ['typesIsFinalOrder']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'city'], _first_across_rows(normalized_rows, ['chargesBroughtInAddressCity']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['chargesBroughtInAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'street1'], _first_across_rows(normalized_rows, ['chargesBroughtInAddressStreet1']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['chargesBroughtInAddressZipCode']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctions', 'sanction'], _first_across_rows(normalized_rows, ['sanctionsSanction']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'city'], _first_across_rows(normalized_rows, ['baseInformationChargesBroughtInAddressCity']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'stateOrCountry'], _first_across_rows(normalized_rows, ['baseInformationChargesBroughtInAddressStateOrCountry']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'street1'], _first_across_rows(normalized_rows, ['baseInformationChargesBroughtInAddressStreet1']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'baseInformation', 'chargesBroughtIn', 'address', 'zipCode'], _first_across_rows(normalized_rows, ['baseInformationChargesBroughtInAddressZipCode']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctions', 'sanction'], _first_across_rows(normalized_rows, ['detailsSanctionsSanction']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionDetails', 'monetarySanctions', 'amountOrdered'], _first_across_rows(normalized_rows, ['amountOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionDetails', 'monetarySanctions', 'finalAmount'], _first_across_rows(normalized_rows, ['finalAmount']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionDetails', 'monetarySanctions', 'amountOrdered'], _first_across_rows(normalized_rows, ['monetarySanctionsAmountOrdered']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'apInfo', 'associatedPerson', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionDetails', 'monetarySanctions', 'finalAmount'], _first_across_rows(normalized_rows, ['monetarySanctionsFinalAmount']))
+    _add_path_text(root, ['formData', 'drpInfo', 'regulatoryDisclosure', 'regulatoryDrp', 'applicantInfo', 'drpInfo', 'detailedDisclosure', 'initiatedDRP', 'resolutionInformation', 'details', 'sanctionDetails', 'monetarySanctions', 'paymentState', 'satisfied'], _first_across_rows(normalized_rows, ['satisfied']))
+    _add_created_with_comment(root)
+
+    tree = ET.ElementTree(root)
+    ET.indent(tree, space='\t')
+
+    output = io.StringIO()
+    output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    tree.write(output, encoding='unicode', xml_declaration=False)
+    return output.getvalue().encode('utf-8')
