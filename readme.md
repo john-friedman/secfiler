@@ -8,7 +8,7 @@ Features
 
 ## Quickstart
 
-See [xml schema](xml_schema.md) for how to feed data into `constructdocument()`.
+See [xml schema](xml_schema.md) for how to feed data into `construct_document()`.
 
 ```python
 from secfiler import construct_document
