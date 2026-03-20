@@ -8,7 +8,7 @@ Features
 
 ## Quickstart
 
-
+See [xml schema](xml_schema.md) for how to feed data into `constructdocument()`.
 
 ```python
 from secfiler import construct_document
@@ -34,5 +34,6 @@ with open('bezosform4.xml', 'wb') as f:
 - This was vibe coded with a harness. That is because the code is the easy part. The difficult part is calculating every xpath. That required 1. hosting an archive of every SEC filing and 2. computing the paths using ec2 instances. Thank you to OpenAI for the free credits.
 - There is a comment string: '<!--XML file created with secfiler: https://github.com/john-friedman/secfiler-->' attached to each file. 
 
-## Todo
+## Future improvements
+
 - Use a harness with https://www.sec.gov/submit-filings/technical-specifications to further refine using offical documentation. Not all xml files are covered by the docs.
