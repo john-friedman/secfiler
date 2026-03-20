@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.sec.gov/edgar/nmfp3common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/statecodes" targetNamespace="http://www.sec.gov/edgar/nmfp3common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/statecodes" schemaLocation="eis_stateCodes.xsd"/>
+	<xs:simpleType name="SCHEMA_VERSION_TYPE">
+		<xs:annotation>
+			<xs:documentation> The schema version element applies only to the submission's primary document.	It does not apply to the submission file. This element should not be included in a Reduced Content submission. EDGAR inserts this element in the version of 	the primary document that gets disseminated. If you do provide a value for this element and it does not match the current version of this schema file being used by EDGAR, then EDGAR will generate a WARNING.	</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SERIES_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied series identifier.  Field is 10 characters.  The value must start with an "S" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLASS_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied class (contract) identifier.  Field is 10 characters.  The value must start with a "C" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[C|c][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_10_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_12_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_20_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_LEI_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:length value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	 <!-- 
+	   <xs:simpleType name="STRING_20_TYPE_3">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="N/A" />
+		</xs:restriction>
+	</xs:simpleType>-->
+	
+	<xs:simpleType name="STRING_25_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="STRING_150_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_250_TYPE1">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="250" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DATE_TYPE">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:complexType name="DATE_RANGE_TYPE">
+		<xs:sequence>
+			<xs:element name="from" type="STRING_10_TYPE"/>
+			<xs:element name="to" type="STRING_10_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DECIMAL_TYPE14_2_NONNEGATIVE">
+        <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="14" />
+            <xs:fractionDigits value="2" />
+            <xs:maxInclusive value="999999999999.99" />
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:simpleType name="DECIMAL_14_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="2"/>
+			<xs:pattern value="\d{0,12}\.\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_COUPONYIELD_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="25"/>
+			<xs:pattern value="[\+\-]?\d{0,23}\.\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_16_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="16"/>
+			<xs:fractionDigits value="4"/>
+			<xs:pattern value="\d{0,12}\.\d{2,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_14_TYPE2">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="2"/>
+			<xs:pattern value="[\+\-]?\d{0,12}\.\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_5_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.9999"/>
+			<xs:pattern value="\d{0,1}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="DECIMAL_5_NONNEGATIVE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.9999"/>
+			<xs:pattern value="\d{0,1}\.\d\d\d\d"/>
+			<xs:minInclusive value="0"/>			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_5_TYPE2">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.0000"/>
+			<xs:pattern value="\d{0,1}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_5_TYPE3">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="-1.9999"/>
+			<xs:maxInclusive value="1.9999"/>
+			<xs:pattern value="[\+\-]?\d{0,1}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_5_TYPE4">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.9999"/>
+			<xs:pattern value="[\+\-]?\d{0,1}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_5_TYPE5">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.0000"/>
+			<xs:pattern value="[\+\-]?\d{0,1}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="DECIMAL_5_TYPE6">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="4"/>
+			<xs:maxInclusive value="1.0000"/>
+			<xs:pattern value="\d{0,1}(\.\d{0,4})?"/>
+	</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_8_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="8"/>
+			<xs:fractionDigits value="4"/>
+			<xs:pattern value="[\+\-]?\d{0,4}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DECIMAL_8_TYPE2">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="8"/>
+			<xs:fractionDigits value="4"/>
+			<xs:pattern value="\d{0,4}\.\d\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INT_3_TYPE">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INT_10_TYPE">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INT_2_TYPE">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:totalDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CUSIP_MEMBER_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--  <xs:simpleType name="CUSIP_1_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>-->
+	<xs:complexType name="PERCENTAGE_OF_TOTAL_ASSET_INVESTED_DAILY">
+		<xs:sequence>
+			<xs:element name="fridayDay1" type="DECIMAL_5_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay2" type="DECIMAL_5_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay3" type="DECIMAL_5_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay4" type="DECIMAL_5_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay5" type="DECIMAL_5_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PERCENTAGE_OF_TOTAL_ASSET_INVESTED">
+		<xs:sequence>
+			<xs:element name="fridayWeek1" type="DECIMAL_5_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek2" type="DECIMAL_5_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek3" type="DECIMAL_5_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek4" type="DECIMAL_5_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek5" type="DECIMAL_5_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TOTAL_VALUE_OF_LIQUID_ASSET_DAILY">
+		<xs:sequence>
+			<xs:element name="fridayDay1" type="DECIMAL_14_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay2" type="DECIMAL_14_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay3" type="DECIMAL_14_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay4" type="DECIMAL_14_TYPE" minOccurs="0"/>
+			<xs:element name="fridayDay5" type="DECIMAL_14_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TOTAL_VALUE_OF_LIQUID_ASSET">
+		<xs:sequence>
+			<xs:element name="fridayWeek1" type="DECIMAL_14_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek2" type="DECIMAL_14_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek3" type="DECIMAL_14_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek4" type="DECIMAL_14_TYPE" minOccurs="1"/>
+			<xs:element name="fridayWeek5" type="DECIMAL_14_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

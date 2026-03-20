@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/sbsefwvfiler" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/sbsefcommon" targetNamespace="http://www.sec.gov/edgar/sbsefwvfiler" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation> Enumerated values and descriptions: SBSEF: Application for SBSEF Registration, SBSEF/A: Interim Amendment, SBSEF-A: Annual Amendment, SBSEF-W:  Application for Withdrawal of Registration  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="SBSEF-W"/>
+			<xs:enumeration value="SBSEF-V"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FILER_CREDENTIALS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_CREDENTIALS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cik" type="ns1:CIK_TYPE"/>
+			<xs:element name="ccc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filerCredentials" type="FILER_CREDENTIALS_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FLAGS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FLAGS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONTACT_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactName" type="ns1:ENTITY_NAME_TYPE"/>
+			<xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE"/>
+			<xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NOTIFICATIONS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the NOTIFICATIONS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filer" type="FILER_TYPE"/>
+			<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+			<xs:element name="contact" type="CONTACT_TYPE"/>
+			<xs:element name="flags" type="FLAGS_TYPE" minOccurs="0"/>
+			<xs:element name="notifications" type="NOTIFICATIONS_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SIGNATURE_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SIGNATURE_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="signatureDate" type="ns1:DATE_TYPE2" minOccurs="1"/>
+			<xs:element name="signatureApplicantName" type="ns1:STRING_150_TYPE" minOccurs="1"/>
+			<xs:element name="signatureAuthorizedPerson" type="ns1:STRING_255_TYPE" minOccurs="1"/>
+			<xs:element name="signatureTitle" type="ns1:STRING_255_TYPE" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HEADER_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the HEADER_DATA_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+			<xs:element name="filerInfo" type="FILER_INFO_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="EFFECTIVE_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EFFECTIVE_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="effectiveDate" type="ns1:DATE_TYPE2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="FORM_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FORM_DATA_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="effectiveDateInfo" type="EFFECTIVE_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="signatureInfo" type="SIGNATURE_INFO_TYPE" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="headerData" type="HEADER_DATA"/>
+				<xs:element name="formData" type="FORM_DATA"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

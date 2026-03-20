@@ -1,0 +1,740 @@
+<edgarSubmission xmlns="http://www.sec.gov/edgar/nmfp3" xmlns:ns3="http://www.sec.gov/edgar/nmfp3common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/nmfp3 eis_NMFP3_Filer.xsd">
+<headerData>
+<submissionType>N-MFP3/A</submissionType>
+<filerInfo>
+<filer>
+<filerCredentials>
+<cik>000350001</cik>
+<ccc>market#1</ccc>
+</filerCredentials>
+</filer>
+<liveTestFlag>LIVE</liveTestFlag>
+<contact>
+<contactName>John Doe 1</contactName>
+<contactPhoneNumber>111-111-1111</contactPhoneNumber>
+</contact>
+<confirmingCopyFlag>N</confirmingCopyFlag>
+</filerInfo>
+</headerData>
+<formData>
+<generalInfo>
+<reportDate>2016-10-31</reportDate>
+<registrantFullName>registrantFullName</registrantFullName>
+<cik>000350001</cik>
+<registrantLEIId>12345678912345678912</registrantLEIId>
+<nameOfSeries>bat</nameOfSeries>
+<leiOfSeries>12345678910111212122</leiOfSeries>
+<seriesId>S000000068</seriesId>
+<totalShareClassesInSeries>0</totalShareClassesInSeries>
+<finalFilingFlag>Y</finalFilingFlag>
+<fundLiquidatingFlag>N</fundLiquidatingFlag>
+<fundMrgOrAcqrdByOthrFlag>Y</fundMrgOrAcqrdByOthrFlag>
+<successorFund>
+<cik>000350001</cik>
+<fileNumber>002-100035</fileNumber>
+<seriesId>S000000068</seriesId>
+</successorFund>
+<successorFund>
+<cik>0001306276</cik>
+<fileNumber>002-100036</fileNumber>
+<seriesId>S000018844</seriesId>
+</successorFund>
+<fundAcqrdOrMrgdWthAnthrFlag>Y</fundAcqrdOrMrgdWthAnthrFlag>
+<acquiredMergedFund>
+<cik>000350001</cik>
+<fileNumber>002-100035</fileNumber>
+<seriesId>S000000068</seriesId>
+</acquiredMergedFund>
+<acquiredMergedFund>
+<cik>0001306276</cik>
+<fileNumber>002-100036</fileNumber>
+<seriesId>S000018844</seriesId>
+</acquiredMergedFund>
+<contact2>
+<contactName>John Doe</contactName>
+<contactPhoneNumber>111-111-1111</contactPhoneNumber>
+<contactEmailAddress>test3@sec.gov</contactEmailAddress>
+</contact2>
+</generalInfo>
+<seriesLevelInfo>
+<securitiesActFileNumber>333-100704</securitiesActFileNumber>
+<adviser>
+<adviserName>a</adviserName>
+<adviserFileNumber>801-95615</adviserFileNumber>
+</adviser>
+<adviser>
+<adviserName>a</adviserName>
+<adviserFileNumber>801-95615</adviserFileNumber>
+</adviser>
+<subAdviser>
+<adviserName>aaa</adviserName>
+<adviserFileNumber>801-95615</adviserFileNumber>
+</subAdviser>
+<subAdviser>
+<adviserName>bbb</adviserName>
+<adviserFileNumber>801-95615</adviserFileNumber>
+</subAdviser>
+<indpPubAccountant>
+<name>a</name>
+<city>a</city>
+<stateCountry>VA</stateCountry>
+</indpPubAccountant>
+<administrator>
+<administratorName>a</administratorName>
+</administrator>
+<administrator>
+<administratorName>a</administratorName>
+</administrator>
+<transferAgent>
+<name>a</name>
+<cik>000350001</cik>
+<fileNumber>084-55842</fileNumber>
+</transferAgent>
+<feederFundFlag>Y</feederFundFlag>
+<masterFeederFund>
+<cik>000350001</cik>
+<name>aaa</name>
+<fileNumber>002-100035</fileNumber>
+<seriesId>S000000068</seriesId>
+</masterFeederFund>
+<masterFundFlag>Y</masterFundFlag>
+<feederFund>
+<cik>000350001</cik>
+<name>a</name>
+<fileNumber>002-100035</fileNumber>
+<seriesId>S000000068</seriesId>
+</feederFund>
+  <seriesFundInsuCmpnySepAccntFlag>Y</seriesFundInsuCmpnySepAccntFlag>
+      <moneyMarketFundCategory>Single State</moneyMarketFundCategory><!--Retail GLM-->
+      <fundRetailMoneyMarketFlag>N</fundRetailMoneyMarketFlag>
+      <govMoneyMrktFundFlag>Y</govMoneyMrktFundFlag>
+      <averagePortfolioMaturity>0</averagePortfolioMaturity>
+      <averageLifeMaturity>0</averageLifeMaturity>
+	  <liquidAssetsDetails>
+		<totalValueDailyLiquidAssets>123456789125.45</totalValueDailyLiquidAssets>
+		<totalValueWeeklyLiquidAssets>123456789125.45</totalValueWeeklyLiquidAssets>
+		<percentageDailyLiquidAssets>1.9999</percentageDailyLiquidAssets>
+		<percentageWeeklyLiquidAssets>1.9999</percentageWeeklyLiquidAssets>
+		<totalLiquidAssetsNearPercentDate>2023-06-30</totalLiquidAssetsNearPercentDate>
+      </liquidAssetsDetails>
+	    <liquidAssetsDetails>
+		<totalValueWeeklyLiquidAssets>123456789125.45</totalValueWeeklyLiquidAssets>
+		<percentageWeeklyLiquidAssets>1.9999</percentageWeeklyLiquidAssets>
+		<totalLiquidAssetsNearPercentDate>2023-06-30</totalLiquidAssetsNearPercentDate>
+      </liquidAssetsDetails>
+	  <cash>1234.89</cash>
+      <totalValuePortfolioSecurities>83144.46</totalValuePortfolioSecurities>
+      <amortizedCostPortfolioSecurities>8421674.15</amortizedCostPortfolioSecurities>
+      <totalValueOtherAssets>153745657344.19</totalValueOtherAssets>
+      <totalValueLiabilities>897443.03</totalValueLiabilities>
+      <netAssetOfSeries>116474344.01</netAssetOfSeries>
+      <numberOfSharesOutstanding>87413489743.99</numberOfSharesOutstanding>
+      <seekStablePricePerShare>Y</seekStablePricePerShare>
+		<stablePricePerShare>120.0000</stablePricePerShare>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-01</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-02</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-03</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-04</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-05</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-06</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-07</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-08</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-09</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-10</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-11</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-12</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-13</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-14</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-15</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-16</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-17</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-18</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-19</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-20</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-21</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-22</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-23</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-24</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-25</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-26</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-27</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-28</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-29</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-30</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+      <sevenDayGrossYield>
+        <sevenDayGrossYieldValue>1.9999</sevenDayGrossYieldValue>
+        <sevenDayGrossYieldDate>2023-07-31</sevenDayGrossYieldDate>
+      </sevenDayGrossYield>
+			 <dailyNetAssetValuePerShareSeries>
+				<dailyNetAssetValuePerShareSeries>1.0000</dailyNetAssetValuePerShareSeries>
+				<dailyNetAssetValuePerShareDateSeries>2023-01-20</dailyNetAssetValuePerShareDateSeries>
+			</dailyNetAssetValuePerShareSeries>
+			<dailyNetAssetValuePerShareSeries>
+				<dailyNetAssetValuePerShareSeries>1.0000</dailyNetAssetValuePerShareSeries>
+				<dailyNetAssetValuePerShareDateSeries>2023-01-21</dailyNetAssetValuePerShareDateSeries>
+			</dailyNetAssetValuePerShareSeries>	  
+      <cashMgmtVehicleAffliatedFundFlag>Y</cashMgmtVehicleAffliatedFundFlag>
+      <liquidityFeeFundApplyFlag>Y</liquidityFeeFundApplyFlag>
+<liquidityFeeReportingPeriod>
+        <liquidityFeeApplyDate>2023-08-10</liquidityFeeApplyDate>
+        <liquidityFeeTypeForReportingPeriod>Discretionary liquidity fee under rule 2a-7(c)(2)(ii)</liquidityFeeTypeForReportingPeriod>
+        <liquidityFeeAmountApplyToRedemption>116474344121.01</liquidityFeeAmountApplyToRedemption>
+        <liquidityFeePercentSharesRedeemed>1.0000</liquidityFeePercentSharesRedeemed>
+      </liquidityFeeReportingPeriod>
+    </seriesLevelInfo>
+<classLevelInfo>
+<classFullName>Testing Class</classFullName>
+<!-- L.100 -->
+<classesId>C000000113</classesId>
+<!-- L.101 -->
+<minInitialInvestment>123456789012.12</minInitialInvestment>
+<!-- L.102 -->
+<netAssetsOfClass>.00</netAssetsOfClass>
+<!-- L.103 -->
+<numberOfSharesOutstanding>.00</numberOfSharesOutstanding>
+<!-- L.104 -->
+<!--<dailyShareHolderFlowDate>2023-07-01</dailyShareHolderFlowDate>-->
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-20</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-21</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-22</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-23</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-24</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-25</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-26</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-27</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-28</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-29</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-30</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-31</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-01</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-02</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-03</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-04</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-05</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-06</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-07</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-08</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-09</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-10</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-11</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-12</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-13</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-14</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-15</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-16</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-17</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-18</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareClass>1.0000</dailyNetAssetValuePerShareClass>
+        <dailyNetAssetValuePerShareDateClass>2023-01-19</dailyNetAssetValuePerShareDateClass>
+      </dailyNetAssetValuePerShareClass>
+      <dialyShareholderFlowReported>
+        <dailyGrossSubscriptions>123456789.00</dailyGrossSubscriptions>
+        <dailyGrossRedemptions>12345.00</dailyGrossRedemptions>
+        <dailyShareHolderFlowDate>2023-08-01</dailyShareHolderFlowDate>
+      </dialyShareholderFlowReported>
+      <monthlyShareholderFlowReported>
+        <totalGrossSubscriptions>123456789.00</totalGrossSubscriptions>
+        <totalGrossRedemptions>12345.00</totalGrossRedemptions>
+      </monthlyShareholderFlowReported>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-01</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-02</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-03</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-04</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-05</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-06</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-07</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-08</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-09</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-10</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-11</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-12</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-13</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-14</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-15</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-16</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-17</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-18</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-19</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-20</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-21</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-22</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-23</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-24</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-25</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-26</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-27</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-28</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-29</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-30</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+      <sevenDayNetYield>
+        <sevenDayNetYieldValue>1.9999</sevenDayNetYieldValue>
+        <sevenDayNetYieldDate>2023-07-31</sevenDayNetYieldDate>
+      </sevenDayNetYield>
+<personPayForFundFlag>N</personPayForFundFlag>
+<!--<nameOfPersonDescExpensePay>0.00</nameOfPersonDescExpensePay>
+ DCS 123 -->
+	  <beneficialRecordOwnerCategory>
+	  <beneficialRecordOwnerCategoryType>Other</beneficialRecordOwnerCategoryType>
+        <otherInvestorCategory>Other description is required if the value provided for Item B.10.a is Other.</otherInvestorCategory>
+        <percentOutstandingSharesRecord>1.0000</percentOutstandingSharesRecord>
+        <percentOutstandingSharesBeneficial>1.0000</percentOutstandingSharesBeneficial>
+       </beneficialRecordOwnerCategory>
+	  
+	  <!-- Tags DCS for 128 to 139 -->
+      <percentShareHolderCompNonFinancialCorp>0.0000</percentShareHolderCompNonFinancialCorp>
+      <percentShareHolderCompPensionPlan>0.3000</percentShareHolderCompPensionPlan>
+      <percentShareHolderCompNonProfit>0.3000</percentShareHolderCompNonProfit>
+      <percentShareHolderCompMunicipal>0.4000</percentShareHolderCompMunicipal>
+      <percentShareHolderCompRegInvestment>0.0000</percentShareHolderCompRegInvestment>
+	  <percentShareHolderCompPrivateFunds>0.0000</percentShareHolderCompPrivateFunds>
+	  <percentShareHolderCompDepositoryInst>0.0000</percentShareHolderCompDepositoryInst>
+      <percentShareHolderCompSovereignFund>0.0000</percentShareHolderCompSovereignFund>
+      <percentShareHolderCompBrokerDealer>0.0000</percentShareHolderCompBrokerDealer>
+      <percentShareHolderCompInsurance>0.0000</percentShareHolderCompInsurance>
+      <percentShareHolderCompOther>0.0000</percentShareHolderCompOther>
+      <otherInvestorTypeDescription>yyuu</otherInvestorTypeDescription>
+
+
+<!-- DCS 140 -->
+<shareCancellationReportingPeriod>Y</shareCancellationReportingPeriod>
+<cancelledSharesPerBusinessDay>
+<cancelledShareDollarValue>123456789123.22</cancelledShareDollarValue>
+<cancelledShareNumber>153456789123.2223</cancelledShareNumber>
+<cancelledShareDate>2023-07-01</cancelledShareDate>
+</cancelledSharesPerBusinessDay>
+</classLevelInfo>
+<scheduleOfPortfolioSecuritiesInfo>
+<nameOfIssuer>a</nameOfIssuer>
+<titleOfIssuer>a</titleOfIssuer>
+<coupon>x</coupon>
+<CUSIPMember>0</CUSIPMember>
+<LEIID>a</LEIID>
+<ISINId>a</ISINId>
+<cik>000350001</cik>
+<otherUniqueId>a</otherUniqueId>
+<!-- <investmentCategory>U.S. Treasury Repurchase Agreement, if collateralized only by U.S. Treasuries (including Strips) and cash</investmentCategory> -->
+     <investmentCategory>U.S. Government Agency Repurchase Agreement, collateralized only by U.S. Government Agency securities, U.S. Treasuries, and cash</investmentCategory>
+<!-- <investmentCategory>Other Repurchase Agreement, if collateral falls outside Treasury, Government Agency and cash</investmentCategory> -->
+
+<!-- Item C.6 -->
+<briefDescription>testing</briefDescription>
+<fundAcqstnUndrlyngSecurityFlag>N</fundAcqstnUndrlyngSecurityFlag>
+<repurchaseAgreement>
+<repurchaseAgreementOpenFlag>Y</repurchaseAgreementOpenFlag>
+<repurchaseAgreementClearedFlag>N</repurchaseAgreementClearedFlag>
+<repurchaseAgreementTripartyFlag>N</repurchaseAgreementTripartyFlag>
+<collateralIssuers>
+<nameOfCollateralIssuer>a</nameOfCollateralIssuer>
+<LEIID>LEID 1</LEIID>
+<CUSIPMember>CUSIP 1</CUSIPMember>
+<maturityDate>
+<date>2500-12-31</date>
+</maturityDate>
+<coupon>1234.00</coupon>
+<yield>1234.00</yield>
+<principalAmountToTheNearestCent>.00</principalAmountToTheNearestCent>
+<valueOfCollateralToTheNearestCent>.00</valueOfCollateralToTheNearestCent>
+<ctgryInvestmentsRprsntsCollateral>Corporate Debt Securities</ctgryInvestmentsRprsntsCollateral>
+<otherInstrumentBriefDesc>ad</otherInstrumentBriefDesc>
+</collateralIssuers>
+<collateralIssuers>
+<nameOfCollateralIssuer>a</nameOfCollateralIssuer>
+<LEIID>LEID 2</LEIID>
+<CUSIPMember>CUSIP 2</CUSIPMember>
+<maturityDate>
+<dateRange>
+<ns3:from>2500-12-30</ns3:from>
+<ns3:to>2500-12-31</ns3:to>
+</dateRange>
+</maturityDate>
+<coupon>1234.00</coupon>
+<yield>1234.00</yield>
+<principalAmountToTheNearestCent>.00</principalAmountToTheNearestCent>
+<valueOfCollateralToTheNearestCent>.00</valueOfCollateralToTheNearestCent>
+<ctgryInvestmentsRprsntsCollateral>Corporate Debt Securities</ctgryInvestmentsRprsntsCollateral>
+<otherInstrumentBriefDesc>ad</otherInstrumentBriefDesc>
+</collateralIssuers>
+</repurchaseAgreement>
+<securityEligibilityFlag>Y</securityEligibilityFlag>
+<investmentMaturityDateWAM>2015-03-31</investmentMaturityDateWAM>
+<investmentMaturityDateWAL>2016-04-30</investmentMaturityDateWAL>
+<finalLegalInvestmentMaturityDate>2016-02-29</finalLegalInvestmentMaturityDate>
+<securityDemandFeatureFlag>Y</securityDemandFeatureFlag>
+<demandFeature>
+<identityOfDemandFeatureIssuer>a</identityOfDemandFeatureIssuer>
+<amountProvidedByDemandFeatureIssuer>1.0000</amountProvidedByDemandFeatureIssuer>
+<remainingPeriodDemandFeature>6</remainingPeriodDemandFeature>
+<demandFeatureConditionalFlag>Y</demandFeatureConditionalFlag>
+<demandFeatureRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</demandFeatureRatingOrNRSRO>
+<demandFeatureRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</demandFeatureRatingOrNRSRO>
+</demandFeature>
+<securityGuaranteeFlag>Y</securityGuaranteeFlag>
+<guarantor>
+<identityOfTheGuarantor>a</identityOfTheGuarantor>
+<amountProvidedByGuarantor>1.0000</amountProvidedByGuarantor>
+<guarantorRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</guarantorRatingOrNRSRO>
+<guarantorRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</guarantorRatingOrNRSRO>
+</guarantor>
+<guarantor>
+<identityOfTheGuarantor>a</identityOfTheGuarantor>
+<amountProvidedByGuarantor>1.0000</amountProvidedByGuarantor>
+<guarantorRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</guarantorRatingOrNRSRO>
+<guarantorRatingOrNRSRO>
+<nameOfNRSRO>a</nameOfNRSRO>
+<rating>a</rating>
+</guarantorRatingOrNRSRO>
+</guarantor>
+<securityEnhancementsFlag>Y</securityEnhancementsFlag>
+<enhancementProvider>
+<identityOfTheEnhancementProvider>here</identityOfTheEnhancementProvider>
+<typeOfEnhancement>a</typeOfEnhancement>
+<amountProvidedByEnhancement>0.0000</amountProvidedByEnhancement>
+<enhancementRatingOrNRSRO>
+<nameOfNRSRO>testa</nameOfNRSRO>
+<rating>a</rating>
+</enhancementRatingOrNRSRO>
+<enhancementRatingOrNRSRO>
+<nameOfNRSRO>testa</nameOfNRSRO>
+<rating>a</rating>
+</enhancementRatingOrNRSRO>
+</enhancementProvider>
+<enhancementProvider>
+<identityOfTheEnhancementProvider>here</identityOfTheEnhancementProvider>
+<typeOfEnhancement>a</typeOfEnhancement>
+<amountProvidedByEnhancement>0.0000</amountProvidedByEnhancement>
+<enhancementRatingOrNRSRO>
+<nameOfNRSRO>testa</nameOfNRSRO>
+<rating>a</rating>
+</enhancementRatingOrNRSRO>
+<enhancementRatingOrNRSRO>
+<nameOfNRSRO>testa</nameOfNRSRO>
+<rating>a</rating>
+</enhancementRatingOrNRSRO>
+</enhancementProvider>
+<yieldOfTheSecurityAsOfReportingDate>1.9999</yieldOfTheSecurityAsOfReportingDate>
+<includingValueOfAnySponsorSupport>.00</includingValueOfAnySponsorSupport>
+<excludingValueOfAnySponsorSupport>.00</excludingValueOfAnySponsorSupport>
+<percentageOfMoneyMarketFundNetAssets>1.0000</percentageOfMoneyMarketFundNetAssets>
+<securityCategorizedAtLevel3Flag>N</securityCategorizedAtLevel3Flag>
+<dailyLiquidAssetSecurityFlag>Y</dailyLiquidAssetSecurityFlag>
+<weeklyLiquidAssetSecurityFlag>N</weeklyLiquidAssetSecurityFlag>
+<illiquidSecurityFlag>N</illiquidSecurityFlag>
+<explanatoryNotes>a</explanatoryNotes>
+</scheduleOfPortfolioSecuritiesInfo>
+<dispositionOfPortfolioSecurities>
+<!--  <depositionUSTreasuryDebtAmt>.00</depositionUSTreasuryDebtAmt>
+      <govtAgencyCouponPayingDebtAmt>.00</govtAgencyCouponPayingDebtAmt>
+      <govtAgencyNonCouponPayingDebtAmt>.00</govtAgencyNonCouponPayingDebtAmt>
+      <nonUSSovereignSupraNationalDebtAmt>.00</nonUSSovereignSupraNationalDebtAmt>
+      <certificateDepositAmt>.00</certificateDepositAmt>
+      <nonNegotiableTimeDepositAmt>.00</nonNegotiableTimeDepositAmt>
+      <variableRateDemandNoteAmt>.00</variableRateDemandNoteAmt>
+      <otherMunicipalSecurityAmt>.00</otherMunicipalSecurityAmt>
+      <assetBackedCommercialPaperAmt>.00</assetBackedCommercialPaperAmt>
+      <otherAssetBackedSecuritiesAmt>.00</otherAssetBackedSecuritiesAmt>
+      <usTreasuryRepurchaseAgreementAmt>.00</usTreasuryRepurchaseAgreementAmt>
+      <usGovtAgencyRepurchaseAgreementAmt>.00</usGovtAgencyRepurchaseAgreementAmt>
+      <otherRepurchaseAgreementAmt>.00</otherRepurchaseAgreementAmt>
+      <insuranceCompanyFundAgreementAmt>.00</insuranceCompanyFundAgreementAmt>
+      <investmentCompanyAmt>.00</investmentCompanyAmt>
+      <financialCompanyCommercialAmt>.00</financialCompanyCommercialAmt>
+      <nonFinancialCompanyCommercialAmt>.00</nonFinancialCompanyCommercialAmt>
+      <tenderOptionBondAmt>.00</tenderOptionBondAmt>
+      <otherInstrumentAmt>.00</otherInstrumentAmt>
+      <otherInstrumentBriefDescription>.00</otherInstrumentBriefDescription>  -->
+</dispositionOfPortfolioSecurities>
+<signature>
+<registrant>Refer to Volume I of the EDGAR Filer Manual for instructions on how to complete this section. If applicant is an individual, the applicant must sig150</registrant>
+<signatureDate>2015-10-27</signatureDate>
+<signature>Refer to Volume I of the EDGAR Filer Manual for instructions on how to complete this section. If applicant is an individual, the applicant must sig150</signature>
+<nameOfSigningOfficer>Refer to Volume I of the EDGAR Filer Manual for instructions on how to complete this section. If applicant is an individual, the applicant must sig150</nameOfSigningOfficer>
+<titleOfSigningOfficer>Refer to Volume I of the EDGAR Filer Manual for instructions on how to complete this section. If applicant is an individual, the applicant must sig150</titleOfSigningOfficer>
+</signature>
+</formData>
+</edgarSubmission>

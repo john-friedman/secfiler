@@ -1,0 +1,147 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/ncrfiler" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData>
+    <submissionType>N-CR</submissionType>
+    <filerInfo>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <flags>
+        <confirmingCopyFlag>true</confirmingCopyFlag>
+        <overrideInternetFlag>false</overrideInternetFlag>
+      </flags>
+      <filer>
+        <issuerCredentials>
+          <cik>0000350001</cik>
+          <ccc>sauces#1</ccc>
+        </issuerCredentials>
+        <fileNumber>811-100137</fileNumber>
+      </filer>
+      <contact>
+        <name>Friday June23</name>
+        <phoneNumber>878-222-8989</phoneNumber>
+        <emailAddress>monfort@sec.gov</emailAddress>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>monfort@sec.gov</notificationEmailAddress>
+        <notificationEmailAddress>second@sec.gov</notificationEmailAddress>
+        <notificationEmailAddress>tester@sec.gov</notificationEmailAddress>
+      </notifications>
+      <periodOfReport>06/07/2023</periodOfReport>
+      <investmentCompanyType>N-3</investmentCompanyType>
+    </filerInfo>
+    <oneSeriesClasses>
+      <seriesId>S000193484</seriesId>
+      <classInfos>
+        <classInfo>
+          <classId>C000007749</classId>
+        </classInfo>
+        <classInfo>
+          <classId>C000007750</classId>
+        </classInfo>
+        <classInfo>
+          <classId>C000007751</classId>
+        </classInfo>
+      </classInfos>
+    </oneSeriesClasses>
+  </headerData>
+  <formData>
+    <generalInfo>
+      <reportDate>06/21/2023</reportDate>
+      <registrantName>Summer Solstic</registrantName>
+      <registrantCik>0000350001</registrantCik>
+      <registrantLei>12345678765432345678</registrantLei>
+      <seriesName>series part a name</seriesName>
+      <seriesId>S000193484</seriesId>
+      <seriesLei>01234567890123456789</seriesLei>
+      <fileNumber>333-100017</fileNumber>
+      <contact>
+        <name>Summer</name>
+        <phoneNumber>121-987-5555</phoneNumber>
+        <emailAddress>sum@beach.com</emailAddress>
+      </contact>
+    </generalInfo>
+    <eventOfInsolvency>
+      <partBSecurityInformations>
+        <partBSecurityInformation>
+          <issuerName>Fannie</issuerName>
+          <issueTitle>Security Dealer</issueTitle>
+          <coupon>0.0125</coupon>
+          <yield>0.2234</yield>
+          <securityValue>50.00</securityValue>
+          <eventDate>07/20/2023</eventDate>
+          <percentageOfFundsTotalAssets>0.2500</percentageOfFundsTotalAssets>
+          <securityIdentifiers>
+            <securityIdentifier>
+              <IdType>FIGI</IdType>
+              <IdValue>012345678988</IdValue>
+              <IdDescription>A FIGI</IdDescription>
+            </securityIdentifier>
+          </securityIdentifiers>
+        </partBSecurityInformation>
+      </partBSecurityInformations>
+      <actionDescription>B.5 Brief description of actions fund plans to take, or has taken, in response to the default(s) or event(s) of insolvency</actionDescription>
+    </eventOfInsolvency>
+    <disclosure>
+      <supportDescription>C.1 Description of nature of support</supportDescription>
+      <supportPersonName>C.2 Person providing support</supportPersonName>
+      <relationshipDescription>C.3 Brief description of relationship between the person providing support and the fund</relationshipDescription>
+      <supportDate>06/21/2023</supportDate>
+      <supportAmtDescription>0.25</supportAmtDescription>
+      <partCSecurityInformations>
+        <partCSecurityInformation>
+          <issuerName>Merrill</issuerName>
+          <issueTitle>Head Of Trading</issueTitle>
+          <coupon>1.025</coupon>
+          <yield>0.5600</yield>
+          <acquiredDate>07/20/2023</acquiredDate>
+          <securityValue>2500.00</securityValue>
+        </partCSecurityInformation>
+      </partCSecurityInformations>
+      <reasonDescription>C.8 Brief description of reason for support</reasonDescription>
+      <termOfSupport>C.9 Term of support</termOfSupport>
+      <contractRestrictionsDesc>C.10 Brief description of any contractual restrictions relating to supporttt</contractRestrictionsDesc>
+    </disclosure>
+    <deviationAsset>
+      <exceededOnePercentDate>06/26/2023</exceededOnePercentDate>
+      <extentOfDeviation>-9999.9999</extentOfDeviation>
+      <reasonForDeviation>D.3 Principal reason or reasons for the deviation. If any security whose value calculated using available market quotations (or an appropriate substitute that reflects current market conditions) or sale price, or whose issuer's downgrade, default, or event of insolvency has contributed to the deviation, provide information about each security below.</reasonForDeviation>
+      <partDSecurityInformations>
+        <partDSecurityInformation>
+          <issuerName>Mutual</issuerName>
+          <issueTitle>Floor Manager</issueTitle>
+          <coupon>56.66</coupon>
+          <yield>00.00056</yield>
+          <securityIdentifiers>
+            <securityIdentifier>
+              <IdType>OTHER</IdType>
+              <IdValue>other identifier</IdValue>
+              <IdDescription>test other identifier description</IdDescription>
+            </securityIdentifier>
+          </securityIdentifiers>
+        </partDSecurityInformation>
+      </partDSecurityInformations>
+    </deviationAsset>
+    <liquidityThresholdEvent>
+      <dateOfWeeklyAssets>06/26/2023</dateOfWeeklyAssets>
+      <percentageOfWeeklyAssets>1.2345</percentageOfWeeklyAssets>
+      <percentageOfDailyAssets>1.3333</percentageOfDailyAssets>
+      <factsDescription>E.4 Brief description of the facts and circumstances leading to the fund investing less than 25% of its total assets in weekly liquid assets or less than 12.5% of its total assets in daily liquid assets, as applicable</factsDescription>
+    </liquidityThresholdEvent>
+    <optionalDisclosure>
+      <optionalDisclosure>F.1 Optional disclosure</optionalDisclosure>
+    </optionalDisclosure>
+    <signatureBlock>
+      <name>registrant sig</name>
+      <title>sig title</title>
+      <signature>the sig</signature>
+      <signatureDate>06/21/2023</signatureDate>
+    </signatureBlock>
+  </formData>
+  <documents>
+    <com:document>
+      <com:conformedName>sample.txt</com:conformedName>
+      <com:conformedDocumentType>COVER</com:conformedDocumentType>
+      <com:description>asdf</com:description>
+      <com:contents>IyMjIyMjIyMjIyMjIyMjIyMjIw0KU0FNUExFIERBVEUNCiMjIyMjIyMjIyMjIyMjIyMjIyM=
+</com:contents>
+    </com:document>
+  </documents>
+</edgarSubmission>

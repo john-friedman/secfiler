@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetData xmlns="http://www.sec.gov/edgar/document/absee/autolease/assetdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/document/absee/autolease/assetdata eis_ABS_AutoLeaseAssetData.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. -->  
+<!-- Please refer to the EDGAR ABS XML Technical Specification and the related EDGAR ABS Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGAR ABS Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+<assets>
+		<assetTypeNumber>a</assetTypeNumber>
+		<assetNumber>a</assetNumber>
+		<reportingPeriodBeginDate>12-31-2015</reportingPeriodBeginDate>
+		<reportingPeriodEndDate>12-31-2015</reportingPeriodEndDate>
+		<originatorName>a</originatorName>
+		<originationDate>11/2015</originationDate>
+		<acquisitionCost>-999999999999.99999999</acquisitionCost>
+		<originalLeaseTermNumber>0</originalLeaseTermNumber>
+		<scheduledTerminationDate>11/2015</scheduledTerminationDate>
+		<originalFirstPaymentDate>11/2015</originalFirstPaymentDate>
+		<underwritingIndicator>true</underwritingIndicator>
+		<gracePeriod>0</gracePeriod>
+		<paymentTypeCode>3</paymentTypeCode>
+		<subvented>1</subvented>
+		<vehicleManufacturerName>a</vehicleManufacturerName>
+		<vehicleModelName>a</vehicleModelName>
+		<vehicleNewUsedCode>1</vehicleNewUsedCode>
+		<vehicleModelYear>a</vehicleModelYear>
+		<vehicleTypeCode>3</vehicleTypeCode>
+		<vehicleValueAmount>-999999999999.99999999</vehicleValueAmount>
+		<vehicleValueSourceCode>2</vehicleValueSourceCode>
+		<baseResidualValue>-999999999999.99999999</baseResidualValue>
+		<baseResidualSourceCode>1</baseResidualSourceCode>
+		<contractResidualValue>-999999999999.99999999</contractResidualValue>
+		<lesseeCreditScoreType>a</lesseeCreditScoreType>
+		<lesseeCreditScore>a</lesseeCreditScore>
+		<lesseeIncomeVerificationLevelCode>4</lesseeIncomeVerificationLevelCode>
+		<lesseeEmploymentVerificationCode>1</lesseeEmploymentVerificationCode>
+		<coLesseePresentIndicator>true</coLesseePresentIndicator>
+		<paymentToIncomePercentage>-999999999999.99999999</paymentToIncomePercentage>
+		<lesseeGeographicLocation>a</lesseeGeographicLocation>
+		<assetAddedIndicator>true</assetAddedIndicator>
+		<remainingTermNumber>0</remainingTermNumber>
+		<reportingPeriodModificationIndicator>true</reportingPeriodModificationIndicator>
+		<servicingAdvanceMethodCode>2</servicingAdvanceMethodCode>
+		<reportingPeriodSecuritizationValueAmount>-999999999999.99999999</reportingPeriodSecuritizationValueAmount>
+		<securitizationDiscountRate>-999999999999.99999999</securitizationDiscountRate>
+		<nextReportingPeriodPaymentAmountDue>-999999999999.99999999</nextReportingPeriodPaymentAmountDue>
+		<servicingFeePercentage>-999999999999.99999999</servicingFeePercentage>
+		<servicingFlatFeeAmount>-999999999999.99999999</servicingFlatFeeAmount>
+		<otherLeaseLevelServicingFeesRetainedAmount>-999999999999.99999999</otherLeaseLevelServicingFeesRetainedAmount>
+		<otherAssessedUncollectedServicerFeeAmount>-999999999999.99999999</otherAssessedUncollectedServicerFeeAmount>
+		<reportingPeriodEndingActualBalanceAmount>-999999999999.99999999</reportingPeriodEndingActualBalanceAmount>
+		<reportingPeriodScheduledPaymentAmount>-999999999999.99999999</reportingPeriodScheduledPaymentAmount>
+		<totalActualAmountPaid>-999999999999.99999999</totalActualAmountPaid>
+		<actualOtherCollectedAmount>-999999999999.99999999</actualOtherCollectedAmount>
+		<reportingPeriodEndActualSecuritizationAmount>-999999999999.99999999</reportingPeriodEndActualSecuritizationAmount>
+		<servicerAdvancedAmount>-999999999999.99999999</servicerAdvancedAmount>
+		<paidThroughDate>12-31-2015</paidThroughDate>
+		<zeroBalanceEffectiveDate>11/2015</zeroBalanceEffectiveDate>
+		<zeroBalanceCode>3</zeroBalanceCode>
+		<currentDelinquencyStatus>0</currentDelinquencyStatus>
+		<primaryLeaseServicerName>a</primaryLeaseServicerName>
+		<mostRecentServicingTransferReceivedDate>11/2015</mostRecentServicingTransferReceivedDate>
+		<assetSubjectDemandIndicator>true</assetSubjectDemandIndicator>
+		<assetSubjectDemandStatusCode>98</assetSubjectDemandStatusCode>
+		<repurchaseAmount>-999999999999.99999999</repurchaseAmount>
+		<DemandResolutionDate>12-31-2015</DemandResolutionDate>
+		<repurchaserName>a</repurchaserName>
+		<repurchaseOrReplacementReasonCode>99</repurchaseOrReplacementReasonCode>
+		<chargedOffAmount>-999999999999.99999999</chargedOffAmount>
+		<modificationTypeCode>98</modificationTypeCode>
+		<leaseExtended>99999999</leaseExtended>
+		<terminationIndicator>2</terminationIndicator>
+		<excessFeeAmount>-999999999999.99999999</excessFeeAmount>
+		<liquidationProceedsAmount>-999999999999.99999999</liquidationProceedsAmount>
+	</assets>
+</assetData>

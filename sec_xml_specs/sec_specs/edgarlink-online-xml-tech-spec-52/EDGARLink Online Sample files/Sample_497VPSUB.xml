@@ -1,0 +1,34 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregsc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>497VPSUB</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0001314805</cor:filerId>
+    <cor:filerCcc>zuen*7kn</cor:filerCcc>
+    <cor:fileNumber>333-102767</cor:fileNumber>
+  </cor:filer>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:invCompany>
+    <com:invCompanyType>N-4</com:invCompanyType>
+  </cor:invCompany>
+  <cor:insuranceSubstitutionFlag>true</cor:insuranceSubstitutionFlag>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>497VPSUB</com:conformedDocumentType>
+      <com:contents>Z2VyZ2VyZ2RzZ2Rnc2dmZHNmZ2RzZ2Rnc2dmZHNmZ2RzZ2Rnc2dmZHNmZ2RzZ2Rnc2dmZHNm
+Z2RzZ2Rnc2dmZHNmZ2RzZ2Rnc2dmZHNmZw==
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:seriesClasses>
+    <cor:reportClass>
+      <scc:rptClassId>C000007920</scc:rptClassId>
+    </cor:reportClass>
+  </cor:seriesClasses>
+</cor:edgarSubmission>

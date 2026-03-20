@@ -1,0 +1,3527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/ncen"
+	xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ncom="http://www.sec.gov/edgar/ncencommon"
+	xmlns:sccom="http://www.sec.gov/edgar/sccommon" xmlns:iso="http://www.sec.gov/edgar/iso_statecodes"
+	xmlns:exch="http://www.sec.gov/edgar/iso_exchangelist"
+	targetNamespace="http://www.sec.gov/edgar/ncen" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common"
+		schemaLocation="eis_Common.xsd" />
+	<xs:import namespace="http://www.sec.gov/edgar/iso_statecodes"
+		schemaLocation="eis_ISO_StateCodes.xsd" />
+	<xs:import namespace="http://www.sec.gov/edgar/ncencommon"
+		schemaLocation="eis_NCEN_Common.xsd" />
+	<xs:import namespace="http://www.sec.gov/edgar/sccommon"
+		schemaLocation="eis_Common_SC.xsd" />
+	<xs:import namespace="http://www.sec.gov/edgar/iso_exchangelist"
+		schemaLocation="eis_ISO_ExchangeList.xsd" />
+
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for SUBMISSION</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="N-CEN" />
+			<xs:enumeration value="N-CEN/A" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="COMPANY_CLASSIFICATION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for COMPANY_CLASSIFICATION_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="N-1A" />
+			<xs:enumeration value="N-2" />
+			<xs:enumeration value="N-3" />
+			<xs:enumeration value="N-4" />
+			<xs:enumeration value="N-5" />
+			<xs:enumeration value="N-6" />
+			<xs:enumeration value="S-6" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for FUND TYPE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Exchange-Traded Fund" />
+			<xs:enumeration value="Exchange-Traded Managed Fund" />
+			<xs:enumeration value="Inverse of a benchmark" />
+			<xs:enumeration value="Interval Fund" />
+			<xs:enumeration value="Fund of Funds" />
+			<xs:enumeration value="Money Market Fund" />
+			<xs:enumeration value="Target Date Fund" />
+			<xs:enumeration value="Underlying fund" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PAYMENT_TO_AGENT_MANAGER_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for PAYMENT_TO_AGENT_MANAGER
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Revenue sharing split" />
+			<xs:enumeration
+				value="Non-revenue sharing split (other than administrative fee)" />
+			<xs:enumeration value="Administrative fee" />
+			<xs:enumeration value="Cash collateral reinvestment fee" />
+			<xs:enumeration value="Indemnification fee" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RELY_ON_RULE_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for RELY_ON_RULE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Rule 10f-3 (17 CFR 270.10f-3)" />
+			<xs:enumeration value="Rule 12d1-1 (17 CFR 270.12d1-1)" />
+			<xs:enumeration value="Rule 15a-4 (17 CFR 270.15a-4)" />
+			<xs:enumeration value="Rule 17a-6 (17 CFR 270.17a-6)" />
+			<xs:enumeration value="Rule 17a-7 (17 CFR 270.17a-7)" />
+			<xs:enumeration value="Rule 17a-8 (17 CFR 270.17a-8)" />
+			<xs:enumeration value="Rule 17e-1 (17 CFR 270.17e-1)" />
+			<xs:enumeration value="Rule 22d-1 (17 CFR 270.22d-1)" />
+			<xs:enumeration value="Rule 23c-1 (17 CFR 270.23c-1)" />
+			<xs:enumeration value="Rule 32a-4 (17 CFR 270.32a-4)" />
+			<xs:enumeration value="Rule 6c-11 (17 CFR 270.6c-11)" />
+			<xs:enumeration value="Rule 12d1-4 (17 CFR 270.12d1-4)" />
+			<xs:enumeration value="Section 12(d)(1)(G) of the Act (15 USC 80a-12(d)(1)(G))" />
+			<xs:enumeration value="Rule 18f-4 (17 CFR 270.18f-4)" />
+			<xs:enumeration value="Rule 18f-4(c)(4) (17CFR 270.18f-4(c)(4))" />
+			<xs:enumeration value="Rule 18f-4(c)(2) (17 CFR 270.18f-4(c)(2))" />
+			<xs:enumeration value="Rule 18f-4(d)(i) (17 CFR 270.18f-4(d)(i))" />
+			<xs:enumeration value="Rule 18f-4(d)(ii) (17 CFR 270.18f-4(d)(ii))" />
+			<xs:enumeration value="Rule 18f-4(e) (17 CFR 270.18f-4(e))" />
+			<xs:enumeration value="Rule 18f-4(f)(17 CFR 270.18f-4(f))" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CUSTODY_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for SMALL_CUSTODIAN</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Bank - section 17(f)(1) (15 U.S.C. 80a-17(f)(1))" />
+			<xs:enumeration
+				value="Member national securities exchange - rule 17f-1 (17 CFR 270.17f-1)" />
+			<xs:enumeration value="Self - rule 17f-2 (17 CFR 270.17f-2)" />
+			<xs:enumeration
+				value="Securities depository - rule 17f-4 (17 CFR 270.17f-4)" />
+			<xs:enumeration value="Foreign custodian - rule 17f-5 (17 CFR 270.17f-5)" />
+			<xs:enumeration
+				value="Futures commission merchants and commodity clearing organizations - rule 17f-6 (17 CFR 270.17f-6)" />
+			<xs:enumeration
+				value="Foreign securities depository - rule 17f-7 (17 CFR 270.17f-7)" />
+			<xs:enumeration
+				value="Insurance company sponsor - rule 26a-2 (17 CFR 270.26a-2)" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SECURITY_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for SECURITY</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Common stock" />
+			<xs:enumeration value="Preferred stock" />
+			<xs:enumeration value="Warrants" />
+			<xs:enumeration value="Convertible securities" />
+			<xs:enumeration value="Bonds" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CREDIT_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for CREDIT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Sole" />
+			<xs:enumeration value="Shared" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CREDIT_LINE_COMMITTED_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for CREDIT_LINE_COMMITTED_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Committed" />
+			<xs:enumeration value="Uncommitted" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EXCHANGE_FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for EXCHANGE_FUND</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Exchange-Traded Fund" />
+			<xs:enumeration value="Exchange-Traded Managed Fund" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INDEX_FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for INDEX_FUND</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Index Fund 1" />
+			<xs:enumeration value="Index Fund 2" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ATTACHMENTSTOREGISTRANT_TYPE">
+		<xs:annotation>
+			<xs:documentation>Values for Attachments to Registrant
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="AttachmentsToRegistrant_1" />
+			<xs:enumeration value="AttachmentsToRegistrant_2" />
+			<xs:enumeration value="AttachmentsToRegistrant_3" />
+			<xs:enumeration value="AttachmentsToRegistrant_4" />
+			<xs:enumeration value="AttachmentsToRegistrant_5" />
+			<xs:enumeration value="AttachmentsToRegistrant_6" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ATTACHMENTSBYCLOSEDEND_TYPE">
+		<xs:annotation>
+			<xs:documentation>Values for Attachments By Closed End
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="AttachmentsByClosedEnd_1" />
+			<xs:enumeration value="AttachmentsByClosedEnd_2" />
+			<xs:enumeration value="AttachmentsByClosedEnd_3" />
+			<xs:enumeration value="AttachmentsByClosedEnd_4" />
+			<xs:enumeration value="AttachmentsByClosedEnd_5" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASSET_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for ASSET TYPES</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Short-term investment vehicle" />
+			<xs:enumeration value="Repurchase agreement" />
+			<xs:enumeration value="Equity-common" />
+			<xs:enumeration value="Equity-preferred" />
+			<xs:enumeration value="Debt" />
+			<xs:enumeration value="Derivative-commodity" />
+			<xs:enumeration value="Derivative-credit" />
+			<xs:enumeration value="Derivative-equity" />
+			<xs:enumeration value="Derivative-foreign exchange" />
+			<xs:enumeration value="Derivative-interest rate" />
+			<xs:enumeration value="Derivative-other" />
+			<xs:enumeration value="Structured note" />
+			<xs:enumeration value="Loan" />
+			<xs:enumeration value="ABS-mortgage backed security" />
+			<xs:enumeration value="ABS-asset backed commercial paper" />
+			<xs:enumeration value="ABS-collateralized bond/debt obligation" />
+			<xs:enumeration value="ABS-other" />
+			<xs:enumeration value="Commodity" />
+			<xs:enumeration value="Real estate" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="AUTHORIZED_PARTICIPANT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item E.2.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="authorizedParticipantName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="authorizedParticipantFileNo" type="ns1:FILE_NUMBER_TYPE"
+			use="required" />
+		<xs:attribute name="authorizedParticipantCrdNo" type="ncom:CRD_NUMBER_TYPE"
+			use="required" />
+		<xs:attribute name="authorizedParticipantLei" type="ncom:LEI_TYPE_RSS_NA" />
+		<xs:attribute name="authorizedParticipantRssdId" type="ncom:RSSD_ID_TYPE" />
+		<xs:attribute name="authorizedParticipantPurchaseValue"
+			type="ncom:DECIMAL_TYPE_24" use="required" />
+		<xs:attribute name="authorizedParticipantRedeemValue"
+			type="ncom:DECIMAL_TYPE_24" use="required" />
+	</xs:complexType>
+	<xs:complexType name="SECURITY_EXCHANGE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item E.1.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="fundExchange" type="exch:ISO_EXCHANGE_CODE"
+			use="required" />
+		<xs:attribute name="fundsTickerSymbol" type="ns1:STRING_12_TYPE"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="CLOSED_END_MANAGEMENT_INVESTMENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				CLOSED_END_MANAGEMENT_INVESTMENT_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="securityRelatedItems" type="SECURITY_RELATED_ITEM_LIST"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_RIGHTS_OFFERING_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SECONDARY_OFFERING_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_REPURCHASE_SECURITY_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_LONG_TERM_DEBT_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_DIVD_IN_ARREARS_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isSecuritiesModified" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="managementFee" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="netOperatingExpenses" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="marketPricePerShare" type="ncom:DECIMAL_TYPE_24_WITH_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="netAssetValuePerShare" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdvisers" type="SMALL_INVESTMENT_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="terminatedSmallInvAdvisers" type="TERMINATED_SMALL_INV_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallSubAdvisers" type="SMALL_SUB_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="terminatedSmallSubAdvisers" type="TERMINATED_SMALL_SUB_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallTransferAgents" type="SMALL_TRANSFER_AGENT_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isSmallTransferAgentHiredOrTerminated"
+				type="ns1:YES_NO_TYPE" minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallCustodians" type="SMALL_CUSTODIAN_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isSmallCustodianHiredTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_RELATED_ITEM_LIST">
+		<xs:sequence>
+			<xs:element name="securityRelatedItem" type="SECURITY_RELATED_ITEM"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SMALL_INVESTMENT_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="smallInvestmentAdviser" type="SMALL_INVESTMENT_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TERMINATED_SMALL_INV_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="terminatedSmallInvAdviser" type="TERMINATED_SMALL_INV_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SMALL_SUB_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="smallSubAdviser" type="SMALL_SUB_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TERMINATED_SMALL_SUB_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="terminatedSmallSubAdviser" type="TERMINATED_SMALL_SUB_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SMALL_TRANSFER_AGENT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="smallTransferAgent" type="SMALL_TRANSFER_AGENT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SMALL_CUSTODIAN_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="smallCustodian" type="SMALL_CUSTODIAN_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_RIGHTS_OFFERING_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item D.2.
+				If the response to the Item D.2.a is 'Y', then at least 1 record of Right Offering Fund is required. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isRightsOffering" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="rightsOfferingFunds" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="rightsOfferingFund" type="RIGHT_OFFERING_FUND" minOccurs="1" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isRightsOffering" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_SECONDARY_OFFERING_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item D.3.
+				If the response to the Item D.3.a is 'Y', then Secondary Offering is required. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isSecondaryOffering" type="ns1:YES_NO_TYPE"
+				fixed="N" maxOccurs="1" minOccurs="1"/>
+			<xs:element name="secondaryOfferings" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="secondaryOfferingType" type="SECURITY_TYPE"	minOccurs="1" maxOccurs="6" />
+						<xs:element name="otherSecondaryOfferingDesc" type="ncom:STRING_5K_TYPE"	minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isSecondaryOffering" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_REPURCHASE_SECURITY_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item D.4.
+				If the response to the Item D.4.a is 'Y', then Repurchase Security is required. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="repurchaseSecurities" minOccurs="1" maxOccurs="1"> 
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="repurchaseSecurityType" type="SECURITY_TYPE"
+							minOccurs="1" maxOccurs="6" />
+						<xs:element name="otherRepurchaseSecurityDesc" type="ncom:STRING_5K_TYPE"
+							minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isRepurchaseSecurity" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isRepurchaseSecurity" type="ns1:YES_NO_TYPE"
+				fixed="N" maxOccurs="1" minOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_LONG_TERM_DEBT_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item D.5.
+				If the response to the Item D.5.a is 'Y', then at least 1 record of Long Term Debt Default is required. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="longTermDebtDefault" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="longTermDebtDefaults" type="LONG_TERM_DEBT_DEFAULT_LIST_TYPE"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isDefaultLongTermDebt" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isDefaultLongTermDebt" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="LONG_TERM_DEBT_DEFAULT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="longTermDebtDefault" type="LONG_TERM_DEBT_DEFAULT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_DIVD_IN_ARREARS_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item D.6.
+				If the response to the Item D.6.a is 'Y', then at least 1 record of Dividend in Arrears is required. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="divdInArrears" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dividendsInArrears" type="DIVIDENDS_IN_ARREAR_LIST_TYPE"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isDividendsInArrears" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isDividendsInArrears" type="ns1:YES_NO_TYPE"
+				fixed="N"  minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="DIVIDENDS_IN_ARREAR_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="dividendsInArrear" type="DIVIDENDS_IN_ARREAR_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_RELATED_ITEM">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item D.1.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="SECURITY_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="securityClassTitle" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+				
+			<xs:element name="commonStocks" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="commonStock" type="COMMON_STOCK_EXCHANGE_TYPE" minOccurs="1" maxOccurs="1000"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="otherSecurityDescription" type="ncom:STRING_5K_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="COMMON_STOCK_EXCHANGE_TYPE">
+		<xs:attribute name="commonStockExchange" type="exch:ISO_EXCHANGE_CODE"
+			use="required" />
+		<xs:attribute name="commonStockTickerSymbol" type="ns1:STRING_12_TYPE"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_ISSUED">
+		<xs:sequence>
+			<xs:element name="securityRelatedItem" type="SECURITY_RELATED_ITEM"
+				minOccurs="0" maxOccurs="6" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RIGHT_OFFERING_FUND">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item D.2.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rightsOfferingTypes" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="rightsOfferingType" type="SECURITY_TYPE" minOccurs="1" maxOccurs="6"/>
+						<xs:element name="rightsOfferingDesc" type="ncom:STRING_5K_TYPE"	minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rightsOfferingParticipationPercent"	type="ncom:DECIMAL_TYPE_24" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CONTRACT_SECURITY_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item F.14.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="separateAccountSecurityName" type="ns1:STRING_150_TYPE"
+			use="required" />		
+		<xs:attribute name="separateAccountContractId" type="sccom:CLASS_ID_TYPE"
+			use="required" />
+		<xs:attribute name="separateAccountTotalAsset" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+		<xs:attribute name="numContractsSold" type="ncom:INTEGER_NONNEGATIVE_8"
+			use="required" />
+		<xs:attribute name="grossPremiumReceived" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+		<xs:attribute name="grossPremiumReceivedSection1035"
+			type="ncom:DECIMAL_TYPE_24" use="required" />
+		<xs:attribute name="numContractsAffected" type="ncom:INTEGER_NONNEGATIVE_8"
+			use="required" />
+		<xs:attribute name="contractValueRedeemed" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+		<xs:attribute name="contractValueRedeemedSection1035"
+			type="ncom:DECIMAL_TYPE_24" use="required" />
+		<xs:attribute name="numContractsAffectedRedeemed" type="ncom:INTEGER_NONNEGATIVE_8"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="DEPOSITOR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item F.1.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="depositorName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="depositorCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="depositorLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="depositorRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_DEPOSITOR_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="depositorUltimateParentname" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_DEPOSITOR_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="depositorStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="depositorState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="depositorCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="depositorCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="DIVESTMENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item F.17.a.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="divestmentSecurityName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="divestmentSecurityTickerSymbol" type="ns1:STRING_12_TYPE"
+			use="required" />
+		<xs:attribute name="divestmentSecurityCusipNo" type="ns1:STRING_10_TYPE"
+			use="required" />
+		<xs:attribute name="divestedNumShares" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+		<xs:attribute name="divestedDate" type="ncom:DATE_TYPE"
+			use="required" />
+		<xs:attribute name="divestmentStatuteName" type="ns1:STRING_150_TYPE"
+			use="required" />
+	</xs:complexType>
+	<xs:complexType name="DIVIDENDS_IN_ARREAR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item D.6
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="dividendIssueTitle" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="dividendAmountPerShareInArrear" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+	</xs:complexType>
+	<xs:complexType name="EXCHANGE_SERIES_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				EXCHANGE_SERIES_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exchangeTradedFund" type="EXCHANGE_TRADED_FUND_TYPE"
+				minOccurs="0" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EXCHANGE_TRADED_FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				EXCHANGE_TRADED_FUND_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fundName" type="ns1:STRING_150_TYPE"
+				minOccurs="0" maxOccurs="1" />
+            <xs:element name="etfSeriesId" type="sccom:SERIES_ID_TYPE"
+                minOccurs="0" maxOccurs="1" />				
+			<xs:element name="securityExchanges" type="SECURITY_EXCHANGE_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="authorizedParticipants" type="AUTHORIZED_PARTICIPANT_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isCollateralRequired" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitNumOfShares" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitRedeemedNumOfShares" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />	
+			<xs:element name="averagePercentagePurchased" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="standardDeviationPurchased" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitPurchasedInKind" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitPurchasedSDInKind" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="averagePercentageRedeemed" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="percentSDRedeemed" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitPercentageRedeemedInKind"
+				type="ncom:DECIMAL_TYPE_24" minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitSDRedeemedInKind" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeePerUnit" type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeeManyUnits"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeePercentagePerUnit"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeeCashPerUnit"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeeCashManyUnits"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="creationUnitTransactionFeeCashPercentagePerUnit"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitDollarPerUnit" type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitDollarPerMoreUnits"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitDollarPercentagePerUnit"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitCashPerUnit" type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitCashPerMoreUnits"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="purchaseCreationUnitCashPercentagePerUnit"
+				type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isByAffiliatedPerson" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isExclusiveFund" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="beforeFundFeesExpensesDiff" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="afterFundFeesExpensesDiff" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="beforeFundFeesExpensesSd" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="afterFundFeesExpensesSd" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isInKindETF" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_EXCHANGE_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="securityExchange" type="SECURITY_EXCHANGE_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AUTHORIZED_PARTICIPANT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="authorizedParticipant" type="AUTHORIZED_PARTICIPANT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LONG_TERM_DEBT_DEFAULT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item D.5.a
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="defaultNature" type="ncom:STRING_5K_TYPE"
+			use="required" />
+		<xs:attribute name="defaultDate" type="ncom:DATE_TYPE"
+			use="required" />
+		<xs:attribute name="defaultPerThousandAmount" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+		<xs:attribute name="defaultTotalAmount" type="ncom:DECIMAL_TYPE_24"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="REGISTRANT_HELD_SECURITY_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item F.17.b.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="registrantHeldSecurityTickerSymbol"
+			type="ns1:STRING_12_TYPE" use="optional" />
+		<xs:attribute name="registrantHoldsSecurityCusipNo" type="ns1:STRING_10_TYPE"
+			use="optional" />
+		<xs:attribute name="registrantNumShare" type="ncom:DECIMAL_TYPE_24"
+			use="optional" />
+	</xs:complexType>
+	<xs:complexType name="SIGNATURE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SIGNATURE_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="registrantSignedName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="signedDate" type="ncom:DATE_TYPE"
+			use="required" />
+		<xs:attribute name="signature" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="title" type="ns1:STRING_150_TYPE"
+			use="required" />
+	</xs:complexType>
+	<xs:complexType name="SMALL_CUSTODIAN_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item D.14.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallCustodianName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallCustodianLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallCustodianRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_CUST_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isSmallCustodianAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isSmallCustodianSub" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="custodyType" type="CUSTODY_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="otherSmallCustodianDesc" type="ncom:STRING_5K_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SMALL_CUST_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallCustodianStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallCustodianState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallCustodianCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallCustodianCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+
+	</xs:group>
+
+	<xs:complexType name="SMALL_INVESTMENT_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item D.12.a</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallInvestmentAdviserName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserFileNo" type="ns1:FILE_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_INV_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_INV_HIRED" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SMALL_INV_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallInvestmentAdviserStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallInvestmentAdviserState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallInvestmentAdviserCountry"
+						type="iso:ISO_COUNTRY_CODE" fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallInvestmentAdviserCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_SMALL_INV_HIRED">
+		<xs:choice>
+			<xs:element name="smallInvestmentAdviserHired" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isSmallInvestmentAdviserHired"
+						type="ns1:YES_NO_TYPE" fixed="Y" use="required" />
+					<xs:attribute name="smallInvestmentAdviserStartDate"
+						type="ncom:DATE_TYPE" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isSmallInvestmentAdviserHired" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+
+
+	<xs:complexType name="SMALL_SUB_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item D.12.c</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallSubAdviserName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallSubAdviserRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_SUB_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isSmallSubAdviserAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_SUB_HIRED" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SMALL_SUB_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallSubAdviserStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallSubAdviserState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallSubAdviserCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallSubAdviserCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_SMALL_SUB_HIRED">
+		<xs:choice>
+			<xs:element name="smallSubAdviserHired" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isSmallSubAdviserHired" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+					<xs:attribute name="smallSubAdviserStartDate" type="ncom:DATE_TYPE"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isSmallSubAdviserHired" type="ns1:YES_NO_TYPE"
+				fixed="N"  minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="SMALL_TRANSFER_AGENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item D.13</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallTransferAgentName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallTransferAgentFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallTransferAgentLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallTransferAgentRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_TRANS_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isSmallTransferAgentAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isSmallTransferAgentSubAdmin" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SMALL_TRANS_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallTransferAgentStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallTransferAgentState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallTransferAgentCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallTransferAgentCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="SPONSOR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item F.4
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sponsorName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="sponsorCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="sponsorLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="sponsorRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SPONSOR_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1"></xs:group>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SPONSOR_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="sponsorStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="sponsorState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="sponsorCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sponsorCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="TERMINATED_SMALL_INV_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item D.12.b</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallInvestmentAdviserTerminatedName"
+				type="ns1:STRING_150_TYPE" minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserTerminatedFileNo"
+				type="ns1:FILE_NUMBER_TYPE" minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserTerminatedCrdNo"
+				type="ncom:CRD_NUMBER_TYPE" minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserTerminatedLei"
+				type="ncom:LEI_TYPE_RSS_NA" minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserTerminatedRssdId"
+				type="ncom:RSSD_ID_TYPE" minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SMALL_INV_STATE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="smallInvestmentAdviserTerminatedDate"
+				type="ncom:DATE_TYPE" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SMALL_INV_STATE">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallInvestmentAdviserTerminatedStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallInvestmentAdviserTerminatedState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallInvestmentAdviserTerminatedCountry"
+						type="iso:ISO_COUNTRY_CODE" fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallInvestmentAdviserTerminatedCountry"
+				type="iso:ISO_FOREIGN_COUNTRY_CODE" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="TERMINATED_SMALL_SUB_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item D.12.d</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="smallSubAdviserTerminatedName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserTerminatedFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserTerminatedCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="smallSubAdviserTerminatedLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="smallSubAdviserTerminatedRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="TERM_SMALL_SUB_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="smallSubAdviserTerminatedDate" type="ncom:DATE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="TERM_SMALL_SUB_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="smallSubAdviserTerminatedStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="smallSubAdviserTerminatedState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="smallSubAdviserTerminatedCountry"
+						type="iso:ISO_COUNTRY_CODE" fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="smallSubAdviserTerminatedCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="TRANSFER_AGENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item C.10
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="transferAgentName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="transferAgentFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="transferAgentLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="transferAgentRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_TRANSFER_AGENT_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isTransferAgentAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isTransferAgentSubAgent" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_TRANSFER_AGENT_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="transferAgentStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="transferAgentState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="transferAgentCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="transferAgentCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="TRUSTEE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the F.5.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="trusteeName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_TRUSTEE_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_TRUSTEE_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="trusteeStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="trusteeState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="trusteeCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trusteeCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="SERIESCIK_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item F.6.b
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="cik" type="ns1:CIK_TYPE" use="required" />
+	</xs:complexType>
+	<xs:complexType name="UIT_ADMIN_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item F.2.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uitAdminName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			 <xs:element name="uitAdminLei" type="ns1:STRING_100_TYPE" minOccurs="0" maxOccurs="1" />
+			 <xs:element name="uitAdminRssdId" type="ncom:RSSD_ID_TYPE" minOccurs="0" maxOccurs="1" />
+			 <xs:element name="uitAdminOther" type="ns1:STRING_100_TYPE" minOccurs="0" maxOccurs="1" />
+			<xs:element name="uitAdminDescOtherNumber" type="ncom:STRING_5K_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_UIT_ADMIN_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isUitAdminAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isUitAdminSubAdmin" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:group name="CONDITIONAL_UIT_ADMIN_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="uitAdminStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="uitAdminState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="uitAdminCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="uitAdminCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="UNIT_INVESTMENT_TRUST_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				UNIT_INVESTMENT_TRUST_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="depositors" type="DEPOSITOR_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="uitAdmins" type="UIT_ADMIN_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isUitAdminHiredTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_REGISTRANT_SEPARATE_INS_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numOfContracts" type="ncom:INTEGER_NONNEGATIVE_8"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="contractSecurities" type="CONTRACT_SECURITY_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isRule6C7Reliance" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isRule11A2Reliance" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isRule12D1Dash4Reliance" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isRule12D1GReliance" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="divestments" type="DIVESTMENT_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="registrantHeldSecurities" type="REGISTRANT_HELD_SECURITY_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DEPOSITOR_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="depositor" type="DEPOSITOR_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UIT_ADMIN_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="uitAdmin" type="UIT_ADMIN_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CONTRACT_SECURITY_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="contractSecurity" type="CONTRACT_SECURITY_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DIVESTMENT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="divestment" type="DIVESTMENT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="REGISTRANT_HELD_SECURITY_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="registrantHeldSecurity" type="REGISTRANT_HELD_SECURITY_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_REGISTRANT_SEPARATE_INS_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				If the answer to Item F.3 is 'Y', respond to Item F.12 through Item F.17.  If the answer to Item F.3 is 'N', respond to Item F.4 through Item F.11, and Item F.17.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="registrantSeparateInsuranceAccount" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isRegistrantSeparateInsuranceAccount"
+						type="ns1:YES_NO_TYPE" fixed="Y" use="required" />
+					<xs:attribute name="separateAccountSeriesId" type="sccom:SERIES_ID_TYPE"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="notRegistrantSeparateInsuranceAccount" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sponsors" type="SPONSOR_LIST_TYPE"
+							minOccurs="0" maxOccurs="1" />
+						<xs:element name="trustees" type="TRUSTEE_LIST_TYPE"
+							minOccurs="0" maxOccurs="1" />
+						<xs:element name="numOfExistingSeries" type="ncom:INTEGER_NONNEGATIVE_8"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="seriesCIKs" type="SERIESCIK_LIST_TYPE"
+							minOccurs="0" maxOccurs="1" />
+						<xs:element name="numOfNewSeriesRegistration" type="ncom:INTEGER_NONNEGATIVE_8"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="newSeriesAggregateValue" type="ncom:DECIMAL_TYPE_24"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="numOfSeriesCurrentProspectus" type="ncom:INTEGER_NONNEGATIVE_8"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="numOfExistingSeriesAdditionalUnits"
+							type="ncom:INTEGER_NONNEGATIVE_8" minOccurs="1" maxOccurs="1" />
+						<xs:element name="additionalUnitsTotalValue" type="ncom:DECIMAL_TYPE_24"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="unitInPortfolioValue" type="ncom:DECIMAL_TYPE_24"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="totalAssetsSeries" type="ncom:DECIMAL_TYPE_24"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+						<xs:attribute name="isRegistrantSeparateInsuranceAccount"
+							type="ns1:YES_NO_TYPE" fixed="N" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="SPONSOR_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="sponsor" type="SPONSOR_TYPE" minOccurs="1"
+				maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TRUSTEE_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="trustee" type="TRUSTEE_TYPE" minOccurs="1"
+				maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SERIESCIK_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="seriesCIK" type="SERIESCIK_TYPE"
+				minOccurs="1" maxOccurs="5000" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PRINCIPAL_TRANSACTION_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.17
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="principalName" type="ns1:STRING_150_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PRINCIPAL_TRANSACTION_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="principalTotalPurchaseSale" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_PRINCIPAL_TRANSACTION_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="principalStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="principalState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="principalCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="principalCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="BROKER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.16
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="brokerName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="brokerRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_BROKER_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="grossCommission" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_BROKER_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="brokerStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="brokerState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="brokerCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="brokerCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="BROKER_DEALER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.15
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="brokerDealerName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerDealerFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerDealerCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="brokerDealerLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="brokerDealerRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_BROKER_DEALER_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="brokerDealerCommission" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_BROKER_DEALER_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="brokerDealerStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="brokerDealerState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="brokerDealerCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="brokerDealerCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="ADMIN_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.14
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="adminName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="adminLei" type="ns1:STRING_100_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="adminRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="adminOther" type="ns1:STRING_100_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="idNumberDesc" type="ncom:STRING_500_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_ADMIN_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isAdminAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isAdminSubAdmin" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_ADMIN_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="adminStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="adminState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="adminCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="adminCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="SHAREHOLDER_SERVICING_AGENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.13
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="shareholderServiceAgentName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="shareholderServiceAgentLei" type="ns1:STRING_100_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="shareholderServiceAgentRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="shareholderServiceAgentOther" type="ns1:STRING_100_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="shareholderServiceIdNumberDesc" type="ncom:STRING_500_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SHAREHOLDER_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isShareholderServiceAgentAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isShareholderServiceAgentSubshare" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_SHAREHOLDER_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="shareholderServiceAgentStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="shareholderServiceAgentState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="shareholderServiceAgentCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shareholderServiceAgentCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="CUSTODIAN_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.12
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="custodianName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="custodianLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="custodianRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_CUSTODIAN_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isCustodianAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isSubCustodian" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="custodyType" type="CUSTODY_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="otherCustodianDesc" type="ncom:STRING_5K_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_CUSTODIAN_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="custodianStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="custodianState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="custodianCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="custodianCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="PRICING_SERVICE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item C.11
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pricingServiceName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="pricingServiceLei" type="ns1:STRING_100_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="pricingServiceRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="pricingServiceOther" type="ns1:STRING_100_TYPE"
+				minOccurs="0	" maxOccurs="1" />
+			<xs:element name="pricingServiceIdNumberDesc" type="ncom:STRING_500_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PRICING_SERVICE_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isPricingServiceAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_PRICING_SERVICE_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="pricingServiceStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="pricingServiceState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="pricingServiceCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pricingServiceCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="SUB_ADVISER_TERMINATED_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.9.d
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="subAdviserTerminatedName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserTerminatedFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserTerminatedCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserTerminatedLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="subAdviserTerminatedRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SUB_ADVISER_TERMINATED_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserTerminationDate" type="ncom:DATE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_SUB_ADVISER_TERMINATED_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="subAdviserTerminatedStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="subAdviserTerminatedState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="subAdviserTerminatedCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="subAdviserTerminatedCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="SUB_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.9.c
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="subAdviserName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="subAdviserLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="subAdviserRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isSubAdviserAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SUB_ADVISER_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SUB_ADVISER_HIRED" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_SUB_ADVISER_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="subAdviserStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="subAdviserState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="subAdviserCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="subAdviserCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:group name="CONDITIONAL_SUB_ADVISER_HIRED">
+	<xs:choice>
+		<xs:element name="subAdviserHired" minOccurs="1" maxOccurs="1">
+			<xs:complexType>
+				<xs:attribute name="isSubAdviserHired" type="ns1:YES_NO_TYPE"	fixed="Y" use="required"/>
+				<xs:attribute name="subAdviserStartDate" type="ncom:DATE_TYPE"	use="required" />
+			</xs:complexType>
+			</xs:element>
+			<xs:element name="isSubAdviserHired" type="ns1:YES_NO_TYPE" fixed="N" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="INVESTMENT_ADVISER_TERMINATED_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item C.9.b
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="investmentAdviserTerminatedName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investAdviserTerminatedFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investAdviserTerminatedCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investAdviserTerminatedLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="investAdviserTerminatedRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_INVESTMENT_ADVISER_TERMINATED_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investAdviserTerminationDate" type="ncom:DATE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_INVESTMENT_ADVISER_TERMINATED_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="investmentAdviserTerminatedStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="investmentAdviserTerminatedState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="investmentAdviserTerminatedCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="investmentAdviserTerminatedCountry"
+				type="iso:ISO_FOREIGN_COUNTRY_CODE" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="INVESTMENT_ADVISER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements form Item C.9.a	
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="investmentAdviserName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investmentAdviserFileNo" type="ns1:FILE_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investmentAdviserCrdNo" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investmentAdviserLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="investmentAdviserRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_INVESTMENT_ADVISER_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_INVESTMENT_ADVISER_HIRED" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_INVESTMENT_ADVISER_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="investmentAdviserStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="investmentAdviserState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+						<xs:attribute name="investmentAdviserCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="investmentAdviserCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"	minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:group name="CONDITIONAL_INVESTMENT_ADVISER_HIRED">
+		<xs:choice>
+			<xs:element name="investmentAdviserHired" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="investmentAdviserStartDate" type="ncom:DATE_TYPE"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isInvestmentAdviserHired" type="ns1:YES_NO_TYPE" fixed="Y"
+						use= "required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isInvestmentAdviserHired" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="COLLATERAL_MANAGER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.6.d
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="collateralManagerName" type="ns1:STRING_150_TYPE"	use="required"/>
+			<xs:attribute name="collateralManagerLei" type="ncom:LEI_TYPE_RSS_NA" />
+			<xs:attribute name="collateralManagerRssdId" type="ncom:RSSD_ID_TYPE" />
+			<xs:attribute name="isCollateralManagerAffliliated" type="ns1:YES_NO_TYPE"	use="required" />
+			<xs:attribute name="isCollateralManagerAffliliatedWithFund"	type="ns1:YES_NO_TYPE" use="required" />
+	</xs:complexType>
+	<xs:complexType name="IDEMNITY_PROVIDER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				IDEMNITY_PROVIDER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="idemnityProviderName" type="ns1:STRING_150_TYPE" use="required" />
+			<xs:attribute name="idemnityProviderLei" type="ncom:LEI_TYPE_RSS_NA" />
+			<xs:attribute name="idemnityProviderRssdId" type="ncom:RSSD_ID_TYPE" />
+	</xs:complexType>
+	<xs:complexType name="SECURITY_LENDING_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.6.c
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="securitiesAgentName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="securitiesAgentLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="securitiesAgentRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isSecuritiesAgentAffiliated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SECURITY_IDEMNNITY" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:group name="CONDITIONAL_SECURITY_IDEMNNITY">
+		<xs:choice>
+			<xs:element name="securityAgentIdemnity" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="idemnityProviders" minOccurs="1"	maxOccurs="1">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="idemnityProvider" type="IDEMNITY_PROVIDER_TYPE"	minOccurs="1" maxOccurs="1000" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="didIndemnificationRights" type="ns1:YES_NO_TYPE" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="isSecurityAgentIdemnity" type="ns1:YES_NO_TYPE"
+							fixed="Y" use = "required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isSecurityAgentIdemnity" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	
+	<xs:complexType name="FOREIGN_INVESTMENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item C.5.b.</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="foreignSubsidiaryName" type="ns1:STRING_150_TYPE"
+				use="required" />
+			<xs:attribute name="foreignSubsidiaryLei" type="ncom:LEI_TYPE_RSS_NA" />
+			<xs:attribute name="foreignSubsidiaryRssdId" type="ncom:RSSD_ID_TYPE" />
+	</xs:complexType>
+	<xs:complexType name="FEEDER_FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FEEDER_FUND_TYPE
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="feederFundName" type="ns1:STRING_150_TYPE" use="required" />
+			<xs:attribute name="regFeederFundFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA" use="required" />
+			<xs:attribute name="regFeederFundSeriesIdNo" type="sccom:SERIES_ID_NA_TYPE"	use="required" />
+			<xs:attribute name="regFeederFundLei" type="ncom:LEI_TYPE_RSS_NA" use="required" />
+			<xs:attribute name="unregFeederFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"	use="required" />
+			<xs:attribute name="unregFeederFundLei" type="ncom:LEI_TYPE_RSS_NA" />
+	</xs:complexType>
+	<xs:complexType name="MASTER_FUND_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the MASTER_FUND_TYPE
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="masterFundName" type="ns1:STRING_150_TYPE" use="required" />
+			<xs:attribute name="masterFundFileNo" type="ns1:FILE_NUMBER_TYPE" use="required" />
+			<xs:attribute name="masterFundSECFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA" use="required" />
+			<xs:attribute name="masterFundLei" type="ncom:LEI_TYPE" use="required" />
+	</xs:complexType>
+	<xs:complexType name="SHARES_OUTSTANDING_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item C.2.d.
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="sharesOutstandingClassName" type="ns1:STRING_150_TYPE"
+				use="optional" />
+			<xs:attribute name="sharesOutstandingClassId" type="sccom:CLASS_ID_TYPE"
+				use="optional" />
+			<xs:attribute name="sharesOutstandingTickerSymbol" type="ns1:STRING_12_TYPE"
+				use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="MANAGEMENT_INVESTMENT_QUESTION_SERIES_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				MANAGEMENT_INVESTMENT_QUESTION_SERIES_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="managementInvestmentQuestion" type="MANAGEMENT_INVESTMENT_QUESTION_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MANAGEMENT_INVESTMENT_QUESTION_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				MANAGEMENT_INVESTMENT_QUESTION_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!--Item C.1-->
+			<xs:element name="mgmtInvFundName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="mgmtInvSeriesId" type="sccom:SERIES_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="mgmtInvLei" type="ncom:LEI_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isFirstFilingByFund" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.2-->
+			<xs:element name="numAuthorizedClass" type="ncom:INTEGER_NONNEGATIVE_8"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numAddedClass" type="ncom:INTEGER_NONNEGATIVE_8"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numTerminatedClass" type="ncom:INTEGER_NONNEGATIVE_8"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="sharesOutstandings" type="SHARES_OUTSTANDING_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.3-->	
+			<xs:group ref="CONDITIONAL_FUND_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<!--Item C.4-->	
+			<xs:element name="isNonDiversifiedCompany" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.5-->	
+			<xs:group ref="CONDITIONAL_FOREIGN_SUBSIDIARY_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.6-->	
+			<xs:element name="isFundSecuritiesLending" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_FUND_LEND_SEC_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="securityLendings" type="SECURITY_LENDING_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="collateralManagers" type="COLLATERAL_MANAGER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PAYMENT_TO_AGENT_MANAGER_TYPE" minOccurs="1" maxOccurs="1" />
+			<xs:element name="avgPortfolioSecuritiesValue" type="ncom:DECIMAL_TYPE_24_WITH_NA"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="netIncomeSecuritiesLending" type="ncom:DECIMAL_TYPE_24_WITH_NEG_NA"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.7-->	
+			<xs:group ref="CONDITIONAL_RELY_ON_RULE_TYPE" minOccurs="1"	maxOccurs="1" />
+			<!--Item C.8-->	
+			<xs:element name="isExpenseLimitationInPlace" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isExpenseReducedOrWaived" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isFeesWaivedRecoupable" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isExpenseWaivedRecoupable" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.9.a-->	
+			<xs:element name="investmentAdvisers" type="INVESTMENT_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.9.b-->	
+			<xs:element name="investmentAdvisersTerminated" type="INVESTMENT_ADVISER_TERMINATED_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.9.c-->	
+			<xs:element name="subAdvisers" type="SUB_ADVISER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.9.d-->	
+			<xs:element name="subAdvisersTerminated" type="SUB_ADVISER_TERMINATED_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.10-->	
+			<xs:element name="transferAgents" type="TRANSFER_AGENT_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isTransferAgentHiredOrTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.11-->	
+			<xs:element name="pricingServices" type="PRICING_SERVICE_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isPricingServiceHiredOrTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.12-->	
+			<xs:element name="custodians" type="CUSTODIAN_LIST_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isCustodianHiredOrTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.13-->	
+			<xs:element name="shareholderServicingAgents" type="SHAREHOLDER_SERVICING_AGENT_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isShareholderServiceHiredTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.14-->	
+			<xs:element name="admins" type="ADMIN_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="isAdminHiredOrTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.15-->	
+			<xs:element name="brokerDealers" type="BROKER_DEALER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.16-->
+			<xs:element name="brokers" type="BROKER_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="aggregateCommission" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.17-->
+			<xs:element name="principalTransactions" type="PRINCIPAL_TRANSACTION_LIST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalAggregatePurchase" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.18-->
+			<xs:element name="isBrokerageResearchPayment" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<!--Item C.19-->
+			<xs:element name="mnthlyAvgNetAssets" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="dailyAvgNetAssets" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="0" maxOccurs="1" />
+			<!--Item C.20-->
+			<xs:group ref="CONDITIONAL_LINE_OF_CREDIT_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<xs:group ref="INTERFUND_LENDING_TYPE" minOccurs="0" maxOccurs="1" />
+			<xs:group ref="INTERFUND_BORROWING_TYPE" minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_SWING_PRICING_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<!--Item C.22-->
+			<xs:element name="liquidityClassifications" type="LIQUIDITY_CLASSIFICATION_SERVICES_LIST_TYPE"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="isLiquidityHiredTerminated" type="ns1:YES_NO_TYPE"
+						minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SHARES_OUTSTANDING_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="sharesOutstanding" type="SHARES_OUTSTANDING_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_LENDING_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="securityLending" type="SECURITY_LENDING_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="COLLATERAL_MANAGER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="collateralManager" type="COLLATERAL_MANAGER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="INVESTMENT_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="investmentAdviser" type="INVESTMENT_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="INVESTMENT_ADVISER_TERMINATED_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="investmentAdviserTerminated" type="INVESTMENT_ADVISER_TERMINATED_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SUB_ADVISER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="subAdviser" type="SUB_ADVISER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SUB_ADVISER_TERMINATED_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="subAdviserTerminated" type="SUB_ADVISER_TERMINATED_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TRANSFER_AGENT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="transferAgent" type="TRANSFER_AGENT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PRICING_SERVICE_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="pricingService" type="PRICING_SERVICE_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CUSTODIAN_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="custodian" type="CUSTODIAN_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SHAREHOLDER_SERVICING_AGENT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="shareholderServicingAgent" type="SHAREHOLDER_SERVICING_AGENT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ADMIN_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="admin" type="ADMIN_TYPE" minOccurs="1"
+				maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LIQUIDITY_CLASSIFICATION_SERVICES_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="liquidityClassificationService" type="LIQUIDITY_CLASSIFICATION_SERVICES_TYPE" minOccurs="1"
+						maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BROKER_DEALER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="brokerDealer" type="BROKER_DEALER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BROKER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="broker" type="BROKER_TYPE" minOccurs="1"
+				maxOccurs="10" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PRINCIPAL_TRANSACTION_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="principalTransaction" type="PRINCIPAL_TRANSACTION_TYPE"
+				minOccurs="1" maxOccurs="10" />
+		</xs:sequence>
+	</xs:complexType>
+
+	
+	<xs:group name="CONDITIONAL_FUND_TYPE">
+	<xs:annotation>
+		<xs:documentation>
+			These elements are part of Item C.3.
+			A Filer can select either "N/A" or fund types.
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="fundTypes" type="FUND_TYPES" minOccurs="1" maxOccurs="1" />
+			<xs:element name="fundType" type="xs:string" fixed="N/A"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<!-- Multiple answers can be provided. -->
+	<xs:complexType name="FUND_TYPES">
+	<xs:annotation>
+		<xs:documentation>
+			Multiple Fund Types can be provided here.
+			If the Fund Type is Index Fund, choose element indexFundInfo. And, if the fund type is Master-Feeder fund, select the element masterFeederFundInfo.
+		</xs:documentation>
+	</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fundType" type="FUND_TYPE" minOccurs="0"
+				maxOccurs="7" />
+			<xs:element name="indexFundInfo" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="isIndexFundAffiliated" type="ns1:YES_NO_TYPE"	minOccurs="1" maxOccurs="1" />
+						<xs:element name="isIndexFundExclusive" type="ns1:YES_NO_TYPE"	minOccurs="1" maxOccurs="1" />
+						<xs:element name="indexFundReturnDiffBeforeExpense"	type="ncom:DECIMAL_TYPE_24" minOccurs="1" maxOccurs="1" />
+						<xs:element name="indexFundReturnDiffAfterExpense"	type="ncom:DECIMAL_TYPE_24" minOccurs="1" maxOccurs="1" />
+						<xs:element name="indexFundReturnDailyStdevBeforeExpense"	type="ncom:DECIMAL_TYPE_24_NO_NEG" minOccurs="1"	maxOccurs="1" />
+						<xs:element name="indexFundReturnDailyStdevAfterExpense"	type="ncom:DECIMAL_TYPE_24_NO_NEG" minOccurs="1"	maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="fundType" type="xs:string" fixed="Index Fund"	use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="masterFeederFundInfo" minOccurs="0"	maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="feederFunds" type="FEEDER_FUND_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+						<xs:element name="masterFunds" type="MASTER_FUND_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="fundType" type="xs:string"
+						fixed="Master-Feeder Fund" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:group name="CONDITIONAL_RELY_ON_RULE_TYPE">
+	<xs:annotation>
+		<xs:documentation>
+			These elements are part of Item C.7.
+			Filer can either select 'N/A' or 'relyOnRuleTypes'.
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="relyOnRuleTypes" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="relyOnRuleType" type="RELY_ON_RULE_TYPE"	minOccurs="1" maxOccurs="20"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="relyOnRuleType" type="xs:string" fixed="N/A" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	
+	<xs:group name="CONDITIONAL_PAYMENT_TO_AGENT_MANAGER_TYPE">
+	<xs:annotation>
+		<xs:documentation>
+			Filer can either select 'N/A' or 'paymentToAgentManagers'.
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="paymentToAgentManagers" minOccurs="1"	maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="paymentToAgentManagerType" type="PAYMENT_TO_AGENT_MANAGER_TYPE"
+							minOccurs="1" maxOccurs="6" />
+						<xs:element name="otherFeeDesc" type="ncom:STRING_5K_TYPE"
+							minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="paymentToAgentManagerType" type="xs:string"	fixed="N/A" minOccurs="1"	maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+
+	<xs:group name="CONDITIONAL_FOREIGN_SUBSIDIARY_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of Item C.5. Investments in certain foreign
+				corporations.
+				If 'isForeignSubsidiary' is "Y", atleast 1 FOREIGN_INVESTMENT_TYPE is
+				required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isForeignSubsidiary" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="foreignInvestments" minOccurs="1" maxOccurs="1" >
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="foreignInvestment" type="FOREIGN_INVESTMENT_TYPE"
+							minOccurs="1" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isForeignSubsidiary" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_FUND_LEND_SEC_TYPE">
+		<xs:annotation>
+			<xs:documentation> These elements are for Item C.6.b.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="didFundLendSecurities" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="fundLendSecurities" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is a required field if filer responds Y to
+						item C.6.b. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="isFundLiquidated" type="ns1:YES_NO_TYPE"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="isFundAdverselyImpacted" type="ns1:YES_NO_TYPE"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="didFundLendSecurities" type="ns1:YES_NO_TYPE"
+							fixed="Y" use= "required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_LINE_OF_CREDIT_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				This is part of Item C.20. If "hasLineOfCredit" has a "Y" response, "lineOfCreditDetail" section is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="hasLineOfCredit" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="lineOfCredit" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="lineOfCreditDetails" type="LINE_OF_CREDIT_LIST_TYPE"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="hasLineOfCredit" type="ns1:YES_NO_TYPE"
+							fixed="Y" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	
+	<xs:complexType name="LINE_OF_CREDIT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="lineOfCreditDetail" type="LINE_OF_CREDIT_DETAIL_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="LINE_OF_CREDIT_DETAIL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.20.a
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="isCreditLineCommitted" type="CREDIT_LINE_COMMITTED_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="lineOfCreditSize" type="ncom:DECIMAL_TYPE_24"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name = "lineOfCreditInstitutions" type = "LINE_OF_CREDIT_INSTITUTION_LIST_TYPE" minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_CREDIT_TYPE" minOccurs="1"
+				maxOccurs="1" />
+		    	<xs:group ref="CONDITIONAL_CREDITLINE_USED_TYPE" minOccurs="1"
+				maxOccurs="1" />
+		
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:group name="CONDITIONAL_CREDITLINE_USED_TYPE">
+		<xs:choice>
+			<xs:element name="creditLineUsed" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isCreditLineUsed" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+					<xs:attribute name="averageCreditLineUsed" type="ncom:DECIMAL_TYPE_24"
+						use="required" />
+						<xs:attribute name="daysCreditUsed" type="ncom:INTEGER_NONNEGATIVE_8"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isCreditLineUsed" type="ns1:YES_NO_TYPE"
+				fixed="N"  minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="LINE_OF_CREDIT_INSTITUTION_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="lineOfCreditInstitution" minOccurs="1" maxOccurs="1000">
+				<xs:complexType>
+					<xs:attribute name="creditInstitutionName" type="ns1:STRING_150_TYPE" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="CONDITIONAL_CREDIT_TYPE">
+		<xs:choice>
+			<xs:element name="soleCreditType" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="creditType" type="CREDIT_TYPE" fixed="Sole" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sharedCreditType" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="creditUser" type="CREDIT_USER_TYPE"
+							minOccurs="1" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="creditType" type="CREDIT_TYPE"
+						fixed="Shared" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="CREDIT_USER_TYPE">
+		<xs:attribute name="fundName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="secFileNo" type="ncom:FILE_NUMBER_TYPE_WITH_NA"
+			use="required" />
+	</xs:complexType>
+
+	<xs:group  name="INTERFUND_LENDING_TYPE">
+		<xs:sequence>
+		<xs:choice>
+			<xs:element name="isInterfundLending" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="interfundLendingDetails" minOccurs="1" maxOccurs="1" >
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="interfundLending" type="INTERFUND_LENDING_DETAIL_TYPE"
+						minOccurs="1" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isInterfundLending" type="ns1:YES_NO_TYPE" fixed="Y" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="INTERFUND_LENDING_DETAIL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item C.20.b.
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="interfundLendingLoanAverage" type="ncom:DECIMAL_TYPE_24"	use="required" />
+			<xs:attribute name="interfundLendingDaysOutstanding" type="ncom:INTEGER_NONNEGATIVE_8"	use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="LIQUIDITY_CLASSIFICATION_SERVICES_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item C.22
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="liquidityName" type="ns1:STRING_150_TYPE"
+						minOccurs="1" maxOccurs="1" />
+			<xs:element name="liquidityLei" type="ncom:LIQUIDITY_LEI_TYPE"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="liquidityRssdId" type="ncom:RSSD_ID_TYPE"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="liquidityOther" type="ns1:STRING_100_TYPE"
+						minOccurs="0" maxOccurs="1" />
+			<xs:element name="otherDesc" type="ncom:STRING_500_TYPE"
+						minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_LIQUIDITY_CLASSIFICATION_STATECOUNTRY" minOccurs="1"
+					  maxOccurs="1" />
+			<xs:element name="isAffiliatedPerson" type="ns1:YES_NO_TYPE"
+						minOccurs="1" maxOccurs="1" />
+			<xs:element name="assetClassType"    type="ASSET_TYPE"  minOccurs="1" maxOccurs="20"/>
+			<xs:element name="otherAssetDesc" type="ncom:STRING_500_TYPE"
+						minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_LIQUIDITY_CLASSIFICATION_STATECOUNTRY">
+		<xs:annotation>
+			<xs:documentation>
+				State is required when the response to the Country is USA.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="liquidityStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="liquidityState" type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required"/>
+					<xs:attribute name="liquidityCountry" type="iso:ISO_COUNTRY_CODE" fixed="US" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="liquidityCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+						minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="INTERFUND_BORROWING_TYPE">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="isInterfundBorrowing" type="ns1:YES_NO_TYPE"
+					fixed="N" minOccurs="1" maxOccurs="1" />
+				<xs:element name="interfundBorrowingDetails" minOccurs="1" maxOccurs="1" >
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="interfundBorrowing" type="INTERFUND_BORROWING_DETAIL_TYPE"
+							minOccurs="1" maxOccurs="1000" />
+						</xs:sequence>
+						<xs:attribute name="isInterfundBorrowing" type="ns1:YES_NO_TYPE"
+								fixed="Y" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="INTERFUND_BORROWING_DETAIL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item C.20.c.
+			</xs:documentation>
+		</xs:annotation>
+			<xs:attribute name="interfundBorrowingLoanAverage" type="ncom:DECIMAL_TYPE_24"	use="required" />
+			<xs:attribute name="interfundBorrowingDaysOutstanding" type="ncom:INTEGER_NONNEGATIVE_8"	use="required" />
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_SWING_PRICING_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item C.21. 
+				If the response to the Item C.21.a is 'Y', then Item C.21.a.i is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isSwingPricing" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="swingPricingDetail" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+						<xs:attribute name="isSwingPricing" type="ns1:YES_NO_TYPE"
+							fixed="Y" use="required"/>
+						<xs:attribute name="swingUpperLimit" type="ncom:DECIMAL_TYPE_24"
+							use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="SERIES_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SERIES_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="seriesName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="seriesId" type="sccom:SERIES_ID_NA_TYPE"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="VALUATION_METHODS_CHANGE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item B.20.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dateOfChange" type="ncom:DATE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="changeExplanation" type="ncom:STRING_5K_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="assetType" type="ASSET_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="assetTypeOtherDesc" type="ncom:STRING_5K_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="investmentType" type="ncom:STRING_5K_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="statutoryRegulatoryBasis" type="ncom:STRING_5K_TYPE"
+				minOccurs="1" maxOccurs="1" />
+				
+			<xs:element name="valuationMethodsChangeSeries" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="PUBLIC_ACCOUNTANT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item B.17.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="publicAccountantName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="pcaobNumber" type="ns1:STRING_20_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="publicAccountantLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="publicAccountantRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PUB_ACC_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_PUB_ACC_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="publicAccountantStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="publicAccountantState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="publicAccountantCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="publicAccountantCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="RELEASE_NUMBER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				PRINCIPAL_UNDERWRITER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="number" type="ns1:STRING_20_TYPE"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="PRINCIPAL_UNDERWRITER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item B.16
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="principalUnderwriterName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="principalUnderwriterFileNumber" type="ns1:FILE_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="principalUnderwriterCrdNumber" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="principalUnderwriterLei" type="ncom:LEI_TYPE_RSS_NA"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="principalUnderwriterRssdId" type="ncom:RSSD_ID_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PRINC_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isPrincipalUnderwriterAffiliatedWithRegistrant"
+				type="ns1:YES_NO_TYPE" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_PRINC_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="principalUnderWriterStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="principalUnderWriterState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="principalUnderWriterCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="principalUnderWriterCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="CCO_EMPLOYER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CCO_EMPLOYER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ccoEmployerName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="ccoEmployerId" type="ncom:EMPLOYEE_ID_TYPE"
+			use="required" />
+	</xs:complexType>
+	<xs:complexType name="CHIEF_COMPLIANCE_OFFICER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item B.9.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ccoName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="crdNumber" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ccoStreet1" type="ns1:STREET_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ccoStreet2" type="ns1:STREET_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="ccoCity" type="ns1:STRING_30_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_CCO_STATECOUNTRY" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="ccoZipCode" type="ns1:ZIP_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ccoPhone" type="ns1:EDGAR_PHONE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isCcoChangedSinceLastFiling" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ccoEmployers"	minOccurs="1" maxOccurs="1">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="ccoEmployer" type="CCO_EMPLOYER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+				</xs:sequence>
+			</xs:complexType>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_CCO_STATECOUNTRY">
+	<xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="ccoStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="ccoState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="ccoCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ccoCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="DIRECTOR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item B.8. 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="directorName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="crdNumber" type="ncom:CRD_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isDirectorInterestedPerson" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="fileNumbers" type="DIRECTOR_INV_COMP_FILE_NO_LIST_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="DIRECTOR_INV_COMP_FILE_NO_LIST_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILE_NUMBER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileNumberInfo" minOccurs="1" maxOccurs="1000">
+				<xs:complexType>
+					<xs:attribute name="fileNumber" type="ncom:FILE_NUMBER_TYPE_WITH_NA" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TERMINATED_SERIES_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Item B.6.a.ii.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="seriesName" type="ns1:STRING_150_TYPE"
+			use="required" />
+		<xs:attribute name="seriesId" type="sccom:SERIES_ID_TYPE"
+			use="required" />
+		<xs:attribute name="terminationDate" type="ns1:STRING_10_TYPE"
+			use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="LOCATION_BOOKS_RECORD_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item B.3.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="officeName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="officeAddress1" type="ns1:STREET_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="officeAddress2" type="ns1:STREET_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="officeCity" type="ns1:STRING_30_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_LOCATION_BOOKS_RECORD_STATECOUNTRY"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="officeRecordsZipCode" type="ns1:ZIP_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="officePhone" type="ns1:EDGAR_PHONE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="booksRecordsDesc" type="ncom:STRING_5K_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_LOCATION_BOOKS_RECORD_STATECOUNTRY">
+	 <xs:annotation>
+		<xs:documentation>
+			State is required when the response to the Country is USA. 
+		</xs:documentation>
+	</xs:annotation>
+		<xs:choice>
+			<xs:element name="officeStateCountry" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="officeState"
+						type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" use="required" />
+					<xs:attribute name="officeCountry" type="iso:ISO_COUNTRY_CODE"
+						fixed="US" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="officeCountry" type="iso:ISO_FOREIGN_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="WEBSITE_LIST_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				Item B.2.g Public Websites.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="website" minOccurs="1" maxOccurs="1000">
+				<xs:complexType>
+					<xs:attribute name="webpage" type="ns1:STRING_150_TYPE"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="REGISTRANT_INFO_TYPE" mixed="true">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the REGISTRANT_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="registrantFullName" type="ns1:STRING_150_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="investmentCompFileNo" type="ns1:FILE_NUMBER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantCik" type="ns1:CIK_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantLei" type="ncom:LEI_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantstreet1" type="ns1:STREET_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantstreet2" type="ns1:STREET_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="registrantcity" type="ns1:STRING_30_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantzipCode" type="ns1:ZIP_TYPE"
+				minOccurs="1" maxOccurs="1" />
+<!-- 			Add Note	 -->			
+			<xs:element name="registrantstate"
+				type="iso:ISO_STATE_AND_OUTLYING_AREA_CODE_USA" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="registrantcountry" type="iso:ISO_COUNTRY_CODE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantphoneNumber" type="ns1:EDGAR_PHONE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+<!-- 			The repeatble sections will now be placed under an element which will act as a CONTAINER	 -->
+			<xs:element name="websites" type="WEBSITE_LIST_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="locationBooksRecords" type="LOCATION_BOOKS_RECORD_LIST_TYPE"
+				minOccurs="1" />
+			<xs:element name="isRegistrantFirstFiling" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isRegistrantLastFiling" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_REG_FAMILY_INV_COMP_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantClassificationType" type="COMPANY_CLASSIFICATION_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="totalSeries" type="ncom:INTEGER_NONNEGATIVE_8"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="terminatedSeries" type="TERMINATED_SERIES_LIST_TYPE"
+				minOccurs="0" maxOccurs="1"/>
+			<xs:element name="isSecuritiesActRegistration" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="directors" type="DIRECTOR_LIST_TYPE"
+				minOccurs="0" maxOccurs="1"/>
+			<xs:element name="chiefComplianceOfficers" type="CHIEF_COMPLIANCE_OFFICER_LIST_TYPE"
+				minOccurs="1"  maxOccurs="1"/>
+			<xs:group ref="CONDITIONAL_REG_SUBMITTED_MATTER_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PREVIOUS_LEGAL_PROCEEDING_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PREVIOUS_PROCEEDING_TERM_TYPE"
+				minOccurs="1" maxOccurs="1" />
+<!-- 			Item B.12	 -->
+			<xs:group ref="CONDITIONAL_CLAIM_FILED_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_COVERED_BY_INSU_POLICY_TYPE"
+				minOccurs="0" maxOccurs="1" />
+<!-- 			Item B.14	 -->
+			<xs:group ref="CONDITIONAL_FINANCIAL_SUPPORT_SERIES_TYPE"
+				minOccurs="1" maxOccurs="1" />
+<!-- 			Item B.15	 -->				
+			<xs:group ref="CONDITIONAL_EXEMPTION_FROM_ACT_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="principalUnderwriters" type="PRINCIPAL_UNDERWRITER_LIST_TYPE"
+				minOccurs="0" />
+			<xs:element name="isUnderwriterHiredOrTerminated" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="publicAccountants" type="PUBLIC_ACCOUNTANT_LIST_TYPE"
+				minOccurs="1" maxOccurs="1"/>
+			<xs:element name="isPublicAccountantChanged" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="isMaterialWeakness" type="ns1:YES_NO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_OPINION_OFFERED_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_MATERIAL_CHANGE_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="isAccountingPrincipleChange" type="ns1:YES_NO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PAYMENT_ERR_ASSET_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:group ref="CONDITIONAL_PAYMENT_DIVIDEND_TYPE" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LOCATION_BOOKS_RECORD_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="locationBooksRecord" type="LOCATION_BOOKS_RECORD_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TERMINATED_SERIES_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="terminatedSeriesInfo" type="TERMINATED_SERIES_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DIRECTOR_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="director" type="DIRECTOR_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CHIEF_COMPLIANCE_OFFICER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="chiefComplianceOfficer" type="CHIEF_COMPLIANCE_OFFICER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PUBLIC_ACCOUNTANT_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="publicAccountant" type="PUBLIC_ACCOUNTANT_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PRINCIPAL_UNDERWRITER_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="principalUnderwriter" type="PRINCIPAL_UNDERWRITER_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="CONDITIONAL_REG_FAMILY_INV_COMP_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of Item B.5. 
+				Item B.5.a.i(Full Name  of Family Investment Companies) is required when the response to Item B.5.a is 'Y'.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="registrantFamilyInvComp" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isRegistrantFamilyInvComp" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+					<xs:attribute name="familyInvCompFullName" type="ns1:STRING_150_TYPE"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="isRegistrantFamilyInvComp" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_REG_SUBMITTED_MATTER_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.10. 
+				If the response to the Item B.10 is 'Y', then Item B.10.a is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isRegistrantSubmittedMatter" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="securityMatterSeriesInfo" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isRegistrantSubmittedMatter" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_PREVIOUS_LEGAL_PROCEEDING_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.11. 
+				If the response to the Item B.11 is 'Y', then Item B.11.a is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isPreviousLegalProceeding" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />		
+			<xs:element name="legalProceedingSeriesInfo" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isPreviousLegalProceeding" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_PREVIOUS_PROCEEDING_TERM_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.11. 
+				If the response to the Item B.11.b is 'Y', then Item B.11.b.i is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isPreviousProceedingTerminated" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="previousProceedingTerminated" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isPreviousProceedingTerminated"
+						type="ns1:YES_NO_TYPE" fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_CLAIM_FILED_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.12. 
+				If the response to the Item B.12.a is 'Y', then Item B.12.a.i and Item B.12.a.ii is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isClaimFiled" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />		
+			<xs:element name="claimFiled" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isClaimFiled" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+					<xs:attribute name="totalClaimAmount" type="ncom:DECIMAL_TYPE_24"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_COVERED_BY_INSU_POLICY_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.13. 
+				If the response to the Item B.13.a is 'Y', then Item B.13.a.i is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isCoveredByInsurancePolicy" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="coveredByInsurancePolicy" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="isCoveredByInsurancePolicy" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+					<xs:attribute name="isClaimFiledDuringPeriod" type="ns1:YES_NO_TYPE"
+						use="required" />
+				</xs:complexType>
+			</xs:element>
+
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_FINANCIAL_SUPPORT_SERIES_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.14. 
+				If the response to the Item B.14 is 'Y', then Item B.14.a.i and Item B.14.a.ii are required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isFinancialSupportDuringPeriod" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />		
+			<xs:element name="financialSupportSeriesInfo" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isFinancialSupportDuringPeriod"
+						type="ns1:YES_NO_TYPE" fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_EXEMPTION_FROM_ACT_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.15. 
+				If the response to the Item B.15.a is 'Y', then Item B.15.a.i is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isExemptionFromAct" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="releaseNumbers" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="releaseNumberInfo" minOccurs="1" maxOccurs="1000">
+							<xs:complexType>
+								<xs:attribute name="releaseNumber" type="ns1:STRING_20_TYPE" />
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>					
+					<xs:attribute name="isExemptionFromAct" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_OPINION_OFFERED_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.19. 
+				If the response to the Item B.19.a is 'Y', then Item B.19.a.i and Item B.19.a.ii are required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isOpinionOffered" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />		
+			<xs:element name="auditOpinionSeries" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isOpinionOffered" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_MATERIAL_CHANGE_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.20. 
+				If the response to the Item B.20 is 'Y', then at least 1 record of Valuation Methods is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isMaterialChange" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="valuationMethodsChanges"  minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="valuationMethodsChange" type="VALUATION_METHODS_CHANGE"
+							minOccurs="1" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isMaterialChange" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_PAYMENT_ERR_ASSET_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.22. 
+				If the response to the Item B.22.a is 'Y', then Item B.22.a.i is required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isPaymentErrorInNetAssetValue" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="paymentErrorSeries" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isPaymentErrorInNetAssetValue"
+						type="ns1:YES_NO_TYPE" fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:group name="CONDITIONAL_PAYMENT_DIVIDEND_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				These elements are part of the Item B.23. 
+				If the response to the Item B.23.a is 'Y', then Item B.23.a.i and Item B.23.a.ii are required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="isPaymentDividend" type="ns1:YES_NO_TYPE"
+				fixed="N" minOccurs="1" maxOccurs="1" />
+			<xs:element name="paymentDividendSeries" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="seriesInfo" type="SERIES_INFO_TYPE"
+							minOccurs="0" maxOccurs="1000" />
+					</xs:sequence>
+					<xs:attribute name="isPaymentDividend" type="ns1:YES_NO_TYPE"
+						fixed="Y" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="GENERAL_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the Item A.1. Reporting period covered.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="reportEndingPeriod" type="ncom:DATE_TYPE"
+			use="required" />
+		<xs:attribute name="isReportPeriodLt12" type="ns1:YES_NO_TYPE"
+			use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="FLAGS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FLAGS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NOTIFICATIONS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the NOTIFICATIONS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE"
+				minOccurs="0" maxOccurs="3" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_INFO_TYPE.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="reportSeriesClass" type="RPT_SERIES_TYPE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="reportClass" type="RPT_CLASS_TYPE"
+					minOccurs="1" maxOccurs="1" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_SERIES_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_SERIES_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="rptIncludeAllSeriesFlag" type="ns1:TRUE_FALSE_TYPE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="rptSeriesClassInfo" type="SERIES_CLASS_PAIR_TYPE"
+					minOccurs="1" maxOccurs="1000" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_PAIR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_PAIR_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="seriesId" type="sccom:SERIES_ID_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:choice>
+				<xs:element name="includeAllClassesFlag" type="ns1:TRUE_FALSE_TYPE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="classInfo" type="CLASS_INFO_TYPE"
+					minOccurs="1" maxOccurs="1000" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_CLASS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_CLASS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="rptIncludeAllClassesFlag" type="ns1:TRUE_FALSE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="classInfo" type="CLASS_INFO_TYPE"
+				minOccurs="1" maxOccurs="1000" />
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CLASS_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CLASS_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="classId" type="sccom:CLASS_ID_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONTACT_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactName" type="ns1:NAME_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ATTACHMENTS_TAB_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the ATTACHMENTS_TAB_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+<!-- 			Item G.1a. Attachments. -->
+			<xs:element name="isLegalProceedings" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isProvisionFinancialSupport" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isIPAReportInternalControl" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isChangeAccPrinciples" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isInfoRequiredEO" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isOtherInfoRequired" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+<!-- 			Item G.1b. Attachments. -->			
+			<xs:element name="isMaterialAmendments" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isInstDefiningRights" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isNewOrAmendedInvAdvContracts" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isInfoItem405" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="isCodeOfEthics" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ISSUER_CREDENTIALS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				ISSUER_CREDENTIALS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cik" type="ns1:CIK_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="ccc" type="ns1:CCC_TYPE" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="issuerCredentials" type="ISSUER_CREDENTIALS_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FORM_DATA
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="generalInfo" type="GENERAL_INFO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="registrantInfo" type="REGISTRANT_INFO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="managementInvestmentQuestionSeriesInfo"
+				type="MANAGEMENT_INVESTMENT_QUESTION_SERIES_INFO_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="closedEndManagementInvestment" type="CLOSED_END_MANAGEMENT_INVESTMENT_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="exchangeSeriesInfo" type="EXCHANGE_SERIES_INFO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="unitInvestmentTrust" type="UNIT_INVESTMENT_TRUST_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="attachmentsTab" type="ATTACHMENTS_TAB_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="signature" type="SIGNATURE_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FILER_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="filer" type="FILER_TYPE" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="contact" type="CONTACT_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="notifications" type="NOTIFICATIONS_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="flags" type="FLAGS_TYPE" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="investmentCompanyType" type="COMPANY_CLASSIFICATION_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HEADER_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the HEADER_DATA
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="submissionType" type="SUBMISSION_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="accessionNumber" type="ns1:ACCESSION_NUMBER_TYPE"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="filerInfo" type="FILER_INFO_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="seriesClass" type="SERIES_CLASS_INFO_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="headerData" type="HEADER_DATA"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="formData" type="FORM_DATA" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

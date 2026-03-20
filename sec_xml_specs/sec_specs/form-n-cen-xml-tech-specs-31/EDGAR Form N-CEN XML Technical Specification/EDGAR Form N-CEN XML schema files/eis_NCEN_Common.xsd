@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns="http://www.sec.gov/edgar/ncencommon"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.sec.gov/edgar/ncencommon"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	
+	<xs:simpleType name="STRING_5K_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="5000" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="STRING_500_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="500" />
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DECIMAL_TYPE_24">
+		<xs:restriction base="xs:decimal">
+      		<xs:totalDigits value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DECIMAL_TYPE_24_NO_NEG">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="24"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DECIMAL_TYPE_24_WITH_NA">
+		<xs:union memberTypes="DECIMAL_TYPE_24_NO_NEG NA_STRING"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DECIMAL_TYPE_24_WITH_NEG_NA">
+		<xs:union memberTypes="DECIMAL_TYPE_24 NA_STRING"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="NA_STRING">
+	  <xs:restriction base="xs:token">
+	    <xs:enumeration value="N/A" />
+	  </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="INTEGER_NONNEGATIVE_8">
+		<xs:restriction base="xs:nonNegativeInteger">
+		   <xs:minInclusive value="0"/>
+			<xs:totalDigits value="8" fixed="true" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="EMPLOYEE_ID_TYPE">		
+		<xs:restriction base="xs:token">
+			<xs:pattern value="\d{2}[\-]?\d{7}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="LEI_TYPE_RSS_NA">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in up to 20 alphanumeric characters, but should also be allowed to put in less than 20 characters.  This is because the instructions sometimes allow filers to respond with "N/A" or the RSSD ID, which is a 10-digit number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Za-z]{20}|[0-9]{10}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LEI_TYPE">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in up to 20 alphanumeric characters</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Za-z]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LIQUIDITY_LEI_TYPE">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in exactly 20 alphanumeric characters or "N/A" for the LEI in Item C.22</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Za-z]{20}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RSSD_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in up to 10 numeric characters</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		<xs:pattern value="[0-9]{0,10}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FILE_NUMBER_TYPE_WITH_NA">
+		<xs:annotation>
+			<xs:documentation>Your SEC-supplied file number. Required for
+				amendments to 1933 Act registration statements and with specific
+				form types listed in Appendix B. Field is up to 17 characters, and
+				only one file number for each registrant.</xs:documentation>
+			<xs:documentation />
+			<xs:documentation>The prefix may contain 1-3 digits, the sequence
+				number may contain 1-8 digits, the optional suffix may contain 1-4
+				characters, and the fields are separated with a hyphen.
+			</xs:documentation>
+			<xs:documentation>Sample value: 333-00000-1.</xs:documentation>
+			<xs:documentation />
+			<xs:documentation>Valid prefixes for this submission type are 002-,
+				033-, and 333-.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern
+				value="\d{1,3}-\d{1,8}-[a-zA-Z0-9]{1,4}|\d{1,3}-\d{1,8}|24R-\d{1,8}-[a-zA-Z0-9]{1,4}|24R-\d{1,8}|N/A" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="CRD_NUMBER_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{9}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DATE_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="\d{4}-\d{1,2}-\d{1,2}" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

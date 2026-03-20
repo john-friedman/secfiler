@@ -1,0 +1,65 @@
+<?xml version="1.0" ?><sub:edgarSubmission xmlns:sub="http://www.sec.gov/edgar/subjectfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon">
+  <sub:liveTestFlag>LIVE</sub:liveTestFlag>
+  <sub:flag>
+    <sub:confirmingCopyFlag>false</sub:confirmingCopyFlag>
+    <sub:returnCopyFlag>false</sub:returnCopyFlag>
+    <sub:overrideInternetFlag>false</sub:overrideInternetFlag>
+  </sub:flag>
+  <sub:submissionType>SC 13E1</sub:submissionType>
+  <sub:contact>
+    <com:name>sample</com:name>
+    <com:phoneNumber>test</com:phoneNumber>
+  </sub:contact>
+  <sub:filer>
+    <sub:filerId>0000000000</sub:filerId>
+    <sub:filerCcc>xxxxxxxx</sub:filerCcc>
+  </sub:filer>
+  <sub:subCompanyFiler>
+    <sub:filerId>0000000000</sub:filerId>
+    <sub:irsNumber>22-7777777</sub:irsNumber>
+    <sub:filerName>test</sub:filerName>
+  </sub:subCompanyFiler>
+  <sub:sros>
+    <com:sroId>NONE</com:sroId>
+  </sub:sros>
+  <sub:feeTableIncludedFlag>N</sub:feeTableIncludedFlag>
+  <sub:notifications>
+    <com:internetNotificationAddress>test@test.com</com:internetNotificationAddress>
+  </sub:notifications>
+  <sub:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A1234567</com:nickName>
+      <com:cik>0000000000</com:cik>
+      <com:ccc>xxxxxxxx</com:ccc>
+      <com:documentType>EX-1</com:documentType>
+    </com:moduleSegment>
+  </sub:moduleSegments>
+  <sub:documents>
+    <com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>SC 13E1</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+  </sub:documents>
+  <sub:edgarFee>
+    <sub:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>120.00</feec:feeAmount>
+      <feec:feeBasis>130.00</feec:feeBasis>
+    </sub:submissionFee>
+    <sub:submissionOffset>
+      <feec:offsetCik>0000000000</feec:offsetCik>
+      <feec:offsetFormType>424B3</feec:offsetFormType>
+      <feec:offsetFileNumber>333-00000-1</feec:offsetFileNumber>
+      <feec:offsetFilingDate>12-11-2012</feec:offsetFilingDate>
+      <feec:offsetAmount>100.00</feec:offsetAmount>
+    </sub:submissionOffset>
+  </sub:edgarFee>
+</sub:edgarSubmission>

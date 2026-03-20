@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/xsl" href="NPORT-P_X01.xsl"?>-->
+<edgarSubmission xsi:schemaLocation="http://www.sec.gov/edgar/nport eis_NPORT_Filer.xsd" xmlns="http://www.sec.gov/edgar/nport" xmlns:com="http://www.sec.gov/edgar/common" xmlns:ncom="http://www.sec.gov/edgar/nportcommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <schemaVersion>X0101</schemaVersion>
+  <headerData>
+    <submissionType>NPORT-P</submissionType>
+    <isConfidential>false</isConfidential>
+    <filerInfo>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <filer>
+        <issuerCredentials>
+          <cik>0000350001</cik>
+          <ccc>sauces#1</ccc>
+        </issuerCredentials>
+      </filer>
+      <contact>
+        <name>NPORT</name>
+        <phone>123-123-1122</phone>
+        <email>wangdo@sec.gov</email>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>wangdo@sec.gov</notificationEmailAddress>
+      </notifications>
+      <flags>
+        <returnCopyFlag>false</returnCopyFlag>
+        <overrideInternetFlag>false</overrideInternetFlag>
+        <confirmingCopyFlag>false</confirmingCopyFlag>
+      </flags>
+      <invstCompanyType>N-2</invstCompanyType>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <genInfo>
+      <regName>Phase V Wang Single Filer SC</regName>
+      <regFileNumber>811-21095</regFileNumber>
+      <regCik>0000350001</regCik>
+      <regLei>LEI12345FEILD20CHA10</regLei>
+      <regStreet1>Address # 1</regStreet1>
+      <!--<regStreet2>none</regStreet2>-->
+      <regCity>City</regCity>
+      <regCountry>AF</regCountry>
+      <regZipOrPostalCode>1234re</regZipOrPostalCode>
+      <regPhone>123-454-4485</regPhone>
+      <seriesName>Series Name #1</seriesName>
+      <seriesLei>LEI12345FEILD20CHA10</seriesLei>
+      <repPdEnd>2023-12-31</repPdEnd>
+      <repPdDate>2023-12-01</repPdDate>
+      <isFinalFiling>Y</isFinalFiling>
+    </genInfo>
+    <fundInfo>
+      <totAssets>44.0</totAssets>
+      <!--DCS# 44-->
+      <totLiabs>11.45</totLiabs>
+      <!--45-->
+      <netAssets>32.55</netAssets>
+      <!--DCS# 46 should be = to 44 - 45-->
+      <assetsAttrMiscSec>1.48</assetsAttrMiscSec>
+      <assetsInvested>1.49</assetsInvested>
+      <amtPayOneYrBanksBorr>1.52</amtPayOneYrBanksBorr>
+      <amtPayOneYrCtrldComp>1.53</amtPayOneYrCtrldComp>
+      <amtPayOneYrOthAffil>1.54</amtPayOneYrOthAffil>
+      <amtPayOneYrOther>1.55</amtPayOneYrOther>
+      <amtPayAftOneYrBanksBorr>1.57</amtPayAftOneYrBanksBorr>
+      <amtPayAftOneYrCtrldComp>1.58</amtPayAftOneYrCtrldComp>
+      <amtPayAftOneYrOthAffil>1.59</amtPayAftOneYrOthAffil>
+      <amtPayAftOneYrOther>1.60</amtPayAftOneYrOther>
+      <delayDeliv>1.620</delayDeliv>
+      <standByCommit>1.630</standByCommit>
+      <liquidPref>1.640</liquidPref>
+      <curMetrics>
+        <curMetric>
+          <curCd>AED</curCd>
+          <intrstRtRiskdv01 period10Yr="0.72" period1Yr="0.70" period30Yr="0.73" period3Mon="0.69" period5Yr="0.71"/>
+          <intrstRtRiskdv100 period10Yr="0.80" period1Yr="0.78" period30Yr="0.81" period3Mon="0.77" period5Yr="0.79"/>
+        </curMetric>
+      </curMetrics>
+      <creditSprdRiskInvstGrade period10Yr="0.88" period1Yr="0.86" period30Yr="0.89" period3Mon="0.85" period5Yr="0.87"/>
+      <creditSprdRiskNonInvstGrade period10Yr="0.95" period1Yr="0.93" period30Yr="0.96" period3Mon="0.92" period5Yr="0.94"/>
+      <borrowers>
+        <borrower aggrVal="1.102" lei="LEI12345FEILD20CHA10" name="Borrower"/>
+      </borrowers>
+      <isNonCashCollateral>N</isNonCashCollateral>
+      <returnInfo>
+        <monthlyTotReturns>
+          <monthlyTotReturn rtn1="0.110" rtn2="0.111" rtn3="0.112"/>
+        </monthlyTotReturns>
+        <monthlyReturnCats>
+          <commodityContracts>
+            <mon1 netRealizedGain="0" netUnrealizedAppr="0"/>
+            <mon2 netRealizedGain="0" netUnrealizedAppr="0"/>
+            <mon3 netRealizedGain="0" netUnrealizedAppr="0"/>
+          </commodityContracts>
+        </monthlyReturnCats>
+        <othMon1 netRealizedGain="0" netUnrealizedAppr="0"/>
+        <othMon2 netRealizedGain="0" netUnrealizedAppr="0"/>
+        <othMon3 netRealizedGain="0" netUnrealizedAppr="0"/>
+      </returnInfo>
+      <mon1Flow sales="0" reinvestment="0" redemption="0"/>
+      <mon2Flow sales="0" reinvestment="0" redemption="0"/>
+      <mon3Flow sales="0" reinvestment="0" redemption="0"/>
+      <liquidInvst>
+        <highlyLiquidInvst>555.0</highlyLiquidInvst>
+        <daysOfHolding>10</daysOfHolding>
+        <isChangeRepPd>N</isChangeRepPd>
+      </liquidInvst>
+      <derivTrans>
+        <classification>N/A</classification>
+      </derivTrans>
+      <namesRuleInvstPolicy>
+         <terms>
+	      <termInformation term="Some Definition of Terms" definitionofTerm="Some Definition of Terms Some Definition of Terms"/>
+	      <termInformation term="Some Definition of Terms1" definitionofTerm="Some Definition of Terms 1 Some Definition of Terms 1"/>
+	      <termInformation term="Some Definition of Terms2" definitionofTerm="Some Definition of Terms 2 Some Definition of Terms 2"/>
+	      <termInformation term="Some Definition of Terms3" definitionofTerm="Some Definition of Terms 3 Some Definition of Terms 3"/>
+	    </terms>
+        <fundsEightyPercentBasket>50.0</fundsEightyPercentBasket>
+      </namesRuleInvstPolicy>
+    </fundInfo>
+    <invstOrSecs>
+      <invstOrSec>
+        <name>3F708</name>
+        <lei>N/A</lei>
+        <title>N/A</title>
+        <cusip>379006355</cusip>
+        <identifiers>
+          <ticker value="3F708"/>
+        </identifiers>
+        <balance>189</balance>
+        <units>NS</units>
+        <curCd>USD</curCd>
+        <valUSD>1134</valUSD>
+        <pctVal>0.17</pctVal>
+		<isIncludedFunds80PercentBasket>Y</isIncludedFunds80PercentBasket>
+        <payoffProfile>Long</payoffProfile>
+        <assetCat>EC</assetCat>
+        <issuerCat>CORP</issuerCat>
+        <invCountry>AF</invCountry>
+        <invOthCountry>AF</invOthCountry>
+        <isRestrictedSec>N</isRestrictedSec>
+        <fundCat>N/A</fundCat>
+        <fairValLevel>1</fairValLevel>
+        <debtSec>
+          <maturityDt>2021-01-01</maturityDt>
+          <couponKind>Fixed</couponKind>
+          <annualizedRt>1</annualizedRt>
+          <isDefault>N</isDefault>
+          <areIntrstPmntsInArrs>N</areIntrstPmntsInArrs>
+          <isPaidKind>N</isPaidKind>
+          <isMandatoryConvrtbl>N</isMandatoryConvrtbl>
+          <isContngtConvrtbl>N</isContngtConvrtbl>
+          <dbtSecRefInstruments>
+            <dbtSecRefInstrument>
+              <name>test</name>
+              <title>test</title>
+              <curCd>USD</curCd>
+              <identifiers>
+                <ticker value="TICKER"/>
+                <other value="OTHER" otherDesc="test"/>
+              </identifiers>
+            </dbtSecRefInstrument>
+          </dbtSecRefInstruments>
+          <currencyInfos>
+            <currencyInfo curCd="USD" convRatio="1.0"/>
+          </currencyInfos>
+          <delta>1.0</delta>
+        </debtSec>
+        <repurchaseAgrmt>
+          <transCat>Repurchase</transCat>
+          <clearedCentCparty isCleared="Y" centralCounterparty="test"/>
+          <isTriParty>N</isTriParty>
+          <repurchaseRt>1</repurchaseRt>
+          <maturityDt>2021-01-01</maturityDt>
+          <repurchaseCollaterals>
+            <repurchaseCollateral>
+              <principalAmt>1</principalAmt>
+              <principalCd>USD</principalCd>
+              <collateralVal>1</collateralVal>
+              <collateralCd>USD</collateralCd>
+              <invstCat>ABS</invstCat>
+            </repurchaseCollateral>
+          </repurchaseCollaterals>
+        </repurchaseAgrmt>
+        <derivativeInfo>
+          <optionSwaptionWarrantDeriv derivCat="SWO">
+            <counterparties>
+              <counterpartyName>token</counterpartyName>
+              <counterpartyLei>7777888800</counterpartyLei>
+            </counterparties>
+            <putOrCall>Put</putOrCall>
+            <writtenOrPur>Written</writtenOrPur>
+            <descRefInstrmnt>
+              <nestedDerivInfo>
+                <fwdDeriv derivCat="FWD">
+                  <counterparties>
+                    <counterpartyName>token</counterpartyName>
+                    <counterpartyLei>7777888800</counterpartyLei>
+                  </counterparties>
+                  <amtCurSold>58.55</amtCurSold>
+                  <curSold>AED</curSold>
+                  <amtCurPur>5.55</amtCurPur>
+                  <curPur>AED</curPur>
+                  <settlementDt>2001-01-01</settlementDt>
+                </fwdDeriv>
+              </nestedDerivInfo>
+            </descRefInstrmnt>
+            <shareNo>1</shareNo>
+            <exercisePrice>1</exercisePrice>
+            <exercisePriceCurCd>USD</exercisePriceCurCd>
+            <expDt>2021-12-31</expDt>
+            <delta>1</delta>
+            <unrealizedAppr>1</unrealizedAppr>
+          </optionSwaptionWarrantDeriv>
+        </derivativeInfo>
+        <securityLending>
+          <isCashCollateral>N</isCashCollateral>
+          <isNonCashCollateral>N</isNonCashCollateral>
+          <isLoanByFund>N</isLoanByFund>
+        </securityLending>
+      </invstOrSec>
+    </invstOrSecs>
+    <explntrNotes>
+      <explntrNote note="token" noteItem="A.1.a"/>
+      <explntrNote note="token" noteItem="B.11"/>
+      <explntrNote note="token" noteItem="B.11.a"/>
+      <explntrNote note="token" noteItem="B.11.b"/>
+      <explntrNote note="token" noteItem="C.2.e"/>
+      <explntrNote note="token" noteItem="D.2.e"/>
+    </explntrNotes>
+    <signature>
+      <ncom:dateSigned>2001-01-01</ncom:dateSigned>
+      <ncom:nameOfApplicant>token</ncom:nameOfApplicant>
+      <ncom:signature>token</ncom:signature>
+      <ncom:signerName>token</ncom:signerName>
+      <ncom:title>token</ncom:title>
+    </signature>
+  </formData>
+</edgarSubmission>

@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/npx" xmlns:sccom="http://www.sec.gov/edgar/sccommon"
+           xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:iso="http://www.sec.gov/edgar/iso_statecodes"
+           targetNamespace="http://www.sec.gov/edgar/npx" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+    <xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+    <xs:import namespace="http://www.sec.gov/edgar/iso_statecodes" schemaLocation="eis_ISO_StateCodes.xsd" />
+    <xs:simpleType name="SUBMISSION_TYPE">
+        <xs:annotation>
+            <xs:documentation>
+                Type of submission you are filing.  Choose a value from the appropriate family of
+                Submission Types.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="N-PX"/>
+            <xs:enumeration value="N-PX/A"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="COMPANY_TYPE">
+        <xs:annotation>
+            <xs:documentation>Enumeration for COMPANY_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value=""/>
+            <xs:enumeration value="RMIC"/>
+            <xs:enumeration value="IM"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="COMPANY_CLASSIFICATION_TYPE">
+        <xs:annotation>
+            <xs:documentation>Enumeration for COMPANY_CLASSIFICATION_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value=""/>
+            <xs:enumeration value="NA"/>
+            <xs:enumeration value="N-1A"/>
+            <xs:enumeration value="N-2"/>
+            <xs:enumeration value="N-3"/>
+            <xs:enumeration value="N-4"/>
+            <xs:enumeration value="N-6"/>
+            <xs:enumeration value="S-1 or S-3"/>
+            <xs:enumeration value="S-6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="edgarSubmission">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+                <xs:element name="headerData" type="HEADER_DATA"/>
+                <xs:element name="formData" type="FORM_DATA"/>
+                <xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ********************************************************************* -->
+    <!--    Root Types Header and Form Data  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="HEADER_DATA">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the HEADER_DATA
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="submissionType" type="SUBMISSION_TYPE" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="filerInfo" type="FILER_INFO_TYPE" minOccurs="1" maxOccurs="1" />
+            <xs:element name="seriesClass" type="SERIES_CLASS_INFO_TYPE" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FORM_DATA">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FORM_DATA
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="coverPage" type="COVER_PAGE" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="summaryPage" type="SUMMARY_PAGE" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="seriesPage" type="SUMMARY_SERIES_PAGE" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="signaturePage" type="SIGNATURE_TYPE" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SERIES_CLASS_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the
+                SERIES_CLASS_INFO_TYPE.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="reportSeriesClass" type="RPT_SERIES_TYPE"/>
+                <xs:element name="reportClass" type="RPT_CLASS_TYPE"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RPT_SERIES_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the RPT_SERIES_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="rptIncludeAllSeriesFlag" type="TRUE_TYPE"/>
+                <xs:element name="rptSeriesClassInfo" type="SERIES_CLASS_PAIR_TYPE" maxOccurs="999"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RPT_CLASS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the RPT_CLASS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="rptIncludeAllClassesFlag" type="TRUE_TYPE"/>
+            <xs:element name="classInfo" type="CLASS_INFO_TYPE" maxOccurs="999"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="SERIES_CLASS_PAIR_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the
+                SERIES_CLASS_PAIR_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="seriesId" type="sccom:SERIES_ID_TYPE"/>
+            <xs:choice>
+                <xs:element name="includeAllClassesFlag" type="TRUE_TYPE"/>
+                <xs:element name="classInfo" type="CLASS_INFO_TYPE" maxOccurs="999"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TRUE_TYPE">
+        <xs:restriction base="xs:boolean">
+            <xs:pattern value="true" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="CLASS_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the CLASS_INFO_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="classId" type="sccom:CLASS_ID_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="FILER_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FILER_INFO_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="registrantType" type="COMPANY_TYPE"/>
+            <xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+            <xs:element name="filer" type="FILER_TYPE"/>
+            <xs:element name="contact" type="CONTACT_TYPE" minOccurs="0" />
+            <xs:element name="notifications" type="NOTIFICATIONS_TYPE" minOccurs="0"/>
+            <xs:element name="flags" type="FLAGS_TYPE" minOccurs="0"/>
+            <xs:element name="investmentCompanyType" type="COMPANY_CLASSIFICATION_TYPE" minOccurs="0"/>
+            <xs:element name="periodOfReport" type="ns1:DATE_TYPE2"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="COVER_PAGE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the COVER_PAGE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="yearOrQuarter" type="REPORT_DURATION_TYPE"/>
+            <xs:element name="reportCalendarYear" type="ns1:YEAR_TYPE" minOccurs="0"/>
+            <xs:element name="reportQuarterYear" type="ns1:YEAR_TYPE" minOccurs="0"/>
+            <xs:element name="amendmentInfo" type="AMENDMENT_INFO" minOccurs="0"/>
+            <xs:element name="reportingPerson" type="REPORTING_PERSON"/>
+            <xs:element name="agentForService" type="AGENT_FOR_SERVICE" minOccurs="0"/>
+            <xs:element name="reportInfo" type="REPORT_INFO"/>
+            <xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="reportingCrdNumber" type="ns1:CRD_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="reportingSecFileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="leiNumber" type="LEI_TYPE" minOccurs="0"/>
+            <xs:element name="otherManagersInfo" type="OTHER_MANAGERS" minOccurs="0"/>
+            <xs:element name="explanatoryInformation" type="EXPLANATORY_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SUMMARY_PAGE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SUMMARY_PAGE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="otherIncludedManagersCount" type="ns1:INTEGER_NONNEGATIVE_3" default="0"/>
+            <xs:element name="otherManagers2" type="INVESTMENT_MANAGERS_2" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+	  <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> SUMMARY_PAGE sub types  -->
+    <!-- ********************************************************************* 
+    <xs:complexType name="INCLUDED_INSTITUTIONAL_MANAGERS">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the INCLUDED_INSTITUTIONAL_MANAGERS
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="investmentManagerList" type="INVESTMENT_MANAGER"/>
+        </xs:sequence>
+    </xs:complexType>-->
+	
+		<xs:complexType name="INVESTMENT_MANAGERS_2">
+		<xs:sequence>
+			<xs:element name="investmentManagers" type="INVESTMENT_MANAGER" maxOccurs="999"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> SUMMARY_PAGE	-> INVESTMENT_MANAGER sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="INVESTMENT_MANAGER">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the OTHER_MANAGER
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+			<xs:element name="serialNo" type="ns1:INTEGER_NONNEGATIVE_3"/>
+            <xs:element name="form13FFileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="crdNumber" type="ns1:CRD_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="secFileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="leiNumber" type="LEI_TYPE" minOccurs="0"/>
+            <xs:element name="name" type="ns1:STRING_150_TYPE"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SUMMARY_SERIES_PAGE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SUMMARY_SERIES_PAGE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="seriesCount" type="ns1:INTEGER_NONNEGATIVE_3" default="0"/>
+            <xs:element name="seriesDetails" type="INCLUDED_SERIES_DETAILS" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> SUMMARY_INCLUDED_SERIES_PAGE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="INCLUDED_SERIES_DETAILS">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the INCLUDED_SERIES_DETAILS
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="seriesReports" type="SERIES_INFORMATION" maxOccurs="999"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> SUMMARY_INCLUDED_SERIES_PAGE -> SERIES_INFO sub types -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="SERIES_INFORMATION">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SERIES_INFORMATION
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+
+            <xs:element name="idOfSeries" type="sccom:SERIES_ID_TYPE" minOccurs="0"/>
+            <xs:element name="nameOfSeries" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+            <xs:element name="leiOfSeries" type="LEI_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SIGNATURE_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SIGNATURE_TYPE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reportingPerson" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="txSignature" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="txPrintedSignature" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="txTitle" type="ns1:STRING_60_TYPE"/>
+            <xs:element name="txAsOfDate" type="ns1:DATE_TYPE2"/>
+			<xs:element name="secondaryRecords" type="SECONDARY_SIGNATURES_2" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+     	<xs:complexType name="SECONDARY_SIGNATURE">
+		<xs:sequence>
+		    <xs:element name="txSignature" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="printedSign" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="txTitle" type="ns1:STRING_60_TYPE"/>
+            <xs:element name="txAsOfDate" type="ns1:DATE_TYPE2"/>
+		</xs:sequence>
+	</xs:complexType>
+		<xs:complexType name="SECONDARY_SIGNATURES_2">
+		<xs:sequence>
+			<xs:element name="secondaryRecord" type="SECONDARY_SIGNATURE" maxOccurs="5"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> FILER_INFO_TYPE -> FILER_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="ISSUER_CREDENTIALS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the
+                ISSUER_CREDENTIALS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cik" type="ns1:CIK_TYPE"/>
+            <xs:element name="ccc" type="ns1:CCC_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> FILER_INFO_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="FILER_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FILER_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="issuerCredentials" type="ISSUER_CREDENTIALS_TYPE"/>
+            <xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FLAGS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FLAGS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+            <xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NOTIFICATIONS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the NOTIFICATIONS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> CONTACT_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="CONTACT_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the CONTACT_TYPE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contactName" type="ns1:NAME_TYPE" minOccurs="1"/>
+            <xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE" minOccurs="1"/>
+            <xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_DATA sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:simpleType name="AMENDMENT_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="RESTATEMENT"/>
+            <xs:enumeration value="NEW PROXY"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AMENDMENT_INFO">
+        <xs:sequence>
+            <xs:element name="isAmendment" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+            <xs:element name="amendmentNo" type="ns1:INTEGER_TYPE_2" minOccurs="0"/>
+            <xs:element name="amendmentType" type="AMENDMENT_TYPE"/>
+            <xs:element name="confDeniedExpired" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+            <!-- if the above flag is true, then the following elements will be required for N-PX/A only-->
+            <xs:element name="dateExpiredDenied" type="ns1:DATE_TYPE2" minOccurs="0"/>
+            <xs:element name="dateReported" type="ns1:DATE_TYPE2" minOccurs="0"/>
+            <xs:element name="reasonForNonConfidentiality" type="REASON_CONFIDENTIALITY" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="REPORTING_PERSON">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the REPORTING_PERSON
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="phoneNumber" type="ns1:EDGAR_PHONE_TYPE"/>
+            <xs:element name="address" type="ns1:ADDRESS_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AGENT_FOR_SERVICE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the AGENT_FOR_SERVICE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+            <xs:element name="address" type="ns1:ADDRESS_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="REPORT_INFO">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the REPORT_INFO
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reportType" type="REPORT_TYPE" minOccurs="0"/>
+            <xs:element name="noticeExplanation" type="EXPLANATION_TYPE" minOccurs="0"/>
+            <xs:element name="confidentialTreatment" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OTHER_MANAGERS">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the OTHER_MANAGERS
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="otherManager" type="OTHER_MANAGER" maxOccurs="999"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EXPLANATORY_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the EXPLANATION_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="explanatoryChoice" type="ns1:YES_NO_TYPE" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="explanatoryNotes" type="ns1:STRING_4000_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_DATA -> REPORT_INFO sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:simpleType name="REPORT_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="FUND VOTING REPORT"/>
+            <xs:enumeration value="FUND NOTICE REPORT"/>
+            <xs:enumeration value="INSTITUTIONAL MANAGER VOTING REPORT"/>
+            <xs:enumeration value="INSTITUTIONAL MANAGER NOTICE REPORT"/>
+            <xs:enumeration value="INSTITUTIONAL MANAGER COMBINATION REPORT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EXPLANATION_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ALL VOTES BY OTHER PERSONS"/>
+            <xs:enumeration value="REPORTING PERSON DID NOT EXERCISE VOTING"/>
+            <xs:enumeration value="REPORTING PERSON HAS POLICY TO NOT VOTE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+  
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_DATA -> OTHER_MANAGERS sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="OTHER_MANAGER">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the OTHER_MANAGER
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="icaOr13FFileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="crdNumber" type="ns1:CRD_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="otherFileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+             <xs:element name="leiNumberOM" type="LEI_TYPE" minOccurs="0"/>
+            <xs:element name="managerName" type="ns1:STRING_150_TYPE" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_DATA  -->
+    <!-- ********************************************************************* -->
+    <xs:simpleType name="LEI_TYPE">
+        <xs:annotation>
+            <xs:documentation>
+                LEI per www.gleif.org
+                Characters 1-4:     Prefix used to ensure the uniqueness among codes from LEI issuers (Local Operating Units or LOUs).
+                Characters 5-18:   Entity-specific part of the code generated and assigned by LOUs according to transparent, sound and robust allocation policies.
+                As required by ISO 17442, it contains no embedded intelligence.
+                Characters 19-20: Two check digits as described in the ISO 17442 standard.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-Z]{18}[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="REPORT_DURATION_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="YEAR"/>
+            <xs:enumeration value="QUARTER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_DATA -> AMENDMENT_INFO -->
+    <!-- ********************************************************************* -->
+    <xs:simpleType name="REASON_CONFIDENTIALITY">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="Denied"/>
+            <xs:enumeration value="Confidential Treatment Expired"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>

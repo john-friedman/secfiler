@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sin:edgarSubmission xmlns:sin="http://www.sec.gov/edgar/singlefiler" xmlns:com="http://www.sec.gov/edgar/common"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/singlefiler eis_SingleFiler.xsd">
+<!-- DISCLAIMER: This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR. Please do not include any references to style sheets.-->
+  <sin:liveTestFlag>LIVE</sin:liveTestFlag>
+  <sin:flag>
+    <sin:confirmingCopyFlag>true</sin:confirmingCopyFlag>
+    <sin:overrideInternetFlag>false</sin:overrideInternetFlag>
+    <sin:returnCopyFlag>false</sin:returnCopyFlag>
+  </sin:flag>
+  <sin:submissionType>SDR-CCO</sin:submissionType>
+  <sin:startPeriod>08-03-2015</sin:startPeriod>
+  <sin:endPeriod>08-05-2015</sin:endPeriod>
+  <sin:filer>
+    <sin:filerId>0000000342</sin:filerId>
+    <sin:filerCcc>test@123</sin:filerCcc>
+  </sin:filer>
+  <sin:sros>
+    <com:sroId>NONE</com:sroId>
+  </sin:sros>
+  <sin:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>NEW</com:nickName>
+      <com:cik>0000000342</com:cik>
+      <com:ccc>test@123</com:ccc>
+      <com:documentType>SDR-CR</com:documentType>
+    </com:moduleSegment>
+  </sin:moduleSegments>
+  <sin:documentsConfidential>
+    <com:document>
+      <com:conformedName>SDR-FR-Document.htm</com:conformedName>
+      <com:conformedDocumentType>SDR-CR</com:conformedDocumentType>
+      <com:contents>VGhpcyBpcyBhIHNhbXBsZSBobWwgZG9jdW1lbnQgZm9yIFNEUi1GUiBkb2N1bWVudCB0eXBl
+Lg0KUENSLTEyNTgyLg0KDQoNCg==
+</com:contents>
+      <com:confidentiality>false</com:confidentiality>
+    </com:document>
+    <com:document>
+      <com:conformedName>SDR-CR-Text-Document.txt</com:conformedName>
+      <com:conformedDocumentType>SDR-FR</com:conformedDocumentType>
+      <com:contents>VGhpcyBpcyBhIHNhbXBsZSB0ZXh0IGRvY3VtZW50IGZvciBTRFItQ1IgZG9jdW1lbnQgdHlw
+ZS4NClBDUi0xMjU4Mi4NCg0K
+</com:contents>
+      <com:confidentiality>true</com:confidentiality>
+    </com:document>
+  </sin:documentsConfidential>
+</sin:edgarSubmission>

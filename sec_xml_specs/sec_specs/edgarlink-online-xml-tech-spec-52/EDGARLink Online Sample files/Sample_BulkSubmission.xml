@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bul:edgarBulkSubmission xmlns:bul="http://www.sec.gov/edgar/bulkfiling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/bulkfiling eis_BulkFiling.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <bul:liveTestFlag>LIVE</bul:liveTestFlag>
+  <bul:attachments>
+    <bul:attachment>
+      <bul:submissionName>Sample_SEGMENT.xml</bul:submissionName>
+      <bul:contents>PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxtb2Q6ZWRnYXJTdWJtaXNzaW9uIHhtbG5zOm1vZD0i
+aHR0cDovL3d3dy5zZWMuZ292L2VkZ2FyL21vZHVsZXNzZWdtZW50cyIgeG1sbnM6Y29tPSJo
+dHRwOi8vd3d3LnNlYy5nb3YvZWRnYXIvY29tbW9uIj4KICA8bW9kOmxpdmVUZXN0RmxhZz5M
+SVZFPC9tb2Q6bGl2ZVRlc3RGbGFnPgogIDxtb2Q6ZmxhZz4KICAgIDxtb2Q6b3ZlcnJpZGVJ
+bnRlcm5ldEZsYWc+ZmFsc2U8L21vZDpvdmVycmlkZUludGVybmV0RmxhZz4KICAgIDxtb2Q6
+cmV0dXJuQ29weUZsYWc+dHJ1ZTwvbW9kOnJldHVybkNvcHlGbGFnPgogIDwvbW9kOmZsYWc+
+CiAgPG1vZDpzdWJtaXNzaW9uVHlwZT5TRUdNRU5UPC9tb2Q6c3VibWlzc2lvblR5cGU+CiAg
+PG1vZDpjb250YWN0PgogICAgPGNvbTpuYW1lPkpvZSBTbWl0aDwvY29tOm5hbWU+CiAgICA8
+Y29tOnBob25lTnVtYmVyPjIwMi0zMzMtNDQ0NDwvY29tOnBob25lTnVtYmVyPgogIDwvbW9k
+OmNvbnRhY3Q+CiAgPG1vZDpmaWxlcj4KICAgIDxtb2Q6ZmlsZXJJZD4wMDAwMzUwMDAxPC9t
+b2Q6ZmlsZXJJZD4KICAgIDxtb2Q6ZmlsZXJDY2M+ZGF6emxlIzE8L21vZDpmaWxlckNjYz4K
+ICA8L21vZDpmaWxlcj4KICA8bW9kOm5vdGlmaWNhdGlvbnM+CiAgICA8Y29tOmludGVybmV0
+Tm90aWZpY2F0aW9uQWRkcmVzcz5qb2VAeWFob28uY29tPC9jb206aW50ZXJuZXROb3RpZmlj
+YXRpb25BZGRyZXNzPgogIDwvbW9kOm5vdGlmaWNhdGlvbnM+CiAgPG1vZDpkb2N1bWVudHM+
+CiAgICA8bW9kOmRvY3VtZW50PgogICAgICA8bW9kOm5pY2tOYW1lPlNFR01FTlRfTkFNRTwv
+bW9kOm5pY2tOYW1lPgogICAgICA8bW9kOmNvbmZvcm1lZE5hbWU+dGVzdDIudHh0PC9tb2Q6
+Y29uZm9ybWVkTmFtZT4KICAgICAgPG1vZDpjb25mb3JtZWREb2N1bWVudFR5cGU+VFlQRTE8
+L21vZDpjb25mb3JtZWREb2N1bWVudFR5cGU+CiAgICAgIDxtb2Q6bWFzdGVyU2VnQ2lrPjAw
+MDAzNTAwMDE8L21vZDptYXN0ZXJTZWdDaWs+CiAgICAgIDxtb2Q6Y29udGVudHM+ZEdWemRD
+QT0KPC9tb2Q6Y29udGVudHM+CiAgICA8L21vZDpkb2N1bWVudD4KICA8L21vZDpkb2N1bWVu
+dHM+CjwvbW9kOmVkZ2FyU3VibWlzc2lvbj4=
+</bul:contents>
+    </bul:attachment>
+  </bul:attachments>
+</bul:edgarBulkSubmission>

@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/absee/rmbs/assetdata" xmlns:mstns="http://www.sec.gov/edgar/document/absee/rmbs/assetdata" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/eis_abs_common" targetNamespace="http://www.sec.gov/edgar/document/absee/rmbs/assetdata" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/eis_abs_common" schemaLocation="eis_ABS_Common.xsd"/>
+	<xs:simpleType name="ACCRL_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(7) - Enumerated values and descriptions: 1: 30/360, 2: Actual/365, 3: Actual/360, 4: Actual/Actual, 5: Actual/366, 6: Simple, 7: 78s, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ADV_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(g)(5) - Enumerated values and descriptions: 1: No Advancing, 2: Interest Only, 3: Principal Only, 4: Principal and Interest, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ARM_ROUND_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(29)(xiv) - Enumerated values and descriptions: 0: No rounding, 1: Up, 2: Down, 3: Nearest, 99: unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASSET_SUBJ_DEMAND_STAT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(i)(1) - Enumerated values and descriptions: 0: Asset Pending Repurchase or Replacement, 1: Asset Was Repurchased or Replaced, 2: Demand in Dispute, 3: Demand Withdrawn, 4: Demand Rejected, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CHNL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(25) - Enumerated values and descriptions: 1: Retail, 2: Broker, 3: Correspondent bulk, 4: Correspondent flow with delegated underwriting, 5: Correspondent flow without delegated underwriting, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="COV_HIGH_COST_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(20) - Enumerated values and descriptions: 0: No, 1: Yes, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORECL_DELAY_REASN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(r)(2) - Enumerated values and descriptions: 1: No delay, 2: Loss mitigation delay, 3: Bankruptcy delay, 4: Title/document delay, 5: Contestation delay, 6: Court/procedural delay, 7: Loss mitigation/servicer delay, 8: Statutory moratorium, 9: Disaster relief/other, 10: Relief Act, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORECL_EXIT_REASN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(r)(4) - Enumerated values and descriptions: 1: Third-party Sale, 2: REO, 3: Loss mitigation, 4: Bankruptcy, 5: Reinstatement, 6: Charge-off, 7: Paid in Full, 8: Foreclosure started in error, 9: Redeemed, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LOSS_MTGTION_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(l) - Enumerated values and descriptions: 1: Not in loss mitigation, 2: Short payoff, 3: Short sale, 4: Deed-in-lieu, 5: Modification, 6: Repayment plan, 7: Write-off consideration, 8: Forbearance, 9: Trial modification, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MOD_MST_RCNT_LOAN_EVNT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(1) - Enumerated values and descriptions: 1: Capitalization-fees or interest have been capitalized into the unpaid principal balance., 2: Change of payment frequency, 3: Construction to permanent, 4: Forgiveness of principal, 5: Rate reductions, 6: Maturity extensions, 7: Forgiveness of interest, 8: Unscheduled payment recast, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MORTG_INS_CVRG_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(f)(5) - Enumerated values and descriptions: 1: Loss limit cap, 2: Pool, 3: Risk sharing, 4: Second layer, 5: Standard primary </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MST_RCNT_LOSS_MTGTION_EXIT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(q)(2) - Enumerated values and descriptions: 1: Completed/satisfied, 2: Cancelled/failed, 3: Denied, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MST_RCNT_OCCPNCY_STAT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(d)(3) - Enumerated values and descriptions: 1: Owner-occupied, 2: Second-home, 3: Investment property, 4: Transfer owner  occupied (loan has been assumed), 5: Non-owner occupied (tenant), 6: Vacant (not secure), 7: Vacant (secure), 8: Adverse occupant, 9: Occupied by unknown party, 10: Partially vacant, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MST_RCNT_PROPERTY_VAL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(d)(6) - Enumerated values and descriptions: 1: Tax Assessment, 2: Drive-By Form 704, 3: URAR Form 1004, Form 70, Form 72, Form 1025, Form 1073, Form 465, Form 2090, Form 1004C, and Form, 70B (Form 1075 retired 11/1/2005), 4: Form 2070 and Form 2075 (Form 2065 retired 11/1/2005), 5: Form 2055, Form 1075, Form 466, and Form 2095 (Exterior Only), 6: Form 2055 (with Interior Inspection), 7: Automated Valuation Model (also indicate system code in field 127), 8: Reserved, 9: Desk Review, 10: BPO as-is, 11: BPO quick sale, 12: NADA/Yellow Book Value (for MH), 13: Land Only (for Lot and MH), 14: Reserved, 15: Case-Shiller/other index application, 16: Form 1004MC, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MST_RCNT_TWLV_MNTH_HSTRY_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(g)(33) - Enumerated values and descriptions: 0: Current, 1: 30-59 Days delinquent, 2: 60-89 Days delinquent, 3: 90-119 Days delinquent, 4: 120+ Days delinquent, 5: Foreclosure, 6: REO, 7: Loan did not exist in period, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NON_PAY_STAT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(v)(1) - Enumerated values and descriptions: 9: Forbearance  the servicer has authorized a temporary suspension of payments or has agreed to accept periodic payments of less than the borrowers scheduled monthly payment, periodic payments at different intervals, etc., to give the borrower additional time and a means for bringing the mortgage current by repaying all delinquent installments., 12: Repayment plan - the servicer has an agreement with the borrower for the acceptance of regularly scheduled monthly mortgage payments plus an additional amount over a prescribed number of months to bring the mortgage loan current., 17: Pre-foreclosure sale - the servicer plans to pursue a preforeclosure sale (a payoff of less than the full amount of our indebtedness) to avoid the expenses of foreclosure proceedings., 24: Drug seizure - the Department of Justice (or any other state or federal agency) has decided to seize (or has seized) a property under the forfeiture provision of the Controlled Forfeiture provision of the Controlled Substances Act., 26: Refinance - the servicer is aware that the borrower is pursuing an arrangement whereby the existing first mortgage will be refinanced (paid off)., 27: Assumption - the servicer is working with the borrower to sell the property by permitting the purchaser to pay the delinquent installments and assume the outstanding debt in order to avoid a foreclosure., 28: Modification - the servicer is working with the borrower to renegotiate the terms of the mortgage in order to avoid foreclosure., 29: Charge-off  use this code to indicate that it is not in best interest to pursue collection efforts or legal actions against the borrower (because of a reduced value for the property, a low outstanding mortgage balance, or the presence of certain environmental hazards on the property)., 31: Probate - Use this code to indicate that the servicer cannot pursue (or complete)., 32: Military indulgence - the servicer has granted a delinquent service member forbearance or foreclosure proceedings have been stayed under the provisions of the Servicemembers Civil Relief Act or any similar state law., 42: Delinquent, no action - the loan is 90 + days delinquent, but the servicer has not taken legal action or initiated loss mitigation., 43: Foreclosure - the servicer has referred the case to an attorney to take legal action to acquire the property through a foreclosure sale., 44: Deed-in-lieu the servicer was authorized to accept a voluntary conveyance of the property instead of initiating foreclosure proceedings., 49: Assignment - mortgage is in the process of being assigned to the insurer or guarantor., 59: Chapter 12 bankruptcy - the borrower has filed for bankruptcy under Chapter 12 of the Federal Bankruptcy Act., 61: Second lien considerations - use this code for a second mortgage to indicate that the servicer is evaluating the advantages and disadvantages of pursuing a foreclosure action or recommending that the debt be charged off., 62: Veterans affairs-"no-bid" - use this code to indicate that the Department of Veterans Affairs refused to establish an "upset price" to be bid at the foreclosure sale for a VA-guaranteed mortgage that the servicer had referred for foreclosure., 63: Veterans affairs  refund  use this code to indicate that the Department of Veterans Affairs has requested information about a VA-guaranteed mortgage the servicer referred for foreclosure, in order to reach a decision about whether to accept an assignment for purposes of refunding the mortgage to avoid foreclosure., 64: Veterans affairsbuydown  Use this code to indicate that a cash contribution was agreed to be made to reduce the outstanding indebtedness of a VA-guaranteed mortgage for which the Department of Veterans Affairs failed to establish an upset price bid for the foreclosure sale, in order to get the VA to reconsider its decision about establishing an upset price., 65: Chapter 7 bankruptcy - the borrower has filed for bankruptcy under Chapter 7 of the Federal Bankruptcy Act., 66: Chapter 11 bankruptcy - the borrower has filed for bankruptcy under Chapter 11 of the Federal Bankruptcy Act., 67: Chapter 13 bankruptcy - the borrower has filed for bankruptcy under Chapter 13 of the Federal Bankruptcy Act., 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="59"/>
+			<xs:enumeration value="61"/>
+			<xs:enumeration value="62"/>
+			<xs:enumeration value="63"/>
+			<xs:enumeration value="64"/>
+			<xs:enumeration value="65"/>
+			<xs:enumeration value="66"/>
+			<xs:enumeration value="67"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_ASSET_VRFCTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(e)(13) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, verified, but not  to "level 4"., 4: Stated, level 4 verified. 2 months of bank statements/balance documentation (written or electronic) for liquid assets (or gift letter).,98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_EMPLOY_LEN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(e)(12) - Enumerated values and descriptions: 0: No, 1: Yes, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_EMPLOY_VRFCTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(e)(11) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, level 3 verified. Direct independent verification with a third party of the obligors current employment.,98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_INCM_VRFCTN_LVL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(e)(7) - Enumerated values and descriptions: 1: Not Stated, not verified, 2: Stated, not verified, 3: Stated,  verified, but not verified to "level 4" or "level 5", 4: Stated, level 4 verified. Previous year W-2 or tax returns, and year-to-date pay stubs, if salaried.  If self-employed, then obligor provided 2 years of tax returns., 5: Stated, level 5 verified. 24 months income verification (W-2s, pay stubs, bank statements and/or tax returns).  If self-employed, then obligor provided 2 years tax returns plus a CPA certification of the tax returns.,98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_QUALIF_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(e)(15) - Enumerated values and descriptions: 1: Start Rate, 2: First Year Cap Rate, 3: Interest Only Amount, 4: Fully Indexed, 5: Minimum Payment, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OCCPNCY_STAT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(d)(2) - Enumerated values and descriptions: 1: Owner-Occupied, 2: Second Home, 3: Investment Property, 4: Transfer Owner-Qccupied (loan has been assumed), 5: Non-Owner Occupied (tenant), 6: Vacant (not secure), 7: Vacant (secure), 8: Adverse occupant, 9: Occupied by unknown party, 10: Partially Vacant, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_INDX_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(29)(i) - Enumerated values and descriptions: 1: 1 MONTH TREASURY (WEEKLY), 2: 1 Year CMT Moving 12 Month Avg (MTA), 3: 1 YEAR TREASURY (WEEKLY), 4: 1 YR TREASURY (MONTHLY), 5: 10 YEAR TREASURY (MONTHLY), 6: 10 YEAR TREASURY (WEEKLY), 7: 11TH DISTRICT COFI (MONTHLY), 8: 11TH DISTRICT COFI (SEMI-ANNUAL), 9: 2 YR TREASURY (MONTHLY), 10: 2 YR TREASURY (WEEKLY), 11: 3 MONTH TREASURY (MONTHLY), 12: 3 MONTH TREASURY (WEEKLY), 13: 3 MTH T-BILL AUCTION AVGDISCOUNT RATE (WEEKLY), 14: 3 MTH TREASURY AUCTION AVG INVESTMENT (WEEKLY), 15: 3 YEAR TREASURY (WEEKLY), 16: 3 YR TREASURY (MONTHLY), 17: 5 YR TREASURY (MONTHLY), 18: 5 YR TREASURY (WEEKLY), 19: 6 MONTH US TREASURY (MONTHLY), 20: 6 MONTH US TREASURY (WEEKLY), 21: 6 MTH T-BILL AUCTION AVGDISCOUNT RATE (WEEKLY), 22: 6 MTH TREASURY AUCTION AVG INVESTMENT (WEEKLY), 23: 7 YEAR TREASURY (WEEKLY), 24: CDs (secondary market) 6-month (WEEKLY), 25: FEDERAL RESERVE PRIME RATE (MONTHLY), 26: FHLB Contract Mortgage Rate Prev.Occupied, 27: FHLBB CONTRACT (MONTHLY), 28: FHLBB EFFECTIVE RATE, 29: FHLBB MONTHLY NATIONAL AVG MEDIAN COFI (MONTHLY), 30: FHLBB NATIONAL COFI QUARTERLY AVG, 31: FNMA 6 MONTH TREASURY (WEEKLY), 32: FSLIC MONTHLY NATIONAL AVG MEDIAN COFI (MONTHLY), 33: WSJ PRIME RATE (DAILY), 34: WSJ PRIME RATE (First Business Day), 35: WSJ 1 MONTH LIBOR (DAILY), 36: WSJ 1 MONTH LIBOR (First Business Day), 37: WSJ 1 MONTH LIBOR FIRST DAY OF THE MONTH, 38: WSJ 1 MONTH LIBOR(on or after 25th), 39: WSJ 1 YEAR LIBOR (DAILY), 40: WSJ 1 YEAR LIBOR (First Business Day), 41: WSJ 3 MONTH LIBOR (DAILY), 42: WSJ 3 MONTH LIBOR (First Business Day), 43: WSJ 6 MONTH LIBOR (DAILY), 44: WSJ 6 MONTH LIBOR/30 L-B-DAYS (MONTHLY), 45: WSJ 6 month Libor WSJ-15th day, 46: WSJ 6 MONTH LIBOR/Pub on 25th (MONTHLY), 47: WSJ 6-MONTH LIBOR (First Business Day), 48: 3-Year CMT, 49: 5-Year CMT, 50: 7-Year CMT, 51: 30-Day Average SOFR Compounded in Advance, 52: 90-Day Average SOFR Compounded in Advance, 53: 180-Day Average SOFR Compounded in Advance, 54: 30-Day Average SOFR Compounded in Arrears, 55: 90-Day Average SOFR Compounded in Arrears, 56: 180-Day Average SOFR Compounded in Arrears, 57: 1-Month Term SOFR, 58: 3-Month Term SOFR, 59: 6-Month Term SOFR, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="57"/>
+			<xs:enumeration value="58"/>
+			<xs:enumeration value="59"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_INTR_RT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(8) - Enumerated values and descriptions: 1: Fixed, 2: Adjustable, 3: Step, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_LIEN_PSTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(11) - Enumerated values and descriptions: 1: First, 2: Second, 3: Third, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_LOAN_PURPS_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(1) - Enumerated values and descriptions: 1: Cash out, 2: Limited cash-out (GSE definition), 3: Facilitate REO (repo financing for manufactured housing), 4: First time home purchase (Purchaser has not owned a principal residence in the past three years.), 5: Other-than-first-time home purchase, 6: Rate/term refinance - lender initiated, 7: Rate/term refinance - obligor  initiated, 8: Construction to permanent: A mortgage loan on completed construction under one mortgage or trust deed in which the completion certificate and the certificate of occupancy have been obtained., 9: Assumption, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_LOAN_TYP_MST_SNR_LIEN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(13)(iii) - Enumerated values and descriptions: 1: Fixed rate, 2: ARM, 3: Hybrid, 4: Negative amortization, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_AMORT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(5) - Enumerated values and descriptions: 1: Fully amortizing, 2: Interest Only, 3: Balloon, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_ARM_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(21)(i) - Enumerated values and descriptions: 0: No, 1: Yes, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_ARM_INDX_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(21)(ii) - Enumerated values and descriptions: 1: 1 MONTH TREASURY (WEEKLY), 2: 1 Year CMT Moving 12 Month Average (MTA), 3: 1 YEAR TREASURY (WEEKLY), 4: 1 YR TREASURY (MONTHLY), 5: 10 YEAR TREASURY (MONTHLY), 6: 10 YEAR TREASURY (WEEKLY), 7: 11TH DISTRICT COFI (MONTHLY), 8: 11TH DISTRICT COFI (SEMI-ANNUAL), 9: 2 YR TREASURY (MONTHLY), 10: 2 YR TREASURY (WEEKLY), 11: 3 MONTH TREASURY (MONTHLY), 12: 3 MONTH TREASURY (WEEKLY), 13: 3 MTH T-BILL AUCTION AVGDISCOUNT RATE (WEEKLY), 14: 3 MTH TREASURY AUCTION AVG INVESTMENT (WEEKLY), 15: 3 YEAR TREASURY (WEEKLY), 16: 3 YR TREASURY (MONTHLY), 17: 5 YR TREASURY (MONTHLY), 18: 5 YR TREASURY (WEEKLY), 19: 6 MONTH US TREASURY (MONTHLY), 20: 6 MONTH US TREASURY (WEEKLY), 21: 6 MTH T-BILL AUCTION AVGDISCOUNT RATE (WEEKLY), 22: 6 MTH TREASURY AUCTION AVG INVESTMENT (WEEKLY), 23: 7 YEAR TREASURY (WEEKLY), 24: CDs (secondary market) 6-month (WEEKLY), 25: FEDERAL RESERVE PRIME RATE (MONTHLY), 26: FHLB Contract Mortgage Rate Prev. Occupied, 27: FHLBB CONTRACT (MONTHLY), 28: FHLBB EFFECTIVE RATE, 29: FHLBB MONTHLY NATIONAL AVG MEDIAN COFI (MONTHLY), 30: FHLBB NATIONAL COFI QUARTERLY AVG, 31: FNMA 6 MONTH TREASURY (WEEKLY), 32: FSLIC MONTHLY NATIONAL AVG MEDIAN COFI (MONTHLY), 33: WSJ PRIME RATE (DAILY), 34: WSJ PRIME RATE (First Business Day), 35: WSJ 1 MONTH LIBOR (DAILY), 36: WSJ 1 MONTH LIBOR (First Business Day) OF THE MONTH, 37: WSJ 1 MONTH LIBOR FIRST DAY OF THE MONTH, 38: WSJ 1 MONTH LIBOR(on or after 25th), 39: WSJ 1 YEAR LIBOR (DAILY), 40: WSJ 1 YEAR LIBOR (First Business Day), 41: WSJ 3 MONTH LIBOR (DAILY), 42: WSJ 3 MONTH LIBOR(First Business Day), 43: WSJ 6 MONTH LIBOR (DAILY), 44: WSJ 6 MONTH LIBOR/30 L-B-DAYS (MONTHLY), 45: WSJ 6 month Libor WSJ-15th day, 46: WSJ 6 MONTH LIBOR/Pub on 25th (MONTHLY), 47: WSJ 6-MONTH LIBOR (First Business Day), 48: 3-Year CMT, 49: 5-Year CMT, 50: 7-Year CMT, 51: 30-Day Average SOFR Compounded in Advance, 52: 90-Day Average SOFR Compounded in Advance, 53: 180-Day Average SOFR Compounded in Advance, 54: 30-Day Average SOFR Compounded in Arrears, 55: 90-Day Average SOFR Compounded in Arrears, 56: 180-Day Average SOFR Compounded in Arrears, 57: 1-Month Term SOFR, 58: 3-Month Term SOFR, 59: 6-Month Term SOFR, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="57"/>
+			<xs:enumeration value="58"/>
+			<xs:enumeration value="59"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_ARM_ROUND_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item1(m)(21)(vii) - Enumerated values and descriptions: 0: No Rounding, 1: Up, 2: Down, 3: Nearest, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_INTR_RT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(4) - Enumerated values and descriptions: 1: Fixed, 2: Adjustable, 3: Step, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POST_MOD_PYMNT_METH_AFTR_RECAST_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(m)(21)(xix) - Enumerated values and descriptions: 1: Fully amortizing 30 year, 2: Fully amortizing 15 year, 3: Fully amortizing 40 year, 4: Interest-Only, 5: Minimum Payment, 6: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PROPRTY_MST_RCNT_AVM_MDL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(d)(8) - Enumerated values and descriptions: 0: No AVM Used, 1: HPA (FACL), 2: VP4 (FACL), 3: PASS (FACL), 4: PowerBase 6.0 (FACL), 5: HVE (Freddie Mac), 6: CASA (Fiserv), 7: APS (Fannie Mae), 8: iAVM (IntelliReal), 9: ValueFinder (LandSafe), 10: ValueSure (LPS), 11: SiteX Value (LPS), 12: CMV (MDAS), 13: ValueSmart (MDAS), 14: Real Assessment (Real Info), 15: i-Val (Real Info), 16: GeoCompVal (Real Info), 17: AVMax (RJ Peters), 18: VeroValue Preferred (Veros), 19: VeroValue (Veros), 20: VeroValue Advantage (Veros), 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PROPRTY_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(d)(4) - Enumerated values and descriptions: 1: Single family detached (non-PUD), 2: Co-op, 3: Condo, low rise (4 or fewer stories), 4: Condo, high rise (5+ stories), 5: Condotel (as defined in Issuers Underwriting Guidelines), 6: dPUD (PUD with de minimus monthly HOA dues), 7: PUD (Only for use with Single-Family detached homes with PUD riders), 8: Townhouse (Do not report as PUD), 9: Single-wide manufactured housing, 10: Double-wide manufactured housing, 11: Multi-wide manufactured housing, 12: 1 family attached, 13: 2 family, 14: 3 family, 15: 4 family, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PRPYMNT_PNLTY_CALC_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(30)(i) - Enumerated values and descriptions: 1: Lesser of 2% or 60 days interest, 2: Lesser of 1% or 2 months interest, 3 : Lesser of 1% or 3 months interest or remaining bal of 1st year interest, 4: Lesser of 1% or remaining bal of 1st year Interest , 5: Lesser of 3 months interest or remaining bal of 1st year interest, 6: Lesser of 1% or 6 months interest, 7: Lesser of 2% or 6 months interest, 8: Lesser of 3% or 6 months interest, 9: Greater of 1% or $100, 10: 60 days interest, 11: 1 months interest, 12: 2 months interest, 13: 3 months interest, 14: 5 months interest, 15: 6 months interest, 16: 12 months interest, 17: 24 months interest, 18: 36 months interest, 19: 60 months interest, 20: 1%, 21: 2%, 22: 3%, 23: 4%, 24: 5%, 25: 6%, 26: 1%, 1%, 27: 2%, 1%, 28: 2%, 2%, 29: 3%, 1%, 30: 3%, 2%, 31: 3%, 3%, 32: 4%, 3%, 33: 5%, 1%, 34: 5%, 2%, 35: 5%, 4%, 36: 5%, 5%, 37: 6%, 1%, 38: 1%, 1%, 1%, 39: 1%, 2%, 3%, 40: 2%, 2%, 2%, 41: 3%, 2%, 1%, 42: 3%, 3%, 1%, 43: 3%, 3%, 3%, 44: 5%, 3%, 1%, 45: 5%, 4%, 1%, 46: 5%, 4%, 3%, 47: 5%, 5%, 5%, 48: 4%, 3%, 2%, 1%, 49: 5%, 4%, 3%, 2%, 50: 5%, 4%, 3%, 2%, 1%, 51: 5%, 5%, 5%, 5%, 5%, 52: 10%, 7%, 3.5%, 53: 1%, 1%, 1%, 1%, 1%, 54: 2%, 2%, 2%, 2%, 2%, 55: 3%, 3%, 3%, 3%, 3%, 56: 3%, 2%, 1% or 6 months interest, 98: Other, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3 "/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="19"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="34"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="36"/>
+			<xs:enumeration value="37"/>
+			<xs:enumeration value="38"/>
+			<xs:enumeration value="39"/>
+			<xs:enumeration value="40"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="47"/>
+			<xs:enumeration value="48"/>
+			<xs:enumeration value="49"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+			<xs:enumeration value="54"/>
+			<xs:enumeration value="55"/>
+			<xs:enumeration value="56"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PRPYMNT_PNLTY_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(30)(ii) - Enumerated values and descriptions: 1: Hard: The prepayment penalty is incurred regardless of the reason the loan is prepaid in full., 2: Soft: The prepayment penalty is incurred only if the loan is prepaid in full due to a refinancing., 3: Hybrid: The prepayment penalty can be characterized as hard for a certain amount of time and as soft during another period., 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PYMNT_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(29)(xvii) - Enumerated values and descriptions: 1: Fully amortizing 30 year, 2: Fully amortizing 15 year, 3: Fully amortizing 40 year, 4: Interest-Only, 5: Minimum Payment, 6: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REO_EXIT_REASN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(s)(10) - Enumerated values and descriptions: 1: REO Sale Completed, 2: Bankruptcy, 3: Loss Mitigation, 4: Litigation, 5: Rescinded, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REPRCH_REPLCMNT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(i)(5) - Enumerated values and descriptions: 1: Fraud, 2: Early payment default, 3: Other recourse obligation, 4: Reps/warrants breach, 5: Servicer breach, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RPT_ACTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(v)(2) - Enumerated values and descriptions: 3: Modifiable ARM, 7: No action, 8: Relief provision, 10: Loan approved for loss mitigation, 11: Money judgment, 13: Inactivation, 14: Substitution, 15: Bankruptcy/litigation, 30: Referred for foreclosure, 60: Payoff, 65: Repurchase, 70: A property that was secured by an uninsured conventional mortgage has been acquired by foreclosure, when a property that was secured by a VA mortgage cannot be conveyed to VA because the VA refused to specify a bid amount, or when an RHS mortgage serviced under the special servicing option has been acquired by foreclosure. (The servicer also should use Action Code 70 to report its repurchase of an acquired property after submission of the REOgram, if the mortgage has not already been removed from our LASER records.), 71: A property has been condemned or acquired by a third party., 72: A property has been acquired by foreclosure and is pending conveyance to FHA, VA, or the MI., 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="30"/>
+			<xs:enumeration value="60"/>
+			<xs:enumeration value="65"/>
+			<xs:enumeration value="70"/>
+			<xs:enumeration value="71"/>
+			<xs:enumeration value="72"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRVC_ADV_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(g)(6) - Enumerated values and descriptions: 1: Scheduled interest, scheduled principal, 2: Actual interest, actual principal, 3: Scheduled interest, actual principal, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRVR_HAZRD_INS_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 1(c)(21) - Enumerated values and descriptions: 0: No, 1: Yes, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZERO_BAL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+Item 1(g)(32)(ii) - Enumerated values and descriptions: 1: Prepaid or Matured, 2: Third-party Sale, 3: Short sale (if no FC date) or Short payoff, 4: Deed-in-Lieu, 5: Note sale, 6: Repurchased or Replaced, 7: Charged-off, 8: REO Sale completed, 9: Servicing transfer, 10: Liquidated, 99: Unavailable</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="6"/>
+			<xs:enumeration value="7"/>
+			<xs:enumeration value="8"/>
+			<xs:enumeration value="9"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ASSET_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the main repeatable group element for each major unit under assetData.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Item 1(a)(1) - Identify the source of the asset number used to specifically identify each asset in the pool. -->
+			<xs:element name="assetTypeNumber" type="ns2:STRING_100_TYPE" minOccurs="1"/>
+			<!-- Item 1(a)(2) - Provide the unique ID number of the asset.Instruction:  The asset number must reference a single asset within the pool and should be the same number that will be used to identify the asset for all reports that would be required of an issuer under Sections 13(a) or 15(d) of the Exchange Act.  If an asset is removed and replaced with another asset, the asset added to the pool should be assigned a unique asset number applicable to only that asset. -->
+			<xs:element name="assetNumber" type="ns1:STRING_25_TYPE" minOccurs="1"/>
+			<!-- Item 1(a)(3) - For structures with multiple collateral groups, indicate the collateral group number in which the asset falls. -->
+			<xs:element name="assetGroupNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(b)(1) - Specify the beginning date of the reporting period. -->
+			<xs:element name="reportPeriodBeginDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(b)(2) - Specify the ending date of the reporting period. -->
+			<xs:element name="reportPeriodEndDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(1) - Specify the code which describes the purpose of the loan at the time the loan was originated. -->
+			<xs:element name="originalLoanPurposeCode" type="ORIG_LOAN_PURPS_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(c)(2) - Identify the name of the entity that originated the loan. -->
+			<xs:element name="originatorName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(3) - Indicate the amount of the loan at the time the loan was originated. -->
+			<xs:element name="originalLoanAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(4) - Indicate the month and year in which the final payment on the loan is scheduled to be made at the time the loan was originated.  -->
+			<xs:element name="originalLoanMaturityDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(5) - Indicate the number of months that would have been required to retire the mortgage loan through regular payments, as determined at the origination date of the loan.  In the case of an interest-only loan, the original amortization term is the original term to maturity (other than in the case of a balloon loan).  In the case of a balloon loan, the original amortization term is the number of months used to calculate the principal and interest payment due each month (other than the balloon payment). -->
+			<xs:element name="originalAmortizationTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(6) - Provide the rate of interest at the time the loan was originated. -->
+			<xs:element name="originalInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(7) - Provide the code that describes the method used to calculate interest on the loan. -->
+			<xs:element name="accrualTypeCode" type="ACCRL_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(8) - Indicate whether the interest rate on the loan is fixed, adjustable, step or other. -->
+			<xs:element name="originalInterestRateTypeCode" type="ORIG_INTR_RT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(9) - Indicate the number of months in which the obligor is permitted to pay only interest on the loan beginning from when the loan was originated. -->
+			<xs:element name="originalInterestOnlyTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(10) - Indicate whether the loan or asset met the criteria for the first level of solicitation, credit-granting or underwriting criteria used to originate the pool asset. -->
+			<xs:element name="underwritingIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(11) - Indicate the code that describes the priority of the lien against the subject property at the time the loan was originated. -->
+			<xs:element name="originalLienPositionCode" type="ORIG_LIEN_PSTN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(12)(i) - Provide the most recent combined balance of any subordinate liens.  -->
+			<xs:element name="mostRecentJuniorLoanBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(12)(ii) - Provide the date of the most recent junior loan balance. -->
+			<xs:element name="mostRecentJuniorLoanBalanceDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(13)(i) - Provide the total amount of the balances of all associated senior loans. -->
+			<xs:element name="mostRecentSeniorLoanAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(13)(ii) - Provide the date(s) of the most recent senior loan amount.   -->
+			<xs:element name="mostRecentSeniorLoanAmountDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(13)(iii) - Indicate the code that describes the loan type of the first mortgage. -->
+			<xs:element name="loanTypeMostSeniorLienCode" type="ORIG_LOAN_TYP_MST_SNR_LIEN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(13)(iv) - For non-first mortgages where the associated first mortgage is a hybrid ARM, provide the number of months remaining in the initial fixed interest rate period for the first mortgage. -->
+			<xs:element name="mostSeniorLienHybridPeriodNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(13)(v) - For non-first mortgages where the associated first mortgage features negative amortization, indicate the negative amortization limit of the mortgage as a percentage of the original unpaid principal balance. -->
+			<xs:element name="mostSeniorLienNegativeAmortizationLimitPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(13)(vi) - Indicate the Most Senior Lien Origination Date. -->			
+			<xs:element name="mostSeniorLienOriginationDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(14) - Indicate yes or no as to whether the loan includes a penalty charged to the obligor in the event of a prepayment. -->
+			<xs:element name="prepaymentPenaltyIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(15) - Indicate yes or no as to whether the loan allows negative amortization. -->
+			<xs:element name="negativeAmortizationIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(16) - Indicate yes or no as to whether the loan has been modified from its original terms. -->
+			<xs:element name="modificationIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(17) - Provide the number of times that the loan has been modified. -->
+			<xs:element name="modificationNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(18) - Indicate yes or no as to whether mortgage insurance is or was required as a condition for originating the loan. -->
+			<xs:element name="mortgageInsuranceRequirementIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(19) - Indicate yes or no as to whether the loan documents require a lump-sum to fully pay off the loan.   -->
+			<xs:element name="balloonIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(20) - Indicate yes, no or unknown as to whether as of the end of the reporting period the loan is categorized as "high cost," "higher priced" or "covered" according to applicable federal, state or local statutes, ordinances or regulations. -->
+			<xs:element name="coveredHighCostCode" type="COV_HIGH_COST_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(21) - Indicate yes, no or unknown as to whether as of the end of the reporting period the hazard insurance on the property is servicer-placed. -->
+			<xs:element name="servicerHazardInsuranceCode" type="SRVR_HAZRD_INS_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(22) - For any refinance loan that is a cash-out refinance provide the amount the obligor received after all other loans to be paid by the mortgage proceeds have been satisfied.  For any refinance loan that is a no-cash-out refinance provide the result of the following calculation: [NEW LOAN AMOUNT]-[PAID OFF FIRST MORTGAGE LOAN AMOUNT]-[PAID OFF SECOND MORTGAGE AMOUNT]-[CLOSING COSTS].  -->
+			<xs:element name="refinanceCashOutAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(23) - Provide the amount paid to the lender to increase the lender's effective yield and, in the case of discount points, to reduce the interest rate paid by the obligor.  -->
+			<xs:element name="totalOriginationDiscountAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(24) - Indicate yes or no as to whether a broker originated or was involved in the origination of the loan. -->
+			<xs:element name="brokerIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(25) - Specify the code that describes the source from which the issuer obtained the loan. -->
+			<xs:element name="channelCode" type="CHNL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(26) - Specify the National Mortgage License System (NMLS) registration number of the company that originated the loan. -->
+			<xs:element name="nationalMortgageLicenseSystemCompanyNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(27) - Indicate the total number of months during which any buy down is in effect, representing the accumulation of all buy down periods. -->
+			<xs:element name="buyDownNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(28) - Indicate the number of days after which a servicer can stop advancing funds on a delinquent loan. -->
+			<xs:element name="loanDelinquencyAdvanceNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(29)(i) - Specify the code that describes the type and source of index to be used to determine the interest rate at each adjustment.  -->
+			<xs:element name="originationARMIndexCode" type="ORIG_INDX_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(ii) - Indicate the number of percentage points that is added to the index value to establish the new interest rate at each interest rate adjustment date. -->
+			<xs:element name="armMarginPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(iii) - Indicate the fully indexed interest rate to which the obligor was underwritten. -->
+			<xs:element name="fullyIndexedRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(iv) - If the interest rate is initially fixed for a period of time, indicate the number of months between the first payment date of the loan and the first interest rate adjustment date. -->
+			<xs:element name="initialFixedRatePeriodHybridARMNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(29)(v) - Indicate the maximum percentage by which the interest rate may decrease at the first interest rate adjustment date. -->
+			<xs:element name="initialInterestRateDecreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(vi) - Indicate the maximum percentage by which the interest rate may increase at the first interest rate adjustment date. -->
+			<xs:element name="initialInterestRateIncreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(vii) - Provide the number of days prior to an interest rate effective date used to determine the appropriate index rate. -->
+			<xs:element name="indexLookbackNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(29)(viii) - Indicate the number of months between subsequent rate adjustments. -->
+			<xs:element name="subsequentInterestRateResetNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(29)(ix) - Indicate the percentage of the maximum interest rate that can be in effect during the life of the loan. -->
+			<xs:element name="lifetimeRateCeilingPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(x) - Indicate the percentage of the minimum interest rate that can be in effect during the life of the loan. -->
+			<xs:element name="lifetimeRateFloorPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xi) - Provide the maximum number of percentage points by which the interest rate may decrease at each rate adjustment date after the initial adjustment. -->
+			<xs:element name="subsequentInterestRateDecreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xii) - Provide the maximum number of percentage points by which the interest rate may increase at each rate adjustment date after the initial adjustment. -->
+			<xs:element name="subsequentInterestRateIncreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xiii) - Indicate the number of months between payment adjustments after the first interest rate adjustment date. -->
+			<xs:element name="subsequentPaymentResetNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xiv) - Indicate the code that describes whether an adjusted interest rate is rounded to the next higher adjustable rate mortgage round factor, to the next lower round factor, or to the nearest round factor. -->
+			<xs:element name="armRoundCode" type="ARM_ROUND_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xv) - Indicate the percentage to which an adjusted interest rate is to be rounded. -->
+			<xs:element name="armRoundPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xvi) - Indicate yes or no as to whether the loan is an option ARM. -->
+			<xs:element name="optionArmIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xvii) - Specify the code that describes the means of computing the lowest monthly payment available to the obligor after recast. -->
+			<xs:element name="paymentMethodAfterRecastCode" type="PYMNT_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xviii) - Provide the amount of the initial minimum payment the obligor is permitted to make. -->
+			<xs:element name="initialMinimumPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xix) - Indicate yes or no as to whether the obligor of the loan has an option to convert an adjustable interest rate to a fixed interest rate during a specified conversion window. -->
+			<xs:element name="convertibleIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xx) - Indicate yes or no as to whether the loan is a home equity line of credit (HELOC). -->
+			<xs:element name="HELOCIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(29)(xxi) - Indicate the original maximum number of months from the month the loan was originated during which the obligor may draw funds against the HELOC account. -->
+			<xs:element name="HELOCDrawNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(30)(i) - Specify the code that describes the method for calculating the prepayment penalty for the loan. -->
+			<xs:element name="prepaymentPenaltyCalculationCode" type="PRPYMNT_PNLTY_CALC_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(30)(ii) - Specify the code that describes the type of prepayment penalty. -->
+			<xs:element name="prepaymentPenaltyTypeCode" type="PRPYMNT_PNLTY_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(c)(30)(iii) - Provide the total number of months after the origination of the loan that the prepayment penalty may be in effect. -->
+			<xs:element name="prepaymentPenaltyTotalTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(30)(iv) - For hybrid prepayment penalties, provide the number of months after the origination of the loan during which a "hard" prepayment penalty applies. -->
+			<xs:element name="prepaymentPenaltyHardTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(i) - Specify the maximum amount of negative amortization that is allowed before recalculating a fully amortizing payment based on the new loan balance. -->
+			<xs:element name="negativeAmortizationLimitAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(31)(ii) - Indicate the number of months after the origination of the loan that negative amortization is allowed. -->
+			<xs:element name="negativeAmortizationInitialRecastNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(iii) - Indicate the number of months after which the payment is required to recast after the first amortization recast period. -->
+			<xs:element name="negativeAmortizationSubsequentRecastNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(iv) - Provide the amount of the negative amortization balance accumulated as of the end of the reporting period. -->
+			<xs:element name="negativeAmortizationBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(31)(v) - Indicate the number of months after the origination of the loan during which the payment is fixed. -->
+			<xs:element name="initialFixedPaymentNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(vi) - Indicate the maximum percentage by which a payment can increase in the first amortization recast period. -->
+			<xs:element name="initialPaymentCapPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(31)(vii) - Indicate the maximum percentage by which a payment can increase  in one amortization recast period after the initial cap. -->
+			<xs:element name="subsequentPaymentCapPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(c)(31)(viii) - Provide the maximum number of months after the origination of the loan that an obligor can initially pay the minimum payment before a new minimum payment is determined.   -->
+			<xs:element name="initialMinimumPaymentResetNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(ix) - Provide the maximum number of months after the initial period an obligor can pay the minimum payment before a new minimum payment is determined. -->
+			<xs:element name="subsequentMinimumPaymentResetNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(c)(31)(x) - Provide the amount of the minimum payment due during the reporting period. -->
+			<xs:element name="minimumPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(d)(1) - Specify the location of the property by providing the two-digit zip code. -->
+			<xs:element name="geographicalLocation" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(d)(2) - Specify the code that describes the property occupancy status at the time the loan was originated.   -->
+			<xs:element name="occupancyStatusCode" type="OCCPNCY_STAT_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(3) - If a property inspection has been performed after the loan is originated, provide the code that describes the manner in which the property is occupied.  -->
+			<xs:element name="mostRecentOccupancyStatusCode" type="MST_RCNT_OCCPNCY_STAT_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(4) - Specify the code that describes the type of property that secures the loan. -->
+			<xs:element name="propertyTypeCode" type="PROPRTY_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(5) - If an additional property valuation was obtained by any transaction party or its affiliates after the original appraised property value, provide the most recent property value obtained.   -->
+			<xs:element name="mostRecentPropertyValueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(d)(6) - Specify the code that describes the method by which the most recent property value was reported. -->
+			<xs:element name="mostRecentPropertyValueTypeCode" type="MST_RCNT_PROPERTY_VAL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(7) - Specify the date on which the most recent property value was reported. -->
+			<xs:element name="mostRecentPropertyValueDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(8) - Provide the code indicating the name of the AVM model if an AVM was used to determine the most recent property value. -->
+			<xs:element name="mostRecentAVMModelCode" type="PROPRTY_MST_RCNT_AVM_MDL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(d)(9) - If an additional AVM was obtained by any transaction party or its affiliates after the original valuation, provide the confidence score presented on the most recent AVM report.   -->
+			<xs:element name="mostRecentAVMConfidenceNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(d)(10) - Provide the ratio obtained by dividing the amount of all known outstanding mortgage liens on a property at origination by the lesser of the original appraised property value or the sales price. -->
+			<xs:element name="originalCLTVPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(d)(11) - Provide the ratio obtained by dividing the amount of the original mortgage loan at origination by the lesser of the original appraised property value or the sales price. -->
+			<xs:element name="originalLTVPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(e)(1) - Indicate the number of obligors who are obligated to repay the mortgage note at the time the loan was originated. -->
+			<xs:element name="originalObligorNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(e)(2) - Provide the standardized credit score of the obligor used to evaluate the obligor during the loan origination process.   -->
+			<xs:element name="originalObligorCreditScoreNumber" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(3) - Specify the type of the standardized credit score used to evaluate the obligor during the loan origination process. -->
+			<xs:element name="originalObligorCreditScoreType" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(4) - If an additional credit score was obtained by any transaction party or its affiliates after the original credit score, provide the most recently obtained standardized credit score of the obligor.  -->
+			<xs:element name="mostRecentObligorCreditScoreNumber" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(5) - Specify the type of the most recently obtained standardized credit score of the obligor.   -->
+			<xs:element name="mostRecentObligorCreditScoreType" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(6) - Provide the date of the most recently obtained standardized credit score of the obligor.  -->
+			<xs:element name="mostRecentObligorCreditScoreDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(7) - Indicate the code describing the extent to which the obligor's income was verified during the loan origination process. -->
+			<xs:element name="obligorIncomeVerificationLevelCode" type="OBLGR_INCM_VRFCTN_LVL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(8) - Indicate yes or no whether a Transcript of Tax Return (received pursuant to the filing of IRS Form 4506-T) was obtained and considered. -->
+			<xs:element name="IRSForm4506TIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(9) - Provide the front-end DTI ratio used by the originator to qualify the loan.   -->
+			<xs:element name="originatorFrontEndDTIPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(e)(10) - Provide the back-end DTI ratio used by the originator to qualify the loan.   -->
+			<xs:element name="originatorBackEndDTIPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(e)(11) - Indicate the code describing the extent to which the obligor's employment was verified during the loan origination process. -->
+			<xs:element name="obligorEmploymentVerificationCode" type="OBLGR_EMPLOY_VRFCTN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(12) - Indicate whether the obligor was employed by its current employer for greater than 24 months at the time the loan was originated.  -->
+			<xs:element name="obligorEmploymentLengthCode" type="OBLGR_EMPLOY_LEN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(13) - Indicate the code describing the extent to which the obligor's assets used to qualify the loan was verified during the loan origination process -->
+			<xs:element name="obligorAssetVerificationCode" type="OBLGR_ASSET_VRFCTN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(e)(14) - If the obligor(s) pledged financial assets to the lender instead of making a down payment, provide the total value of assets pledged as collateral for the loan at the time of origination. -->
+			<xs:element name="originalPledgedAssetsAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(e)(15) - Specify the code that describes the type of mortgage payment used to qualify the obligor for the loan. -->
+			<xs:element name="qualificationMethodCode" type="OBLGR_QUALIF_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(f)(1) - Provide the name of the entity providing mortgage insurance for the loan. -->
+			<xs:element name="mortgageInsuranceCompanyName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(f)(2) -  Indicate the total percentage of the original loan balance that is covered by mortgage insurance.  -->
+			<xs:element name="mortgageInsuranceCoveragePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(f)(3) - Provide the name of the pool insurance provider. -->
+			<xs:element name="poolInsuranceCompanyName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(f)(4) - Provide the aggregate amount that the pool insurance company will pay, calculated as a percentage of the pool balance. -->
+			<xs:element name="poolInsuranceStopLossPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(f)(5) - Specify the code that describes the coverage category of the mortgage insurance applicable to the loan. -->
+			<xs:element name="mortgageInsuranceCoverageTypeCode" type="MORTG_INS_CVRG_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(1) - Indicate yes or no whether the asset was added to the pool during the reporting period. Instruction:  A response to this data point is required only when assets are added to the asset pool after the final prospectus under Section 230.424 of this chapter is filed. -->
+			<xs:element name="assetAddedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(2) - Indicate the number of months from the end of the reporting period to the loan maturity date. -->
+			<xs:element name="remainingTermToMaturityNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(g)(3) - Indicate yes or no whether the asset was modified during the reporting period. -->
+			<xs:element name="modificationIndicatorReportingPeriod" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(4) - For loans that have not been paid off, indicate the next payment due date. -->
+			<xs:element name="nextPaymentDueDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(5) - Specify the code that indicates a servicer's responsibility for advancing principal or interest on delinquent loans.   -->
+			<xs:element name="advancingMethodCode" type="ADV_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(6) - Indicate the code that describes the manner in which principal and/or interest are advanced by the servicer. -->
+			<xs:element name="servicingAdvanceMethodologyCode" type="SRVC_ADV_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(7) - Provide the first payment due date for which the servicer ceased advancing principal or interest. -->
+			<xs:element name="stopPrincipalInterestAdvancingDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(8) - Indicate the outstanding principal balance of the loan as of the beginning of the reporting period.   -->
+			<xs:element name="reportingPeriodBeginningLoanBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(9) - Indicate the scheduled principal balance of the loan as of the beginning of the reporting period.   -->
+			<xs:element name="reportingPeriodBeginningScheduledLoanBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(10) - Indicate the total payment due to be collected in the next reporting period. -->
+			<xs:element name="nextReportingPeriodPaymentDueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(11) - Indicate the interest rate in effect during the reporting period. -->
+			<xs:element name="reportingPeriodInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(12) - For loans that have not been paid off, indicate the interest rate that is in effect for the next reporting period.  -->
+			<xs:element name="nextInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(13) - If the servicing fee is based on a percentage, provide the percentage used to calculate the aggregate servicing fee.   -->
+			<xs:element name="servicingFeePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(14) - If the servicing fee is based on a flat-fee amount, indicate the monthly servicing fee paid to all servicers. -->
+			<xs:element name="servicingFlatFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(15) - Provide the cumulative amount of late charges and other fees that have been assessed by the servicer, but not paid by the obligor. -->
+			<xs:element name="otherAssessedUncollectedServicerFeeamount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(16) - Provide the amount of all other fees earned by loan administrators during the reporting period that reduced the amount of funds remitted to the issuing entity (including subservicing, master servicing, trustee fees, etc.). -->
+			<xs:element name="otherServicingFeeRetainedByServicerAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(17) - Indicate the interest payment amount that was scheduled to be collected during the reporting period. -->
+			<xs:element name="scheduledInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(18) - Indicate any unscheduled interest adjustments during the reporting period. -->
+			<xs:element name="otherInterestAdjustmentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(19) - Indicate the principal payment amount that was scheduled to be collected during the reporting period. -->
+			<xs:element name="scheduledPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(20) - Indicate any other amounts that caused the principal balance of the loan to be decreased or increased during the reporting period. -->
+			<xs:element name="otherPrincipalAdjustmentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(21) - Indicate the actual balance of the loan as of the end of the reporting period.  -->
+			<xs:element name="reportingPeriodEndActualBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(22) - Indicate the scheduled principal balance of the loan as of the end of the reporting period.   -->
+			<xs:element name="reportingPeriodEndScheduledBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(23) - Indicate the total payment amount that was scheduled to be collected during the reporting period (including all fees and escrows). -->
+			<xs:element name="reportingPeriodScheduledPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(24) - Indicate the total payment (including all escrows) paid to the servicer during the reporting period. -->
+			<xs:element name="totalActualPaidAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(25) - Indicate the gross amount of interest collected during the reporting period, whether or not from the obligor.   -->
+			<xs:element name="actualInterestCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(26) - Indicate the amount of principal collected during the reporting period, whether or not from the obligor. -->
+			<xs:element name="actualPrincipalCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(27) - Indicate the total of any amounts, other than principal and interest, collected during the reporting period, whether or not from the obligor. -->
+			<xs:element name="actualOtherCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(28) - Provide the date the loan's scheduled principal and interest is paid through as of the end of the reporting period.   -->
+			<xs:element name="paidThroughDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(29) - Provide the date through which interest is paid with the payment received during the reporting period, which is the effective date from which interest will be calculated for the application of the next payment. -->
+			<xs:element name="interestPaidThroughDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(30) - Provide the scheduled loan "paid-in-full" amount (principal) (do not include the current months scheduled principal).  Applies to all liquidations and loan payoffs. -->
+			<xs:element name="paidFullAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(i) - Provide the total amount the servicer advanced for the reporting period for due but unpaid principal on the loan.   -->
+			<xs:element name="servicerAdvancedPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(ii) - Provide the total amount of any payments made by the obligor during the reporting period that was applied to outstanding advances of due but unpaid principal on the loan. -->
+			<xs:element name="servicerAdvancedRepaidPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(iii) - Provide the outstanding cumulative amount of principal advances made by the servicer as of the end of the reporting period, including amounts advanced for the reporting period. -->
+			<xs:element name="servicerAdvancedCumulativePrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(iv) - Provide the total amount the servicer advanced for the reporting period for due but unpaid interest on the loan.   -->
+			<xs:element name="servicerAdvanceInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(v) - Provide the total amount of any payments made by the obligor during the reporting period that was applied to outstanding advances of due but unpaid interest on the loan. -->
+			<xs:element name="servicerAdvanceRepaidInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(vi) - Provide the outstanding cumulative amount of interest advances made by the servicer as of the end of the reporting period, including amounts advanced for the reporting period.  -->
+			<xs:element name="servicerAdvanceCumulativeInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(vii) - Provide the total amount the servicer advanced for the reporting period for due but unpaid property tax and insurance payments (escrow amounts). -->
+			<xs:element name="servicerAdvanceTaxesInsuranceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(viii) - Provide the total amount of any payment made by the obligor during the reporting period that was applied to outstanding advances of due but unpaid escrow amounts. -->
+			<xs:element name="servicerAdvanceRepaidTaxesInsuranceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(ix) - Provide the outstanding cumulative amount of escrow advances made by the servicer as of the end of the reporting period, including amounts advanced for the reporting period.  -->
+			<xs:element name="servicerAdvanceCumulativeTaxesInsuranceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(x) - Provide the total amount the servicer advanced for property inspection and preservation expenses for the reporting period.  -->
+			<xs:element name="servicerAdvanceCorporateAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(xi) - Provide the total amount of any payments made by the obligor during the reporting period that was applied to outstanding corporate advances.    -->
+			<xs:element name="servicerAdvanceRepaidCorporateAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(31)(xii) - Provide the outstanding cumulative amount of corporate advances made by the servicer as of the end of the reporting period, including amounts advanced for the reporting period.  Instruction to Item 1(g)(34):  For loans modified or liquidated during a reporting period the data provided in response to Item 1(g)(34) is to be information as of the liquidation date or modification date, as applicable. -->
+			<xs:element name="servicerAdvanceCumulativeCorporateAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(32)(i) - Provide the date on which the loan balance was reduced to zero. -->
+			<xs:element name="zeroBalanceEffectiveDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(32)(ii) - Provide the code that indicates the reason the loan's balance was reduced to zero. -->
+			<xs:element name="zeroBalanceCode" type="ZERO_BAL_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(g)(33) - Provide the string that indicates the payment status per month listed from oldest to most recent. -->
+			<xs:element name="mostRecentTwelveMonthHistoryCode" type="MST_RCNT_TWLV_MNTH_HSTRY_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(34) - Indicate the number of payments the obligor is past due as of the end of the reporting period.   -->
+			<xs:element name="paymentPastDueNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(g)(35)(i) - Provide the interest rate that will be used to determine the next scheduled interest payment, if known.  -->
+			<xs:element name="nextResetRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(35)(ii) - Provide the next date that the amount of scheduled principal and/or interest is scheduled to change. -->
+			<xs:element name="nextPaymentChangeDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(35)(iii) - Provide the next scheduled date on which the interest rate is scheduled to change.  -->
+			<xs:element name="nextInterestRateChangeDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(g)(35)(iv) - Provide the principal and interest payment due after the next scheduled interest rate change, if known. -->
+			<xs:element name="nextResetPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(g)(35)(v) - Indicate yes or no whether the obligor exercised an option to convert an ARM loan to a fixed interest rate loan during the reporting period.  -->
+			<xs:element name="exercisedArmConversionOptionIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(h)(1) - Indicate the name of the entity that serviced the loan during the reporting period. -->
+			<xs:element name="primaryServicerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(h)(2) - If a loan's servicing has been transferred, provide the effective date of the most recent servicing transfer. -->
+			<xs:element name="mostRecentServicingTransferReceivedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(h)(3) - Provide the name of the entity that served as master servicer during the reporting period, if applicable.  -->
+			<xs:element name="masterServicerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(h)(4) - Provide the name of the entity that served as special servicer during the reporting period, if applicable.  -->
+			<xs:element name="specialServicerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(h)(5) - Provide the name of the entity that served as a subservicer during the reporting period, if applicable. -->
+			<xs:element name="subServicerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(i) - Indicate yes or no whether during the reporting period the loan was the subject of a demand to repurchase or replace for breach of representations and warranties, including investor demands upon a trustee.   -->
+			<xs:element name="assetSubjectDemandIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(i)(1) - Indicate the code that describes the status of the repurchase or replacement demand as of the end of the reporting period.  -->
+			<xs:element name="assetSubjectDemandStatusCode" type="ASSET_SUBJ_DEMAND_STAT_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(i)(2) - Provide the amount paid to repurchase the loan from the pool. -->
+			<xs:element name="repurchaseAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(i)(3) - Indicate the date the loan repurchase or replacement demand was resolved. -->
+			<xs:element name="demandResolutionDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 1(i)(4) - Specify the name of the repurchaser. -->
+			<xs:element name="repurchaserName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<!-- Item 1(i)(5) - Indicate the code that describes the reason for the repurchase or replacement. -->
+			<xs:element name="repurchaseReplacementCode" type="REPRCH_REPLCMNT_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(j)(1) - Specify the total amount of uncollected principal charged off.  -->
+			<xs:element name="chargeOffPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(j)(2) - Specify the total amount of uncollected interest charged off. -->
+			<xs:element name="chargeOffInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(l) - Indicate the code that describes the type of loss mitigation the servicer is pursuing with the obligor, loan, or property as of the end of the reporting period. -->
+			<xs:element name="lossMitigationTypeCode" type="LOSS_MTGTION_TYP_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(m)(1) - Specify the code that describes the most recent action that has resulted in a change or changes to the loan note terms. -->
+			<xs:element name="mostRecentLoanModificationEventCode" type="MOD_MST_RCNT_LOAN_EVNT_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(m)(2) - Provide the date on which the most recent modification of the loan has gone into effect. -->
+			<xs:element name="mostRecentLoanModificationEffectiveDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(3) -  Provide the loan's maturity date as of the modification effective payment date. -->
+			<xs:element name="postModificationMaturityDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(4) - Indicate whether the interest rate type on the loan after the modification is fixed, adjustable, step, or other. -->
+			<xs:element name="postModificationInterestRateTypeCode" type="POST_MOD_INTR_RT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(5) - Indicate the amortization type after modification. -->
+			<xs:element name="postModificationAmortizationTypeCode" type="POST_MOD_AMORT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(6) - Provide the interest rate in effect as of the modification effective payment date. -->
+			<xs:element name="postModificationInterestPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(7) - Indicate the date of the first payment due after the loan modification. -->
+			<xs:element name="postModificationFirstPaymentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(8) - Provide the loan balance as of the modification effective payment date as reported on the modification documents. -->
+			<xs:element name="postModificationLoanBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(9) - Provide total principal and interest payment amount as of the modification effective payment date. -->
+			<xs:element name="postModificationPrincipalInterestPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(10) - Provide the amount added to the principal balance of the loan due to the modification -->
+			<xs:element name="totalCapAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(11) - Indicate yes or no whether a Transcript of Tax Return (received pursuant to the filing of IRS Form 4506-T) was obtained and considered during the loan modification process.   -->
+			<xs:element name="incomeVerificationIndicatorAtModification" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(12) - Provide the front-end DTI ratio used to qualify the modification. -->
+			<xs:element name="modificationFrontEndDebtToIncomePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(13) - Provide the back-end DTI ratio used to qualify the modification. -->
+			<xs:element name="modificationBackEndDebtToIncomePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(14) - Provide the deferred amount that is non-interest bearing. -->
+			<xs:element name="totalDeferredAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(15) - Provide the total amount of all principal balance reductions as a result of loan modifications over the life of the loan. -->
+			<xs:element name="forgivenPrincipalCumulativeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(16) - Provide the total principal balance reduction as a result of a loan modification during the reporting period. -->
+			<xs:element name="forgivenPrincipalReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(17) - Provide the total amount of all interest forgiven as a result of loan modifications over the life of the loan. -->
+			<xs:element name="forgivenInterestCumulativeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(18) - Provide the total gross interest forgiven as a result of a loan modification during the reporting period. -->
+			<xs:element name="forgivenInterestReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(19) - For a loan with principal forbearance, provide the sum of the actual ending balance field plus the principal deferred amount.  For all other loans, provide the actual ending balance. -->
+			<xs:element name="actualEndingBalanceTotalDebtAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(20) - For a loan with principal forbearance, provide the sum of the scheduled ending balance field plus the deferred amount.  For all other loans, provide the scheduled ending balance. -->
+			<xs:element name="scheduledEndingBalanceTotalDebtAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(i) - Indicate whether the loan's existing ARM parameters have changed per the modification agreement. -->
+			<xs:element name="postModificationARMCode" type="POST_MOD_ARM_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(ii) - Specify the code that describes the index on which an adjustable interest rate is based as of the modification effective payment date. -->
+			<xs:element name="postModificationARMIndexCode" type="POST_MOD_ARM_INDX_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(iii) - Provide the margin as of the modification effective payment date.  The margin is the number of percentage points added to the index to establish the new rate. -->
+			<xs:element name="postModificationMarginPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(iv) - Provide the number of months of the interest reset period of the loan as of the modification effective payment date. -->
+			<xs:element name="postModificationInterestResetNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(21)(v) - Provide the next interest reset date as of the modification effective payment date. -->
+			<xs:element name="postModificationNextResetDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(vi) - Provide the number of days prior to an interest rate effective date used to determine the appropriate index rate as of the modification effective payment date. -->
+			<xs:element name="postModificationIndexLookbackNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(21)(vii) - Indicate the code that describes whether an adjusted interest rate is rounded to the next higher adjustable rate mortgage round factor, to the next lower round factor, or to the nearest round factor as of the modification effective payment date. -->
+			<xs:element name="postModificationARMRoundingCode" type="POST_MOD_ARM_ROUND_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(viii) - Indicate the percentage to which an adjusted interest rate is to be rounded as of the modification effective payment date. -->
+			<xs:element name="postModificationARMRoundingPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(ix) - Provide the amount of the initial minimum payment the obligor is permitted to make as of the modification effective payment date.   -->
+			<xs:element name="postModificationInitialMinimumPayment" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(x) - Provide the due date on which the next payment adjustment is scheduled to occur for an ARM loan per the modification agreement. -->
+			<xs:element name="postModificationNextPaymentAdjustmentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xi) - Provide the payment recast frequency of the loan (in months) per the modification agreement. -->
+			<xs:element name="postModificationARMPaymentRecastFrequency" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xii) - Provide the minimum rate of interest that may be applied to an adjustable rate loan over the course of the loan's life as of the modification effective payment date.  -->
+			<xs:element name="postModificationLifetimeFloorPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xiii) - Provide the maximum rate of interest that may be applied to an adjustable rate loan over the course of the loan's life as of the modification effective payment date.   -->
+			<xs:element name="postModificationLifetimeCeilingPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xiv) - Indicate the maximum percentage by which the interest rate may increase at the first interest rate adjustment date after the loan modification. -->
+			<xs:element name="postModificationInitialInterestRateIncreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xv) - Provide the maximum percentage by which the interest rate may adjust downward on the first interest rate adjustment date after the loan modification.  -->
+			<xs:element name="postModificationInitialInterestRateDecreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xvi) -  Provide the maximum number of percentage points by which the rate may increase at each rate adjustment date after the initial rate adjustment as of the modification effective payment date.  -->
+			<xs:element name="postModificationSubsequentInterestIncreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xvii) - Provide the maximum number of percentage points by which the interest rate may decrease at each rate adjustment date after the initial adjustment as of the modification effective payment date.   -->
+			<xs:element name="postModificationSubsequentInterestRateDecreasePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xviii) - Provide the percentage value by which a payment may increase or decrease in one period as of the modification effective payment date.  -->
+			<xs:element name="postModificationPaymentCapPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xix) - Specify the code that describes the means of computing the lowest monthly payment available to the obligor after recast as of the modification effective payment date.   -->
+			<xs:element name="postModificationPaymentMethodAfterRecastCode" type="POST_MOD_PYMNT_METH_AFTR_RECAST_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xx) - Provide the duration in months that the teaser interest rate is in effect as of the modification effective payment date. -->
+			<xs:element name="postModificationARMInterestRateTeaserNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xxi) - Provide the duration in months that the teaser payment is in effect as of the modification effective payment date. -->
+			<xs:element name="postModificationARMPaymentTeaserNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xxii) - Indicate yes or no whether a negative amortization feature is part of the loan as of the modification effective payment date.   -->
+			<xs:element name="postModificationARMNegativeAmortizationIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(21)(xxiii) - Provide the maximum percentage of negative amortization allowed on the loan as of the modification effective payment date.   -->
+			<xs:element name="postModificationARMNegativeAmortizationCapPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(22)(i) - Provide the number of months of the interest-only period from the modification effective payment date. -->
+			<xs:element name="postModificationInterestOnlyTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(22)(ii) - Provide the date of the last interest-only payment as of the modification effective payment date.   -->
+			<xs:element name="postModificationInterestOnlyLastPaymentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(23) - Provide the new balloon payment amount due at maturity as a result of the loan modification, not including deferred amounts. -->
+			<xs:element name="postModificationBalloonAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(24)(i) -  Indicate whether the terms of the modification agreement call for the interest rate to step up over time. -->
+			<xs:element name="postModificationInterestRateStepIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(24)(ii) - Provide the rate(s) that will apply at each change date as stated in the loan modification agreement.  All rates must be provided, not just the first change rate, unless there is only a single change date. -->
+			<xs:element name="postModificationStepInterestPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(24)(iii) - Provide the date(s) at which the next rate and/or payment change will occur per the loan modification agreement.  All dates must be provided, not just the first change, unless there is only a single change date. -->
+			<xs:element name="postModificationStepDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(24)(iv) - Provide the principal and interest payment(s) that will apply at each change date as stated in the loan modification agreement.  All payments must be provided, not just the first change payment, unless there is only a single change date. -->
+			<xs:element name="postModificationStepPrincipalInterestPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(24)(v) - Provide the total number of step rate adjustments under the step agreement. -->
+			<xs:element name="postModificationStepNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 1(m)(24)(vi) - Provide the maximum interest rate to which the loan will step up. -->
+			<xs:element name="postModificationMaximumFutureStepAgreementPercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(24)(vii) - Provide the date on which the maximum interest rate will be reached. -->
+			<xs:element name="postModificationMaximumStepAgreementRateDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(m)(25) - Provide the total amount of principal deferred (or forborne) by the modification that is not subject to interest accrual. -->
+			<xs:element name="nonInterestBearingDeferredPrincipalCumulativeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(26) - Provide the total amount of principal deferred by the modification that is not subject to interest accrual. -->
+			<xs:element name="nonInterestBearingDeferredPrincipalReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(27) - Provide the amount of deferred principal collected from the obligor during the reporting period. -->
+			<xs:element name="recoveryDeferredPrincipalReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(28) - If the loan had a principal forbearance and was paid in full or liquidated, provide the amount paid towards the amount of the principal forbearance. -->
+			<xs:element name="nonInterestBearingDeferredPaidFullAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(29) - Provide the total amount of interest and expenses deferred by the modification that is not subject to interest accrual during the reporting period. -->
+			<xs:element name="nonInterestBearingDeferredInterestFeeReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(30) - Provide the total amount of interest and expenses deferred by the modification that is not subject to interest accrual. -->
+			<xs:element name="nonInterestBearingDeferredInterestFeeCumulativeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(m)(31) - Provide the amount of deferred interest and fees collected during the reporting period. -->
+			<xs:element name="recoveryDeferredInterestFeeReportingPeriodAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(n)(1) - Provide the date on which a payment change pursuant to the most recent forbearance plan or trial modification started. -->
+			<xs:element name="mostRecentForbearancePlanOrTrialModificationStartDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(n)(2) - Provide the date on which a payment change pursuant to the most recent forbearance plan or trial modification is scheduled to end. -->
+			<xs:element name="mostRecentForbearancePlanOrTrialModificationScheduledEndDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(n)(3) - Provide the date on which the obligor ceased complying with the terms of the most recent trial modification. -->
+			<xs:element name="mostRecentTrialModificationViolatedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(o)(1) - Provide the date on which the most recent repayment plan started. -->
+			<xs:element name="mostRecentRepaymentPlanStartDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(o)(2) - Provide the date on which the most recent repayment plan is scheduled to end. -->
+			<xs:element name="mostRecentRepaymentPlanScheduledEndDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(o)(3) - Provide the date on which the obligor ceased complying with the terms of the most recent repayment plan. -->
+			<xs:element name="mostRecentRepaymentPlanViolatedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(p)(1) - Provide the amount accepted for a pending short sale. -->
+			<xs:element name="shortSaleAcceptedOfferAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(q)(1) - Provide the date on which the servicer deemed the most recent loss mitigation effort to have ended. -->
+			<xs:element name="mostRecentLossMitigationExitDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(q)(2) - Indicate the code that describes the reason the most recent loss mitigation effort ended. -->
+			<xs:element name="mostRecentLossMitigationExitCode" type="MST_RCNT_LOSS_MTGTION_EXIT_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(r)(1) - Provide the date on which the loan was referred to a foreclosure attorney. -->
+			<xs:element name="attorneyReferralDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(r)(2) - Indicate the code that describes the reason for delay within the foreclosure process. -->
+			<xs:element name="foreclosureDelayReasonCode" type="FORECL_DELAY_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(r)(3) - If the loan exited foreclosure during the reporting period, provide the date on which the loan exited foreclosure. -->
+			<xs:element name="foreclosureExitDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(r)(4) - If the loan exited foreclosure during the reporting period, indicate the code that describes the reason the foreclosure proceeding ended. -->
+			<xs:element name="foreclosureExitReasonCode" type="FORECL_EXIT_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(r)(5) - If a notice of intent (NOI) has been sent, provide the date on which the servicer sent the NOI correspondence to the obligor informing the obligor of the acceleration of the loan and pending initiation of foreclosure action. -->
+			<xs:element name="noticeOfIntentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(s)(1) -  If an REO offer has been accepted, provide the amount accepted for the REO sale. -->
+			<xs:element name="mostRecentAcceptedREOOfferAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(2) - If an REO offer has been accepted, provide the date on which the REO sale amount was accepted. -->
+			<xs:element name="mostRecentAcceptedREOOfferDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(s)(3) - If the REO sale has closed, provide the gross amount due to the issuing entity as reported on Line 420 of the HUD-1 settlement statement.  -->
+			<xs:element name="grossLiquidationProceedsAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(4) - If the REO sale has closed, provide the net proceeds received from the escrow closing (before servicer reimbursement).   -->
+			<xs:element name="netSalesProceedsAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(5) - Provide the cumulative loss amount passed through to the issuing entity during the reporting period, including subsequent loss adjustments and any forgiven principal as a result of a modification that was passed through to the issuing entity. -->
+			<xs:element name="reportingPeriodLossPassedToIssuingEntityAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(6) - Provide the loss amount passed through to the issuing entity to date, including any forgiven principal as a result of a modification that was passed through to the issuing entity. -->
+			<xs:element name="cumulativeTotalLossPassedToIssuingEntityAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(7) - Provide the reporting period amount recovered subsequent to the initial gain/loss recognized at the time of liquidation. -->
+			<xs:element name="subsequentRecoveryAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(s)(8) - Indicate whether an eviction process has begun. -->
+			<xs:element name="evictionIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 1(s)(9) - If the loan exited REO during the reporting period, provide the date on which the loan exited REO status. -->
+			<xs:element name="reoExitDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(s)(10) - If the loan exited REO during the reporting period, indicate the code that describes the reason the loan exited REO status. -->
+			<xs:element name="reoExitReasonCode" type="REO_EXIT_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 1(t)(1)(i) - Provide the actual unpaid principal balance (UPB) at the time of liquidation. -->
+			<xs:element name="UPBLiquidationAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(ii) - Provide the amount of accrued servicing fees claimed at time of servicer reimbursement after liquidation.   -->
+			<xs:element name="servicingFeesClaimedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(iii) - Provide the total amount of unpaid principal advances made by the servicer that were reimbursed to the servicer.   -->
+			<xs:element name="servicerAdvanceReimbursedPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(iv) - Provide the total amount of unpaid interest advances made by the servicer that were reimbursed to the servicer.   -->
+			<xs:element name="servicerAdvanceReimbursedInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(v) - Provide the total amount of any unpaid escrow amounts advanced by the servicer that were reimbursed to the servicer. -->
+			<xs:element name="servicerAdvanceReimbursedTaxesInsuranceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(vi) - Provide the total amount of any outstanding advances of property inspection and preservation expenses made by the servicer that were reimbursed to the servicer.   -->
+			<xs:element name="servicerAdvanceReimbursedCorporateAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(vii) - If the loan is in REO, provide the total amount of REO management fees (including auction fees) paid over the life of the loan. -->
+			<xs:element name="REOManagementFeesAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(viii) - Provide the total amount paid to the obligor or tenants in exchange for vacating the property, or the payment to the obligor to accelerate a deed-in-lieu process or complete a redemption period. -->
+			<xs:element name="cashKeyDeedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(t)(1)(ix) - Provide the total amount paid to the servicer in exchange for carrying out a deed-in-lieu or short sale or similar activities. -->
+			<xs:element name="performanceIncentiveFeesAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(u)(1) - Provide the date on which the servicer filed an MI claim. -->
+			<xs:element name="mortgageInsuranceClaimFiledDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(u)(2) - Provide the amount of the MI claim filed by the servicer. -->
+			<xs:element name="mortgageInsuranceClaimAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(u)(3) - If the MI claim has been paid, provide the date on which the MI company paid the MI claim. -->
+			<xs:element name="mortgageInsuranceClaimPaidDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(u)(4) - If the MI claim has been decided, provide the amount of the claim paid by the MI company. -->
+			<xs:element name="mortgageInsuranceClaimPaidAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 1(u)(5) - If the MI claim has been denied or rescinded, provide the final MI denial date after all servicer appeals. -->
+			<xs:element name="mortgageInsuranceClaimDeniedRescindedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(u)(6) - If the deed for the property has been conveyed to the MI company, provide the date of actual title conveyance to the MI company. -->
+			<xs:element name="marketableTitleTransferDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 1(v)(1) - Indicate the code that describes the delinquency status of the loan. -->
+			<xs:element name="nonPayStatusCode" type="NON_PAY_STAT_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 1(v)(2) - Further indicate the code that defines the default/delinquent status of the loan. -->
+			<xs:element name="reportingActionCode" type="RPT_ACTN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="assetData">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an ABS Asset Data exhibit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="assets" type="ASSET_TYPE" minOccurs="0" maxOccurs="unbounded">
+					<xs:unique name="uniqueOriginalLoanPurposeCode">
+						<xs:selector xpath="mstns:originalLoanPurposeCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueZeroBalanceCode">
+						<xs:selector xpath="mstns:zeroBalanceCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueRepurchaseReplacementCode">
+						<xs:selector xpath="mstns:repurchaseReplacementCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueLossMitigationTypeCode">
+						<xs:selector xpath="mstns:lossMitigationTypeCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueMostRecentLoanModificationEventCode">
+						<xs:selector xpath="mstns:mostRecentLoanModificationEventCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueForeclosureDelayReasonCode">
+						<xs:selector xpath="mstns:foreclosureDelayReasonCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueForeclosureExitReasonCode">
+						<xs:selector xpath="mstns:foreclosureExitReasonCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueReoExitReasonCode">
+						<xs:selector xpath="mstns:reoExitReasonCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueReportingActionCode">
+						<xs:selector xpath="mstns:reportingActionCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/sbsef/exhibitt" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/document/sbsef/exhibitt" elementFormDefault="qualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:complexType name="EXHIBIT_T_INFO">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EXHIBIT_T_INFO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="clearingAgencyName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="nameConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="isGuaranteeingTrades" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_T_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an sbsef exhibit T.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exhibitTInfo" type="EXHIBIT_T_INFO" minOccurs="0" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

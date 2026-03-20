@@ -1,0 +1,33 @@
+<edgarSubmission xmlns="http://www.sec.gov/edgar/sbsefwvfiler">
+<headerData>
+<submissionType>SBSEF-W</submissionType>
+<filerInfo>
+<filer>
+<filerCredentials>
+<cik>9999999999</cik>
+<ccc>test#123</ccc>
+</filerCredentials>
+</filer>
+<liveTestFlag>LIVE</liveTestFlag>
+<contact>
+<contactName>John Smith, Jr.</contactName>
+<contactPhoneNumber>11111111111111111111</contactPhoneNumber>
+<contactEmailAddress>a@b.com</contactEmailAddress>
+</contact>
+<flags>
+<overrideInternetFlag>false</overrideInternetFlag>
+</flags>
+<notifications>
+<notificationEmailAddress>test@example.com</notificationEmailAddress>
+</notifications>
+</filerInfo>
+</headerData>
+<formData>
+<signatureInfo>
+<signatureDate>05/15/2024</signatureDate>
+<signatureApplicantName>John Smith</signatureApplicantName>
+<signatureAuthorizedPerson>John Smith</signatureAuthorizedPerson>
+<signatureTitle>President</signatureTitle>
+</signatureInfo>
+</formData>
+</edgarSubmission>

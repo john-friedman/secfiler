@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/corresp" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/corresp eis_Corresp.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:returnCopyFlag>true</cor:returnCopyFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+  </cor:flags>
+  <cor:submissionType>CORRESP</cor:submissionType>
+  <cor:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>1305274</cor:filerId>
+    <cor:filerCcc>test@123</cor:filerCcc>
+  </cor:filer>
+  <cor:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>S</com:modOrSegFlag>
+      <com:nickName>A123456789</com:nickName>
+      <com:documentType>CORRESP</com:documentType>
+    </com:moduleSegment>
+  </cor:moduleSegments>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>CORRESP</com:conformedDocumentType>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

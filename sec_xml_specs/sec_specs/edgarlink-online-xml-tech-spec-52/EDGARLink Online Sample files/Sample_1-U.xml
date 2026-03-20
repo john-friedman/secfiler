@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coreg" xmlns:com="http://www.sec.gov/edgar/common" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coreg eis_CoReg.xsd">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <com:confirmingCopyFlag>false</com:confirmingCopyFlag>
+    <com:overrideInternetFlag>false</com:overrideInternetFlag>
+    <com:returnCopyFlag>false</com:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>1-U</cor:submissionType>
+  <cor:contact>
+    <com:name>Test</com:name>
+    <com:phoneNumber>1234567890</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>0000350001</cor:filerId>
+    <cor:filerCcc>dazzle#1</cor:filerCcc>
+  </cor:filer>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:periodOfReport>06-01-2015</cor:periodOfReport>
+  <cor:itemsType2>
+    <cor:itemType2>1</cor:itemType2>
+    <cor:itemType2>2</cor:itemType2>
+  </cor:itemsType2>
+  <cor:successorCompany>
+    <com:successorFilingFlag>N</com:successorFilingFlag>
+  </cor:successorCompany>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>test.txt</com:conformedName>
+      <com:conformedDocumentType>1-U</com:conformedDocumentType>
+      <com:contents>VGVzdA==
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

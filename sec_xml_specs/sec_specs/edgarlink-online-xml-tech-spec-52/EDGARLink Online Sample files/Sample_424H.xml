@@ -1,0 +1,59 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregserial" xmlns:com="http://www.sec.gov/edgar/common">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+  </cor:flags>
+  <cor:submissionType>424H</cor:submissionType>
+  <cor:contact>
+    <com:name>sample</com:name>
+    <com:phoneNumber>test</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>sauces#1</cor:filerCcc>
+    <cor:fileNumber>333-00000-1</cor:fileNumber>
+  </cor:filer>
+  <cor:depositorId>0000000000</cor:depositorId>
+  <cor:sponsorId>0000000000</cor:sponsorId>
+  <cor:absAssetClasses>
+    <com:absAssetClass>Residential mortgages - Prime</com:absAssetClass>
+  </cor:absAssetClasses>
+  <cor:absSubAssetClasses></cor:absSubAssetClasses>
+  <cor:coregs>
+    <cor:filer>
+      <cor:filerId>0000000000</cor:filerId>
+      <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+      <cor:fileNumber>333-00000-1</cor:fileNumber>
+    </cor:filer>
+  </cor:coregs>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:feeTableIncludedFlag>N</cor:feeTableIncludedFlag>
+  <cor:notifications>
+    <com:internetNotificationAddress>test@test.com</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A123455678</com:nickName>
+      <com:cik>0000000000</com:cik>
+      <com:ccc>xxxxxxxx</com:ccc>
+      <com:documentType>EX-1</com:documentType>
+    </com:moduleSegment>
+  </cor:moduleSegments>
+  <cor:references></cor:references>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>424H</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

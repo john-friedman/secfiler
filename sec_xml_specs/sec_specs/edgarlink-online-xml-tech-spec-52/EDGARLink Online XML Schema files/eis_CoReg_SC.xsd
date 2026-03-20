@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Filename: eisSingleFilerSubmission.xsd -->
+<!-- Purpose:  Defines the elements for EdgarLink filings. -->
+<!-- Version:   TBD -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/coregsc" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/sccommon" targetNamespace="http://www.sec.gov/edgar/coregsc" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+            Type of submission you are filing.  Choose a value from the appropriate family of
+            Submission Types.  
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="485APOS"/>
+			<xs:enumeration value="485BPOS"/>
+			<xs:enumeration value="485BXT"/>
+			<xs:enumeration value="497"/>
+			<xs:enumeration value="497AD"/>
+			<xs:enumeration value="497J"/>
+			<xs:enumeration value="497K"/>
+			<xs:enumeration value="497VPSUB"/>
+			<xs:enumeration value="DEF 14A"/>
+			<xs:enumeration value="DEF 14C"/>
+			<xs:enumeration value="DEFA14A"/>
+			<xs:enumeration value="DEFA14C"/>
+			<xs:enumeration value="DEFR14A"/>
+			<xs:enumeration value="DEFR14C"/>
+			<xs:enumeration value="DEFM14A"/>
+			<xs:enumeration value="DEFM14C"/>
+			<xs:enumeration value="N-1A"/>
+			<xs:enumeration value="N-1A/A"/>
+			<xs:enumeration value="N-14"/>
+			<xs:enumeration value="N-14/A"/>
+			<xs:enumeration value="N-3"/>
+			<xs:enumeration value="N-3/A"/>
+			<xs:enumeration value="N-30B-2"/>
+			<xs:enumeration value="N-30D"/>
+			<xs:enumeration value="N-30D/A"/>
+			<xs:enumeration value="N-4"/>
+			<xs:enumeration value="N-4/A"/>
+			<xs:enumeration value="N-6"/>
+			<xs:enumeration value="N-6/A"/>
+			<xs:enumeration value="N-CSR"/>
+			<xs:enumeration value="N-CSR/A"/>
+			<xs:enumeration value="N-CSRS"/>
+			<xs:enumeration value="N-CSRS/A"/>
+			<xs:enumeration value="N-Q"/>
+			<xs:enumeration value="N-Q/A"/>
+			<xs:enumeration value="NSAR-A"/>
+			<xs:enumeration value="NSAR-A/A"/>
+			<xs:enumeration value="NSAR-AT"/>
+			<xs:enumeration value="NSAR-AT/A"/>
+			<xs:enumeration value="NSAR-B"/>
+			<xs:enumeration value="NSAR-B/A"/>
+			<xs:enumeration value="NSAR-BT"/>
+			<xs:enumeration value="NSAR-BT/A"/>
+			<xs:enumeration value="NT-NCSR"/>
+			<xs:enumeration value="NT-NCSR/A"/>
+			<xs:enumeration value="NT-NSAR"/>
+			<xs:enumeration value="NT-NSAR/A"/>
+			<xs:enumeration value="N-VP"/>
+			<xs:enumeration value="N-VP/A"/>			
+			<xs:enumeration value="POS AMI"/>
+			<xs:enumeration value="PRE 14A"/>
+			<xs:enumeration value="PRE 14C"/>
+			<xs:enumeration value="N-VPFS"/>
+			<xs:enumeration value="N-VPFS/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILERS_TYPE">
+		<xs:sequence>
+			<xs:element name="filer" type="FILER_TYPE_2" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="delayingAmendmentFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE_2">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE_2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:element name="edgarSubmission">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an EDGARLink Online submission.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="flags" type="FLAG_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="contact" type="ns1:CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="filer" type="FILER_TYPE"/>
+				<xs:element name="coregs" type="FILERS_TYPE" minOccurs="0"/>
+				<xs:element name="sros" type="ns1:SROS_TYPE"/>
+				<xs:element name="act" type="ns1:ACT_TYPE" minOccurs="0"/>
+				<xs:element name="periodOfReport" type="ns1:DATE_TYPE" minOccurs="0"/>
+				<xs:element name="effectiveDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+				<xs:element name="invCompany" type="ns1:INVESTMENT_COMPANY_TYPE" minOccurs="0"/>
+				<xs:element name="insuranceSubstitutionFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+				<xs:element name="notifications" type="ns1:NOTIFICATION_TYPE" minOccurs="0"/>
+				<xs:element name="moduleSegments" type="ns1:MODULES_SEGMENT_TYPE" minOccurs="0"/>
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE"/>
+				<xs:element name="seriesClasses" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="mergeSeriesClass" type="ns2:MGR_SERIES_CLASS_TYPE"/>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="reportSeriesClass" type="ns2:RPT_SERIES_TYPE" minOccurs="0"/>
+									<xs:element name="reportClass" type="ns2:RPT_CLASS_TYPE" minOccurs="0"/>
+								</xs:choice>
+								<xs:choice>
+									<xs:sequence>
+										<xs:element name="newSeriesClass" type="ns2:NEW_SERIES_CLASS_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="newClass2" type="ns2:NEW_CLASS_TYPE_2" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:element name="newClass" type="ns2:NEW_CLASS_TYPE" minOccurs="0"/>
+								</xs:choice>
+							</xs:sequence>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

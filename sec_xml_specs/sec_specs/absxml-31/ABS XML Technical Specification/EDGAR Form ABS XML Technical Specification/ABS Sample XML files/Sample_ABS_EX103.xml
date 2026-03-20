@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetdata>
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. -->  
+<!-- Please refer to the EDGAR ABS XML Technical Specification and the related EDGAR ABS Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGAR ABS Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+	<assets>
+		<assetTypeNumber>ABS1</assetTypeNumber>
+		<assetNumber>2003</assetNumber>
+		<originalLoanAmount>0.01234567</originalLoanAmount>
+		<originalLoanTerm>99999999</originalLoanTerm>
+		<loanMaturityDate>03/2017</loanMaturityDate>
+		<!-- commments -->
+		<newEx103tag1>testdataonly</newEx103tag1>
+		<newEx103tag2>testdataonly</newEx103tag2>
+		<![CDATA[ narratives ]]>
+	</assets>
+	<assets>
+		<assetTypeNumber>ABS2</assetTypeNumber>
+		<assetNumber>2004</assetNumber>
+		<originalLoanAmount>0.01234567</originalLoanAmount>
+		<originalLoanTerm>99999999</originalLoanTerm>
+		<loanMaturityDate>03/2017</loanMaturityDate>
+		<!-- commments -->
+		<newEx103tag1>testdataonly</newEx103tag1>
+		<newEx103tag2>testdataonly</newEx103tag2>
+		<![CDATA[ narratives ]]>
+	</assets>
+</assetdata>

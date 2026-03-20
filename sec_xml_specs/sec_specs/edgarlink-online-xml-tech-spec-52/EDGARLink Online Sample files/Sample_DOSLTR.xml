@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coreg" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coreg eis_Coreg.xsd">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+  </cor:flags>
+  <cor:submissionType>DOSLTR</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000350001</cor:filerId>
+    <cor:filerCcc>dazzle#1</cor:filerCcc>
+  </cor:filer>
+  <cor:sros>
+		<com:sroId>ARCA</com:sroId>
+	</cor:sros>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>test1_primary.txt</com:conformedName>
+      <com:conformedDocumentType>DOSLTR</com:conformedDocumentType>
+      <com:contents>OC1LIHRlc3QgMSBkb2corbWVudA==</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

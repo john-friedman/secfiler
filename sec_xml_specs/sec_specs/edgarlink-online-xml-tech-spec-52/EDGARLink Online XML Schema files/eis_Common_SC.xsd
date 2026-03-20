@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/sccommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/sccommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:annotation>
+		<xs:documentation>This is the Series and Class element for an EDGARLink Online  Series and Class submission.</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="SERIES_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied series identifier.  Field is 10 characters.  The value must start with an "S" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SERIES_ID_NA_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied series identifier.  Field is 10 characters.  The value must start with an "S" followed by nine digits OR it can take N/A when applied to all series</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SERIES_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>Name of the new series to be created. Field is up to 150 characters. Text will be conformed to remove all leading and trailing spaces and any extra spaces between words.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+			<xs:pattern value="[A-Za-z0-9!#-$%():;'@\*\+\-/=\?\^_`~{|},. \\\s&lt;&gt;&amp;&quot;\[\]]{1,150}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLASS_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>Name of the new class (contract) to be created. Field is up to 150 characters. Text will be conformed to remove all leading and trailing spaces and any extra spaces between words.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+			<xs:pattern value="[A-Za-z0-9!#-$%():;'@\*\+\-/=\?\^_`~{|},. \\\s&lt;&gt;&amp;&quot;\[\]]{1,150}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CLASS_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied class (contract) identifier.  Field is 10 characters.  The value must start with a "C" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[C|c][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SERIES_CLASS_PAIR_TYPE">
+		<xs:sequence>
+			<xs:element name="seriesId" type="SERIES_ID_TYPE"/>
+			<xs:choice>
+				<xs:element name="includeAllClassesFlag" type="ns1:TRUE_FALSE_TYPE"/>
+				<xs:element name="classId" type="CLASS_ID_TYPE" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACQUIRING_TYPE">
+		<xs:annotation>
+			<xs:documentation>Identifies the investment company type of the acquiring company. Choose a value from the list displayed when the arrow is selected.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="acquiringInvCompanyType" type="MERGE_INV_COMPANY_TYPE"/>
+			<xs:element name="acquiringCik" type="ns1:CIK_TYPE"/>
+			<xs:element name="acquiringSeriesId" type="SERIES_ID_TYPE" minOccurs="0"/>
+			<xs:element name="acquiringClassId" type="CLASS_ID_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TARGET_TYPE">
+		<xs:sequence>
+			<xs:element name="targetInvCompanyType" type="MERGE_INV_COMPANY_TYPE"/>
+			<xs:element name="targetCik" type="ns1:CIK_TYPE"/>
+			<xs:choice>
+				<xs:element name="targetIncludeAllSeriesFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+				<xs:element name="targetSeriesClassInfo" type="SERIES_CLASS_PAIR_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="targetClassInfo" type="RPT_CLASS_TYPE" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ACQUIRING_TARGET_TYPE">
+		<xs:sequence>
+			<xs:element name="acquiringInfo" type="ACQUIRING_TYPE"/>
+			<xs:element name="targetInfo" type="TARGET_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- New Series and Class Element -->
+	<xs:complexType name="NEW_SERIES_CLASS_TYPE">
+		<xs:sequence>
+			<xs:element name="seriesName" type="SERIES_NAME_TYPE"/>
+			<xs:element name="useCompNameAsSeriesNameFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="className" type="CLASS_NAME_TYPE" maxOccurs="unbounded"/>
+			<xs:element name="useSeriesNameAsClassNameFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- New Class Element -->
+	<xs:complexType name="NEW_CLASS_TYPE">
+		<xs:sequence>
+			<xs:element name="className" type="CLASS_NAME_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="useCompNameAsClassNameFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- New Class Element -->
+	<xs:complexType name="NEW_CLASS_TYPE_2">
+		<xs:sequence>
+			<xs:element name="seriesId" type="SERIES_ID_TYPE" minOccurs="0"/>
+			<xs:element name="className" type="CLASS_NAME_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Report existing Series and Class Element -->
+	<xs:complexType name="RPT_SERIES_TYPE">
+		<xs:choice>
+			<xs:element name="rptIncludeAllSeriesFlag" type="ns1:TRUE_FALSE_TYPE"/>
+			<xs:element name="rptSeriesClassInfo" type="SERIES_CLASS_PAIR_TYPE" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Report existing Class Element -->
+	<xs:complexType name="RPT_CLASS_TYPE">
+		<xs:choice>
+			<xs:element name="rptIncludeAllClassesFlag" type="ns1:TRUE_FALSE_TYPE"/>
+			<xs:element name="rptClassId" type="CLASS_ID_TYPE" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Merge Series and Class Element -->
+	<xs:complexType name="MGR_SERIES_CLASS_TYPE">
+		<xs:sequence>
+			<xs:element name="mgrSeriesClass" type="ACQUIRING_TARGET_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SERIES_CLASS_TYPE">
+		<xs:union memberTypes="SERIES_ID_TYPE CLASS_ID_TYPE"/>
+	</xs:simpleType>
+	<xs:simpleType name="MERGE_INV_COMPANY_TYPE">
+		<xs:union memberTypes="ns1:INV_COMPANY_TYPE EMPTY_INV_COMPANY_TYPE"/>
+	</xs:simpleType>
+	<xs:simpleType name="EMPTY_INV_COMPANY_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Not an Investment Company"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MULTI_ACCESSION_NUMBERS_TYPE">
+		<xs:sequence>
+			<xs:element name="accessionNumber" type="ns1:ACCESSION_NUMBER_TYPE"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

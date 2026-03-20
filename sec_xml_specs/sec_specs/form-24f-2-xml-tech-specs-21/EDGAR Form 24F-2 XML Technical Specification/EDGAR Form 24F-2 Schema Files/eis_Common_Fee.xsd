@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sec.gov/edgar/feecommon" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/sccommon" targetNamespace="http://www.sec.gov/edgar/feecommon" elementFormDefault="qualified" attributeFormDefault="unqualified" xsi:noNamespaceSchemaLocation="eis_Common_Fee.xsd">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+	<xs:annotation>
+		<xs:documentation>This is the fee element for an EDGARLink Online  fee related submission.</xs:documentation>
+	</xs:annotation>
+	<!--1.  Purpose:  Defines the Sales Shares type, this is the fee element type for SingleFilerScFee family
+-->
+	<xs:complexType name="FEE_SALES_SHARE_TYPE">
+		<xs:sequence>
+			<xs:element name="submissionFee" type="FEE_TYPE"/>
+			<xs:element name="submissionSalesShares" type="SALES_SHARES_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Purpose:  Defines the Fee elements. -->
+	<xs:complexType name="FEE_OFFERING_TYPE">
+		<xs:sequence>
+			<xs:element name="feeOfferingTypeOfPayment" type="PAYMENT_TYPE" minOccurs="0"/>
+			<xs:element name="feeOfferingSecurityName" type="SECURITY_TYPE" minOccurs="0"/>
+			<xs:element name="feeOfferingShares" type="xs:nonNegativeInteger" minOccurs="0"/>
+			<xs:element name="feeOfferingAmountPerShare" type="DEC_NON_NEG_BILLIONS_PREC4" minOccurs="0"/>
+			<xs:element name="feeOfferingAggregatePrice" type="EDGAR_MONEY" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FEE_OFFSET_TYPE">
+	    <xs:annotation>
+            <xs:documentation>The calculated total of all offset payments.  This field is not editable.</xs:documentation>
+        </xs:annotation>
+		<xs:sequence>
+			<xs:element name="offsetCik" type="ns1:CIK_TYPE"/>
+			<xs:element name="offsetFormType" type="ns1:SUBMISSION_TYPE" minOccurs="0"/>
+			<xs:element name="offsetFileNumber" type="ns1:FILE_NUMBER_TYPE"/>
+			<xs:element name="offsetFilingDate" type="ns1:DATE_TYPE"/>
+			<xs:element name="offsetAmount" type="EDGAR_MONEY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Edgar Fee Section -->
+	<!-- Purpose: General used types-->
+	<xs:simpleType name="EDGAR_MONEY">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDGAR_MONEY_15DIGITS">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="EDGAR_MONEY_NEGATIVE">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[(][0-9]{0,15}[)]|[(][0-9]{0,15}[.][0-9]{1,2}[)]|[0]|[0][.][0]{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="DEC_NON_NEG_BILLIONS_PREC0">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="0"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DEC_NON_NEG_BILLIONS_PREC4">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999.9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PAYOR_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PAYMENT_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pay In Advance"/>
+			<xs:enumeration value="Pay As You Go"/>
+			<xs:enumeration value="Indeterminate"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SECURITY_TYPE_BASE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Debt"/>
+			<xs:enumeration value="Non-Convertible Debt"/>
+			<xs:enumeration value="Debt Convertible into Equity"/>
+			<xs:enumeration value="Equity"/>
+			<xs:enumeration value="Asset-Backed Securities"/>
+			<xs:enumeration value="Mortgage Backed Securities"/>
+			<xs:enumeration value="Limited Partnership Interests"/>
+			<xs:enumeration value="Unallocated (Universal) Shelf"/>
+			<xs:enumeration value="ADRs/ADSs"/>
+			<xs:enumeration value="Face Amount Certificates"/>
+			<xs:enumeration value="Exchange Traded Vehicle Securities"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SECURITY_TYPE_OTHER">
+		<xs:restriction base="xs:string">
+            <xs:pattern value="Other\..{1,106}"/>
+ 		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SECURITY_TYPE">
+		<xs:union memberTypes="SECURITY_TYPE_BASE SECURITY_TYPE_OTHER"/>
+	</xs:simpleType>
+	<xs:complexType name="FEE_TYPE">
+		<xs:sequence>
+			<xs:element name="feePayorInformation" type="PAYOR_TYPE" minOccurs="0"/>
+			<xs:element name="feeAmount" type="EDGAR_MONEY"/>
+			<xs:element name="feeBasis" type="EDGAR_MONEY" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SALES_SHARES_TYPE">
+		<xs:sequence>
+			<xs:element name="salesSharesItemizeFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="salesSharesInformation" type="SALES_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SALES_TYPE">
+		<xs:sequence>
+			<xs:element name="saleSharesSeriesOrClassId" type="ns2:SERIES_CLASS_TYPE" minOccurs="0"/>
+			<xs:element name="salesSharesSalesProceeds" type="EDGAR_MONEY"/>
+			<xs:element name="salesSharesRedeemedValue" type="EDGAR_MONEY" minOccurs="0"/>
+			<xs:element name="salesSharesNetValue" type="EDGAR_MONEY"/>
+			<xs:element name="salesSharesFeeAmount" type="DEC_NON_NEG_BILLIONS_PREC4"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SECURITY_SALES_SHARES_TYPE">
+		<xs:sequence>
+			<xs:element name="salesSharesLastFilingFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="salesSharesPaymentYear" type="ns1:YEAR_TYPE" minOccurs="0"/>
+			<xs:element name="salesSharesFiscalYearEnd" type="ns1:FISCAL_YEAR_TYPE_2" minOccurs="1"/>
+			<xs:element name="salesSharesInformation" type="SECURITY_SALES_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SECURITY_SALES_TYPE">
+		<xs:sequence>
+			<xs:element name="salesSharesSalesProceeds" type="EDGAR_MONEY"/>
+			<xs:element name="salesSharesRedeemedValueCurrent" type="EDGAR_MONEY" minOccurs="0"/>
+			<xs:element name="salesSharesRedeemedValuePrior" type="EDGAR_MONEY" minOccurs="0"/>
+			<xs:element name="salesSharesRedeemedValueCredit" type="EDGAR_MONEY" minOccurs="0"/>
+			<xs:element name="salesSharesNetValue" type="EDGAR_MONEY"/>
+			<xs:element name="salesSharesFeeAmount" type="DEC_NON_NEG_BILLIONS_PREC4"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregserial" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coregserial eis_CoReg_Serial.xsd">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>true</cor:returnCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>true</cor:overrideInternetFlag>
+  </cor:flags>
+  <cor:submissionType>424B1</cor:submissionType>
+  <cor:contact>
+    <com:name>a</com:name>
+    <com:phoneNumber>-</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>xxxxxxx</cor:filerCcc>
+    <cor:fileNumber>333-00000-1</cor:fileNumber>
+  </cor:filer>
+  <cor:depositorId>0000000000</cor:depositorId>
+  <cor:sponsorId>0000000000</cor:sponsorId>
+  <cor:absAssetClasses>
+    <com:absAssetClass>Resecuritization</com:absAssetClass>
+  </cor:absAssetClasses>
+  <cor:absSubAssetClasses>
+    <com:absSubAssetClass>Auto loans</com:absSubAssetClass>
+  </cor:absSubAssetClasses>
+  <cor:sros>
+    <com:sroId>AMEX</com:sroId>
+    <com:sroId>FINRA</com:sroId>
+    <com:sroId>ISE</com:sroId>
+    <com:sroId>NSX</com:sroId>
+    <com:sroId>NYSE</com:sroId>
+    <com:sroId>PCX</com:sroId>
+    <com:sroId>PHLX</com:sroId>
+  </cor:sros>
+  <cor:feeTableIncludedFlag>N</cor:feeTableIncludedFlag>
+  <cor:notifications>
+    <com:internetNotificationAddress>abc@sec.gov</com:internetNotificationAddress>
+    <com:internetNotificationAddress>def@sec.gov</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:references></cor:references>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>sf1_local_accession.txt</com:conformedName>
+      <com:conformedDocumentType>424B1</com:conformedDocumentType>
+      <com:contents>MDAwMDM1MDAwMS0xMy0wMTY2MDINCg==
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:edgarFee>
+    <cor:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>999999999999.99</feec:feeAmount>
+    </cor:submissionFee>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Pay In Advance</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Non-Convertible Debt</feec:feeOfferingSecurityName>
+      <feec:feeOfferingAggregatePrice>11111111111111.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+    <cor:submissionOffset>
+      <feec:offsetCik>0000000000</feec:offsetCik>
+      <feec:offsetFormType>424B1</feec:offsetFormType>
+      <feec:offsetFileNumber>333-00000-1</feec:offsetFileNumber>
+      <feec:offsetFilingDate>12-11-2013</feec:offsetFilingDate>
+      <feec:offsetAmount>50000.00</feec:offsetAmount>
+    </cor:submissionOffset>
+  </cor:edgarFee>
+</cor:edgarSubmission>

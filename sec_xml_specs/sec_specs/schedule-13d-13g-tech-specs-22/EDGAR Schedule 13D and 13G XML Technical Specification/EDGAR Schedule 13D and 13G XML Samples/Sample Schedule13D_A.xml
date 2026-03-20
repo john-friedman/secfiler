@@ -1,0 +1,124 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/schedule13D" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData>
+    <submissionType>SCHEDULE 13D/A</submissionType>
+    <previousAccessionNumber>0001314805-23-900664</previousAccessionNumber>
+    <filerInfo>
+      <filer>
+        <filerCredentials>
+          <cik>0001161286</cik>
+          <ccc>#tech123</ccc>
+        </filerCredentials>
+      </filer>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <flags>
+        <overrideInternetFlag>true</overrideInternetFlag>
+      </flags>
+      <contact>
+        <contactName>Joe</contactName>
+        <contactPhoneNumber>571-227-8985</contactPhoneNumber>
+        <contactEmailAddress>joe@gmail.com</contactEmailAddress>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>Joe1@gmail.com</notificationEmailAddress>
+        <notificationEmailAddress>Joe2@gmail.com</notificationEmailAddress>
+        <notificationEmailAddress>Joe3@gmail.com</notificationEmailAddress>
+      </notifications>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <coverPageHeader>
+      <amendmentNo>1</amendmentNo>
+      <securitiesClassTitle>Common Stock</securitiesClassTitle>
+      <dateOfEvent>06/07/2023</dateOfEvent>
+      <previouslyFiledFlag>true</previouslyFiledFlag>
+      <issuerInfo>
+        <issuerCIK>0001118676</issuerCIK>
+		<issuerCusips>
+			<issuerCusipNumber>212122121</issuerCusipNumber>
+			<issuerCusipNumber>212122122</issuerCusipNumber>
+			<issuerCusipNumber>212122123</issuerCusipNumber>
+		</issuerCusips>
+        <issuerName>New Rufus Test Co</issuerName>
+        <address>
+          <com:street1>123 HERE STREET</com:street1>
+          <com:street2>123 HERE STREET</com:street2>
+          <com:city>CITY</com:city>
+          <com:stateOrCountry>T1</com:stateOrCountry>
+          <com:zipCode>20345</com:zipCode>
+        </address>
+      </issuerInfo>
+      <authorizedPersons>
+        <notificationInfo>
+          <personName>Joe</personName>
+          <personPhoneNum>571-227-8598</personPhoneNum>
+          <personAddress>
+            <com:street1>Main St</com:street1>
+            <com:street2>Suite 500</com:street2>
+            <com:city>New York</com:city>
+            <com:stateOrCountry>GA</com:stateOrCountry>
+            <com:zipCode>21215</com:zipCode>
+          </personAddress>
+        </notificationInfo>
+        <notificationInfo>
+          <personName>Joe1</personName>
+          <personPhoneNum>589787</personPhoneNum>
+          <personAddress>
+            <com:street1>21212</com:street1>
+            <com:street2>212121</com:street2>
+            <com:city>Ashburn</com:city>
+            <com:stateOrCountry>VT</com:stateOrCountry>
+            <com:zipCode>2121212</com:zipCode>
+          </personAddress>
+        </notificationInfo>
+      </authorizedPersons>
+    </coverPageHeader>
+    <reportingPersons>
+      <reportingPersonInfo>
+        <reportingPersonCIK>0001161286</reportingPersonCIK>
+        <reportingPersonNoCIK>N</reportingPersonNoCIK>
+        <reportingPersonName>Phase V Steven-DEV5</reportingPersonName>
+        <legalProceedings>N</legalProceedings>
+        <isAggregateExcludeShares>N</isAggregateExcludeShares>
+      </reportingPersonInfo>
+      <reportingPersonInfo>
+        <reportingPersonCIK>0001314805</reportingPersonCIK>
+        <reportingPersonNoCIK>N</reportingPersonNoCIK>
+        <reportingPersonName>Fan</reportingPersonName>
+        <legalProceedings>N</legalProceedings>
+        <isAggregateExcludeShares>N</isAggregateExcludeShares>
+      </reportingPersonInfo>
+    </reportingPersons>
+    <items1To7>
+      <item1>
+        <securityTitle>Common Stock</securityTitle>
+        <issuerName>New Rufus Test Co</issuerName>
+        <issuerPrincipalAddress>
+          <com:street1>123 HERE STREET</com:street1>
+          <com:street2>123 HERE STREET</com:street2>
+          <com:city>CITY</com:city>
+          <com:stateOrCountry>T1</com:stateOrCountry>
+          <com:zipCode>20345</com:zipCode>
+        </issuerPrincipalAddress>
+      </item1>
+    </items1To7>
+    <signatureInfo>
+      <signaturePerson>
+        <signatureReportingPerson>Phase V Steven-DEV5</signatureReportingPerson>
+        <signatureDetails>
+          <signature>Phase V</signature>
+          <title>CTO</title>
+          <date>10/27/2023</date>
+        </signatureDetails>
+      </signaturePerson>
+      <signaturePerson>
+        <signatureReportingPerson>Fan</signatureReportingPerson>
+        <signatureDetails>
+          <signature>Fan</signature>
+          <title>COO</title>
+          <date>10/27/2023</date>
+        </signatureDetails>
+      </signaturePerson>
+      <commentText>Comments for Signature</commentText>
+    </signatureInfo>
+  </formData>
+</edgarSubmission>

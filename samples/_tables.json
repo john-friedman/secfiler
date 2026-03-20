@@ -1,0 +1,54 @@
+[
+  {
+    "footnoteText": "Contributions to non-profit organizations.",
+    "footnoteId": "F1",
+    "_table": "345_footnote"
+  },
+  {
+    "aff10B5One": "0",
+    "documentType": "4",
+    "notSubjectToSection16": "0",
+    "periodOfReport": "2025-08-28",
+    "remarks": null,
+    "schemaVersion": "X0508",
+    "issuerCik": "0001018724",
+    "issuerName": "AMAZON COM INC",
+    "issuerTradingSymbol": "AMZN",
+    "_table": "345"
+  },
+  {
+    "signatureDate": "2025-09-02",
+    "signatureName": "/s/ PAUL DAUBER, attorney-in-fact for Jeffrey P. Bezos, Executive Chair",
+    "_table": "345_owner_signature"
+  },
+  {
+    "rptOwnerCity": "SEATTLE",
+    "rptOwnerState": "WA",
+    "rptOwnerStateDescription": null,
+    "rptOwnerStreet1": "P.O. BOX 81226",
+    "rptOwnerStreet2": null,
+    "rptOwnerZipCode": "98108-1226",
+    "rptOwnerCik": "0001043298",
+    "rptOwnerName": "BEZOS JEFFREY P",
+    "isDirector": "1",
+    "isOfficer": "1",
+    "isOther": "0",
+    "isTenPercentOwner": "0",
+    "officerTitle": "Executive Chair",
+    "_table": "345_reporting_owner"
+  },
+  {
+    "securityTitleValue": "Common Stock, par value $.01  per share",
+    "equitySwapInvolved": "0",
+    "transactionCode": "G",
+    "transactionFormType": "4",
+    "transactionDateValue": "2025-08-28",
+    "directOrIndirectOwnershipValue": "D",
+    "sharesOwnedFollowingTransactionValue": "883258188",
+    "transactionAcquiredDisposedCodeValue": "D",
+    "transactionPricePerShareValue": "0",
+    "transactionSharesValue": "421693",
+    "transactionCodingFootnoteIdId": "F1",
+    "_table": "345_non_derivative_transaction"
+  }
+]

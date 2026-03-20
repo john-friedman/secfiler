@@ -1,0 +1,56 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregsc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>true</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>N-VPFS</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000350001</cor:filerId>
+    <cor:filerCcc>XXXXXXX#1</cor:filerCcc>
+    <cor:fileNumber>811-111111</cor:fileNumber>
+  </cor:filer>
+  <cor:coregs>
+    <cor:filer>
+      <cor:filerId>0001314914</cor:filerId>
+      <cor:filerCcc>dazzle#1</cor:filerCcc>
+      <cor:fileNumber>811-00001</cor:fileNumber>
+    </cor:filer>
+  </cor:coregs>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:periodOfReport>08-04-2020</cor:periodOfReport>
+  <cor:invCompany>
+    <com:invCompanyType>N-3</com:invCompanyType>
+  </cor:invCompany>
+  <cor:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>S</com:modOrSegFlag>
+      <com:nickName>MADULE</com:nickName>
+      <com:documentType>N-VPFS</com:documentType>
+    </com:moduleSegment>
+  </cor:moduleSegments>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>doc2.txt</com:conformedName>
+      <com:conformedDocumentType>N-VPFS</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpUZXN0IERvYw0KKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQoNCg==
+</com:contents>
+    </com:document>
+    <com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>EX-99.4c UNDER CONTR</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQp0ZXN0IGRvY3VtZW50
+MTExMTENCg0KICAgICAgICANCg0KKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqDQoNCg==
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:seriesClasses>
+    <cor:reportSeriesClass>
+      <scc:rptIncludeAllSeriesFlag>true</scc:rptIncludeAllSeriesFlag>
+    </cor:reportSeriesClass>
+  </cor:seriesClasses>
+</cor:edgarSubmission>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sin:edgarSubmission xmlns:sin="http://www.sec.gov/edgar/singlefilersc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/singlefilersc eis_SingleFiler_SC.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <sin:liveTestFlag>LIVE</sin:liveTestFlag>
+  <sin:flag>
+    <sin:confirmingCopyFlag>true</sin:confirmingCopyFlag>
+    <sin:returnCopyFlag>true</sin:returnCopyFlag>
+    <sin:overrideInternetFlag>true</sin:overrideInternetFlag>
+  </sin:flag>
+  <sin:submissionType>497K</sin:submissionType>
+  <sin:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </sin:contact>
+  <sin:filer>
+    <sin:filerId>1305274</sin:filerId>
+    <sin:filerCcc>test@123</sin:filerCcc>
+    <sin:fileNumber>002-00000-1</sin:fileNumber>
+  </sin:filer>
+  <sin:sros>
+    <com:sroId>NONE</com:sroId>
+    <com:sroId>AMEX</com:sroId>
+  </sin:sros>
+  <sin:invCompany>N-1A</sin:invCompany>
+  <sin:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </sin:notifications>
+  <sin:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A12345678</com:nickName>
+      <com:cik>1305274</com:cik>
+      <com:documentType>497K</com:documentType>
+    </com:moduleSegment>
+  </sin:moduleSegments>
+  <sin:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>497K</com:conformedDocumentType>
+      <com:description>This is description field</com:description>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </sin:documents>
+  <sin:seriesClasses>
+    <sin:reportSeriesClass>
+      <scc:rptSeriesClassInfo>
+        <scc:seriesId>S123456789</scc:seriesId>
+        <scc:classId>C123456789</scc:classId>
+      </scc:rptSeriesClassInfo>
+    </sin:reportSeriesClass>
+  </sin:seriesClasses>
+</sin:edgarSubmission>

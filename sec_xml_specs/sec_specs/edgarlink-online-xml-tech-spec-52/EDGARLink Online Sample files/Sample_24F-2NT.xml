@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sin:edgarSubmission xmlns:sin="http://www.sec.gov/edgar/singlefilerscfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/singlefilerscfee eis_SingleFiler_SC_Fee.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <sin:liveTestFlag>LIVE</sin:liveTestFlag>
+  <sin:flags>
+    <com:confirmingCopyFlag>false</com:confirmingCopyFlag>
+    <com:overrideInternetFlag>true</com:overrideInternetFlag>
+    <com:returnCopyFlag>false</com:returnCopyFlag>
+  </sin:flags>
+  <sin:submissionType>24F-2NT</sin:submissionType>
+  <sin:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </sin:contact>
+  <sin:filer>
+    <sin:filerId>1305274</sin:filerId>
+    <sin:filerCcc>test@123</sin:filerCcc>
+    <sin:fileNumber>333-00000-1</sin:fileNumber>
+  </sin:filer>
+  <sin:sros>
+    <com:sroId>NONE</com:sroId>
+    <com:sroId>NSX</com:sroId>
+  </sin:sros>
+  <sin:periodOfReport>11-04-2010</sin:periodOfReport>
+  <sin:invCompany>N-3</sin:invCompany>
+  <sin:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </sin:notifications>
+  <sin:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>S</com:modOrSegFlag>
+      <com:nickName>A12345678</com:nickName>
+      <com:documentType>24F-2NT</com:documentType>
+    </com:moduleSegment>
+  </sin:moduleSegments>
+  <sin:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>24F-2NT</com:conformedDocumentType>
+      <com:description>Description field text here...</com:description>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </sin:documents>
+  <sin:edgarFee>
+    <feec:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>1305274</feec:filerId>
+        <feec:filerCcc>test@123</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>200.00</feec:feeAmount>
+    </feec:submissionFee>
+    <feec:submissionSalesShares>
+      <feec:salesSharesItemizeFlag>true</feec:salesSharesItemizeFlag>
+      <feec:salesSharesInformation>
+        <feec:saleSharesSeriesOrClassId>C123456789</feec:saleSharesSeriesOrClassId>
+        <feec:salesSharesSalesProceeds>1111111.00</feec:salesSharesSalesProceeds>
+        <feec:salesSharesNetValue>1111111.00</feec:salesSharesNetValue>
+        <feec:salesSharesFeeAmount>792.22</feec:salesSharesFeeAmount>
+      </feec:salesSharesInformation>
+    </feec:submissionSalesShares>
+  </sin:edgarFee>
+</sin:edgarSubmission>

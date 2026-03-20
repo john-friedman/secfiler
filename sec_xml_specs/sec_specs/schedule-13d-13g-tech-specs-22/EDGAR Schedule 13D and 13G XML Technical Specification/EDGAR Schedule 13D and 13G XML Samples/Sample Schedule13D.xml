@@ -1,0 +1,182 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/schedule13D" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData>
+    <submissionType>SCHEDULE 13D</submissionType>
+    <filerInfo>
+      <filer>
+        <filerCredentials>
+          <cik>0001161286</cik>
+          <ccc>#tech123</ccc>
+        </filerCredentials>
+      </filer>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <flags>
+        <overrideInternetFlag>true</overrideInternetFlag>
+      </flags>
+      <contact>
+        <contactName>Joe</contactName>
+        <contactPhoneNumber>571-227-8985</contactPhoneNumber>
+        <contactEmailAddress>joe@gmail.com</contactEmailAddress>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>Joe1@gmail.com</notificationEmailAddress>
+        <notificationEmailAddress>Joe2@gmail.com</notificationEmailAddress>
+        <notificationEmailAddress>Joe3@gmail.com</notificationEmailAddress>
+      </notifications>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <coverPageHeader>
+      <securitiesClassTitle>Common Stock</securitiesClassTitle>
+      <dateOfEvent>06/07/2023</dateOfEvent>
+      <previouslyFiledFlag>true</previouslyFiledFlag>
+      <issuerInfo>
+        <issuerCIK>0001118676</issuerCIK>
+        <issuerCusips>
+			<issuerCusipNumber>212122121</issuerCusipNumber>
+			<issuerCusipNumber>212122122</issuerCusipNumber>
+			<issuerCusipNumber>212122123</issuerCusipNumber>
+		</issuerCusips>
+        <issuerName>New Rufus Test Co</issuerName>
+        <address>
+          <com:street1>Main St</com:street1>
+          <com:street2>Suite 2500</com:street2>
+          <com:city>Newyork City</com:city>
+          <com:stateOrCountry>NY</com:stateOrCountry>
+          <com:zipCode>11505</com:zipCode>
+        </address>
+      </issuerInfo>
+      <authorizedPersons>
+        <notificationInfo>
+          <personName>Joe</personName>
+          <personPhoneNum>571-227-8598</personPhoneNum>
+          <personAddress>
+            <com:street1>Main St</com:street1>
+            <com:street2>Suite 500</com:street2>
+            <com:city>New York</com:city>
+            <com:stateOrCountry>GA</com:stateOrCountry>
+            <com:zipCode>21215</com:zipCode>
+          </personAddress>
+        </notificationInfo>
+        <notificationInfo>
+          <personName>Joe1</personName>
+          <personPhoneNum>589787</personPhoneNum>
+          <personAddress>
+            <com:street1>21212</com:street1>
+            <com:street2>212121</com:street2>
+            <com:city>Ashburn</com:city>
+            <com:stateOrCountry>VT</com:stateOrCountry>
+            <com:zipCode>2121212</com:zipCode>
+          </personAddress>
+        </notificationInfo>
+      </authorizedPersons>
+    </coverPageHeader>
+    <reportingPersons>
+      <reportingPersonInfo>
+        <reportingPersonCIK>0001161286</reportingPersonCIK>
+        <reportingPersonNoCIK>N</reportingPersonNoCIK>
+        <reportingPersonName>Phase V Steven-DEV5</reportingPersonName>
+        <memberOfGroup>a</memberOfGroup>
+        <fundType>SC</fundType>
+        <fundType>BK</fundType>
+        <legalProceedings>N</legalProceedings>
+        <citizenshipOrOrganization>FL</citizenshipOrOrganization>
+        <soleVotingPower>2121212.00</soleVotingPower>
+        <sharedVotingPower>2121212.00</sharedVotingPower>
+        <soleDispositivePower>212121.00</soleDispositivePower>
+        <sharedDispositivePower>212121.00</sharedDispositivePower>
+        <aggregateAmountOwned>21222121.00</aggregateAmountOwned>
+        <isAggregateExcludeShares>N</isAggregateExcludeShares>
+        <percentOfClass>2.7</percentOfClass>
+        <typeOfReportingPerson>BD</typeOfReportingPerson>
+        <typeOfReportingPerson>EP</typeOfReportingPerson>
+        <commentContent>Comments for Reporting Person</commentContent>
+      </reportingPersonInfo>
+      <reportingPersonInfo>
+        <reportingPersonCIK>0001314805</reportingPersonCIK>
+        <reportingPersonNoCIK>N</reportingPersonNoCIK>
+        <reportingPersonName>Fan</reportingPersonName>
+        <memberOfGroup>b</memberOfGroup>
+        <fundType>SC</fundType>
+        <fundType>BK</fundType>
+        <legalProceedings>Y</legalProceedings>
+        <citizenshipOrOrganization>AZ</citizenshipOrOrganization>
+        <soleVotingPower>2121212121.00</soleVotingPower>
+        <sharedVotingPower>2121212121.00</sharedVotingPower>
+        <soleDispositivePower>2121212121.00</soleDispositivePower>
+        <sharedDispositivePower>212121212.00</sharedDispositivePower>
+        <aggregateAmountOwned>98989898.00</aggregateAmountOwned>
+        <isAggregateExcludeShares>Y</isAggregateExcludeShares>
+        <percentOfClass>23.6</percentOfClass>
+        <typeOfReportingPerson>BD</typeOfReportingPerson>
+        <typeOfReportingPerson>CP</typeOfReportingPerson>
+        <typeOfReportingPerson>EP</typeOfReportingPerson>
+        <typeOfReportingPerson>IA</typeOfReportingPerson>
+        <typeOfReportingPerson>IV</typeOfReportingPerson>
+        <typeOfReportingPerson>BK</typeOfReportingPerson>
+        <typeOfReportingPerson>CO</typeOfReportingPerson>
+        <typeOfReportingPerson>IN</typeOfReportingPerson>
+        <commentContent>This is just the test comments</commentContent>
+      </reportingPersonInfo>
+    </reportingPersons>
+    <items1To7>
+      <item1>
+        <securityTitle>Common Stock</securityTitle>
+        <issuerName>New Rufus Test Co</issuerName>
+        <issuerPrincipalAddress>
+          <com:street1>Main St</com:street1>
+          <com:street2>Suite 2500</com:street2>
+          <com:city>Newyork City</com:city>
+          <com:stateOrCountry>NY</com:stateOrCountry>
+          <com:zipCode>11505</com:zipCode>
+        </issuerPrincipalAddress>
+        <commentText>This is the comment for Item 1 This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1. This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1 This is the comment for Item 1This is the comment for Item 1This is the comment for Item 1</commentText>
+      </item1>
+      <item2>
+        <filingPersonName>22121212</filingPersonName>
+        <principalBusinessAddress>2121212121</principalBusinessAddress>
+        <principalJob>21212121</principalJob>
+        <hasBeenConvicted>21212121</hasBeenConvicted>
+        <convictionDescription>21212121</convictionDescription>
+        <citizenship>21212121</citizenship>
+      </item2>
+      <item3>
+        <fundsSource>2121212121</fundsSource>
+      </item3>
+      <item4>
+        <transactionPurpose>212121212121</transactionPurpose>
+      </item4>
+      <item5>
+        <percentageOfClassSecurities>2121212121</percentageOfClassSecurities>
+        <numberOfShares>2121212121</numberOfShares>
+        <transactionDesc>212121212121</transactionDesc>
+        <listOfShareholders>2121212212121</listOfShareholders>
+        <date5PercentOwnership>212121212121221</date5PercentOwnership>
+      </item5>
+      <item6>
+        <contractDescription>21221222122121212</contractDescription>
+      </item6>
+      <item7>
+        <filedExhibits>2122121</filedExhibits>
+      </item7>
+    </items1To7>
+    <signatureInfo>
+      <signaturePerson>
+        <signatureReportingPerson>Phase V Steven-DEV5</signatureReportingPerson>
+        <signatureDetails>
+          <signature>JOE</signature>
+          <title>JOE</title>
+          <date>06/15/2023</date>
+        </signatureDetails>
+      </signaturePerson>
+      <signaturePerson>
+        <signatureReportingPerson>Fan</signatureReportingPerson>
+        <signatureDetails>
+          <signature>FAN</signature>
+          <title>CFO</title>
+          <date>06/29/2023</date>
+        </signatureDetails>
+      </signaturePerson>
+      <commentText>Comments for Signature</commentText>
+    </signatureInfo>
+  </formData>
+</edgarSubmission>

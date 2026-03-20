@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/npxproxy/informationtable" xmlns:sccom="http://www.sec.gov/edgar/sccommon"
+           xmlns:ns1="http://www.sec.gov/edgar/common"
+           xmlns:iso="http://www.sec.gov/edgar/iso_statecodes"
+           targetNamespace="http://www.sec.gov/edgar/document/npxproxy/informationtable" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+    <xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+    <xs:import namespace="http://www.sec.gov/edgar/iso_statecodes" schemaLocation="eis_ISO_StateCodes.xsd" />
+    <xs:simpleType name="ENTITY_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:pattern value="[a-zA-Z0-9 ./?;:'`!~,@#$%^*()\[\]{}_+=|\-&amp;]{1,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NA_TYPE">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="N/A"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ISIN_TYPE">
+        <xs:annotation>
+            <xs:documentation>
+                The main body of the ISIN is the original CUSIP, assigned in the 1970s. The country code
+                "XX" has been added on the front, and an additional check digit at the end. The country
+                code indicates the country of issue.
+
+                The check digit is calculated using the Luhn algorithm.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="12"/>
+            <xs:pattern value="[A-Z]{2}[0-9A-Z]{5}[0-9A-Z#\*@&amp;]{3}[A-Z0-9][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ISIN_NA_TYPE">
+        <xs:union memberTypes="ISIN_TYPE NA_TYPE"/>
+    </xs:simpleType>
+    <xs:simpleType name="NON_ENTITY_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:pattern value="[a-zA-Z0-9\r\t\n ./?;:'`!~,@#$%^*&amp;\\()\[\]{}_+=|\-&lt;|&gt;|&quot;]{1,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="STRING_NENT_150_TYPE">
+        <xs:restriction base="NON_ENTITY_TYPE">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="150"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="STRING_100_TYPE">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="STRING_500_TYPE">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="500" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CUSIP_TYPE">
+        <xs:annotation>
+            <xs:documentation>Enter in Column 3 the nine (9) digit CUSIP number of the security.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9]{1,9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MATTER_DISCLOSURE_TYPE">
+        <xs:annotation>
+            <xs:documentation>
+                For reports filed by Funds, disclose whether the matter was proposed by the issuer or by a security holder.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ISSUER"/>
+            <xs:enumeration value="SECURITY HOLDER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SHARES_NUMBER_TYPE">
+      	<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="24"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	      </xs:simpleType>
+    <xs:simpleType name="VOTE_TYPE">
+        <xs:union>
+            <xs:simpleType>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="FOR"/>
+            <xs:enumeration value="AGAINST"/>
+            <xs:enumeration value="ABSTAIN"/>
+            <xs:enumeration value="WITHHOLD"/>
+        </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base='xs:string'/>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+<xs:simpleType name="MANAGEMENT_TYPE">
+<xs:restriction base="xs:token">
+    <xs:enumeration value="FOR"/>
+    <xs:enumeration value="AGAINST"/>
+    <xs:enumeration value="NONE"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="HOW_VOTED">
+<xs:sequence>
+    <xs:element name="voteRecord" type="HOW_SHARES_VOTED_TYPE" maxOccurs="999"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="HOW_SHARES_VOTED_TYPE" >
+<xs:annotation>
+    <xs:documentation>
+        How the shares were voted.
+    </xs:documentation>
+</xs:annotation>
+<xs:sequence>
+    <xs:element name="howVoted" type="VOTE_TYPE"/>
+    <xs:element name="sharesVoted" type="SHARES_NUMBER_TYPE"/>
+    <xs:element name="managementRecommendation" type="MANAGEMENT_TYPE"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="LEI_TYPE">
+<xs:annotation>
+    <xs:documentation>
+        LEI per www.gleif.org
+        Characters 1-4:     Prefix used to ensure the uniqueness among codes from LEI issuers (Local Operating Units or LOUs).
+        Characters 5-18:   Entity-specific part of the code generated and assigned by LOUs according to transparent, sound and robust allocation policies.
+        As required by ISO 17442, it contains no embedded intelligence.
+        Characters 19-20: Two check digits as described in the ISO 17442 standard.
+    </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+    <xs:pattern value="[0-9A-Z]{1,18}[0-9]{1,2}"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="OTHER_MANAGERS">
+<xs:sequence>
+    <xs:element name="otherManagers" type="OTHER_MANAGER" maxOccurs="25"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OTHER_MANAGER">
+<xs:annotation>
+    <xs:documentation>These elements are part of the OTHER_MANAGER
+    </xs:documentation>
+</xs:annotation>
+<xs:sequence>
+    <xs:element name="otherManager" type="ns1:INTEGER_NONNEGATIVE_3"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="SERIES_ID_TYPE">
+<xs:annotation>
+    <xs:documentation>SEC-supplied series identifier.  Field is 10 characters.  The value must start with an "S" followed by nine digits.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+    <xs:pattern value="[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="VOTED_MATTER_CATEGORIES_TYPE_1">
+<xs:sequence>
+    <xs:element name="voteCategory" type="VOTED_MATTER_CATEGORY_TYPE" minOccurs="1" maxOccurs="14"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="VOTED_MATTER_CATEGORY_TYPE">
+<xs:sequence>
+    <xs:element name="categoryType" type="CATEGORY_TYPE" />
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="CATEGORY_TYPE">
+<xs:annotation>
+    <xs:documentation>
+        All categories applicable to the matter voted on.
+    </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+    <xs:enumeration value="DIRECTOR ELECTIONS"/>
+    <xs:enumeration value="SECTION 14A SAY-ON-PAY VOTES"/>
+    <xs:enumeration value="AUDIT-RELATED"/>
+    <xs:enumeration value="INVESTMENT COMPANY MATTERS"/>
+    <xs:enumeration value="SHAREHOLDER RIGHTS AND DEFENSES"/>
+    <xs:enumeration value="EXTRAORDINARY TRANSACTIONS"/>
+    <xs:enumeration value="CAPITAL STRUCTURE"/>
+    <xs:enumeration value="COMPENSATION"/>
+    <xs:enumeration value="CORPORATE GOVERNANCE"/>
+    <xs:enumeration value="ENVIRONMENT OR CLIMATE"/>
+    <xs:enumeration value="HUMAN RIGHTS OR HUMAN CAPITAL/WORKFORCE"/>
+    <xs:enumeration value="DIVERSITY, EQUITY, AND INCLUSION"/>
+    <xs:enumeration value="OTHER SOCIAL ISSUES"/>
+    <xs:enumeration value="OTHER"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="INFO_TABLE">
+<xs:sequence>
+    <xs:element name="issuerName" type="ns1:NAME_TYPE_150"/>
+    <xs:element name="cusip" type="CUSIP_TYPE" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="isin" type="ISIN_NA_TYPE" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="figi" type="ns1:STRING_12_TYPE" minOccurs="0" maxOccurs="1" />
+    <xs:element name="meetingDate" type="ns1:DATE_TYPE2"/>
+    <xs:element name="voteDescription" type="ns1:STRING_20K_TYPE" />
+    <xs:element name="voteCategories" type="VOTED_MATTER_CATEGORIES_TYPE_1" />
+    <xs:element name="otherVoteDescription" type="STRING_500_TYPE" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="voteSource" type="MATTER_DISCLOSURE_TYPE" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="sharesVoted" type="SHARES_NUMBER_TYPE"/>
+    <xs:element name="sharesOnLoan" type="SHARES_NUMBER_TYPE"/>
+    <xs:element name="vote" type="HOW_VOTED" minOccurs="0"/>
+    <xs:element name="voteManager" type="OTHER_MANAGERS" minOccurs="0" />
+    <xs:element name="voteSeries" type="SERIES_ID_TYPE" minOccurs="0" maxOccurs="1" />
+    <xs:element name="voteOtherInfo" type="ns1:STRING_4000_TYPE" minOccurs="0" maxOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="proxyVoteTable">
+<xs:complexType>
+    <xs:sequence>
+        <xs:element name="proxyTable" type="INFO_TABLE" maxOccurs="500000"/>
+    </xs:sequence>
+</xs:complexType>
+</xs:element>
+        </xs:schema>

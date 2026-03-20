@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<n1:edgarSubmission xmlns="http://www.sec.gov/edgar/common" xmlns:n1="http://www.sec.gov/edgar/abs15gfiler" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/abs15gfiler eis_ABS_15GFiler.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+	<n1:liveTestFlag>LIVE</n1:liveTestFlag>
+	<n1:flag>
+		<n1:confirmingCopyFlag>false</n1:confirmingCopyFlag>
+		<n1:overrideInternetFlag>false</n1:overrideInternetFlag>
+		<n1:returnCopyFlag>false</n1:returnCopyFlag>
+	</n1:flag>
+	<n1:sros>
+		<sroId>NONE</sroId>
+	</n1:sros>
+	<n1:periodOfReport>04-25-2018</n1:periodOfReport>
+	<n1:submissionType>ABS-15G</n1:submissionType>
+	<n1:assetClassType>Residential mortgages - Prime</n1:assetClassType>
+	<n1:filer>
+		<n1:filerId>0000350001</n1:filerId>
+		<n1:filerCcc>dazzle#1</n1:filerCcc>
+	</n1:filer>
+	<n1:rule15GaType>
+		<n1:rule15Ga2Type>
+			<n1:isRule15Ga2>true</n1:isRule15Ga2>
+			<n1:rule15Ga2Item>2.01</n1:rule15Ga2Item>
+			<n1:isRegistered>Y</n1:isRegistered>
+			<n1:securitizer>
+				<n1:securitizerHasCik>Y</n1:securitizerHasCik>
+				<n1:securitizerCik>0000350001</n1:securitizerCik>
+				<n1:securitizerHas025FileNumber>Y</n1:securitizerHas025FileNumber>
+				<n1:securitizerFileNumber>025-00008</n1:securitizerFileNumber>
+			</n1:securitizer>
+			<n1:depositor>
+				<depositorId>0000350001</depositorId>
+				<depositorFileNumber>025-00008</depositorFileNumber>
+			</n1:depositor>
+			<n1:issuer>
+				<n1:issuingEntityCik>0000350001</n1:issuingEntityCik>
+				<n1:issuingEntityHasFileNumber>Y</n1:issuingEntityHasFileNumber>
+				<n1:issuingEntityFileNumber>333-101735</n1:issuingEntityFileNumber>
+			</n1:issuer>
+		</n1:rule15Ga2Type>
+	</n1:rule15GaType>
+	<n1:documents>
+		<document>
+		      <conformedName>test.txt</conformedName>
+		      <conformedDocumentType>ABS-15G</conformedDocumentType>
+		      <contents>VGhpcyBpcyBhIHRlc3Qgc3VibWlzc2lvbi4=</contents>
+		</document>
+	</n1:documents>
+</n1:edgarSubmission>

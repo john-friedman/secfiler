@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregserial" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coregserial eis_CoReg_Serial.xsd">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+    <cor:serialFlag>false</cor:serialFlag>
+  </cor:flags>
+  <cor:submissionType>ABS-EE</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000350001</cor:filerId>
+    <cor:filerCcc>dazzle#1</cor:filerCcc>
+    <cor:fileNumber>333-101860</cor:fileNumber>
+  </cor:filer>
+  <cor:depositorId>0000350001</cor:depositorId>
+  <cor:sponsorId>0000350001</cor:sponsorId>
+  <cor:absAssetClasses>
+    <com:absAssetClass>Other</com:absAssetClass>
+  </cor:absAssetClasses>
+  <cor:absSubAssetClasses></cor:absSubAssetClasses>
+  <cor:startPeriod>08-04-2014</cor:startPeriod>
+  <cor:endPeriod>08-06-2014</cor:endPeriod>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:feeTableInProspectusFlag>false</cor:feeTableInProspectusFlag>
+  <cor:references></cor:references>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>PrimaryDoc.txt</com:conformedName>
+      <com:conformedDocumentType>ABS-EE</com:conformedDocumentType>
+      <com:description>edgar</com:description>
+      <com:contents>VEhJUyBJUyBBIFBSSU1BUlkgRE9D
+</com:contents>
+    </com:document>
+    <com:document>
+      <com:conformedName>Sample_abs_AutoLease.xml</com:conformedName>
+      <com:conformedDocumentType>EX-102</com:conformedDocumentType>
+      <com:description>edgar1</com:description>
+      <com:contents>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhLS1TYW1wbGUgWE1M
+IGZpbGUgZ2VuZXJhdGVkIGJ5IFhNTFNweSB2MjAxMiBzcDEgKGh0dHA6Ly93d3cuYWx0b3Zh
+LmNvbSktLT4NCjxhc3NldERhdGEgeG1sbnM9Imh0dHA6Ly93d3cuc2VjLmdvdi9lZGdhci9k
+b2N1bWVudC9hYnNlZS9hdXRvbGVhc2UvYXNzZXRkYXRhIj4NCjxhc3NldHM+DQoJCTxhc3Nl
+dFR5cGVOdW1iZXI+QUJTMTAwMDE8L2Fzc2V0VHlwZU51bWJlcj4NCgkJPGFzc2V0TnVtYmVy
+PjIwMDAxPC9hc3NldE51bWJlcj4NCgkJPHJlcG9ydGluZ1BlcmlvZEJlZ2luRGF0ZT4xMC0x
+My0yMDEzPC9yZXBvcnRpbmdQZXJpb2RCZWdpbkRhdGU+DQoJCTxyZXBvcnRpbmdQZXJpb2RF
+bmREYXRlPjEwLTIwLTIwMTQ8L3JlcG9ydGluZ1BlcmlvZEVuZERhdGU+DQoJCTxvcmlnaW5h
+dG9yTmFtZT5HTUFDPC9vcmlnaW5hdG9yTmFtZT4NCgkJPGFjcXVpc2l0aW9uQ29zdEFtb3Vu
+dD4yMDAwMC4wMDwvYWNxdWlzaXRpb25Db3N0QW1vdW50Pg0KCQk8b3JpZ2luYWxMZWFzZVRl
+cm1OdW1iZXI+MTwvb3JpZ2luYWxMZWFzZVRlcm1OdW1iZXI+DQoJCTxzY2hlZHVsZWRUZXJt
+aW5hdGlvbkRhdGU+MTAvMjAxNDwvc2NoZWR1bGVkVGVybWluYXRpb25EYXRlPg0KCQk8b3Jp
+Z2luYWxGaXJzdFBheW1lbnREYXRlPjEwLzIwMTQ8L29yaWdpbmFsRmlyc3RQYXltZW50RGF0
+ZT4NCgkJPHVuZGVyd3JpdGluZ0luZGljYXRvcj50cnVlPC91bmRlcndyaXRpbmdJbmRpY2F0
+b3I+DQoJCTxncmFjZVBlcmlvZE51bWJlcj4xPC9ncmFjZVBlcmlvZE51bWJlcj4NCgkJPHBh
+eW1lbnRUeXBlQ29kZT45ODwvcGF5bWVudFR5cGVDb2RlPg0KCQk8c3VidmVudGlvbkNvZGU+
+MDwvc3VidmVudGlvbkNvZGU+DQoJCTxzdWJ2ZW50aW9uQ29kZT45ODwvc3VidmVudGlvbkNv
+ZGU+DQoJCTxzdWJ2ZW50aW9uQ29kZT4xPC9zdWJ2ZW50aW9uQ29kZT4NCgkJPHZlaGljbGVN
+YW51ZmFjdHVyZXJOYW1lPkZvcmQ8L3ZlaGljbGVNYW51ZmFjdHVyZXJOYW1lPg0KCQk8dmVo
+aWNsZU1vZGVsTmFtZT5Gb2N1czwvdmVoaWNsZU1vZGVsTmFtZT4NCgkJPHZlaGljbGVOZXdV
+c2VkQ29kZT4xPC92ZWhpY2xlTmV3VXNlZENvZGU+DQoJCTx2ZWhpY2xlTW9kZWxZZWFyPjIw
+MTM8L3ZlaGljbGVNb2RlbFllYXI+DQoJCTx2ZWhpY2xlVHlwZUNvZGU+MTwvdmVoaWNsZVR5
+cGVDb2RlPg0KCQk8emVyb0JhbGFuY2VFZmZlY3RpdmVEYXRlPjEwLzIwMTQ8L3plcm9CYWxh
+bmNlRWZmZWN0aXZlRGF0ZT4NCgkJPHplcm9CYWxhbmNlQ29kZT45OTwvemVyb0JhbGFuY2VD
+b2RlPg0KCQk8emVyb0JhbGFuY2VDb2RlPjQ8L3plcm9CYWxhbmNlQ29kZT4NCgkJPHplcm9C
+YWxhbmNlQ29kZT4xPC96ZXJvQmFsYW5jZUNvZGU+DQoJPC9hc3NldHM+CQ0KPC9hc3NldERh
+dGE+DQo=
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

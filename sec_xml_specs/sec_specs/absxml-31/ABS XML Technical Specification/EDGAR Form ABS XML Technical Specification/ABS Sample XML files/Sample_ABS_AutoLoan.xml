@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetData xmlns="http://www.sec.gov/edgar/document/absee/autoloan/assetdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.sec.gov/edgar/document/absee/autoloan/assetdata eis_ABS_AutoLoanAssetData.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. -->  
+<!-- Please refer to the EDGAR ABS XML Technical Specification and the related EDGAR ABS Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGAR ABS Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+ <assets>
+		<assetTypeNumber>a</assetTypeNumber>
+		<assetNumber>a</assetNumber>
+		<reportingPeriodBeginningDate>12-31-2015</reportingPeriodBeginningDate>
+		<reportingPeriodEndingDate>12-31-2015</reportingPeriodEndingDate>
+		<originatorName>a</originatorName>
+		<originationDate>11/2015</originationDate>
+		<originalLoanAmount>-999999999999.99999999</originalLoanAmount>
+		<originalLoanTerm>0</originalLoanTerm>
+		<loanMaturityDate>11/2015</loanMaturityDate>
+		<originalInterestRatePercentage>-999999999999.99999999</originalInterestRatePercentage>
+		<interestCalculationTypeCode>98</interestCalculationTypeCode>
+		<originalInterestRateTypeCode>1</originalInterestRateTypeCode>
+		<originalInterestOnlyTermNumber>-99999999</originalInterestOnlyTermNumber>
+		<originalFirstPaymentDate>11/2015</originalFirstPaymentDate>
+		<underwritingIndicator>true</underwritingIndicator>
+		<gracePeriodNumber>0</gracePeriodNumber>
+		<paymentTypeCode>98</paymentTypeCode>
+		<subvented>2</subvented>
+		<vehicleManufacturerName>a</vehicleManufacturerName>
+		<vehicleModelName>a</vehicleModelName>
+		<vehicleNewUsedCode>1</vehicleNewUsedCode>
+		<vehicleModelYear>a</vehicleModelYear>
+		<vehicleTypeCode>1</vehicleTypeCode>
+		<vehicleValueAmount>-999999999999.99999999</vehicleValueAmount>
+		<vehicleValueSourceCode>2</vehicleValueSourceCode>
+		<obligorCreditScoreType>a</obligorCreditScoreType>
+		<obligorCreditScore>a</obligorCreditScore>
+		<obligorIncomeVerificationLevelCode>5</obligorIncomeVerificationLevelCode>
+		<obligorEmploymentVerificationCode>3</obligorEmploymentVerificationCode>
+		<coObligorIndicator>true</coObligorIndicator>
+		<paymentToIncomePercentage>-999999999999.99999999</paymentToIncomePercentage>
+		<obligorGeographicLocation>a</obligorGeographicLocation>
+		<assetAddedIndicator>true</assetAddedIndicator>
+		<remainingTermToMaturityNumber>0</remainingTermToMaturityNumber>
+		<reportingPeriodModificationIndicator>true</reportingPeriodModificationIndicator>
+		<servicingAdvanceMethodCode>3</servicingAdvanceMethodCode>
+		<reportingPeriodBeginningLoanBalanceAmount>-999999999999.99999999</reportingPeriodBeginningLoanBalanceAmount>
+		<nextReportingPeriodPaymentAmountDue>-999999999999.99999999</nextReportingPeriodPaymentAmountDue>
+		<reportingPeriodInterestRatePercentage>-999999999999.99999999</reportingPeriodInterestRatePercentage>
+		<nextInterestRatePercentage>-999999999999.99999999</nextInterestRatePercentage>
+		<servicingFeePercentage>-999999999999.99999999</servicingFeePercentage>
+		<servicingFlatFeeAmount>-999999999999.99999999</servicingFlatFeeAmount>
+		<otherServicerFeeRetainedByServicer>-999999999999.99999999</otherServicerFeeRetainedByServicer>
+		<otherAssessedUncollectedServicerFeeAmount>-999999999999.99999999</otherAssessedUncollectedServicerFeeAmount>
+		<scheduledInterestAmount>-999999999999.99999999</scheduledInterestAmount>
+		<scheduledPrincipalAmount>-999999999999.99999999</scheduledPrincipalAmount>
+		<otherPrincipalAdjustmentAmount>-999999999999.99999999</otherPrincipalAdjustmentAmount>
+		<reportingPeriodActualEndBalanceAmount>-999999999999.99999999</reportingPeriodActualEndBalanceAmount>
+		<reportingPeriodScheduledPaymentAmount>-999999999999.99999999</reportingPeriodScheduledPaymentAmount>
+		<totalActualAmountPaid>-999999999999.99999999</totalActualAmountPaid>
+		<actualInterestCollectedAmount>-999999999999.99999999</actualInterestCollectedAmount>
+		<actualPrincipalCollectedAmount>-999999999999.99999999</actualPrincipalCollectedAmount>
+		<actualOtherCollectedAmount>-999999999999.99999999</actualOtherCollectedAmount>
+		<servicerAdvancedAmount>-999999999999.99999999</servicerAdvancedAmount>
+		<interestPaidThroughDate>12-31-2015</interestPaidThroughDate>
+		<zeroBalanceEffectiveDate>11/2015</zeroBalanceEffectiveDate>
+		<zeroBalanceCode>2</zeroBalanceCode>
+		<currentDelinquencyStatus>0</currentDelinquencyStatus>
+		<primaryLoanServicerName>a</primaryLoanServicerName>
+		<mostRecentServicingTransferReceivedDate>11/2015</mostRecentServicingTransferReceivedDate>
+		<assetSubjectDemandIndicator>true</assetSubjectDemandIndicator>
+		<assetSubjectDemandStatusCode>3</assetSubjectDemandStatusCode>
+		<repurchaseAmount>-999999999999.99999999</repurchaseAmount>
+		<demandResolutionDate>12-31-2015</demandResolutionDate>
+		<repurchaserName>a</repurchaserName>
+		<repurchaseReplacementReasonCode>99</repurchaseReplacementReasonCode>
+		<chargedoffPrincipalAmount>-999999999999.99999999</chargedoffPrincipalAmount>
+		<recoveredAmount>-999999999999.99999999</recoveredAmount>
+		<modificationTypeCode>98</modificationTypeCode>
+		<paymentExtendedNumber>0</paymentExtendedNumber>
+		<repossessedIndicator>true</repossessedIndicator>
+		<repossessedProceedsAmount>-999999999999.99999999</repossessedProceedsAmount>
+	</assets>
+</assetData>

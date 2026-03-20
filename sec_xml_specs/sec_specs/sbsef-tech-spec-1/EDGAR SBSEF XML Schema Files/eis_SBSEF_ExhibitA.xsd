@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/sbsef/exhibita" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns3="http://www.sec.gov/edgar/sbsefcommon" targetNamespace="http://www.sec.gov/edgar/document/sbsef/exhibita" elementFormDefault="qualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sbsefcommon" schemaLocation="eis_SBSEF_common.xsd"/>
+	<xs:complexType name="EXHIBIT_A_INFO">
+		<xs:annotation>
+			<xs:documentation>These elements part of the repeatable EXHIBIT_A_INFO group</xs:documentation>
+			<xs:documentation>ownershipNameConfFlag percentageOwnershipConfFlag addressConfFlag agreementDescriptionConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ownershipName" type="ns1:STRING_150_TYPE"/>
+			<xs:element name="percentageOwnership" type="ns1:DECIMAL_TYPE1_4_FIXED" minOccurs="0"/>
+			<xs:element name="address" type="ns3:BUSINESS_ADDRESS_TYPE"/>
+			<xs:element name="agreementDescription" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="ownershipNameConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="percentageOwnershipConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="addressConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="agreementDescriptionConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_A_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an sbsef exhibit A.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exhibitAInfo" type="EXHIBIT_A_INFO" minOccurs="0" maxOccurs="50"/>
+			<xs:element name="questionApplicableFlag" type="ns1:TRUE_FALSE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

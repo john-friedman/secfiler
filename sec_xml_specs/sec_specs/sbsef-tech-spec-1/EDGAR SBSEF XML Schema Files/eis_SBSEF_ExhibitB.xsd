@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/sbsef/exhibitb" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns3="http://www.sec.gov/edgar/sbsefcommon" targetNamespace="http://www.sec.gov/edgar/document/sbsef/exhibitb" elementFormDefault="qualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sbsefcommon" schemaLocation="eis_SBSEF_common.xsd"/>
+	<xs:complexType name="EXHIBIT_B_INFO">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EXHIBIT_B_INFO</xs:documentation>
+			<xs:documentation>nameTitleConfFlag dateConfFlag positionLengthConfFlag businessAccountExperienceConfFlag businessAffiliatesConfFlag
+				directorCommitteesConfFlag disciplinaryActionConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="title" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="nameTitleConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="commencementDate" type="ns1:DATE_TYPE2" minOccurs="0"/>
+			<xs:element name="terminationDate" type="ns1:DATE_TYPE2" minOccurs="0"/>
+			<xs:element name="dateConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="positionLength" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="positionLengthConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="businessAccountExperience" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="businessAccountExperienceConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="businessAffiliates" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="businessAffiliatesConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="directorCommittees" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="directorCommitteesConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="hasDisciplinaryAction" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+			<xs:element name="disciplinaryActionReason" type="ns3:STRING_10K_0_TYPE" minOccurs="0"/>
+			<xs:element name="disciplinaryActionConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_B_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an sbsef exhibit B.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exhibitBInfo" type="EXHIBIT_B_INFO" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

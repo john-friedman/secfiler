@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edgarSubmission
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="formDSubmission.xsd.xml">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. -->  
+<!-- Please refer to the EDGAR Form D XML Technical Specification and the related EDGAR Form D Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGAR Form D Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+	<submissionType>D/A</submissionType>
+	<testOrLive>LIVE</testOrLive>
+	<returnCopy>false</returnCopy>
+	<contactData>
+		<contactName>Joe Filer</contactName>
+		<contactPhoneNumber>123-456-7890</contactPhoneNumber>
+		<contactEmailAddress>joe.filer@companyABC.com</contactEmailAddress>
+	</contactData>
+	<notificationAddressList>
+		<notificationEmailAddress>john.doe@companyABC.com</notificationEmailAddress>
+		<notificationEmailAddress>sales@companyABC.com</notificationEmailAddress>
+		<notificationEmailAddress>john.doe@gmail.com</notificationEmailAddress>
+	</notificationAddressList>
+	<primaryIssuer>
+		<cik>1212121212</cik>
+		<ccc>pa$$w0rd</ccc>
+		<issuerAddress>
+			<street1>1234 Main Street</street1>
+			<street2>Suite 1234</street2>
+			<city>City</city>
+			<stateOrCountry>MO</stateOrCountry>
+			<stateOrCountryDescription>MISSOURI</stateOrCountryDescription>
+			<zipCode>12345</zipCode>
+		</issuerAddress>
+		<issuerPhoneNumber>123-123-1234</issuerPhoneNumber>
+		<issuerPreviousNameList>
+			<previousName>Entity Previous Name</previousName>
+		</issuerPreviousNameList>
+		<entityType>Corporation</entityType>
+		<yearOfInc>
+			<yetToBeFormed>true</yetToBeFormed>
+		</yearOfInc>
+	</primaryIssuer>
+	<issuerList>
+		<issuer>
+			<cik>2323232323</cik>
+			<ccc>pa$$w0rd</ccc>
+			<issuerAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</issuerAddress>
+			<issuerPhoneNumber>123-123-1234</issuerPhoneNumber>
+			<issuerPreviousNameList>
+				<previousName>First Previous Name</previousName>
+				<previousName>Second Previous Name</previousName>
+				<previousName>Third Previous Name</previousName>
+			</issuerPreviousNameList>
+			<entityType>Other</entityType>
+			<entityTypeOtherDesc>A description is required for the Other Entity Type</entityTypeOtherDesc>
+			<yearOfInc>
+				<withinFiveYears>true</withinFiveYears>
+				<value>2006</value>
+			</yearOfInc>
+		</issuer>
+		<issuer>
+			<cik>3434343434</cik>
+			<ccc>pa$$w0rd</ccc>
+			<issuerAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</issuerAddress>
+			<issuerPhoneNumber>123-123-1234</issuerPhoneNumber>
+			<entityType>General Partnership</entityType>
+			<yearOfInc>
+				<yetToBeFormed>true</yetToBeFormed>
+			</yearOfInc>
+		</issuer>
+		<issuer>
+			<cik>4545454545</cik>
+			<ccc>pa$$w0rd</ccc>
+			<issuerAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</issuerAddress>
+			<issuerPhoneNumber>123-123-1234</issuerPhoneNumber>
+			<issuerPreviousNameList>
+				<previousName>First Previous Name</previousName>
+				<previousName>Second Previous Name</previousName>
+			</issuerPreviousNameList>
+			<entityType>Corporation</entityType>
+			<yearOfInc>
+				<overFiveYears>true</overFiveYears>
+			</yearOfInc>
+		</issuer>
+	</issuerList>
+	<relatedPersonsList>
+		<relatedPersonInfo>
+			<relatedPersonName>
+				<firstName>First</firstName>
+				<middleName>Related</middleName>
+				<lastName>Person</lastName>
+			</relatedPersonName>
+			<relatedPersonAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</relatedPersonAddress>
+			<relatedPersonRelationshipList>
+				<relationship>Director</relationship>
+			</relatedPersonRelationshipList>
+			<relationshipClarification>There is no clarification needed.</relationshipClarification>
+		</relatedPersonInfo>
+		<relatedPersonInfo>
+			<relatedPersonName>
+				<firstName>Second</firstName>
+				<middleName>Related</middleName>
+				<lastName>Person</lastName>
+			</relatedPersonName>
+			<relatedPersonAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</relatedPersonAddress>
+			<relatedPersonRelationshipList>
+				<relationship>Executive Officer</relationship>
+			</relatedPersonRelationshipList>
+			<relationshipClarification>There is no clarification needed.</relationshipClarification>
+		</relatedPersonInfo>
+		<relatedPersonInfo>
+			<relatedPersonName>
+				<firstName>Third</firstName>
+				<middleName>Related</middleName>
+				<lastName>Person</lastName>
+			</relatedPersonName>
+			<relatedPersonAddress>
+				<street1>1234 Here Street</street1>
+				<city>The City</city>
+				<stateOrCountry>VA</stateOrCountry>
+				<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+				<zipCode>12345</zipCode>
+			</relatedPersonAddress>
+			<relatedPersonRelationshipList>
+				<relationship>Director</relationship>
+				<relationship>Promoter</relationship>
+				<relationship>Executive Officer</relationship>
+			</relatedPersonRelationshipList>
+			<relationshipClarification>There is no clarification needed.</relationshipClarification>
+		</relatedPersonInfo>
+	</relatedPersonsList>
+	<offeringData>
+		<industryGroup>
+			<industryGroupType>Pooled Investment Fund</industryGroupType>
+			<investmentFundInfo>
+				<investmentFundType>Venture Capital Fund</investmentFundType>
+				<is40Act>false</is40Act>
+			</investmentFundInfo>
+		</industryGroup>
+		<issuerSize>
+			<revenueRange>$5,000,001 - $25,000,000</revenueRange>
+		</issuerSize>
+		<federalExemptionsExclusions>
+			<item>04.3</item>
+			<item>3C</item>
+			<item>3C.4</item>
+			<item>3C.13</item>
+			<item>4a5</item>
+			<item>06c</item>
+		</federalExemptionsExclusions>
+		<typeOfFiling>
+			<newOrAmendment>
+				<isAmendment>true</isAmendment>
+				<previousAccessionNumber>1212121212-08-232323</previousAccessionNumber>
+			</newOrAmendment>
+			<dateOfFirstSale>
+				<yetToOccur>true</yetToOccur>
+			</dateOfFirstSale>
+		</typeOfFiling>
+		<durationOfOffering>
+			<moreThanOneYear>true</moreThanOneYear>
+		</durationOfOffering>
+		<typesOfSecuritiesOffered>
+			<isDebtType>true</isDebtType>
+			<isPooledInvestmentFundType>true</isPooledInvestmentFundType>
+			<isOtherType>true</isOtherType>
+			<descriptionOfOtherType>Description of Other</descriptionOfOtherType>
+		</typesOfSecuritiesOffered>
+		<businessCombinationTransaction>
+			<isBusinessCombinationTransaction>false</isBusinessCombinationTransaction>
+			<clarificationOfResponse>Clarification of Response (if Necessary)</clarificationOfResponse>
+		</businessCombinationTransaction>
+		<minimumInvestmentAccepted>100</minimumInvestmentAccepted>
+		<salesCompensationList>
+			<recipient>
+				<recipientName>First Recipient Name</recipientName>
+				<recipientCRDNumber>None</recipientCRDNumber>
+				<associatedBDName>First Associated Name</associatedBDName>
+				<associatedBDCRDNumber>None</associatedBDCRDNumber>
+				<recipientAddress>
+					<street1>1234 Here Street</street1>
+					<city>The City</city>
+					<stateOrCountry>VA</stateOrCountry>
+					<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+					<zipCode>12345</zipCode>
+				</recipientAddress>
+				<statesOfSolicitationList>
+					<value>All States</value>
+				</statesOfSolicitationList>
+			</recipient>
+			<recipient>
+				<recipientName>Second Recipient Name</recipientName>
+				<recipientCRDNumber>123456789</recipientCRDNumber>
+				<associatedBDName>Second Associated Name</associatedBDName>
+				<associatedBDCRDNumber>123456789</associatedBDCRDNumber>
+				<recipientAddress>
+					<street1>1234 Here Street</street1>
+					<city>The City</city>
+					<stateOrCountry>VA</stateOrCountry>
+					<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+					<zipCode>12345</zipCode>
+				</recipientAddress>
+				<statesOfSolicitationList>
+					<state>VA</state>
+					<description>VIRGINIA</description>
+				</statesOfSolicitationList>
+			</recipient>
+			<recipient>
+				<recipientName>Third Recipient Name</recipientName>
+				<recipientCRDNumber>234567890</recipientCRDNumber>
+				<associatedBDName>Third Associated Name</associatedBDName>
+				<associatedBDCRDNumber>234567890</associatedBDCRDNumber>
+				<recipientAddress>
+					<street1>1234 Here Street</street1>
+					<city>The City</city>
+					<stateOrCountry>VA</stateOrCountry>
+					<stateOrCountryDescription>VIRGINIA</stateOrCountryDescription>
+					<zipCode>12345</zipCode>
+				</recipientAddress>
+				<statesOfSolicitationList>
+					<state>CA</state>
+					<description>CALIFORNIA</description>
+					<state>WA</state>
+					<description>WASHINGTON</description>
+					<state>GA</state>
+					<description>GEORGIA</description>
+				</statesOfSolicitationList>
+				<foreignSolicitation>true</foreignSolicitation>
+			</recipient>
+		</salesCompensationList>
+		<offeringSalesAmounts>
+			<totalOfferingAmount>1000</totalOfferingAmount>
+			<totalAmountSold>100</totalAmountSold>
+			<totalRemaining>900</totalRemaining>
+			<clarificationOfResponse>Clarification of Response</clarificationOfResponse>
+		</offeringSalesAmounts>
+		<investors>
+			<hasNonAccreditedInvestors>true</hasNonAccreditedInvestors>
+			<numberNonAccreditedInvestors>5</numberNonAccreditedInvestors>
+			<totalNumberAlreadyInvested>12</totalNumberAlreadyInvested>
+		</investors>
+		<salesCommissionsFindersFees>
+			<salesCommissions>
+				<dollarAmount>1000</dollarAmount>
+				<isEstimate>true</isEstimate>
+			</salesCommissions>
+			<findersFees>
+				<dollarAmount>5000</dollarAmount>
+			</findersFees>
+			<clarificationOfResponse>Clarification of Response</clarificationOfResponse>
+		</salesCommissionsFindersFees>
+		<useOfProceeds>
+			<grossProceedsUsed>
+				<dollarAmount>100</dollarAmount>
+			</grossProceedsUsed>
+			<clarificationOfResponse>Clarification of Response</clarificationOfResponse>
+		</useOfProceeds>
+		<signatureBlock>
+			<authorizedRepresentative>false</authorizedRepresentative>
+			<signature>
+				<issuerName>Entity Issuer Name</issuerName>
+				<signatureName>Signature</signatureName>
+				<nameOfSigner>Name</nameOfSigner>
+				<signatureTitle>Title</signatureTitle>
+				<signatureDate>2008-10-16</signatureDate>
+			</signature>
+			<signature>
+				<issuerName>First Additional Issuer</issuerName>
+				<signatureName>Signature</signatureName>
+				<nameOfSigner>Name 2</nameOfSigner>
+				<signatureTitle>Title 2</signatureTitle>
+				<signatureDate>2008-10-16</signatureDate>
+			</signature>
+			<signature>
+				<issuerName>Second Additional Issuer</issuerName>
+				<signatureName>Signature</signatureName>
+				<nameOfSigner>Name 3</nameOfSigner>
+				<signatureTitle>Title 3</signatureTitle>
+				<signatureDate>2008-10-16</signatureDate>
+			</signature>
+			<signature>
+				<issuerName>Third Additional Issuer</issuerName>
+				<signatureName>Signature</signatureName>
+				<nameOfSigner>Name 4</nameOfSigner>
+				<signatureTitle>Title 4</signatureTitle>
+				<signatureDate>2008-10-16</signatureDate>
+			</signature>
+		</signatureBlock>
+	</offeringData>
+</edgarSubmission>

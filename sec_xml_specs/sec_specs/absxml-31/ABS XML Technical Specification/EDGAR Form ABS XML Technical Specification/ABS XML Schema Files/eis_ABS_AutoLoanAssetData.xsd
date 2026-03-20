@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/absee/autoloan/assetdata" xmlns:mstns="http://www.sec.gov/edgar/document/absee/autoloan/assetdata" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/eis_abs_common" targetNamespace="http://www.sec.gov/edgar/document/absee/autoloan/assetdata" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/eis_abs_common" schemaLocation="eis_ABS_Common.xsd"/>
+	<xs:simpleType name="INTR_CALC_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(c)(7) - Enumerated values and descriptions: 1: Simple, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MOD_TYPE_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(j)(1) - Enumerated values and descriptions: 1: APR, 2: Principal, 3: Term, 4: Extension, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_EMPLOY_VRFCTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(e)(4) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, level 3 verified Level 3 verified = Direct independent verification with a third party of the obligors current employment. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OBLGR_INCM_VRFCTN_LVL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(e)(3) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, verified but not to level 4 or level 5., 4: Stated, "level 4" verifiedLevel 4 income verification = Previous year W-2 or tax returns, and year-to-date pay stubs, if salaried.  If self-employed, then obligor provided 2 years of tax returns., 5: Stated, "level 5" verifiedLevel 5 income verification = 24 months income verification (W-2s, pay stubs, bank statements and/or tax returns). If self-employed, then obligor provided 2 years tax returns plus a CPA certification of the tax returns. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ORIG_INTR_RT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(c)(8) - Enumerated values and descriptions: 1: Fixed, 2: Adjustable, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PYMNT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(c)(13) - Enumerated values and descriptions: 1: Bi-Weekly, 2: Monthly, 3: Quarterly, 4: Balloon, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REPRCH_ASSET_SUBJ_DMAND_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(h)(1) - Enumerated values and descriptions: 0: Asset Pending Repurchase or Replacement, 1: Asset Was Repurchased or Replaced, 2: Demand in Dispute, 3: Demand Withdrawn, 4: Demand Rejected, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REPRCH_RPLCMNT_REASN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(h)(5) - Enumerated values and descriptions: 1: Fraud, 2: Early Payment Default, 3: Other Recourse Obligation, 4: Reps/Warrants Breach, 5: Servicer Breach, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRVC_ADV_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(f)(4) - Enumerated values and descriptions: 1: No advancing, 2: Interest only, 3: Principal only, 4: Principal and Interest, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SUBVNT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(c)(14) - Enumerated values and descriptions: 0: No, 1: Yes - Rate Subvention, 2: Yes - Cash Rebate, 98: Yes - Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_NEW_USED_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(d)(3) - Enumerated values and descriptions: 1: New, 2: Used </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(d)(5) - Enumerated values and descriptions: 1: Car, 2: Truck, 3: SUV, 4: Motorcycle, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_VAL_SRC_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 3(d)(7) - Enumerated values and descriptions: 1: Invoice Price, 2: MSRP, 3: Kelly Blue Book, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZERO_BAL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+Item 3(f)(24)(ii) - Enumerated values and descriptions: 1: Prepaid or Matured, 2: Third-party Sale, 3: Repurchased or Replaced, 4: Charged-off, 5: Servicing Transfer, 99: Unavailable</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ASSET_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the main repeatable group element for each major unit under assetData.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Item 3(a)(1) - Identify the source of the asset number used to specifically identify each asset in the pool. -->
+			<xs:element name="assetTypeNumber" type="ns2:STRING_100_TYPE" minOccurs="1"/>
+			<!-- Item 3(a)(2) - Provide the unique ID number of the asset. -->
+			<xs:element name="assetNumber" type="ns1:STRING_25_TYPE" minOccurs="1"/>
+			<!-- Item 3(b)(1) - Specify the beginning date of the reporting period. -->
+			<xs:element name="reportingPeriodBeginningDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 3(b)(2) - Specify the ending date of the reporting period. -->
+			<xs:element name="reportingPeriodEndingDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(1) - Identify the name of the entity that originated the loan.   -->
+			<xs:element name="originatorName" type="ns1:STRING_50_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(2) - Provide the date the loan was originated.   -->
+			<xs:element name="originationDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(3) - Indicate the amount of the loan at the time the loan was originated. -->
+			<xs:element name="originalLoanAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(c)(4) - Indicate the term of the loan in months at the time the loan was originated. -->
+			<xs:element name="originalLoanTerm" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(c)(5) - Indicate the month and year in which the final payment on the loan is scheduled to be made. -->
+			<xs:element name="loanMaturityDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(6) - Provide the rate of interest at the time the loan was originated.  -->
+			<xs:element name="originalInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(c)(7) - Indicate whether the interest rate calculation method is simple or other. -->
+			<xs:element name="interestCalculationTypeCode" type="INTR_CALC_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(8) - Indicate whether the interest rate on the loan is fixed, adjustable or other.   -->
+			<xs:element name="originalInterestRateTypeCode" type="ORIG_INTR_RT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(9) - Indicate the number of months from origination in which the obligor is permitted to pay only interest on the loan beginning from when the loan was originated. -->
+			<xs:element name="originalInterestOnlyTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(c)(10) - Provide the date of the first scheduled payment that was due after the loan was originated. -->
+			<xs:element name="originalFirstPaymentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(11) - Indicate whether the loan met the criteria for the first level of solicitation, credit-granting or underwriting criteria used to originate the loan. -->
+			<xs:element name="underwritingIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(12) - Indicate the number of months during which time interest accrues but no payments are due from the obligor. -->
+			<xs:element name="gracePeriodNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(c)(13) - Specify the code indicating how often payments are required or if a balloon payment is due. -->
+			<xs:element name="paymentTypeCode" type="PYMNT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(c)(14) - Indicate yes or no as to whether a form of subsidy is received on the loan, such as cash incentives or favorable financing for the buyer. -->
+			<xs:element name="subvented" type="SUBVNT_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 3(d)(1) - Provide the name of the manufacturer of the vehicle. -->
+			<xs:element name="vehicleManufacturerName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 3(d)(2) - Provide the name of the model of the vehicle. -->
+			<xs:element name="vehicleModelName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 3(d)(3) - Indicate whether the vehicle financed is new or used at the time of origination. -->
+			<xs:element name="vehicleNewUsedCode" type="VHCL_NEW_USED_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(d)(4) - Indicate the model year of the vehicle. -->
+			<xs:element name="vehicleModelYear" type="ns2:STRING_4_TYPE" minOccurs="0"/>
+			<!-- Item 3(d)(5) - Indicate the code describing the vehicle type. -->
+			<xs:element name="vehicleTypeCode" type="VHCL_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(d)(6) - Indicate the value of the vehicle at the time of origination. -->
+			<xs:element name="vehicleValueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(d)(7) - Specify the code that describes the source of the vehicle value. -->
+			<xs:element name="vehicleValueSourceCode" type="VHCL_VAL_SRC_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(1) - Specify the type of the standardized credit score used to evaluate the obligor during the loan origination process. -->
+			<xs:element name="obligorCreditScoreType" type="ns2:STRING_35_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(2) - Provide the standardized credit score of the obligor used to evaluate the obligor during the loan origination process. -->
+			<xs:element name="obligorCreditScore" type="ns2:STRING_20_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(3) - Indicate the code describing the extent to which the obligor's income was verified during the loan origination process. -->
+			<xs:element name="obligorIncomeVerificationLevelCode" type="OBLGR_INCM_VRFCTN_LVL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(4) - Indicate the code describing the extent to which the obligor's employment was verified during the loan origination process. -->
+			<xs:element name="obligorEmploymentVerificationCode" type="OBLGR_EMPLOY_VRFCTN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(5) - Indicate whether the loan has a co-obligor. -->
+			<xs:element name="coObligorIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(e)(6) - Provide the scheduled monthly payment amount as a percentage of the total monthly income of the obligor and any other obligor at the origination date.  Provide the methodology for determining monthly income in the prospectus. -->
+			<xs:element name="paymentToIncomePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(e)(7) - Specify the location of the obligor by providing the current U.S. state or territory. -->
+			<xs:element name="obligorGeographicLocation" type="ns2:STRING_100_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(1) - Indicate yes or no whether the asset was added during the reporting period. Instruction:  A response to this data point is only required when assets are added to the asset pool after the final prospectus under Securities Act Rule 424 (Section 230.424 of this chapter) is filed -->
+			<xs:element name="assetAddedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(2) - Indicate the number of months from the end of the reporting period to the loan maturity date. -->
+			<xs:element name="remainingTermToMaturityNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(f)(3) - Indicates yes or no whether the loan was modified from its original terms during the reporting period. -->
+			<xs:element name="reportingPeriodModificationIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(4) - Specify the code that indicates a servicer's responsibility for advancing principal or interest on delinquent loans. -->
+			<xs:element name="servicingAdvanceMethodCode" type="SRVC_ADV_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(5) - Indicate the outstanding principal balance of the loan as of the beginning of the reporting period. -->
+			<xs:element name="reportingPeriodBeginningLoanBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(6) - Indicate the total payment due to be collected in the next reporting period. -->
+			<xs:element name="nextReportingPeriodPaymentAmountDue" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(7) - Indicate the interest rate for this loan in effect during the reporting period. -->
+			<xs:element name="reportingPeriodInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(8) - For loans that have not been paid-off, indicate the interest rate that is in effect for the next reporting period. -->
+			<xs:element name="nextInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(9) - If the servicing fee is based on a percentage, provide the percentage used to calculate the aggregate servicing fee. -->
+			<xs:element name="servicingFeePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(10) - If the servicing fee is based on a flat-fee amount, indicate the monthly servicing fee paid to all servicers. -->
+			<xs:element name="servicingFlatFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(11) - Provide the amount of all other fees earned by loan administrators that reduce the amount of funds remitted to the issuing entity (including subservicing, master servicing, trustee fees, etc.). -->
+			<xs:element name="otherServicerFeeRetainedByServicer" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(12) - Provide the cumulative amount of late charges and other fees that have been assessed by the servicer, but not paid by the obligor. -->
+			<xs:element name="otherAssessedUncollectedServicerFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(13) - Indicate the interest payment amount that was scheduled to be collected during the reporting period. -->
+			<xs:element name="scheduledInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(14) - Indicate the principal payment amount that was scheduled to be collected during the reporting period. -->
+			<xs:element name="scheduledPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(15) - Indicate any other amounts that caused the principal balance of the loan to be decreased or increased during the reporting period. -->
+			<xs:element name="otherPrincipalAdjustmentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(16) - Indicate the actual balance of the loan as of the end of the reporting period.   -->
+			<xs:element name="reportingPeriodActualEndBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(17) - Indicate the total payment amount that was scheduled to be collected during the reporting period (including all fees). -->
+			<xs:element name="reportingPeriodScheduledPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(18) - Indicate the total payment paid to the servicer during the reporting period. -->
+			<xs:element name="totalActualAmountPaid" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(19) - Indicate the gross amount of interest collected during the reporting period, whether or not from the obligor.   -->
+			<xs:element name="actualInterestCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(20) - Indicate the amount of principal collected during the reporting period, whether or not from the obligor. -->
+			<xs:element name="actualPrincipalCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(21) - Indicate the total of any amounts, other than principal and interest, collected during the reporting period, whether or not from the borrower. -->
+			<xs:element name="actualOtherCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(22) - If amounts were advanced by the servicer during the reporting period, specify the amount. -->
+			<xs:element name="servicerAdvancedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(f)(23) - Provide the date through which interest is paid with the payment received during the reporting period, which is the effective date from which interest will be calculated for the application of the next payment. -->
+			<xs:element name="interestPaidThroughDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(24)(i) - Provide the date on which the loan balance was reduced to zero. -->
+			<xs:element name="zeroBalanceEffectiveDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 3(f)(24)(ii) - Provide the code that indicates the reason the loan's balance was reduced to zero.  -->
+			<xs:element name="zeroBalanceCode" type="ZERO_BAL_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 3(f)(25) - Indicate the number of days the obligor is delinquent past the obligor's payment due date, as determined by the governing transaction agreement.   -->
+			<xs:element name="currentDelinquencyStatus" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(g)(1) - Provide the name of the entity that services or will have the right to service the loan. -->
+			<xs:element name="primaryLoanServicerName" type="ns2:STRING_100_TYPE" minOccurs="0"/>
+			<!-- Item 3(g)(2) - If a loan's servicing has been transferred, provide the effective date of the most recent servicing transfer. -->
+			<xs:element name="mostRecentServicingTransferReceivedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 3(h) - Indicate yes or no whether during the reporting period the loan was the subject of a demand to repurchase or replace for breach of representations and warranties, including investor demands upon a trustee. -->
+			<xs:element name="assetSubjectDemandIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(h)(1) - Indicate the code that describes the status of the repurchase or replacement demand as of the end of the reporting period.  -->
+			<xs:element name="assetSubjectDemandStatusCode" type="REPRCH_ASSET_SUBJ_DMAND_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 3(h)(2) - Provide the amount paid to repurchase the loan. -->
+			<xs:element name="repurchaseAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(h)(3) - Indicate the date the loan repurchase or replacement demand was resolved.  -->
+			<xs:element name="demandResolutionDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 3(h)(4) - Specify the name of the repurchaser. -->
+			<xs:element name="repurchaserName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 3(h)(5) - Indicate the code that describes the reason for the repurchase or replacement. -->
+			<xs:element name="repurchaseReplacementReasonCode" type="REPRCH_RPLCMNT_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 3(i)(1) - Specify the amount of uncollected principal charged-off. -->
+			<xs:element name="chargedoffPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(i)(2) - If the loan was previously charged-off, specify any amounts received after charge-off. -->
+			<xs:element name="recoveredAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 3(j)(1) - Indicate the code that describes the reason the loan was modified during the reporting period.  -->
+			<xs:element name="modificationTypeCode" type="MOD_TYPE_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 3(j)(2) - Provide the number of months the loan was extended during the reporting period. -->
+			<xs:element name="paymentExtendedNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 3(k) - Indicate yes or no whether the vehicle has been repossessed.  If the vehicle has been repossessed, provide the information required in Item 3(k)(1). -->
+			<xs:element name="repossessedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 3(k)(1) - Provide the total amount of proceeds received on disposition (net of repossession fees and expenses). -->
+			<xs:element name="repossessedProceedsAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="assetData">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an ABS Asset Data exhibit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="assets" type="ASSET_TYPE" minOccurs="0" maxOccurs="unbounded">
+					<xs:unique name="uniqueSubvented">
+						<xs:selector xpath="mstns:subvented"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueZeroBalanceCode">
+						<xs:selector xpath="mstns:zeroBalanceCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueRepurchaseReplacementReasonCode">
+						<xs:selector xpath="mstns:repurchaseReplacementReasonCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueModificationTypeCode">
+						<xs:selector xpath="mstns:modificationTypeCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

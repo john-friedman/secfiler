@@ -1,0 +1,54 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>F-1/A</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+    <cor:fileNumber>333-102282</cor:fileNumber>
+  </cor:filer>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:feeTableIncludedFlag>N</cor:feeTableIncludedFlag>
+  <cor:emergingGrowthCompanyFlag>false</cor:emergingGrowthCompanyFlag>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>Test1.txt</com:conformedName>
+      <com:conformedDocumentType>F-1/A</com:conformedDocumentType>
+      <com:contents>VGhpcyBpcyBmaWxlIGZyb20gdGVzdCBhbmQgdmFsaWRhdGVkLg==
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:edgarFee>
+    <cor:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>23.00</feec:feeAmount>
+    </cor:submissionFee>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Indeterminate</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Exchange Traded Vehicle Securities</feec:feeOfferingSecurityName>
+    </cor:submissionOffering>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Pay In Advance</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Exchange Traded Vehicle Securities</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>13</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>3.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>39.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+    <cor:submissionOffering>
+      <feec:feeOfferingSecurityName>ADRs/ADSs</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>33</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>3.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>99.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+  </cor:edgarFee>
+</cor:edgarSubmission>

@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/schedule13D"
+           xmlns:ns1="http://www.sec.gov/edgar/common" 	xmlns:ns2="http://www.sec.gov/edgar/statecodes"
+           targetNamespace="http://www.sec.gov/edgar/schedule13D" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>    
+    <xs:import namespace="http://www.sec.gov/edgar/statecodes" schemaLocation="eis_stateCodes.xsd" />
+    <xs:simpleType name="SUBMISSION_TYPE">
+        <xs:annotation>
+            <xs:documentation>
+                Type of submission you are filing. Choose a value from the appropriate family of
+                Submission Types.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="SCHEDULE 13D"/>
+            <xs:enumeration value="SCHEDULE 13D/A"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="edgarSubmission">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+                <xs:element name="headerData" type="HEADER_DATA"/>
+                <xs:element name="formData" type="FORM_DATA"/>
+                <xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ********************************************************************* -->
+    <!--    Root Types Header and Form Data  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="HEADER_DATA">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the HEADER_DATA
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="submissionType" type="SUBMISSION_TYPE" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="previousAccessionNumber" type="ns1:ACCESSION_NUMBER_TYPE" minOccurs="0"/>
+            <xs:element name="filerInfo" type="FILER_INFO_TYPE" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FORM_DATA">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FORM_DATA
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="coverPageHeader" type="COVER_PAGE_HEADER" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="reportingPersons" type="REPORTING_PERSONS_INFO"  minOccurs="1"/>
+            <xs:element name="items1To7" type="ITEMS_1_TO_7"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="signatureInfo" type="SIGNATURE_INFO_TYPE" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+    </xs:complexType>
+
+	<!-- ********************************************************************* -->
+    <!--    HEADER_DATA sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="FILER_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FILER_INFO_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="filer" type="FILER_TYPE" minOccurs="1"/>
+            <xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE" minOccurs="1"/>
+            <xs:element name="flags" type="FLAGS_TYPE" minOccurs="1" />
+            <xs:element name="contact" type="CONTACT_TYPE" minOccurs="1"/>
+            <xs:element name="notifications" type="NOTIFICATIONS_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA sub types  -->
+    <!-- ********************************************************************* -->
+   <xs:complexType name="COVER_PAGE_HEADER">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the COVER_PAGE_HEADER</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="amendmentNo" type="ns1:INTEGER_TYPE_3" minOccurs="0" />
+            <xs:element name="securitiesClassTitle" type="ns1:STRING_150_TYPE" minOccurs="1"/>
+            <xs:element name="dateOfEvent" type="ns1:DATE_TYPE2" minOccurs="1"/>
+             <xs:element name="previouslyFiledFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+            <xs:element name="issuerInfo" type="ISSUER_INFO" minOccurs="1"/>
+            <xs:element name="authorizedPersons" type="AUTHORIZED_PERSONS" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+   <xs:complexType name="REPORTING_PERSONS_INFO">
+         <xs:annotation>
+            <xs:documentation>These elements are part of the REPORTING_PERSONS_INFO</xs:documentation>
+        </xs:annotation>
+   		<xs:sequence>
+			<xs:element name="reportingPersonInfo" type="REPORTING_PERSON_INFO" maxOccurs="100" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ITEMS_1_TO_7">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the ITEMS_1_TO_7</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item1" type="ITEM_1" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item2" type="ITEM_2" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item3" type="ITEM_3" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item4" type="ITEM_4" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item5" type="ITEM_5" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item6" type="ITEM_6" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="item7" type="ITEM_7" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> COVER_PAGE_HEADER sub types   -->
+    <!-- ********************************************************************* -->
+
+    <xs:complexType name="ISSUER_INFO">
+    <xs:annotation>
+            <xs:documentation>These elements are part of the COVER_PAGE_HEADER group</xs:documentation>
+        </xs:annotation>
+         <xs:sequence>
+            <xs:element name="issuerCIK" type="ns1:CIK_TYPE" minOccurs="1"/>
+            <xs:element name="issuerCusips" type="ISSUER_CUSIPS_TYPE" minOccurs="1"/>
+            <xs:element name="issuerName" type="ns1:STRING_150_TYPE" minOccurs="1"/>
+            <xs:element name="address" type="ns1:ADDRESS_TYPE" minOccurs="1"/>
+         </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ISSUER_CUSIPS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the ISSUER_INFO group</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="issuerCusipNumber" type="CUSIP_OR_EMPTY" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Union: either a valid CUSIP or empty -->
+    <xs:simpleType name="CUSIP_OR_EMPTY">
+        <xs:union memberTypes="CUSIP_TYPE EMPTY_STRING"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="CUSIP_TYPE">
+        <xs:annotation>
+            <xs:documentation>Enter in 9 to 12 digit CUSIP number of the security.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+        	<xs:minLength value="9"/>
+			<xs:maxLength value="12"/>
+            <xs:pattern value="[a-zA-Z0-9@*#]{9,12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Allows empty string exactly -->
+    <xs:simpleType name="EMPTY_STRING">
+        <xs:restriction base="xs:string">
+            <xs:length value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AUTHORIZED_PERSONS">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the AUTHORIZED_PERSONS
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notificationInfo" type="NOTIFIED_PERSON_INFO" minOccurs="1" maxOccurs="100" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NOTIFIED_PERSON_INFO">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the AUTHORIZED_PERSON_INFO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="personName" type="ns1:STRING_30_TYPE" minOccurs="1"/>
+			<xs:element name="personPhoneNum" type="ns1:EDGAR_PHONE_TYPE" minOccurs="1"/>
+			<xs:element name="personAddress" type="ns1:ADDRESS_TYPE" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ********************************************************************* -->
+    <!--    FORM_DATA -> REPORTING_PERSONS_INFO sub types  -->
+    <!-- ********************************************************************* -->
+
+	<xs:complexType name="REPORTING_PERSON_INFO">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the REPORTING_PERSON_INFO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+            <xs:element name="reportingPersonCIK" type="ns1:CIK_TYPE" minOccurs="0"/>
+            <xs:element name="reportingPersonNoCIK" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+            <xs:element name="reportingPersonName" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="memberOfGroup" type="MEMBER_TYPE" minOccurs="0" />
+            <xs:element name="fundType" type="FUND_TYPE" minOccurs="0" maxOccurs="6"/>
+            <xs:element name="legalProceedings" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+            <xs:element name="citizenshipOrOrganization" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+            <xs:element name="soleVotingPower" type="DECIMAL_TYPE14_2_NONNEGATIVE" minOccurs="0"/>
+            <xs:element name="sharedVotingPower" type="DECIMAL_TYPE14_2_NONNEGATIVE" minOccurs="0"/>
+            <xs:element name="soleDispositivePower" type="DECIMAL_TYPE14_2_NONNEGATIVE" minOccurs="0"/>
+            <xs:element name="sharedDispositivePower" type="DECIMAL_TYPE14_2_NONNEGATIVE" minOccurs="0"/>
+            <xs:element name="aggregateAmountOwned" type="DECIMAL_TYPE14_2_NONNEGATIVE" minOccurs="0"/>
+            <xs:element name="isAggregateExcludeShares" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+            <xs:element name="percentOfClass" type="PERCENT_TYPE" minOccurs="0"/>
+            <xs:element name="typeOfReportingPerson" type="TYPE_OF_REPORTING_PERSON" minOccurs="0" maxOccurs="13"/>
+			<xs:element name="commentContent" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:simpleType name="MEMBER_TYPE">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="a"/>
+            <xs:enumeration value="b"/>
+         </xs:restriction>
+    </xs:simpleType>
+    
+	<xs:simpleType name="DECIMAL_TYPE14_2_NONNEGATIVE">
+        <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="16" />
+            <xs:fractionDigits value="2" />
+            <xs:maxInclusive value="99999999999999.99" />
+            <xs:minInclusive value="0" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PERCENT_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0.0" />
+			<xs:maxInclusive value="100.0" />
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="FUND_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SC"/> <!-- SC - Subject Company (Company whose securities are being acquired)  -->
+			<xs:enumeration value="BK"/> <!-- BK - Bank -->
+			<xs:enumeration value="AF"/> <!-- AF - Affiliate (of reporting person) -->
+			<xs:enumeration value="WC"/> <!-- WC - Working Capital (of reporting person) -->
+			<xs:enumeration value="PF"/> <!-- PF - Personal Funds (of reporting person) -->
+			<xs:enumeration value="OO"/> <!-- OO - Other -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TYPE_OF_REPORTING_PERSON">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BD"/> <!-- Broker Dealer (BD)  -->
+			<xs:enumeration value="BK"/> <!-- Bank (BK) -->
+			<xs:enumeration value="CP"/> <!-- Church Plan (CP) -->
+			<xs:enumeration value="CO"/> <!-- Corporation (CO) -->
+			<xs:enumeration value="EP"/> <!-- Employee Benefit Plan or Endowment Fund (EP) -->
+			<xs:enumeration value="IN"/> <!-- Individual (IN) -->
+			<xs:enumeration value="IA"/> <!-- Investment Adviser (IA) -->
+			<xs:enumeration value="IC"/> <!-- Insurance Company (IC) -->
+			<xs:enumeration value="IV"/> <!-- Investment Company (IV) -->
+			<xs:enumeration value="HC"/> <!-- Parent Holding Company/Control Person (HC) -->
+			<xs:enumeration value="PN"/> <!-- Partnership (PN) -->
+			<xs:enumeration value="SA"/> <!-- Savings Association (SA) -->
+			<xs:enumeration value="OO"/> <!-- Other (OO) -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ********************************************************************* -->
+    <!--    FORM_DATA -> ITEMS_1_TO_7 sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="ITEM_1">
+         <xs:annotation>
+			<xs:documentation>These elements are part of ITEM_1
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+        	<xs:element name="securityTitle" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+        	<xs:element name="issuerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+        	<xs:element name="issuerPrincipalAddress" type="ns1:ADDRESS_TYPE" minOccurs="0"/>
+            <xs:element name="commentText" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_2">
+    	<xs:annotation>
+			<xs:documentation>These elements are part of ITEM_2
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="filingPersonName" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="principalBusinessAddress" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="principalJob" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="hasBeenConvicted" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="convictionDescription" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="citizenship" type="STRING_2K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_3">
+    	<xs:annotation>
+			<xs:documentation>These elements are part of ITEM_3
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="fundsSource" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_4">
+        <xs:annotation>
+			<xs:documentation>These elements are part of ITEM_4
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="transactionPurpose" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_5">
+        <xs:annotation>
+			<xs:documentation>These elements are part of ITEM_5
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="percentageOfClassSecurities" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="numberOfShares" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="transactionDesc" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="listOfShareholders" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+            <xs:element name="date5PercentOwnership" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_6">
+        <xs:annotation>
+			<xs:documentation>These elements are part of ITEM_6
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="contractDescription" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ITEM_7">
+        <xs:annotation>
+			<xs:documentation>These elements are part of ITEM_7
+			</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="filedExhibits" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    FORM_DATA -> SIGNATURE_PAGE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="SIGNATURE_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SIGNATURE_PAGE_TYPE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="signaturePerson" type="SIGNATURE_PERSON_TYPE" minOccurs="1" maxOccurs="100"/>
+            <xs:element name="commentText" type="TEXTAREA_20K_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SIGNATURE_PERSON_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the SIGNATURE_PERSON_TYPE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="signatureReportingPerson" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="signatureDetails" type="SIGNATURE_DETAILS" minOccurs="0" maxOccurs="50"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SIGNATURE_DETAILS">
+        <xs:sequence>
+            <xs:element name="signature" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="title" type="ns1:STRING_150_TYPE"/>
+            <xs:element name="date" type="ns1:DATE_TYPE2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ********************************************************************* -->
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> FILER_INFO_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="FILER_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FILER_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="filerCredentials" type="FILER_CREDENTIALS_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FLAGS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FLAGS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NOTIFICATIONS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the NOTIFICATIONS_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="3"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> FILER_INFO_TYPE -> FILER_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="FILER_CREDENTIALS_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the FILER_CREDENTIALS_TYPE group</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cik" type="ns1:CIK_TYPE" minOccurs="1"/>
+            <xs:element name="ccc" type="ns1:CCC_TYPE" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ********************************************************************* -->
+    <!--    HEADER_DATA -> CONTACT_TYPE sub types  -->
+    <!-- ********************************************************************* -->
+    <xs:complexType name="CONTACT_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the CONTACT_TYPE</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contactName" type="ns1:NAME_TYPE" minOccurs="1"/>
+            <xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE" minOccurs="1"/>
+            <xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+       
+     <xs:simpleType name="STRING_2K_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="2000" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TEXTAREA_20K_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20000"/>
+		</xs:restriction>
+	</xs:simpleType>
+    
+</xs:schema>

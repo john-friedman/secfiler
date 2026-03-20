@@ -1,0 +1,60 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>true</cor:confirmingCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>N-2 POSASR</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+    <cor:fileNumber>333-100211</cor:fileNumber>
+  </cor:filer>
+  <cor:coregs>
+    <cor:filer>
+      <cor:filerId>0000000000</cor:filerId>
+      <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+      <cor:fileNumber>333-101077</cor:fileNumber>
+    </cor:filer>
+  </cor:coregs>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:feeTableIncludedFlag>N</cor:feeTableIncludedFlag>
+  <cor:invCompany>
+    <cor:investCompany>N-2</cor:investCompany>
+  </cor:invCompany>
+  <cor:wellKnownSeasonedIssuerFlag>true</cor:wellKnownSeasonedIssuerFlag>
+  <cor:filerNewRegistrantFlag>true</cor:filerNewRegistrantFlag>
+  <cor:pursuantGeneralInstructionFlag>true</cor:pursuantGeneralInstructionFlag>
+  <cor:eligibleFundFlag>true</cor:eligibleFundFlag>
+  <cor:act>33</cor:act>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>doc56.txt</com:conformedName>
+      <com:conformedDocumentType>N-2 POSASR</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQoxMHRoIGRvY3VtZW50
+DQoNCiAgICAgICAgU1BFQ0lNRU4gLSBOT1QgQU4gT0ZGSUNJQUwgRklMSU5HDQoNCioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKg0KDQo=
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:edgarFee>
+    <cor:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>1.00</feec:feeAmount>
+    </cor:submissionFee>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Pay In Advance</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Debt</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>100</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>10.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>1000.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+  </cor:edgarFee>
+</cor:edgarSubmission>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/bulkfiling" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/bulkfiling" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:simpleType name="SUBMISSION_DESCRIPTION_TYPE">
+		<xs:annotation>
+			<xs:documentation>An optional field offering you the opportunity to describe the attached submission.  Field is up to 255 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:minLength value="1"/>
+			<xs:pattern value="[A-Za-z0-9!#-$%():;'@\*\+\-/=\?\^_`~{|},. \\\s&lt;&gt;&amp;&quot;\[\]]{1,255}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SUBMISSION_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>File name for a submission attached to the bulk submission file.</xs:documentation>
+			<xs:documentation/>
+			<xs:documentation>File names must be upper or lower case and no longer than thirty-two (32) characters in length. The names must start with a letter (a-z) or a number and may contain numbers (0-9) with no spaces. File Names may contain any number of periods (.), hyphens (-), and underscore (_) characters and must end with a ".xml" extension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+			<xs:pattern value="([a-zA-Z0-9]+[\w\._\-]*)([\.]([xX][mM][lL])|([eE][iI][sS]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EDGAR_SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Document names must be lower case and no longer than thirty-two (32) characters in length.  The names must start with a letter (a-z) and may contain numbers (0-9) with no spaces.  Document names may contain one period (.), one hyphen (-), and one underscore (_) character and must end with *.htm, *.txt, *.pdf, *.fil, *.jpg, *.gif, *.xml or *.xsd extensions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="submissionName" type="SUBMISSION_NAME_TYPE"/>
+			<xs:element name="description" type="SUBMISSION_DESCRIPTION_TYPE" minOccurs="0"/>
+			<xs:element name="contents" type="ns1:DOCUMENT_MIME_BLOCK_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EDGAR_SUBMISSIONS_TYPE">
+		<xs:sequence>
+			<xs:element name="attachment" type="EDGAR_SUBMISSION_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarBulkSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="attachments" type="EDGAR_SUBMISSIONS_TYPE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

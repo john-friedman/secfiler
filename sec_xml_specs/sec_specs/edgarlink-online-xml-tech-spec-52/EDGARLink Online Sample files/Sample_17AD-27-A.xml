@@ -1,0 +1,32 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coreg" xmlns:com="http://www.sec.gov/edgar/common">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+      <com:confirmingCopyFlag>false</com:confirmingCopyFlag>
+      <com:overrideInternetFlag>false</com:overrideInternetFlag>
+    <com:returnCopyFlag>false</com:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>17AD-27/A</cor:submissionType>
+  <cor:contact>
+    <com:name>Smith</com:name>
+    <com:phoneNumber>222-222-2222</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>0000350001</cor:filerId>
+    <cor:filerCcc>sauces#1</cor:filerCcc>
+  </cor:filer>
+   <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:periodOfReport>01-04-2024</cor:periodOfReport>
+  <cor:notifications>
+    <com:internetNotificationAddress>smitJ@yahoo.com</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>filing.txt</com:conformedName>
+      <com:conformedDocumentType>17AD-27/A</com:conformedDocumentType>
+      <com:contents>SGVsbG8gV29ybGQuIExpZmUgaXMgc28gYmVhdXRpZnVs
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

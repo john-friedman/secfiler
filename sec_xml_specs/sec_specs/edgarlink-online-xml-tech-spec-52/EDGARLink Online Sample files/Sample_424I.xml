@@ -1,0 +1,65 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregserial" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+    <cor:serialFlag>false</cor:serialFlag>
+  </cor:flags>
+  <cor:submissionType>424I</cor:submissionType>
+  <cor:contact>
+    <com:name>Joe</com:name>
+    <com:phoneNumber>252-896-8985</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+    <cor:fileNumber>333-102299</cor:fileNumber>
+  </cor:filer>
+  <cor:absAssetClasses></cor:absAssetClasses>
+  <cor:absSubAssetClasses></cor:absSubAssetClasses>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:references></cor:references>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>coverletter.txt</com:conformedName>
+      <com:conformedDocumentType>424I</com:conformedDocumentType>
+      <com:description>Primary</com:description>
+      <com:contents>VGhpcyBpcyBjb3ZlciBsZXR0ZXIgZm9yIDQyNEk=
+</com:contents>
+    </com:document>
+	<com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>EX-FILING FEES</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:edgarFee>
+    <cor:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>3.24</feec:feeAmount>
+    </cor:submissionFee>
+    <cor:submissionSalesShares>
+      <feec:salesSharesLastFilingFlag>true</feec:salesSharesLastFilingFlag>
+      <feec:salesSharesPaymentYear>2019</feec:salesSharesPaymentYear>
+	  <feec:salesSharesFiscalYearEnd>12/31</feec:salesSharesFiscalYearEnd>
+      <feec:salesSharesInformation>
+        <feec:salesSharesSalesProceeds>25000.00</feec:salesSharesSalesProceeds>
+        <feec:salesSharesRedeemedValueCurrent>500.00</feec:salesSharesRedeemedValueCurrent>
+        <feec:salesSharesRedeemedValuePrior>25.00</feec:salesSharesRedeemedValuePrior>
+        <feec:salesSharesRedeemedValueCredit>525.00</feec:salesSharesRedeemedValueCredit>
+        <feec:salesSharesNetValue>24475.00</feec:salesSharesNetValue>
+        <feec:salesSharesFeeAmount>0.0000</feec:salesSharesFeeAmount>
+      </feec:salesSharesInformation>
+    </cor:submissionSalesShares>
+  </cor:edgarFee>
+</cor:edgarSubmission>

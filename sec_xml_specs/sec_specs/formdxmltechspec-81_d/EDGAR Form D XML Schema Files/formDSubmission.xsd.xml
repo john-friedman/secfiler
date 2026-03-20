@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Filename: formDSubmission.xsd.xml -->
+<!-- Purpose:  Defines the elements for FORM D and D/A. -->
+<!-- Version:  X0808 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:include schemaLocation="formDStateCodes.xsd.xml"/>
+	<xs:include schemaLocation="statesOfSolicitationCodes.xsd.xml"/>
+	<xs:group name="STATE_SOLICITATION_GROUP">
+		<xs:sequence>
+			<xs:element name="state" type="STATE_SOLICITATION_CODE" minOccurs="1"/>
+			<xs:element name="description" type="STRING_50_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="returnCopy">
+		<xs:simpleType>
+			<xs:restriction base="xs:boolean">
+				<xs:pattern value="true|false"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="signatureName">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="signatureTitle">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="signatureDate" type="xs:date"/>
+	<xs:simpleType name="STRING_200_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_150_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_50_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_255_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POSITIVE_INTEGER_TYPE">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="D|D/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ENTITY_TYPE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Corporation"/>
+			<xs:enumeration value="Limited Partnership"/>
+			<xs:enumeration value="Limited Liability Company"/>
+			<xs:enumeration value="General Partnership"/>
+			<xs:enumeration value="Business Trust"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IS_TRUE_TYPE">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="true"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YEAR_VALUE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RELATIONSHIP_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Executive Officer"/>
+			<xs:enumeration value="Director"/>
+			<xs:enumeration value="Promoter"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NONE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AGRICULTURE_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Agriculture"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BANKING_FINANCIAL_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Commercial Banking"/>
+			<xs:enumeration value="Insurance"/>
+			<xs:enumeration value="Investing"/>
+			<xs:enumeration value="Investment Banking"/>
+			<xs:enumeration value="Pooled Investment Fund"/>
+			<xs:enumeration value="Other Banking and Financial Services"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INVESTMENT_FUND_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Hedge Fund"/>
+			<xs:enumeration value="Private Equity Fund"/>
+			<xs:enumeration value="Venture Capital Fund"/>
+			<xs:enumeration value="Other Investment Fund"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BUSINESS_SERVICES_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Business Services"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ENERGY_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Coal Mining"/>
+			<xs:enumeration value="Electric Utilities"/>
+			<xs:enumeration value="Energy Conservation"/>
+			<xs:enumeration value="Environmental Services"/>
+			<xs:enumeration value="Oil and Gas"/>
+			<xs:enumeration value="Other Energy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HEALTH_CARE_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Biotechnology"/>
+			<xs:enumeration value="Health Insurance"/>
+			<xs:enumeration value="Hospitals and Physicians"/>
+			<xs:enumeration value="Pharmaceuticals"/>
+			<xs:enumeration value="Other Health Care"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MANUFACTURING_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Manufacturing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REAL_ESTATE_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Commercial"/>
+			<xs:enumeration value="Construction"/>
+			<xs:enumeration value="REITS and Finance"/>
+			<xs:enumeration value="Residential"/>
+			<xs:enumeration value="Other Real Estate"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RETAILING_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Retailing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RESTAURANTS_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Restaurants"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TECHNOLOGY_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Computers"/>
+			<xs:enumeration value="Telecommunications"/>
+			<xs:enumeration value="Other Technology"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TRAVEL_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Airlines and Airports"/>
+			<xs:enumeration value="Lodging and Conventions"/>
+			<xs:enumeration value="Tourism and Travel Services"/>
+			<xs:enumeration value="Other Travel"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OTHER_INDUSTRY_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STANDARD_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="04.1"/>
+			<xs:enumeration value="04.2"/>
+			<xs:enumeration value="04.3"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="06b"/>
+			<xs:enumeration value="06c"/>
+			<xs:enumeration value="46"/>
+			<xs:enumeration value="4a5"/>
+			<xs:enumeration value="3C"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SECTION_3C_LIST">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="3C.1"/>
+			<xs:enumeration value="3C.2"/>
+			<xs:enumeration value="3C.3"/>
+			<xs:enumeration value="3C.4"/>
+			<xs:enumeration value="3C.5"/>
+			<xs:enumeration value="3C.6"/>
+			<xs:enumeration value="3C.7"/>
+			<xs:enumeration value="3C.9"/>
+			<xs:enumeration value="3C.10"/>
+			<xs:enumeration value="3C.11"/>
+			<xs:enumeration value="3C.12"/>
+			<xs:enumeration value="3C.13"/>
+			<xs:enumeration value="3C.14"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FEDERAL_EXEMPTION_LIST">
+		<xs:union memberTypes="STANDARD_LIST SECTION_3C_LIST"/>
+	</xs:simpleType>
+	<xs:simpleType name="INDUSTRY_GROUP_LIST">
+		<xs:union memberTypes="AGRICULTURE_INDUSTRY_LIST BANKING_FINANCIAL_INDUSTRY_LIST BUSINESS_SERVICES_LIST ENERGY_INDUSTRY_LIST HEALTH_CARE_INDUSTRY_LIST MANUFACTURING_INDUSTRY_LIST REAL_ESTATE_INDUSTRY_LIST RETAILING_INDUSTRY_LIST RESTAURANTS_INDUSTRY_LIST TECHNOLOGY_INDUSTRY_LIST TRAVEL_INDUSTRY_LIST OTHER_INDUSTRY_LIST"/>
+	</xs:simpleType>
+	<xs:simpleType name="REVENUE_RANGE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No Revenues"/>
+			<xs:enumeration value="$1 - $1,000,000"/>
+			<xs:enumeration value="$1,000,001 - $5,000,000"/>
+			<xs:enumeration value="$5,000,001 - $25,000,000"/>
+			<xs:enumeration value="$25,000,001 - $100,000,000"/>
+			<xs:enumeration value="Over $100,000,000"/>
+			<xs:enumeration value="Decline to Disclose"/>
+			<xs:enumeration value="Not Applicable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AGGREGATE_NET_ASSET_VALUE_RANGE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No Aggregate Net Asset Value"/>
+			<xs:enumeration value="$1 - $5,000,000"/>
+			<xs:enumeration value="$5,000,001 - $25,000,000"/>
+			<xs:enumeration value="$25,000,001 - $50,000,000"/>
+			<xs:enumeration value="$50,000,001 - $100,000,000"/>
+			<xs:enumeration value="Over $100,000,000"/>
+			<xs:enumeration value="Decline to Disclose"/>
+			<xs:enumeration value="Not Applicable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CRD_NUMBER_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+			<xs:pattern value="None|\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BD_NAME_TYPE">
+		<xs:union memberTypes="NONE_TYPE ENTITY_NAME_TYPE"/>
+	</xs:simpleType>
+	<xs:simpleType name="BD_NAME_TYPE_200">
+		<xs:union memberTypes="NONE_TYPE STRING_200_TYPE"/>
+	</xs:simpleType>
+	<xs:simpleType name="AMOUNT_OR_INDEFINITE">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="12"/>
+			<xs:pattern value="Indefinite|\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORM_D_ZIP_CODE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[0-9A-Za-z #\-]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORM_D_EMAIL_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:pattern value="([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,7}|[0-9]{1,3})(\]?)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORMD_ACCESSION_NUMBER_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[*]{0}|[0-9]{1,10}\-[0-9]{1,2}\-[0-9]{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORM_D_STREET_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORM_D_CITY_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FORM_D_PHONE_NUMBER_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				A Phone Number can be up to 20 characters.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TRUE_FALSE_TYPE">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="true|false"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ENTITY_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				A Company Name can be up to 150 characters.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<xs:simpleType name="CIK_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+                            A CIK can be up to 10 digits. You do not need to provide the leading zeroes.
+                        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CCC_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				This element is marked as optional here but it is really mandatory.
+				It is marked as optional so that the CCC can be removed from the
+				version of the document that is disseminated. In this way, the
+				disseminated document will still conform to this specification.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SCHEMA_VERSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				The schema version element applies only to the submission's primary document.
+				It does not apply to the submission file. This element should not be included
+				in a Reduced Content submission. EDGAR inserts this element in the version of
+				the primary document that gets disseminated. If you do provide a value for this
+				element and it does not match the current version of this schema file being
+				used by EDGAR, then EDGAR will generate a WARNING.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LIVE_OR_TEST_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="LIVE|TEST"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FOREIGN_SOLICITATION">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="true|false"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FILED_BY_COMPANY_FORMD_TYPE">
+		<xs:sequence>
+			<xs:element name="cik" type="CIK_TYPE"/>
+			<xs:element name="ccc" type="CCC_TYPE" minOccurs="0"/>
+			<xs:element name="entityName" type="ENTITY_NAME_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_D_ADDRESS_TYPE">
+		<xs:sequence>
+			<xs:element name="street1" type="FORM_D_STREET_TYPE" minOccurs="1"/>
+			<xs:element name="street2" type="FORM_D_STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="FORM_D_CITY_TYPE" minOccurs="1"/>
+			<xs:element name="stateOrCountry" type="STATE_COUNTRY_CODE" minOccurs="1"/>
+			<xs:element name="stateOrCountryDescription" type="STRING_50_TYPE" minOccurs="0"/>
+			<xs:element name="zipCode" type="FORM_D_ZIP_CODE_TYPE" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_D_POINT_OF_CONTACT_TYPE">
+		<xs:sequence>
+			<xs:element name="contactName" minOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="contactPhoneNumber" minOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="contactEmailAddress" type="FORM_D_EMAIL_TYPE" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_D_NOTIFY_GROUP_TYPE">
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="FORM_D_EMAIL_TYPE" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="INVESTMENT_FUND_TYPE">
+		<xs:sequence>
+			<xs:element name="investmentFundType" type="INVESTMENT_FUND_LIST"/>
+			<xs:element name="is40Act" type="TRUE_FALSE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="INDUSTRY_GROUP_TYPE">
+		<xs:sequence>
+			<xs:element name="industryGroupType" type="INDUSTRY_GROUP_LIST"/>
+			<xs:element name="investmentFundInfo" type="INVESTMENT_FUND_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RELATIONSHIP_LIST_TYPE">
+		<xs:sequence>
+			<xs:element name="relationship" type="RELATIONSHIP_TYPE" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NAMES_LIST_TYPE">
+		<xs:choice>
+			<xs:element name="value" fixed="None"/>
+			<xs:element name="previousName" type="ENTITY_NAME_TYPE" minOccurs="0" maxOccurs="3"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="YEAR_INC_TYPE">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="withinFiveYears" type="IS_TRUE_TYPE"/>
+				<xs:element name="yetToBeFormed" type="IS_TRUE_TYPE"/>
+				<xs:element name="overFiveYears" type="IS_TRUE_TYPE"/>
+			</xs:choice>
+			<xs:element name="value" type="YEAR_VALUE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ISSUER_TYPE">
+		<xs:complexContent>
+			<xs:extension base="FILED_BY_COMPANY_FORMD_TYPE">
+				<xs:sequence>
+					<xs:element name="issuerAddress" type="FORM_D_ADDRESS_TYPE"/>
+					<xs:element name="issuerPhoneNumber" type="FORM_D_PHONE_NUMBER_TYPE"/>
+					<xs:element name="jurisdictionOfInc" type="STRING_50_TYPE" minOccurs="0"/>
+					<xs:element name="issuerPreviousNameList" type="NAMES_LIST_TYPE" minOccurs="0"/>
+					<xs:element name="edgarPreviousNameList" type="NAMES_LIST_TYPE" minOccurs="0"/>
+					<xs:element name="entityType" type="ENTITY_TYPE_TYPE"/>
+					<xs:element name="entityTypeOtherDesc" type="STRING_255_TYPE" minOccurs="0"/>
+					<xs:element name="yearOfInc" type="YEAR_INC_TYPE"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ADDITIONAL_ISSUER_TYPE">
+		<xs:sequence>
+			<xs:element name="issuer" type="ISSUER_TYPE" maxOccurs="99"/>
+			<xs:element name="over100IssuerFlag" type="IS_TRUE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NAME_TYPE">
+		<xs:sequence>
+			<xs:element name="firstName" type="STRING_150_TYPE"/>
+			<xs:element name="middleName" type="STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="lastName" type="STRING_150_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NAME_TYPE_W_LAST_NAME_200">
+		<xs:sequence>
+			<xs:element name="firstName" type="STRING_150_TYPE"/>
+			<xs:element name="middleName" type="STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="lastName" type="STRING_200_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RELATED_PERSON_INFO_TYPE">
+		<xs:sequence>
+			<xs:element name="relatedPersonName" type="NAME_TYPE_W_LAST_NAME_200"/>
+			<xs:element name="relatedPersonAddress" type="FORM_D_ADDRESS_TYPE"/>
+			<xs:element name="relatedPersonRelationshipList" type="RELATIONSHIP_LIST_TYPE"/>
+			<xs:element name="relationshipClarification" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RELATED_PERSONS_LIST">
+		<xs:sequence>
+			<xs:element name="relatedPersonInfo" type="RELATED_PERSON_INFO_TYPE" maxOccurs="100"/>
+			<xs:element name="over100PersonsFlag" type="IS_TRUE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ISSUER_SIZE_TYPE">
+		<xs:choice>
+			<xs:element name="revenueRange" type="REVENUE_RANGE_TYPE"/>
+			<xs:element name="aggregateNetAssetValueRange" type="AGGREGATE_NET_ASSET_VALUE_RANGE_TYPE"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FED_EXEMPT_EXCLUDE_TYPE">
+		<xs:sequence>
+			<xs:element name="item" type="FEDERAL_EXEMPTION_LIST" minOccurs="1" maxOccurs="21"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FIRST_SALE_DATE_TYPE">
+		<xs:choice>
+			<xs:element name="value" type="xs:date"/>
+			<xs:element name="yetToOccur" type="IS_TRUE_TYPE"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FORMD_AMENDMENT_TYPE">
+		<xs:sequence>
+			<xs:element name="isAmendment" type="TRUE_FALSE_TYPE"/>
+			<xs:element name="previousAccessionNumber" type="FORMD_ACCESSION_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILING_TYPE">
+		<xs:sequence>
+			<xs:element name="newOrAmendment" type="FORMD_AMENDMENT_TYPE"/>
+			<xs:element name="dateOfFirstSale" type="FIRST_SALE_DATE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OFFERING_DURATION_TYPE">
+		<xs:sequence>
+			<xs:element name="moreThanOneYear" type="TRUE_FALSE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SECURITIES_OFFERED_TYPE">
+		<xs:sequence>
+			<xs:element name="isEquityType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isDebtType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isOptionToAcquireType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isSecurityToBeAcquiredType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isPooledInvestmentFundType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isTenantInCommonType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isMineralPropertyType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="isOtherType" type="IS_TRUE_TYPE" minOccurs="0"/>
+			<xs:element name="descriptionOfOtherType" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BUSINESS_COMBINATION_TRANSACTION_TYPE">
+		<xs:sequence>
+			<xs:element name="isBusinessCombinationTransaction" type="TRUE_FALSE_TYPE"/>
+			<xs:element name="clarificationOfResponse" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="STATES_OF_SOLICITATION_LIST">
+		<xs:choice>
+			<xs:group ref="STATE_SOLICITATION_GROUP" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="value" fixed="All States" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="SALES_COMPENSATION_TYPE">
+		<xs:sequence>
+			<xs:element name="recipientName" type="STRING_200_TYPE"/>
+			<xs:element name="recipientCRDNumber" type="CRD_NUMBER_TYPE"/>
+			<xs:element name="associatedBDName" type="BD_NAME_TYPE_200"/>
+			<xs:element name="associatedBDCRDNumber" type="CRD_NUMBER_TYPE"/>
+			<xs:element name="recipientAddress" type="FORM_D_ADDRESS_TYPE"/>
+			<xs:element name="statesOfSolicitationList" type="STATES_OF_SOLICITATION_LIST"/>
+			<xs:element name="foreignSolicitation" type="FOREIGN_SOLICITATION" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SALES_COMPENSATION_LIST">
+		<xs:sequence>
+			<xs:element name="recipient" type="SALES_COMPENSATION_TYPE" minOccurs="0" maxOccurs="100"/>
+			<xs:element name="over100RecipientFlag" type="IS_TRUE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OFFERING_SALES_AMOUNTS_TYPE">
+		<xs:sequence>
+			<xs:element name="totalOfferingAmount" type="AMOUNT_OR_INDEFINITE"/>
+			<xs:element name="totalAmountSold" type="POSITIVE_INTEGER_TYPE"/>
+			<xs:element name="totalRemaining" type="AMOUNT_OR_INDEFINITE"/>
+			<xs:element name="clarificationOfResponse" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="INVESTORS_TYPE">
+		<xs:sequence>
+			<xs:element name="hasNonAccreditedInvestors" type="TRUE_FALSE_TYPE"/>
+			<xs:element name="numberNonAccreditedInvestors" type="POSITIVE_INTEGER_TYPE" minOccurs="0"/>
+			<xs:element name="totalNumberAlreadyInvested" type="POSITIVE_INTEGER_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AMOUNT_ESTIMATE_TYPE">
+		<xs:sequence>
+			<xs:element name="dollarAmount" type="POSITIVE_INTEGER_TYPE"/>
+			<xs:element name="isEstimate" type="IS_TRUE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="COMMISSION_FEE_TYPE">
+		<xs:sequence>
+			<xs:element name="salesCommissions" type="AMOUNT_ESTIMATE_TYPE"/>
+			<xs:element name="findersFees" type="AMOUNT_ESTIMATE_TYPE"/>
+			<xs:element name="clarificationOfResponse" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PROCEEDS_USE_TYPE">
+		<xs:sequence>
+			<xs:element name="grossProceedsUsed" type="AMOUNT_ESTIMATE_TYPE"/>
+			<xs:element name="clarificationOfResponse" type="STRING_255_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SIGNATURE_TYPE">
+		<xs:sequence>
+			<xs:element name="issuerName" type="ENTITY_NAME_TYPE"/>
+			<xs:element ref="signatureName"/>
+			<xs:element name="nameOfSigner" type="ENTITY_NAME_TYPE"/>
+			<xs:element ref="signatureTitle"/>
+			<xs:element ref="signatureDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SIGNATURE_BLOCK_TYPE">
+		<xs:sequence>
+			<xs:element name="authorizedRepresentative" type="TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="signature" type="SIGNATURE_TYPE" maxOccurs="101"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OFFERING_DATA_TYPE">
+		<xs:sequence>
+			<xs:element name="industryGroup" type="INDUSTRY_GROUP_TYPE"/>
+			<xs:element name="issuerSize" type="ISSUER_SIZE_TYPE"/>
+			<xs:element name="federalExemptionsExclusions" type="FED_EXEMPT_EXCLUDE_TYPE"/>
+			<xs:element name="typeOfFiling" type="FILING_TYPE"/>
+			<xs:element name="durationOfOffering" type="OFFERING_DURATION_TYPE"/>
+			<xs:element name="typesOfSecuritiesOffered" type="SECURITIES_OFFERED_TYPE"/>
+			<xs:element name="businessCombinationTransaction" type="BUSINESS_COMBINATION_TRANSACTION_TYPE"/>
+			<xs:element name="minimumInvestmentAccepted" type="POSITIVE_INTEGER_TYPE"/>
+			<xs:element name="salesCompensationList" type="SALES_COMPENSATION_LIST"/>
+			<xs:element name="offeringSalesAmounts" type="OFFERING_SALES_AMOUNTS_TYPE"/>
+			<xs:element name="investors" type="INVESTORS_TYPE"/>
+			<xs:element name="salesCommissionsFindersFees" type="COMMISSION_FEE_TYPE"/>
+			<xs:element name="useOfProceeds" type="PROCEEDS_USE_TYPE"/>
+			<xs:element name="signatureBlock" type="SIGNATURE_BLOCK_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="testOrLive" type="LIVE_OR_TEST_TYPE" minOccurs="0"/>
+				<xs:element ref="returnCopy" minOccurs="0"/>
+				<xs:element name="contactData" type="FORM_D_POINT_OF_CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="notificationAddressList" type="FORM_D_NOTIFY_GROUP_TYPE" minOccurs="0"/>
+				<xs:element name="primaryIssuer" type="ISSUER_TYPE"/>
+				<xs:element name="issuerList" type="ADDITIONAL_ISSUER_TYPE" minOccurs="0"/>
+				<xs:element name="relatedPersonsList" type="RELATED_PERSONS_LIST"/>
+				<xs:element name="offeringData" type="OFFERING_DATA_TYPE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

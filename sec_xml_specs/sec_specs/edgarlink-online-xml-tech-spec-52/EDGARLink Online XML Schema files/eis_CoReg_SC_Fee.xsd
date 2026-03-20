@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Filename: eisSingleFilerSubmission.xsd -->
+<!-- Purpose:  Defines the elements for EdgarLink filings. -->
+<!-- Version:   TBD -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/coregscfee" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/feecommon" xmlns:ns3="http://www.sec.gov/edgar/sccommon" targetNamespace="http://www.sec.gov/edgar/coregscfee" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/feecommon" schemaLocation="eis_Common_Fee.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+            Type of submission you are filing.  Choose a value from the appropriate family of
+            Submission Types.  
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="PREM14A"/>
+			<xs:enumeration value="PREM14C"/>
+			<xs:enumeration value="PRER14A"/>
+			<xs:enumeration value="PRER14C"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILERS_TYPE">
+		<xs:sequence>
+			<xs:element name="filer" type="FILER_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an EDGARLink Online submission.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="flags" type="FLAG_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="contact" type="ns1:CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="filer" type="FILER_TYPE"/>
+				<xs:element name="coregs" type="FILERS_TYPE" minOccurs="0"/>
+				<xs:element name="sros" type="ns1:SROS_TYPE"/>
+				<xs:element name="feeTableIncludedFlag" type="ns1:YES_NO_TYPE" minOccurs="0"/>
+				<xs:element name="invCompany" type="ns1:INVESTMENT_COMPANY_TYPE" minOccurs="0"/>
+				<xs:element name="periodOfReport" type="ns1:DATE_TYPE" minOccurs="0"/>
+				<xs:element name="notifications" type="ns1:NOTIFICATION_TYPE" minOccurs="0"/>
+				<xs:element name="moduleSegments" type="ns1:MODULES_SEGMENT_TYPE" minOccurs="0"/>
+				<xs:element name="ftExhibitFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE"/>
+				<xs:element name="seriesClasses" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="reportSeriesClass" type="ns3:RPT_SERIES_TYPE"/>
+							<xs:element name="reportClass" type="ns3:RPT_CLASS_TYPE"/>
+							<xs:element name="mergeSeriesClass" type="ns3:MGR_SERIES_CLASS_TYPE"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="edgarFee">
+					<xs:annotation>
+						<xs:documentation>Comment describing your root element</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="submissionFee" type="ns2:FEE_TYPE" minOccurs="0"/>
+							<xs:element name="submissionOffering" type="ns2:FEE_OFFERING_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="submissionOffset" type="ns2:FEE_OFFSET_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

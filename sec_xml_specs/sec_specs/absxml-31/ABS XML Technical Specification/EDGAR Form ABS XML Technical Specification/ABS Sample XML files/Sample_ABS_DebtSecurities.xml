@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assetData xmlns="http://www.sec.gov/edgar/document/absee/debtsecurities/assetdata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/document/absee/debtsecurities/assetdata eis_ABS_DebtSecuritiesAssetData.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. -->  
+<!-- Please refer to the EDGAR ABS XML Technical Specification and the related EDGAR ABS Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGAR ABS Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+<assets>
+		<assetTypeNumber>a</assetTypeNumber>
+		<assetNumber>a</assetNumber>
+		<assetGroupNumber>0</assetGroupNumber>
+		<reportPeriodBeginningDate>12-31-2015</reportPeriodBeginningDate>
+		<reportPeriodEndDate>12-31-2015</reportPeriodEndDate>
+		<issuerName>a</issuerName>
+		<originalIssuanceDate>11/2015</originalIssuanceDate>
+		<originalSecurityAmount>-999999999999.99999999</originalSecurityAmount>
+		<originalSecurityTermNumber>0</originalSecurityTermNumber>
+		<securityMaturityDate>11/2015</securityMaturityDate>
+		<originalAmortizationTermNumber>0</originalAmortizationTermNumber>
+		<originalInterestRatePercentage>-999999999999.99999999</originalInterestRatePercentage>
+		<accrualTypeCode>5</accrualTypeCode>
+		<interestRateTypeCode>1</interestRateTypeCode>
+		<originalInterestOnlyTermNumber>0</originalInterestOnlyTermNumber>
+		<firstPaymentDate>11/2015</firstPaymentDate>
+		<underwritingIndicator>true</underwritingIndicator>
+		<securityTitleName>a</securityTitleName>
+		<denominationNumber>-999999999999.99999999</denominationNumber>
+		<currencyName>a</currencyName>
+		<trusteeName>a</trusteeName>
+		<secFileNumber>811-21081</secFileNumber>
+		<cik>0000350001</cik>
+		<callableIndicator>true</callableIndicator>
+		<paymentFrequencyCode>1</paymentFrequencyCode>
+		<zeroCouponIndicator>true</zeroCouponIndicator>
+		<assetAddedIndicator>true</assetAddedIndicator>
+		<assetModifiedIndicator>true</assetModifiedIndicator>
+		<reportPeriodBeginningAssetBalanceAmount>-999999999999.99999999</reportPeriodBeginningAssetBalanceAmount>
+		<reportPeriodBeginningScheduledAssetBalanceAmount>-999999999999.99999999</reportPeriodBeginningScheduledAssetBalanceAmount>
+		<reportPeriodScheduledPaymentAmount>-999999999999.99999999</reportPeriodScheduledPaymentAmount>
+		<reportPeriodInterestRatePercentage>-999999999999.99999999</reportPeriodInterestRatePercentage>
+		<totalActualPaidAmount>-999999999999.99999999</totalActualPaidAmount>
+		<actualInterestCollectionAmount>-999999999999.99999999</actualInterestCollectionAmount>
+		<actualPrincipalCollectedAmount>-999999999999.99999999</actualPrincipalCollectedAmount>
+		<actualOtherCollectionAmount>-999999999999.99999999</actualOtherCollectionAmount>
+		<otherPrincipalAdjustmentAmount>-999999999999.99999999</otherPrincipalAdjustmentAmount>
+		<otherInterestAdjustmentAmount>-999999999999.99999999</otherInterestAdjustmentAmount>
+		<scheduledInterestAmount>-999999999999.99999999</scheduledInterestAmount>
+		<scheduledPrincipalAmount>-999999999999.99999999</scheduledPrincipalAmount>
+		<endReportingPeriodActualBalanceAmount>-999999999999.99999999</endReportingPeriodActualBalanceAmount>
+		<endReportingPeriodScheduledBalanceAmount>-999999999999.99999999</endReportingPeriodScheduledBalanceAmount>
+		<servicingFeePercentage>-999999999999.99999999</servicingFeePercentage>
+		<servicingFlatFeeAmount>-999999999999.99999999</servicingFlatFeeAmount>
+		<zeroBalanceCode>99</zeroBalanceCode>
+		<zeroBalanceEffectiveDate>11/2015</zeroBalanceEffectiveDate>
+		<remainingTermToMaturityNumber>0</remainingTermToMaturityNumber>
+		<currentDelinquentStatusNumber>0</currentDelinquentStatusNumber>
+		<paymentPastDueDaysNumber>0</paymentPastDueDaysNumber>
+		<paymentPastDueNumber>0</paymentPastDueNumber>
+		<nextReportPeriodPaymentDueAmount>-999999999999.99999999</nextReportPeriodPaymentDueAmount>
+		<nextDueDate>11/2015</nextDueDate>
+		<primaryLoanServicerName>a</primaryLoanServicerName>
+		<mostRecentServicingTransferReceivedDate>11/2015</mostRecentServicingTransferReceivedDate>
+		<assetSubjectToDemandIndicator>true</assetSubjectToDemandIndicator>
+		<statusAssetSubjectToDemandCode>98</statusAssetSubjectToDemandCode>
+		<repurchaseAmount>-999999999999.99999999</repurchaseAmount>
+		<demandResolutionDate>12-31-2015</demandResolutionDate>
+		<repurchaserName>a</repurchaserName>
+		<repurchaseReplacementReasonCode>98</repurchaseReplacementReasonCode>
+	</assets>
+</assetData>

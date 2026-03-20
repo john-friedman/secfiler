@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/ownership" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/ownership" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:complexType name="REPORTING_OWNER_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="filerRelationship" type="ns1:RPT_OWNER_RELATIONSHIP_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUBJECT_COMPANY_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="irsNumber" type="ns1:TAX_ID_TYPE"/>
+			<xs:element name="filerName" type="ns1:ENTITY_NAME_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+            Type of submission you are filing.  Choose a value from the appropriate family of
+            Submission Types.  
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="144"/>
+			<xs:enumeration value="144/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="edgarSubmission">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an EDGARLink Online submission.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="flag" type="FLAG_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="contact" type="ns1:CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="filer" type="REPORTING_OWNER_TYPE"/>
+				<xs:element name="subCompanyFiler" type="SUBJECT_COMPANY_TYPE"/>
+				<xs:element name="sros" type="ns1:SROS_TYPE"/>
+				<xs:element name="notifications" type="ns1:NOTIFICATION_TYPE" minOccurs="0"/>
+				<xs:element name="moduleSegments" type="ns1:MODULES_SEGMENT_TYPE" minOccurs="0"/>
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

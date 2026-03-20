@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/sdfiler" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/sdfiler" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+            Type of submission you are filing.  Choose a value from the appropriate family of
+            Submission Types.  
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="SD"/>
+			<xs:enumeration value="SD/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE_2">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE_2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILERS_TYPE">
+		<xs:sequence>
+			<xs:element name="filer" type="FILER_TYPE_2" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RULE13P1_ITEM_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1.01"/>
+			<xs:enumeration value="1.02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RULE13P1_ITEM_PERIOD_TYPE">
+		<xs:sequence>
+			<xs:element name="rule13P1Item" type="RULE13P1_ITEM_TYPE"/>
+			<xs:element name="period" type="ns1:DATE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RULE13P1_TYPE">
+		<xs:sequence>
+			<xs:element name="rule13P1ItemPeriod" type="RULE13P1_ITEM_PERIOD_TYPE" minOccurs="1" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RULE13Q1_ITEM_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="2.01"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RULE13Q1_TYPE">
+		<xs:sequence>
+			<xs:element name="rule13Q1Item" type="RULE13Q1_ITEM_TYPE"/>
+			<xs:element name="period" type="ns1:DATE_TYPE"/>
+			<xs:element name="resourceExtIssuer" type="ns1:YES_NO_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RULE13_TYPE">
+		<xs:sequence>
+			<xs:element name="rule13P1" type="RULE13P1_TYPE" minOccurs="0"/>
+			<xs:element name="rule13Q1" type="RULE13Q1_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="flag" type="FLAG_TYPE" minOccurs="0"/>
+				<xs:element name="contact" type="ns1:CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="accessionNumber" type="ns1:ACCESSION_NUMBER_TYPE" minOccurs="0"/>
+				<xs:element name="filer" type="FILER_TYPE"/>
+				<xs:element name="coregs" type="FILERS_TYPE" minOccurs="0"/>
+				<xs:element name="rule13" type="RULE13_TYPE"/>
+				<xs:element name="notifications" type="ns1:NOTIFICATION_TYPE" minOccurs="0"/>
+				<xs:element name="moduleSegments" type="ns1:MODULES_SEGMENT_TYPE" minOccurs="0"/>
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

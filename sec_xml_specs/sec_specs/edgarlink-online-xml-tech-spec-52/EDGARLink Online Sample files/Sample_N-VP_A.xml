@@ -1,0 +1,53 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregsc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>true</cor:confirmingCopyFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+    <cor:overrideInternetFlag>true</cor:overrideInternetFlag>
+  </cor:flags>
+  <cor:submissionType>N-VP/A</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0001125847</cor:filerId>
+    <cor:filerCcc>#tech123</cor:filerCcc>
+    <cor:fileNumber>333-123456</cor:fileNumber>
+  </cor:filer>
+  <cor:coregs>
+    <cor:filer>
+      <cor:filerId>0001161070</cor:filerId>
+      <cor:filerCcc>#tech123</cor:filerCcc>
+      <cor:fileNumber>002-3456768</cor:fileNumber>
+    </cor:filer>
+  </cor:coregs>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:invCompany>
+    <com:invCompanyType>N-6</com:invCompanyType>
+  </cor:invCompany>
+  <cor:notifications>
+    <com:internetNotificationAddress>test@sec.gov</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>E434573457</com:nickName>
+      <com:cik>0001161070</com:cik>
+      <com:ccc>#tech123</com:ccc>
+      <com:documentType>N-VP/A</com:documentType>
+    </com:moduleSegment>
+  </cor:moduleSegments>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>Test.txt</com:conformedName>
+      <com:conformedDocumentType>N-VP/A</com:conformedDocumentType>
+      <com:description>Testing N-VP/A</com:description>
+      <com:contents>dGVzdGluZw==
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:seriesClasses>
+    <cor:reportClass>
+      <scc:rptClassId>C342452346</scc:rptClassId>
+    </cor:reportClass>
+  </cor:seriesClasses>
+</cor:edgarSubmission>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coreg" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coreg eis_CoReg.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <com:confirmingCopyFlag>false</com:confirmingCopyFlag>
+    <com:overrideInternetFlag>false</com:overrideInternetFlag>
+    <com:returnCopyFlag>false</com:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>10-12B</cor:submissionType>
+  <cor:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-1000</com:phoneNumber>
+  </cor:contact>
+  <cor:filer>
+    <cor:filerId>1305274</cor:filerId>
+    <cor:filerCcc>test@123</cor:filerCcc>
+  </cor:filer>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:smallBusinessFlag>false</cor:smallBusinessFlag>
+  <cor:emergingGrowthCompanyFlag>true</cor:emergingGrowthCompanyFlag>
+  <cor:exTransitionPeriodFlag>true</cor:exTransitionPeriodFlag>
+  <cor:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </cor:notifications>
+  <cor:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A734734374</com:nickName>
+      <com:cik>1305274</com:cik>
+      <com:ccc>test@123</com:ccc>
+      <com:documentType>10-12B</com:documentType>
+    </com:moduleSegment>
+  </cor:moduleSegments>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>10-12B</com:conformedDocumentType>
+      <com:description>This is description field</com:description>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </cor:documents>
+</cor:edgarSubmission>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/absee/debtsecurities/assetdata" xmlns:mstns="http://www.sec.gov/edgar/document/absee/debtsecurities/assetdata" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/eis_abs_common" targetNamespace="http://www.sec.gov/edgar/document/absee/debtsecurities/assetdata" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+<xs:import namespace="http://www.sec.gov/edgar/eis_abs_common" schemaLocation="eis_ABS_Common.xsd"/>
+<xs:simpleType name="ACCRL_TYP_CODE_TYPE">
+<xs:annotation>
+<xs:documentation> Item 5(c)(8) - Enumerated values and descriptions: 1: 30/360, 2: Actual/365, 3: Actual/360, 4: Actual/Actual, 5: Actual/366, 6: Simple, 7: 78's, 98: Other </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="5"/>
+<xs:enumeration value="6"/>
+<xs:enumeration value="7"/>
+<xs:enumeration value="98"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="INTR_RT_TYP_CODE_TYPE">
+<xs:annotation>
+<xs:documentation> Item 5(c)(9) - Enumerated values and descriptions: 1: Fixed, 2: Adjustable, 3: Step, 98: Other </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="98"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="PYMNT_FREQ_CODE_TYPE">
+<xs:annotation>
+<xs:documentation> Item 5(c)(20) - Enumerated values and descriptions: 1: Monthly, 2: Quaterly, 3: Semi-annually, 4: Annually, 5: Daily, 6: Irregular </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="5"/>
+<xs:enumeration value="6"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="REPRCH_REPLCMNT_REASN_CODE_TYPE">
+<xs:annotation>
+<xs:documentation> Item 5(f)(5) - Enumerated values and descriptions: 1: Fraud, 2: Early payment default, 3: Other  recourse obligation, 4: Reps/warrants breach, 5: Servicer breach, 98: Other, 99: Unknown </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="5"/>
+<xs:enumeration value="98"/>
+<xs:enumeration value="99"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="STAT_ASSET_SUBJ_TO_DEMND_CODE_TYPE">
+<xs:annotation>
+<xs:documentation> Item 5(f)(1) - Enumerated values and descriptions: 0: Asset Pending Repurchase or Replacement (within cure period), 1: Asset was Repurchased or Replaced, 2: Demand in Dispute, 3: Demand Withdrawn, 4: Demand Rejected, 98: Other </xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="0"/>
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="98"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ZERO_BAL_CODE_TYPE">
+<xs:annotation>
+<xs:documentation>
+Item 5(d)(19)(i) - Enumerated values and descriptions: 1: Prepaid or Matured, 2: Repurchased or Replaced, 98: Other, 99: Unavailable</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:token">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="98"/>
+<xs:enumeration value="99"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="ASSET_TYPE">
+<xs:annotation>
+<xs:documentation>This is the main repeatable group element for each major unit under assetData.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<!-- Item 5(a)(1) - The source of the asset number used to specifically identify each asset in the pool. -->
+<xs:element name="assetTypeNumber" type="ns2:STRING_100_TYPE" minOccurs="1"/>
+<!-- Item 5(a)(2) - The standard industry identifier assigned to the asset.  If a standard industry identifier is not assigned to the asset, provide a unique ID number for the asset. -->
+<xs:element name="assetNumber" type="ns1:STRING_25_TYPE" minOccurs="1"/>
+<!-- Item 5(a)(3) - For structures with multiple collateral groups, the collateral group number in which the asset falls. -->
+<xs:element name="assetGroupNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(b)(1) - The beginning date of the reporting period. -->
+<xs:element name="reportPeriodBeginningDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+<!-- Item 5(b)(2) - The  ending date for of the reporting period. -->
+<xs:element name="reportPeriodEndDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(1) - The name of the issuer. -->
+<xs:element name="issuerName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(2) - The date the underlying security was issued. For revolving asset master trusts, it is the issuance date of the receivable that will be added to the asset pool. -->
+<xs:element name="originalIssuanceDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(3) - The dollar amount of the underlying security at the time the underlying security was issued. -->
+<xs:element name="originalSecurityAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(c)(4) -  The initial number of months between the month the underlying security was issued and the security's maturity date. -->
+<xs:element name="originalSecurityTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(c)(5) - The month and year in which the final payment on the underlying security is scheduled to be made. -->
+<xs:element name="securityMaturityDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(6) - The number of months in which the underlying security would be retired if the amortizing principal and interest payment were to be paid each month. -->
+<xs:element name="originalAmortizationTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(c)(7) - The rate of interest at the time the underlying security was issued. -->
+<xs:element name="originalInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(c)(8) - A code that describes the method used to calculate interest on the underlying security. -->
+<xs:element name="accrualTypeCode" type="ACCRL_TYP_CODE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(9) - A code that Indicates whether the interest rate on the asset is fixed, adjustable, step or other -->
+<xs:element name="interestRateTypeCode" type="INTR_RT_TYP_CODE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(10) - The number of months from the date the underlying security was issued in which the obligor is permitted to pay only interest on the asset. -->
+<xs:element name="originalInterestOnlyTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(c)(11) - The date of the first scheduled payment. -->
+<xs:element name="firstPaymentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(12) - Indicates as to whether the loan or asset met the criteria for the first level of solicitation, credit-granting or underwriting criteria used to originate the pool asset. -->
+<xs:element name="underwritingIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(13) - The title of the underlying security. -->
+<xs:element name="securityTitleName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(14) - The minimum denomination of the underlying security. -->
+<xs:element name="denominationNumber" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(c)(15) - The currency of the underlying security. -->
+<xs:element name="currencyName" type="ns2:STRING_100_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(16) - The name of the trustee. -->
+<xs:element name="trusteeName" type="ns2:STRING_100_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(17) - The registration statement file number of the registration of the offer and sale of the underlying security. -->
+<xs:element name="secFileNumber" type="ns2:STRING_15_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(18) - The CIK number of the issuer of the underlying security. -->
+<xs:element name="cik" type="ns1:STRING_10_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(19) - Indicates whether the security is callable. -->
+<xs:element name="callableIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(20) - The code describing the frequency of payments that will be made on the underlying security. -->
+<xs:element name="paymentFrequencyCode" type="PYMNT_FREQ_CODE_TYPE" minOccurs="0"/>
+<!-- Item 5(c)(21) - Indicates whether an underlying security or agreement is interest bearing. -->
+<xs:element name="zeroCouponIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(d)(1) - An Indicator as to whether the underlying security was added during the reporting period. -->
+<xs:element name="assetAddedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(d)(2) - An indicator as to whether the underlying security was modified from its original terms. -->
+<xs:element name="assetModifiedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(d)(3) - The outstanding principal balance of the underlying security as of the beginning of the reporting period. -->
+<xs:element name="reportPeriodBeginningAssetBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(4) - The scheduled principal balance of the underlying security as of the beginning of the reporting period. -->
+<xs:element name="reportPeriodBeginningScheduledAssetBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(5) - The total payment amount that was scheduled to be collected during the reporting period. -->
+<xs:element name="reportPeriodScheduledPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(6) - The interest rate in effect on the underlying security. -->
+<xs:element name="reportPeriodInterestRatePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(7) - The total payment paid to the servicer during the reporting period. -->
+<xs:element name="totalActualPaidAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(8) - The gross amount of interest collected during the reporting period. -->
+<xs:element name="actualInterestCollectionAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(9) - The amount of principal collected during the reporting period. -->
+<xs:element name="actualPrincipalCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(10) - The total of any amounts, other than principal and interest, collected during the reporting period. -->
+<xs:element name="actualOtherCollectionAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(11) - Any other amounts that would cause the principal balance of the loan to be decreased or increased during the reporting period. -->
+<xs:element name="otherPrincipalAdjustmentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(12) - The amount of any unscheduled interest adjustments during the reporting period -->
+<xs:element name="otherInterestAdjustmentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(13) - The interest payment amount that was scheduled to be collected during the reporting period. -->
+<xs:element name="scheduledInterestAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(14) - The principal payment amount that was scheduled to be collected for this reporting period. -->
+<xs:element name="scheduledPrincipalAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(15) - The actual balance as of the end of the reporting period. -->
+<xs:element name="endReportingPeriodActualBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(16) - The scheduled principal balance as of the end of the reporting period. -->
+<xs:element name="endReportingPeriodScheduledBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(17) - If the servicing fee is based on a percentage, the percentage used to calculate the aggregate servicing fee. -->
+<xs:element name="servicingFeePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(18) - If the servicing fee is based on a flat-fee amount, the monthly servicing fee paid to all servicers as a dollar amount. -->
+<xs:element name="servicingFlatFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(19)(i) - The code that indicates the reason the underlying security's balance was reduced to zero -->
+<xs:element name="zeroBalanceCode" type="ZERO_BAL_CODE_TYPE" minOccurs="0"/>
+<!-- Item 5(d)(19)(ii) -  The date on which the underlying security's balance was reduced to zero. -->
+<xs:element name="zeroBalanceEffectiveDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(d)(20) - The number of months from the end of the reporting period to the maturity date of the underlying security. -->
+<xs:element name="remainingTermToMaturityNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(d)(21) - The number of days the obligor is delinquent as determined by the governing transaction agreement. -->
+<xs:element name="currentDelinquentStatusNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(d)(22) - If the obligor has not made the full scheduled payment, the number of days since the scheduled payment date. -->
+<xs:element name="paymentPastDueDaysNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(d)(23) - The number of payments the obligor is past due as of the end of the reporting period. -->
+<xs:element name="paymentPastDueNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+<!-- Item 5(d)(24) - The total payment due to be collected in the next reporting period. -->
+<xs:element name="nextReportPeriodPaymentDueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(d)(25) - The date on which the next payment is due on the underlying security. -->
+<xs:element name="nextDueDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(e)(1) - The name or MERS organization number of the entity that serviced the underlying security during the reporting period. -->
+<xs:element name="primaryLoanServicerName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+<!-- Item 5(e)(2) - If the servicing of the underlying security has been transferred, the effective date of the most recent servicing transfer. -->
+<xs:element name="mostRecentServicingTransferReceivedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+<!-- Item 5(f) -  An indicator as to whether during the reporting period the asset was the subject of a demand to repurchase or replace for breach of representations and warranties, including investor demands upon a trustee. -->
+<xs:element name="assetSubjectToDemandIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+<!-- Item 5(f)(1) - The code that describes the status of the repurchase or replacement demand as of the end of the reporting period. -->
+<xs:element name="statusAssetSubjectToDemandCode" type="STAT_ASSET_SUBJ_TO_DEMND_CODE_TYPE" minOccurs="0"/>
+<!-- Item 5(f)(2) - The amount paid to repurchase the underlying security from the pool. -->
+<xs:element name="repurchaseAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+<!-- Item 5(f)(3) - The date the underlying security  underlying security repurchase or replacement demand was resolved. -->
+<xs:element name="demandResolutionDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+<!-- Item 5(f)(4) - The name of the repurchaser. -->
+<xs:element name="repurchaserName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+<!-- Item 5(f)(5) - A code that describes the reason for the repurchase or replacement. -->
+<xs:element name="repurchaseReplacementReasonCode" type="REPRCH_REPLCMNT_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="assetData">
+<xs:annotation>
+<xs:documentation>This is the root element for an ABS Asset Data exhibit.</xs:documentation>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element name="assets" type="ASSET_TYPE" minOccurs="0" maxOccurs="unbounded">
+<xs:unique name="uniqueRepurchaseReplacementReasonCode">
+<xs:selector xpath="mstns:repurchaseReplacementReasonCode"/>
+<xs:field xpath="."/>
+</xs:unique>
+
+</xs:element></xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>

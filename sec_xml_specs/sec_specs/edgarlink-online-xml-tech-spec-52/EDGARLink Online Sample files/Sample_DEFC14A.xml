@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sub:edgarSubmission xmlns:sub="http://www.sec.gov/edgar/subjectsc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/subjectsc eis_Subject_SC.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <sub:liveTestFlag>LIVE</sub:liveTestFlag>
+  <sub:flag>
+    <sub:confirmingCopyFlag>true</sub:confirmingCopyFlag>
+    <sub:returnCopyFlag>true</sub:returnCopyFlag>
+    <sub:overrideInternetFlag>true</sub:overrideInternetFlag>
+  </sub:flag>
+  <sub:submissionType>DEFC14A</sub:submissionType>
+  <sub:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </sub:contact>
+  <sub:filer>
+    <sub:filerId>1305274</sub:filerId>
+    <sub:filerCcc>test@123</sub:filerCcc>
+  </sub:filer>
+  <sub:subCompanyFiler>
+    <sub:filerId>1305274</sub:filerId>
+    <sub:irsNumber>22-7777777</sub:irsNumber>
+    <sub:fileNumber>333-00000-1</sub:fileNumber>
+    <sub:filerName>Company Name</sub:filerName>
+    <sub:filerInvCompany>
+      <com:isImCompany>true</com:isImCompany>
+      <com:invCompanyType>N-1A</com:invCompanyType>
+    </sub:filerInvCompany>
+  </sub:subCompanyFiler>
+  <sub:sros>
+    <com:sroId>NONE</com:sroId>
+  </sub:sros>
+  <sub:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </sub:notifications>
+  <sub:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A123456789</com:nickName>
+      <com:cik>1305274</com:cik>
+      <com:ccc>test@123</com:ccc>
+      <com:documentType>DEFC14A</com:documentType>
+    </com:moduleSegment>
+  </sub:moduleSegments>
+  <sub:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>DEFC14A</com:conformedDocumentType>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </sub:documents>
+  <sub:seriesClasses>
+    <sub:reportSeriesClass>
+      <scc:rptSeriesClassInfo>
+        <scc:seriesId>S123456789</scc:seriesId>
+        <scc:classId>C123456789</scc:classId>
+      </scc:rptSeriesClassInfo>
+    </sub:reportSeriesClass>
+  </sub:seriesClasses>
+</sub:edgarSubmission>

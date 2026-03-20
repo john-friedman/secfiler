@@ -1,0 +1,102 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/schedule13g" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData>
+    <submissionType>SCHEDULE 13G/A</submissionType>
+    <previousAccessionNumber>0001314805-23-900662</previousAccessionNumber>
+    <filerInfo>
+      <filer>
+        <filerCredentials>
+          <cik>0001314805</cik>
+          <ccc>XXXXXXXX</ccc>
+        </filerCredentials>
+      </filer>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <contact>
+        <contactName>Joe</contactName>
+        <contactPhoneNumber>454454</contactPhoneNumber>
+        <contactEmailAddress>joe@gmail.com</contactEmailAddress>
+      </contact>
+      <flags>
+        <overrideInternetFlag>false</overrideInternetFlag>
+      </flags>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <coverPageHeader>
+      <amendmentNo>1</amendmentNo>
+      <securitiesClassTitle>Common Stock</securitiesClassTitle>
+      <eventDateRequiresFilingThisStatement>10/16/2023</eventDateRequiresFilingThisStatement>
+      <issuerInfo>
+        <issuerCik>0001161286</issuerCik>
+        <issuerName>Phase V Steven-DEV5</issuerName>
+		<issuerCusips>
+			<issuerCusipNumber>212122121</issuerCusipNumber>
+			<issuerCusipNumber>212122122</issuerCusipNumber>
+			<issuerCusipNumber>212122123</issuerCusipNumber>
+		</issuerCusips>
+        <issuerPrincipalExecutiveOfficeAddress>
+          <com:street1>100 STREET NE</com:street1>
+          <com:street2>100 STREET NE</com:street2>
+          <com:city>WASHINGTON</com:city>
+          <com:stateOrCountry>DC</com:stateOrCountry>
+          <com:zipCode>20549</com:zipCode>
+        </issuerPrincipalExecutiveOfficeAddress>
+      </issuerInfo>
+      <designateRulesPursuantThisScheduleFiled>
+        <designateRulePursuantThisScheduleFiled>Rule 13d-1(d)</designateRulePursuantThisScheduleFiled>
+      </designateRulesPursuantThisScheduleFiled>
+    </coverPageHeader>
+    <coverPageHeaderReportingPersonDetails>
+      <reportingCik>0001118676</reportingCik>
+      <reportingPersonName>New Rufus Test Co</reportingPersonName>
+    </coverPageHeaderReportingPersonDetails>
+    <coverPageHeaderReportingPersonDetails>
+      <reportingCik>0001314805</reportingCik>
+      <reportingPersonName>Fan</reportingPersonName>
+    </coverPageHeaderReportingPersonDetails>
+    <items>
+      <item1>
+        <issuerName>Phase V Steven-DEV5</issuerName>
+        <issuerPrincipalExecutiveOfficeAddress>100 STREET NE, 100 STREET NE, WASHINGTON, DISTRICT OF COLUMBIA, 20549.</issuerPrincipalExecutiveOfficeAddress>
+      </item1>
+      <item3>
+        <notApplicableFlag>N</notApplicableFlag>
+      </item3>
+      <item5>
+        <notApplicableFlag>N</notApplicableFlag>
+        <classOwnership5PercentOrLess>N</classOwnership5PercentOrLess>
+      </item5>
+      <item6>
+        <notApplicableFlag>N</notApplicableFlag>
+      </item6>
+      <item7>
+        <notApplicableFlag>N</notApplicableFlag>
+      </item7>
+      <item8>
+        <notApplicableFlag>N</notApplicableFlag>
+      </item8>
+      <item9>
+        <notApplicableFlag>N</notApplicableFlag>
+      </item9>
+      <item10>
+        <notApplicableFlag>N</notApplicableFlag>
+        <certifications>By signing below I certify that, to the best of my knowledge and belief, the securities referred to above were acquired and are held in the ordinary course of business and were not acquired and are not held for the purpose of or with the effect of changing or influencing the control of the issuer of the securities and were not acquired and are not held in connection with or as a participant in any transaction having that purpose or effect, other than activities solely in connection with a nomination under &#167; 240.14a-11.</certifications>
+      </item10>
+    </items>
+    <signatureInformation>
+      <reportingPersonName>New Rufus Test Co</reportingPersonName>
+      <signatureDetails>
+        <signature>Rufus</signature>
+        <title>CEO</title>
+        <date>10/27/2023</date>
+      </signatureDetails>
+    </signatureInformation>
+    <signatureInformation>
+      <reportingPersonName>Fan</reportingPersonName>
+      <signatureDetails>
+        <signature>Fan</signature>
+        <title>COO</title>
+        <date>10/27/2023</date>
+      </signatureDetails>
+    </signatureInformation>
+  </formData>
+</edgarSubmission>

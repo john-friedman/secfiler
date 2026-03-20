@@ -1,0 +1,33 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/sbsefwvfiler">
+  <headerData>
+    <submissionType>SBSEF-V</submissionType>
+    <filerInfo>
+      <filer>
+        <filerCredentials>
+          <cik>9999999999</cik>
+          <ccc>test#1</ccc>
+        </filerCredentials>
+      </filer>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <contact>
+        <contactName>John Doe</contactName>
+        <contactPhoneNumber>555-555-5555</contactPhoneNumber>
+        <contactEmailAddress>johndoe@example.com</contactEmailAddress>
+      </contact>
+      <flags>
+        <overrideInternetFlag>false</overrideInternetFlag>
+      </flags>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <effectiveDateInfo>
+      <effectiveDate>05/24/2025</effectiveDate>
+    </effectiveDateInfo>
+    <signatureInfo>
+      <signatureDate>05/01/2024</signatureDate>
+      <signatureApplicantName>John  Doe</signatureApplicantName>
+      <signatureAuthorizedPerson>John Doe</signatureAuthorizedPerson>
+      <signatureTitle>Manager</signatureTitle>
+    </signatureInfo>
+  </formData>
+</edgarSubmission>

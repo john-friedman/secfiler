@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/sbsef/exhibitgmn" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/document/sbsef/exhibitgmn" elementFormDefault="qualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:complexType name="EXHIBIT_G_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EXHIBIT_G_INFO</xs:documentation>
+			<xs:documentation>additionalInformationConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="additionalInformation" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="additionalInformationConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_M_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EXHIBIT_M_INFO</xs:documentation>
+			<xs:documentation>additionalInformationConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="additionalInformation" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="additionalInformationConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_N_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the EXHIBIT_N_INFO</xs:documentation>
+			<xs:documentation>additionalInformationConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="additionalInformation" type="ns1:STRING_10K_TYPE" minOccurs="0"/>
+			<xs:element name="additionalInformationConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_G_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the root element for sbsef exhibit G.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exhibitGInfo" type="EXHIBIT_G_INFO_TYPE" minOccurs="0" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EXHIBIT_N_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the root element for sbsef exhibit N.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="exhibitNInfo" type="EXHIBIT_N_INFO_TYPE" minOccurs="0" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

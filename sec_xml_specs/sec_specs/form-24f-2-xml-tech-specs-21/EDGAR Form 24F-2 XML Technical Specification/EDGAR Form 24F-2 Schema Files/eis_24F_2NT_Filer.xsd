@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/twentyfourf2filer" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:sccom="http://www.sec.gov/edgar/sccommon" xmlns:ns2="http://www.sec.gov/edgar/statecodes" xmlns:feecom="http://www.sec.gov/edgar/feecommon" targetNamespace="http://www.sec.gov/edgar/twentyfourf2filer" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/statecodes" schemaLocation="eis_stateCodes.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sccommon" schemaLocation="eis_Common_SC.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/feecommon" schemaLocation="eis_Common_Fee.xsd"/>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for SUBMISSION</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="24F-2NT"/>
+			<xs:enumeration value="24F-2NT/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="COMPANY_CLASSIFICATION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for COMPANY_CLASSIFICATION_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="N-1A"/>
+			<xs:enumeration value="N-2"/>
+			<xs:enumeration value="N-3"/>
+			<xs:enumeration value="N-4"/>
+			<xs:enumeration value="N-5"/>
+			<xs:enumeration value="N-6"/>
+			<xs:enumeration value="S-1 or S-3"/>
+			<xs:enumeration value="S-6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SIGNATURE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SIGNATURE_TYPE</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="signature" type="ns1:STRING_150_TYPE"/>
+			<xs:element name="nameAndTitle" type="ns1:STRING_250_TYPE"/>
+			<xs:element name="signatureDate" type="ns1:DATE_TYPE2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FLAGS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FLAGS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="confirmingCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NOTIFICATIONS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the NOTIFICATIONS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_INFO_TYPE.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="reportSeriesClass" type="RPT_SERIES_TYPE"/>
+				<xs:element name="reportClass" type="RPT_CLASS_TYPE"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_SERIES_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_SERIES_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="rptIncludeAllSeriesFlag" type="TRUE_TYPE"/>
+				<xs:element name="rptSeriesClassInfo" type="SERIES_CLASS_PAIR_TYPE" maxOccurs="1000"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_PAIR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_PAIR_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="seriesId" type="sccom:SERIES_ID_TYPE"/>
+			<xs:choice>
+				<xs:element name="includeAllClassesFlag" type="TRUE_TYPE"/>
+				<xs:element name="classInfo" type="CLASS_INFO_TYPE" maxOccurs="1000"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_CLASS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_CLASS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="rptIncludeAllClassesFlag" type="TRUE_TYPE"/>
+			<xs:element name="classInfo" type="CLASS_INFO_TYPE" maxOccurs="1000"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CLASS_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CLASS_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="classId" type="sccom:CLASS_ID_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_INFO_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_INFO_ANNUAL_TYPE.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="reportSeriesClass" type="RPT_SERIES_ANNUAL_TYPE"/>
+				<xs:element name="reportClass" type="RPT_CLASS_ANNUAL_TYPE"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_SERIES_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_SERIES_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="rptIncludeAllSeriesFlag" type="TRUE_TYPE"/>
+				<xs:element name="rptSeriesClassInfo" type="SERIES_CLASS_PAIR_ANNUAL_TYPE" maxOccurs="1000"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_CLASS_PAIR_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_CLASS_PAIR_ANNUAL_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="seriesName" type="sccom:SERIES_NAME_TYPE"/>
+			<xs:element name="seriesId" type="sccom:SERIES_ID_TYPE"/>
+			<xs:choice>
+				<xs:element name="includeAllClassesFlag" type="TRUE_TYPE"/>
+				<xs:element name="classInfo" type="CLASS_INFO_ANNUAL_TYPE" maxOccurs="1000"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RPT_CLASS_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_CLASS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="rptIncludeAllClassesFlag" type="TRUE_TYPE"/>
+			<xs:element name="annualClassInfo" type="CLASS_INFO_ANNUAL_TYPE" maxOccurs="1000"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="RPT_CLASS_NAME_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_CLASS_NAME_ANNUAL_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="rptIncludeAllFlag" type="TRUE_TYPE"/>
+			<xs:element name="annualClassNameInfo" type="RPT_CLASS_NAME_INFO_ANNUAL_TYPE" maxOccurs="1000"/>
+		</xs:choice>
+	</xs:complexType>	
+	<xs:complexType name="RPT_CLASS_NAME_INFO_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the RPT_CLASS_NAME_INFO_ANNUAL_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="className" type="sccom:CLASS_NAME_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="CLASS_INFO_ANNUAL_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CLASS_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="className" type="sccom:CLASS_NAME_TYPE"/>
+			<xs:element name="classId" type="sccom:CLASS_ID_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SERIES_OR_CLASS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				SERIES_OR_CLASS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="reportSeriesClass" type="RPT_SERIES_TYPE"/>
+				<xs:element name="reportClass" type="RPT_CLASS_TYPE"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONTACT_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactName" type="ns1:NAME_TYPE" minOccurs="0"/>
+			<xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE" minOccurs="0"/>
+			<xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ISSUER_CREDENTIALS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the
+				ISSUER_CREDENTIALS_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cik" type="ns1:CIK_TYPE"/>
+			<xs:element name="ccc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="issuerCredentials" type="ISSUER_CREDENTIALS_TYPE"/>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FORM_DATA
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="annualFilings" type="ANNUAL_FILING_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ANNUAL_FILING_TYPE">
+		<xs:sequence>
+			<xs:element name="annualFilingInfo" type="ANNUAL_FILING_INFO_TYPE" maxOccurs="1000"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="FILER_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+			<xs:element name="filer" type="FILER_TYPE"/>
+			<xs:element name="contact" type="CONTACT_TYPE" minOccurs="0"/>
+			<xs:element name="notifications" type="NOTIFICATIONS_TYPE" minOccurs="0"/>
+			<xs:element name="flags" type="FLAGS_TYPE" minOccurs="0"/>
+			<xs:element name="investmentCompanyType" type="COMPANY_CLASSIFICATION_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HEADER_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the HEADER_DATA
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+			<xs:element name="filerInfo" type="FILER_INFO_TYPE"/>
+			<xs:element name="payorInfo" type="FEE_TYPE" minOccurs="0" />
+			<xs:element name="seriesClass" type="SERIES_CLASS_INFO_TYPE" minOccurs="0" />
+			<xs:element name="offeringsAndFees" type="OFFERINGS_AND_FEES_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+		<xs:complexType name="OFFERINGS_AND_FEES_TYPE">
+		<xs:sequence>
+			<xs:element name="offeringsAndFeesInfo" type="SALES_TYPE" maxOccurs="1000"/>
+			<xs:element name="totalDue" type="feecom:EDGAR_MONEY"/>
+		</xs:sequence>
+	</xs:complexType>		
+	<xs:complexType name="FEE_TYPE">
+		<xs:sequence>
+			<xs:element name="feePayorInformation" type="feecom:PAYOR_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SALES_TYPE">
+		<xs:sequence>
+			<xs:element name="salesProceeds" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="redeemedValue" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="netValue" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="feeAmount" type="feecom:DEC_NON_NEG_BILLIONS_PREC4"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ANNUAL_FILING_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the ANNUAL_FILING_INFO_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item1" type="ITEM_1_TYPE"/>
+			<xs:element name="item2" type="ITEM_2_TYPE"/>
+			<xs:element name="item3" type="ITEM_3_TYPE"/>
+			<xs:element name="item4" type="ITEM_4_TYPE"/>
+			<xs:element name="item5" type="ITEM_5_TYPE"/>
+			<xs:element name="item6" type="ITEM_6_TYPE" minOccurs="0"/>
+			<xs:element name="item7" type="ITEM_7_TYPE"/>
+			<xs:element name="item8" type="ITEM_8_TYPE" minOccurs="0"/>
+			<xs:element name="signature" type="SIGNATURE_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_1_TYPE">
+		<xs:sequence>
+			<xs:element name="nameOfIssuer" type="ns1:STRING_150_TYPE"/>
+			<xs:element name="addressOfIssuer" type="ADDRESS_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_2_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+				N-1A, N-3 : reportSeriesClass
+				N-4, N-6 : reportClass
+				N-2, N-5, S-1 or S-3, S-6: reportClassName
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="reportSeriesClass" type="RPT_SERIES_ANNUAL_TYPE"/>
+				<xs:element name="reportClass" type="RPT_CLASS_ANNUAL_TYPE"/>
+				<xs:element name="reportClassName" type="RPT_CLASS_NAME_ANNUAL_TYPE"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_3_TYPE">
+		<xs:sequence>
+			<xs:element name="investmentCompActFileNo" type="INVEST_FILE_NUMBER_TYPE" minOccurs="0"/>
+			<xs:element name="securitiesActFileNumbers" type="SECURITIES_ACT_FILE_NUMBER_LIST"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SECURITIES_ACT_FILE_NUMBER_LIST">
+		<xs:sequence>
+			<xs:element name="securitiesActFileNo" type="SECURITIES_ACT_FILE_NUMBER_TYPE" maxOccurs="250"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SECURITIES_ACT_FILE_NUMBER_TYPE">
+		<xs:sequence>
+			<xs:element name="fileNumber" type="ns1:FILE_NUMBER_TYPE" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_4_TYPE">
+		<xs:sequence>
+			<xs:element name="lastDayOfFiscalYear" type="ns1:DATE_TYPE2"/>
+			<xs:element name="isThisFormBeingFiledLate" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="isThisTheLastTimeIssuerFilingThisForm" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_5_TYPE">
+		<xs:sequence>
+			<xs:element name="seriesOrClassId" type="sccom:SERIES_OR_CLASS_ID_TYPE" minOccurs="0"/>
+			<xs:element name="aggregateSalePriceOfSecuritiesSold" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="aggregatePriceOfSecuritiesRedeemedOrRepurchasedInFiscalYear" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="aggregatePriceOfSecuritiesRedeemedOrRepurchasedAnyPrior" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="totalAvailableRedemptionCredits" type="feecom:EDGAR_MONEY_15DIGITS"/>
+			<xs:element name="netSales" type="feecom:EDGAR_MONEY"/>
+			<xs:element name="redemptionCreditsAvailableForUseInFutureYears" type="feecom:EDGAR_MONEY_NEGATIVE"/>
+			<xs:element name="multiplierForDeterminingRegistrationFee" type="FEE_RATE"/>
+			<xs:element name="registrationFeeDue" type="feecom:EDGAR_MONEY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_6_TYPE">
+		<xs:sequence>
+			<xs:element name="interestDue" type="feecom:EDGAR_MONEY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_7_TYPE">
+		<xs:sequence>
+			<xs:element name="totalOfRegistrationFeePlusAnyInterestDue" type="feecom:EDGAR_MONEY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ITEM_8_TYPE">
+		<xs:sequence>
+			<xs:element name="explanatoryNotes" type="ns1:STRING_1K_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="FEE_RATE">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="10"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9.9999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ADDRESS_TYPE">
+		<xs:sequence>
+			<xs:element name="street1" type="ns1:STREET_TYPE"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE"/>
+			<xs:element name="state" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="country" type="ns2:STATE_COUNTRY_CODE"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="INVEST_FILE_NUMBER_TYPE">
+		<xs:annotation>
+			<xs:documentation>The Investment Company Act file number should be the number assigned to the issuer’s registration statement filed under the Investment Company Act (beginning with “811-”).</xs:documentation>
+			<xs:documentation>The prefix is 3 digits, the sequence number may contain 1-8 digits, the optional suffix may contain 1-4 characters, and the fields are separated with a hyphen.
+			</xs:documentation>
+			<xs:documentation> Sample value: 811-00000-1.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern
+					value="811-\d{1,8}-[a-zA-Z0-9]{1,4}|811-\d{1,8}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TRUE_TYPE">
+		<xs:restriction base="xs:boolean">
+			<xs:pattern value="true" />
+		</xs:restriction>
+	</xs:simpleType>		
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="headerData" type="HEADER_DATA"/>
+				<xs:element name="formData" type="FORM_DATA"/>
+				<xs:element name="documents" type="ns1:EDGAR_DOCUMENTS_TYPE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

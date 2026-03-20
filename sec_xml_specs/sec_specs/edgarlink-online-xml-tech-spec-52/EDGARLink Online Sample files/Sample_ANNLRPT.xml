@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sin:edgarSubmission xmlns:sin="http://www.sec.gov/edgar/singlefiler" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/singlefiler eis_SingleFiler.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <sin:liveTestFlag>LIVE</sin:liveTestFlag>
+  <sin:flag>
+    <sin:confirmingCopyFlag>false</sin:confirmingCopyFlag>
+    <sin:overrideInternetFlag>false</sin:overrideInternetFlag>
+    <sin:returnCopyFlag>false</sin:returnCopyFlag>
+  </sin:flag>
+  <sin:submissionType>ANNLRPT</sin:submissionType>
+  <sin:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-222-3333</com:phoneNumber>
+  </sin:contact>
+  <sin:filer>
+    <sin:filerId>1305274</sin:filerId>
+    <sin:filerCcc>test@123</sin:filerCcc>
+  </sin:filer>
+  <sin:sros>
+    <com:sroId>NONE</com:sroId>
+  </sin:sros>
+  <sin:periodOfReport>11-04-2010</sin:periodOfReport>
+  <sin:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </sin:notifications>
+  <sin:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>S</com:modOrSegFlag>
+      <com:nickName>A234567</com:nickName>
+      <com:documentType>ANNLRPT</com:documentType>
+    </com:moduleSegment>
+  </sin:moduleSegments>
+  <sin:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>ANNLRPT</com:conformedDocumentType>
+      <com:description>This is description</com:description>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+  </sin:documents>
+</sin:edgarSubmission>

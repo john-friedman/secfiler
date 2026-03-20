@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edgarSubmission xmlns="http://www.sec.gov/edgar/coregserial" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/coregserial eis_CoReg_Serial.xsd">
+<!-- DISCLAIMER: This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission. Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR. Please do not include any references to style sheets.-->
+  <liveTestFlag>LIVE</liveTestFlag>
+  <flags>
+    <confirmingCopyFlag>true</confirmingCopyFlag>
+    <returnCopyFlag>true</returnCopyFlag>
+    <delayingAmendmentFlag>true</delayingAmendmentFlag>
+    <overrideInternetFlag>true</overrideInternetFlag>
+  </flags>
+  <submissionType>SF-1</submissionType>
+  <contact>
+    <com:name>Test</com:name>
+    <com:phoneNumber>444-555-8956</com:phoneNumber>
+  </contact>
+  <filer>
+    <filerId>0000000000</filerId>
+    <filerCcc>xxxxxxxx</filerCcc>
+  </filer>
+  <depositorId>0000000000</depositorId>
+  <sponsorId>0000000000</sponsorId>
+  <absAssetClasses>
+    <com:absAssetClass>Residential mortgages - Prime</com:absAssetClass>
+    <com:absAssetClass>Debt Securities</com:absAssetClass>
+    <com:absAssetClass>Resecuritization</com:absAssetClass>
+  </absAssetClasses>
+  <absSubAssetClasses>
+    <com:absSubAssetClass>Residential mortgages - Prime</com:absSubAssetClass>
+    <com:absSubAssetClass>Residential mortgages - Non-Prime</com:absSubAssetClass>
+    <com:absSubAssetClass>Residential mortgages - HELOC</com:absSubAssetClass>
+  </absSubAssetClasses>
+  <coregs>
+    <filer>
+      <filerId>0000000000</filerId>
+      <filerCcc>xxxxxxxx</filerCcc>
+      <fileNumber>555-00089</fileNumber>
+    </filer>
+  </coregs>
+  <sros>
+    <com:sroId>NONE</com:sroId>
+    <com:sroId>ARCA</com:sroId>
+    <com:sroId>FINRA</com:sroId>
+  </sros>
+  <notifications>
+    <com:internetNotificationAddress>doej@example.com</com:internetNotificationAddress>
+  </notifications>
+  <references>
+    <references_429>456-00087</references_429>
+    <references_429>154-00789</references_429>
+  </references>
+  <documents>
+	<com:document>
+		<com:conformedName>0.FIL</com:conformedName>
+		<com:conformedDocumentType>2-E</com:conformedDocumentType>
+		<com:contents>a</com:contents>
+	</com:document>
+	<com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>EX-FILING FEES</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+	</documents>
+  <edgarFee>
+    <submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>1625.00</feec:feeAmount>
+    </submissionFee>
+    <submissionOffering>
+      <feec:feeOfferingSecurityName>Non-Convertible Debt</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>15</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>2.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>30.00</feec:feeOfferingAggregatePrice>
+    </submissionOffering>
+    <submissionOffset>
+      <feec:offsetCik>0000000000</feec:offsetCik>
+      <feec:offsetFormType>SF-1</feec:offsetFormType>
+      <feec:offsetFileNumber>485-00787</feec:offsetFileNumber>
+      <feec:offsetFilingDate>11-06-2013</feec:offsetFilingDate>
+      <feec:offsetAmount>1500.00</feec:offsetAmount>
+    </submissionOffset>
+  </edgarFee>
+</edgarSubmission>

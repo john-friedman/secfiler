@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edgarSubmission xmlns="http://www.sec.gov/edgar/sdfiler" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sec.gov/edgar/sdfiler eis_SD_Filer.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+	<liveTestFlag>TEST</liveTestFlag>
+	<flag>
+		<confirmingCopyFlag>true</confirmingCopyFlag>
+		<overrideInternetFlag>true</overrideInternetFlag>
+		<returnCopyFlag>true</returnCopyFlag>
+	</flag>
+	<contact>
+		<ns1:name>Joe Smith</ns1:name>
+		<ns1:phoneNumber>202-555-4444</ns1:phoneNumber>
+	</contact>
+	<submissionType>SD</submissionType>
+	<filer>
+		<filerId>0001233331</filerId>
+		<filerCcc>test@123</filerCcc>
+		<fileNumber>0-0</fileNumber>
+	</filer>
+	<coregs>
+		<filer>
+			<filerId>0001234441</filerId>
+			<filerCcc>test@456</filerCcc>
+			<fileNumber>0-0</fileNumber>
+		</filer>
+		<filer>
+			<filerId>0001235551</filerId>
+			<filerCcc>test@789</filerCcc>
+			<fileNumber>0-0</fileNumber>
+		</filer>
+	</coregs>
+	<rule13>
+		<rule13P1>
+			<rule13P1ItemPeriod>
+				<rule13P1Item>1.01</rule13P1Item>
+				<period>06-11-2013</period>
+			</rule13P1ItemPeriod>
+			<rule13P1ItemPeriod>
+				<rule13P1Item>1.02</rule13P1Item>
+				<period>06-11-2013</period>
+			</rule13P1ItemPeriod>
+		</rule13P1>
+	</rule13>
+	<notifications>
+		<ns1:internetNotificationAddress>doej@example.com</ns1:internetNotificationAddress>
+		<ns1:internetNotificationAddress>doej2@example.com</ns1:internetNotificationAddress>
+	</notifications>
+	<moduleSegments>
+		<ns1:moduleSegment>
+			<ns1:modOrSegFlag>M</ns1:modOrSegFlag>
+			<ns1:nickName>A123455678</ns1:nickName>
+			<ns1:cik>0001239991</ns1:cik>
+			<ns1:ccc>test@888</ns1:ccc>
+			<ns1:documentType>SD</ns1:documentType>
+		</ns1:moduleSegment>
+	</moduleSegments>
+	<documents>
+		<ns1:document>
+			<ns1:conformedName>test1.txt</ns1:conformedName>
+			<ns1:conformedDocumentType>SD</ns1:conformedDocumentType>
+			<ns1:description>Description field text here...</ns1:description>
+			<ns1:contents>dGVzdCA=</ns1:contents>
+		</ns1:document>		
+		<ns1:document>
+			<ns1:conformedName>test2.txt</ns1:conformedName>
+			<ns1:conformedDocumentType>EX-1.01</ns1:conformedDocumentType>
+			<ns1:description>Description field text here...</ns1:description>
+			<ns1:contents>dGVzdGA=</ns1:contents>
+		</ns1:document>
+
+	</documents>
+</edgarSubmission>

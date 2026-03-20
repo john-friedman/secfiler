@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.sec.gov/edgar/eis_abs_common" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sec.gov/edgar/eis_abs_common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="STRING_2_TYPE">
+	    <xs:annotation>
+			<xs:documentation>The input must not be longer than two (2) characters in length</xs:documentation>
+        </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_3_TYPE">
+	    <xs:annotation>
+			<xs:documentation>The input must not be longer than three (3) characters in length</xs:documentation>
+        </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_4_TYPE">
+		<xs:annotation>
+			<xs:documentation>The input must not be longer than four (4) characters in length</xs:documentation>
+        </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_5_TYPE">
+	     <xs:annotation>
+			<xs:documentation>The input must not be longer than five (5) characters in length</xs:documentation>
+        </xs:annotation>	
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_10_TYPE">
+	     <xs:annotation>
+			<xs:documentation>The input must not be longer than ten (10) characters in length</xs:documentation>
+         </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_11_TYPE">
+	     <xs:annotation>
+			<xs:documentation>The input must not be longer than eleven (11) characters in length</xs:documentation>
+         </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_15_TYPE">
+	     <xs:annotation>
+			<xs:documentation>The input must not be longer than fifteen (15) characters in length</xs:documentation>
+         </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_20_TYPE">
+	      <xs:annotation>
+			<xs:documentation>The input must not be longer than twenty (20) characters in length</xs:documentation>
+          </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_35_TYPE">
+	      <xs:annotation>
+			<xs:documentation>The input must not be longer than twenty (35) characters in length</xs:documentation>
+          </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_100_TYPE">
+	      <xs:annotation>
+			<xs:documentation>The input must not be longer than hundred (100) characters in length</xs:documentation>
+          </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_200_TYPE">
+	       <xs:annotation>
+			<xs:documentation>The input must not be longer than two hundred (200) characters in length</xs:documentation>
+          </xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

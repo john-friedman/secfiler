@@ -1,0 +1,457 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/ncen">
+  <headerData>
+    <submissionType>N-CEN</submissionType>
+    <filerInfo>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <filer>
+        <issuerCredentials>
+          <cik>0000350001</cik>
+          <ccc>sauces#1</ccc>
+        </issuerCredentials>
+      </filer>
+      <contact>
+        <contactName>Smitha Mondreti</contactName>
+        <contactPhoneNumber>571-331-2965</contactPhoneNumber>
+        <contactEmailAddress>mondretis@sec.gov</contactEmailAddress>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>mondretis@sec.gov</notificationEmailAddress>
+      </notifications>
+      <flags>
+        <overrideInternetFlag>false</overrideInternetFlag>
+        <confirmingCopyFlag>false</confirmingCopyFlag>
+      </flags>
+      <investmentCompanyType>N-1A</investmentCompanyType>
+    </filerInfo>
+    <seriesClass>
+      <reportSeriesClass>
+        <rptIncludeAllSeriesFlag>true</rptIncludeAllSeriesFlag>
+      </reportSeriesClass>
+    </seriesClass>
+  </headerData>
+  <formData>
+    <generalInfo isReportPeriodLt12="Y" reportEndingPeriod="2025-02-19"></generalInfo>
+    <registrantInfo>
+      <registrantFullName>BIG FUND TRUST inc</registrantFullName>
+      <investmentCompFileNo>811-100242</investmentCompFileNo>
+      <registrantCik>0000350001</registrantCik>
+      <registrantLei>LEI45678901234567890</registrantLei>
+      <registrantstreet1>12345</registrantstreet1>
+      <registrantstreet2>Boxwood Place</registrantstreet2>
+      <registrantcity>Herndon</registrantcity>
+      <registrantzipCode>20145</registrantzipCode>
+      <registrantstate>US-VA</registrantstate>
+      <registrantcountry>US</registrantcountry>
+      <registrantphoneNumber>703-455-3524</registrantphoneNumber>
+      <websites>
+        <website webpage="www.sec.gov"></website>
+      </websites>
+      <locationBooksRecords>
+        <locationBooksRecord>
+          <officeName>Name of books and record person</officeName>
+          <officeAddress1>1919 Union Street</officeAddress1>
+          <officeAddress2>Suite# 109</officeAddress2>
+          <officeCity>Washington</officeCity>
+          <officeStateCountry officeState="US-VA" officeCountry="US"></officeStateCountry>
+          <officeRecordsZipCode>98798</officeRecordsZipCode>
+          <officePhone>202-551-9787</officePhone>
+          <booksRecordsDesc>Description of books and records kept at the location.</booksRecordsDesc>
+        </locationBooksRecord>
+      </locationBooksRecords>
+      <isRegistrantFirstFiling>Y</isRegistrantFirstFiling>
+      <isRegistrantLastFiling>Y</isRegistrantLastFiling>
+      <registrantFamilyInvComp isRegistrantFamilyInvComp="Y" familyInvCompFullName="Name of family of investment companies"></registrantFamilyInvComp>
+      <registrantClassificationType>N-1A</registrantClassificationType>
+      <totalSeries>1</totalSeries>
+      <terminatedSeries>
+        <terminatedSeriesInfo terminationDate="09/2017" seriesName="CIK0001068130series#1" seriesId="S000193649"></terminatedSeriesInfo>
+      </terminatedSeries>
+      <isSecuritiesActRegistration>Y</isSecuritiesActRegistration>
+      <directors>
+        <director>
+          <directorName>Name of Directors</directorName>
+          <crdNumber>000000012</crdNumber>
+          <isDirectorInterestedPerson>Y</isDirectorInterestedPerson>
+          <fileNumbers>
+            <fileNumberInfo fileNumber="811-21974"></fileNumberInfo>
+          </fileNumbers>
+        </director>
+      </directors>
+      <chiefComplianceOfficers>
+        <chiefComplianceOfficer>
+          <ccoName>Name of Chief compliance officer</ccoName>
+          <crdNumber>123456789</crdNumber>
+          <ccoStreet1>12123</ccoStreet1>
+          <ccoStreet2>Boxwood Place</ccoStreet2>
+          <ccoCity>Ashburn</ccoCity>
+          <ccoStateCountry ccoCountry="US" ccoState="US-VA"></ccoStateCountry>
+          <ccoZipCode>25879</ccoZipCode>
+          <ccoPhone>703-123-1234</ccoPhone>
+          <isCcoChangedSinceLastFiling>Y</isCcoChangedSinceLastFiling>
+          <ccoEmployers>
+            <ccoEmployer ccoEmployerId="00-1234567" ccoEmployerName="Chief complionace officer name 1"></ccoEmployer>
+          </ccoEmployers>
+        </chiefComplianceOfficer>
+      </chiefComplianceOfficers>
+      <securityMatterSeriesInfo isRegistrantSubmittedMatter="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </securityMatterSeriesInfo>
+      <legalProceedingSeriesInfo isPreviousLegalProceeding="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </legalProceedingSeriesInfo>
+      <previousProceedingTerminated isPreviousProceedingTerminated="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </previousProceedingTerminated>
+      <claimFiled totalClaimAmount="10" isClaimFiled="Y"></claimFiled>
+      <coveredByInsurancePolicy isCoveredByInsurancePolicy="Y" isClaimFiledDuringPeriod="Y"></coveredByInsurancePolicy>
+      <financialSupportSeriesInfo isFinancialSupportDuringPeriod="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </financialSupportSeriesInfo>
+      <releaseNumbers isExemptionFromAct="Y">
+        <releaseNumberInfo releaseNumber="34-000000"></releaseNumberInfo>
+      </releaseNumbers>
+      <principalUnderwriters>
+        <principalUnderwriter>
+          <principalUnderwriterName>Name of Underwriters</principalUnderwriterName>
+          <principalUnderwriterFileNumber>008-01213</principalUnderwriterFileNumber>
+          <principalUnderwriterCrdNumber>121325465</principalUnderwriterCrdNumber>
+          <principalUnderwriterLei>LEI45678901234567890</principalUnderwriterLei>
+          <principalUnderwriterRssdId>1234567890</principalUnderwriterRssdId>
+          <principalUnderWriterStateCountry principalUnderWriterCountry="US" principalUnderWriterState="US-VA"></principalUnderWriterStateCountry>
+          <isPrincipalUnderwriterAffiliatedWithRegistrant>Y</isPrincipalUnderwriterAffiliatedWithRegistrant>
+        </principalUnderwriter>
+      </principalUnderwriters>
+      <isUnderwriterHiredOrTerminated>Y</isUnderwriterHiredOrTerminated>
+      <publicAccountants>
+        <publicAccountant>
+          <publicAccountantName>Name of Independent pubic accountant</publicAccountantName>
+          <pcaobNumber>N/A</pcaobNumber>
+          <publicAccountantLei>LEI45678901234567890</publicAccountantLei>
+          <publicAccountantRssdId>1234567890</publicAccountantRssdId>
+          <publicAccountantStateCountry publicAccountantState="US-VA" publicAccountantCountry="US"></publicAccountantStateCountry>
+        </publicAccountant>
+      </publicAccountants>
+      <isPublicAccountantChanged>Y</isPublicAccountantChanged>
+      <isMaterialWeakness>Y</isMaterialWeakness>
+      <auditOpinionSeries isOpinionOffered="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </auditOpinionSeries>
+      <valuationMethodsChanges isMaterialChange="Y">
+        <valuationMethodsChange>
+          <dateOfChange>2017-09-29</dateOfChange>
+          <changeExplanation>Explanation</changeExplanation>
+          <assetType>Short-term investment vehicle</assetType>
+          <investmentType>N-1 Investment Type</investmentType>
+          <statutoryRegulatoryBasis>Explanation of the change</statutoryRegulatoryBasis>
+          <valuationMethodsChangeSeries>
+            <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+          </valuationMethodsChangeSeries>
+        </valuationMethodsChange>
+      </valuationMethodsChanges>
+      <isAccountingPrincipleChange>Y</isAccountingPrincipleChange>
+      <paymentErrorSeries isPaymentErrorInNetAssetValue="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </paymentErrorSeries>
+      <paymentDividendSeries isPaymentDividend="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </paymentDividendSeries>
+    </registrantInfo>
+    <managementInvestmentQuestionSeriesInfo>
+      <managementInvestmentQuestion>
+        <mgmtInvFundName>Fund name</mgmtInvFundName>
+        <mgmtInvSeriesId>S000193649</mgmtInvSeriesId>
+        <mgmtInvLei>LEI45678901234567890</mgmtInvLei>
+        <isFirstFilingByFund>Y</isFirstFilingByFund>
+        <numAuthorizedClass>1</numAuthorizedClass>
+        <numAddedClass>3</numAddedClass>
+        <numTerminatedClass>5</numTerminatedClass>
+        <sharesOutstandings>
+          <sharesOutstanding sharesOutstandingClassName="Class Name" sharesOutstandingClassId="C000008078" sharesOutstandingTickerSymbol="N/A"></sharesOutstanding>
+        </sharesOutstandings>
+        <fundTypes>
+          <fundType>Exchange-Traded Fund</fundType>
+          <indexFundInfo fundType="Index Fund">
+            <isIndexFundAffiliated>Y</isIndexFundAffiliated>
+            <isIndexFundExclusive>Y</isIndexFundExclusive>
+            <indexFundReturnDiffBeforeExpense>1</indexFundReturnDiffBeforeExpense>
+            <indexFundReturnDiffAfterExpense>2</indexFundReturnDiffAfterExpense>
+            <indexFundReturnDailyStdevBeforeExpense>10.9</indexFundReturnDailyStdevBeforeExpense>
+            <indexFundReturnDailyStdevAfterExpense>29.98</indexFundReturnDailyStdevAfterExpense>
+          </indexFundInfo>
+          <masterFeederFundInfo fundType="Master-Feeder Fund">
+            <feederFunds regFeederFundFileNo="811-12345" regFeederFundLei="LEI45678901234567890" regFeederFundSeriesIdNo="S000007259" unregFeederFileNo="801-12345" unregFeederFundLei="LEI45678901234567890" feederFundName="Master-Feeder Fund Name"></feederFunds>
+            <masterFunds masterFundSECFileNo="801-12345" masterFundFileNo="811-12345" masterFundLei="LEI45678901234567890" masterFundName="Master-Feeder Fund Name 2"></masterFunds>
+          </masterFeederFundInfo>
+        </fundTypes>
+        <isNonDiversifiedCompany>Y</isNonDiversifiedCompany>
+        <foreignInvestments isForeignSubsidiary="Y">
+          <foreignInvestment foreignSubsidiaryLei="LEI45678901234567890" foreignSubsidiaryRssdId="123456789" foreignSubsidiaryName="Name of subsidiary"></foreignInvestment>
+        </foreignInvestments>
+        <isFundSecuritiesLending>Y</isFundSecuritiesLending>
+        <fundLendSecurities didFundLendSecurities="Y">
+          <isFundLiquidated>Y</isFundLiquidated>
+          <isFundAdverselyImpacted>Y</isFundAdverselyImpacted>
+        </fundLendSecurities>
+        <securityLendings>
+          <securityLending>
+            <securitiesAgentName>Securitiues lending agent name</securitiesAgentName>
+            <securitiesAgentLei>LEI45678901234567890</securitiesAgentLei>
+            <securitiesAgentRssdId>1234567890</securitiesAgentRssdId>
+            <isSecuritiesAgentAffiliated>Y</isSecuritiesAgentAffiliated>
+            <securityAgentIdemnity isSecurityAgentIdemnity="Y">
+              <idemnityProviders>
+                <idemnityProvider idemnityProviderRssdId="123456789" idemnityProviderLei="LEI45678901234567890" idemnityProviderName="Name of person providing indemnification"></idemnityProvider>
+              </idemnityProviders>
+              <didIndemnificationRights>Y</didIndemnificationRights>
+            </securityAgentIdemnity>
+          </securityLending>
+        </securityLendings>
+        <collateralManagers>
+          <collateralManager collateralManagerLei="LEI45678901234567890" isCollateralManagerAffliliated="Y" isCollateralManagerAffliliatedWithFund="Y" collateralManagerRssdId="1234567890" collateralManagerName="cash collateral manager name"></collateralManager>
+        </collateralManagers>
+        <paymentToAgentManagers>
+          <paymentToAgentManagerType>Non-revenue sharing split (other than administrative fee)</paymentToAgentManagerType>
+          <paymentToAgentManagerType>Administrative fee</paymentToAgentManagerType>
+          <paymentToAgentManagerType>Cash collateral reinvestment fee</paymentToAgentManagerType>
+          <paymentToAgentManagerType>Other</paymentToAgentManagerType>
+          <otherFeeDesc>Description.</otherFeeDesc>
+        </paymentToAgentManagers>
+        <avgPortfolioSecuritiesValue>1.000000000000</avgPortfolioSecuritiesValue>
+        <netIncomeSecuritiesLending>123.000000000000</netIncomeSecuritiesLending>
+        <relyOnRuleTypes>
+          <relyOnRuleType>Rule 10f-3 (17 CFR 270.10f-3)</relyOnRuleType>
+          <relyOnRuleType>Rule 12d1-1 (17 CFR 270.12d1-1)</relyOnRuleType>
+          <relyOnRuleType>Rule 17a-7 (17 CFR 270.17a-7)</relyOnRuleType>
+          <relyOnRuleType>Rule 17a-8 (17 CFR 270.17a-8)</relyOnRuleType>
+          <relyOnRuleType>Rule 22d-1 (17 CFR 270.22d-1)</relyOnRuleType>
+        </relyOnRuleTypes>
+        <isExpenseLimitationInPlace>Y</isExpenseLimitationInPlace>
+        <isExpenseReducedOrWaived>Y</isExpenseReducedOrWaived>
+        <isFeesWaivedRecoupable>Y</isFeesWaivedRecoupable>
+        <isExpenseWaivedRecoupable>Y</isExpenseWaivedRecoupable>
+        <investmentAdvisers>
+          <investmentAdviser>
+            <investmentAdviserName>Name of investment adviser</investmentAdviserName>
+            <investmentAdviserFileNo>801-07676</investmentAdviserFileNo>
+            <investmentAdviserCrdNo>132354565</investmentAdviserCrdNo>
+            <investmentAdviserLei>LEI45678901234567890</investmentAdviserLei>
+            <investmentAdviserRssdId>1234567890</investmentAdviserRssdId>
+            <investmentAdviserStateCountry investmentAdviserCountry="US" investmentAdviserState="US-VA"></investmentAdviserStateCountry>
+            <investmentAdviserHired isInvestmentAdviserHired="Y">
+              <investmentAdviserStartDate>2017-09-29</investmentAdviserStartDate>
+            </investmentAdviserHired>
+          </investmentAdviser>
+        </investmentAdvisers>
+        <investmentAdvisersTerminated>
+          <investmentAdviserTerminated>
+            <investmentAdviserTerminatedName>Full Name Investment Advisers</investmentAdviserTerminatedName>
+            <investAdviserTerminatedFileNo>801-12234</investAdviserTerminatedFileNo>
+            <investAdviserTerminatedCrdNo>632764873</investAdviserTerminatedCrdNo>
+            <investAdviserTerminatedLei>LEI45678901234567890</investAdviserTerminatedLei>
+            <investAdviserTerminatedRssdId>1234567890</investAdviserTerminatedRssdId>
+            <investmentAdviserTerminatedStateCountry investmentAdviserTerminatedState="US-VA" investmentAdviserTerminatedCountry="US"></investmentAdviserTerminatedStateCountry>
+            <investAdviserTerminationDate>2018-12-06</investAdviserTerminationDate>
+          </investmentAdviserTerminated>
+        </investmentAdvisersTerminated>
+        <subAdvisers>
+          <subAdviser>
+            <subAdviserName>Full name Sub Advisors</subAdviserName>
+            <subAdviserFileNo>801-65423</subAdviserFileNo>
+            <subAdviserCrdNo>562347364</subAdviserCrdNo>
+            <subAdviserLei>LEI45678901234567890</subAdviserLei>
+            <subAdviserRssdId>1234567890</subAdviserRssdId>
+            <isSubAdviserAffiliated>Y</isSubAdviserAffiliated>
+            <subAdviserStateCountry subAdviserCountry="US" subAdviserState="US-VA"></subAdviserStateCountry>
+            <subAdviserHired subAdviserStartDate="2017-09-29" isSubAdviserHired="Y"></subAdviserHired>
+          </subAdviser>
+        </subAdvisers>
+        <subAdvisersTerminated>
+          <subAdviserTerminated>
+            <subAdviserTerminatedName>Subadvisers trminated full name</subAdviserTerminatedName>
+            <subAdviserTerminatedFileNo>801-78587</subAdviserTerminatedFileNo>
+            <subAdviserTerminatedCrdNo>655646567</subAdviserTerminatedCrdNo>
+            <subAdviserTerminatedLei>LEI45678901234567890</subAdviserTerminatedLei>
+            <subAdviserTerminatedRssdId>1234567890</subAdviserTerminatedRssdId>
+            <subAdviserTerminatedStateCountry subAdviserTerminatedState="US-VA" subAdviserTerminatedCountry="US"></subAdviserTerminatedStateCountry>
+            <subAdviserTerminationDate>2017-09-29</subAdviserTerminationDate>
+          </subAdviserTerminated>
+        </subAdvisersTerminated>
+        <transferAgents>
+          <transferAgent>
+            <transferAgentName>Name iof Transfer agents</transferAgentName>
+            <transferAgentFileNo>084-56567567</transferAgentFileNo>
+            <transferAgentLei>LEI45678901234567890</transferAgentLei>
+            <transferAgentRssdId>1234567890</transferAgentRssdId>
+            <transferAgentStateCountry transferAgentCountry="US" transferAgentState="US-VA"></transferAgentStateCountry>
+            <isTransferAgentAffiliated>Y</isTransferAgentAffiliated>
+            <isTransferAgentSubAgent>Y</isTransferAgentSubAgent>
+          </transferAgent>
+        </transferAgents>
+        <isTransferAgentHiredOrTerminated>Y</isTransferAgentHiredOrTerminated>
+        <pricingServices>
+          <pricingService>
+            <pricingServiceName>Pricing services</pricingServiceName>
+            <pricingServiceLei>LEI45678901234567890</pricingServiceLei>
+            <pricingServiceRssdId>1234567890</pricingServiceRssdId>
+            <pricingServiceOther>N/A</pricingServiceOther>
+            <pricingServiceIdNumberDesc>c.11 desc</pricingServiceIdNumberDesc>
+            <pricingServiceStateCountry pricingServiceCountry="US" pricingServiceState="US-KY"></pricingServiceStateCountry>
+            <isPricingServiceAffiliated>Y</isPricingServiceAffiliated>
+          </pricingService>
+        </pricingServices>
+        <isPricingServiceHiredOrTerminated>Y</isPricingServiceHiredOrTerminated>
+        <custodians>
+          <custodian>
+            <custodianName>Name of Custodians</custodianName>
+            <custodianLei>LEI45678901234567890</custodianLei>
+            <custodianRssdId>1234567890</custodianRssdId>
+            <custodianStateCountry custodianCountry="US" custodianState="US-VA"></custodianStateCountry>
+            <isCustodianAffiliated>Y</isCustodianAffiliated>
+            <isSubCustodian>Y</isSubCustodian>
+            <custodyType>Bank - section 17(f)(1) (15 U.S.C. 80a-17(f)(1))</custodyType>
+          </custodian>
+        </custodians>
+        <isCustodianHiredOrTerminated>Y</isCustodianHiredOrTerminated>
+        <shareholderServicingAgents>
+          <shareholderServicingAgent>
+            <shareholderServiceAgentName>Name of Shareholder servicing agents</shareholderServiceAgentName>
+            <shareholderServiceAgentLei>LEI45678901234567890</shareholderServiceAgentLei>
+            <shareholderServiceAgentRssdId>1234567890</shareholderServiceAgentRssdId>
+            <shareholderServiceAgentOther>N/A</shareholderServiceAgentOther>
+            <shareholderServiceIdNumberDesc>C.13 Descp</shareholderServiceIdNumberDesc>
+            <shareholderServiceAgentStateCountry shareholderServiceAgentCountry="US" shareholderServiceAgentState="US-VA"></shareholderServiceAgentStateCountry>
+            <isShareholderServiceAgentAffiliated>Y</isShareholderServiceAgentAffiliated>
+            <isShareholderServiceAgentSubshare>Y</isShareholderServiceAgentSubshare>
+          </shareholderServicingAgent>
+        </shareholderServicingAgents>
+        <isShareholderServiceHiredTerminated>Y</isShareholderServiceHiredTerminated>
+        <admins>
+          <admin>
+            <adminName>Name of Administrators</adminName>
+            <adminLei>LEI45678901234567890</adminLei>
+            <adminRssdId>1234567890</adminRssdId>
+            <adminOther>N/A</adminOther>
+            <idNumberDesc>c.14 Description</idNumberDesc>
+            <adminStateCountry adminState="US-VA" adminCountry="US"></adminStateCountry>
+            <isAdminAffiliated>Y</isAdminAffiliated>
+            <isAdminSubAdmin>Y</isAdminSubAdmin>
+          </admin>
+        </admins>
+        <isAdminHiredOrTerminated>Y</isAdminHiredOrTerminated>
+        <brokerDealers>
+          <brokerDealer>
+            <brokerDealerName>Name of Affiliated broker-dealers</brokerDealerName>
+            <brokerDealerFileNo>N/A</brokerDealerFileNo>
+            <brokerDealerCrdNo>546234786</brokerDealerCrdNo>
+            <brokerDealerLei>LEI45678901234567890</brokerDealerLei>
+            <brokerDealerRssdId>1234567890</brokerDealerRssdId>
+            <brokerDealerStateCountry brokerDealerState="US-VA" brokerDealerCountry="US"></brokerDealerStateCountry>
+            <brokerDealerCommission>12</brokerDealerCommission>
+          </brokerDealer>
+        </brokerDealers>
+        <brokers>
+          <broker>
+            <brokerName>Name ofthe broker</brokerName>
+            <brokerFileNo>N/A</brokerFileNo>
+            <brokerCrdNo>456467786</brokerCrdNo>
+            <brokerLei>LEI45678901234567890</brokerLei>
+            <brokerRssdId>1234567890</brokerRssdId>
+            <brokerStateCountry brokerState="US-VA" brokerCountry="US"></brokerStateCountry>
+            <grossCommission>3256</grossCommission>
+          </broker>
+        </brokers>
+        <aggregateCommission>12</aggregateCommission>
+        <principalTransactions>
+          <principalTransaction>
+            <principalName>Dealer name</principalName>
+            <principalFileNo>N/A</principalFileNo>
+            <principalCrdNo>343564564</principalCrdNo>
+            <principalLei>LEI45678901234567890</principalLei>
+            <principalRssdId>1234567890</principalRssdId>
+            <principalStateCountry principalCountry="US" principalState="US-VA"></principalStateCountry>
+            <principalTotalPurchaseSale>21</principalTotalPurchaseSale>
+          </principalTransaction>
+        </principalTransactions>
+        <principalAggregatePurchase>45</principalAggregatePurchase>
+        <isBrokerageResearchPayment>Y</isBrokerageResearchPayment>
+        <mnthlyAvgNetAssets>12</mnthlyAvgNetAssets>
+        <lineOfCredit hasLineOfCredit="Y">
+          <lineOfCreditDetails>
+            <lineOfCreditDetail>
+              <isCreditLineCommitted>Committed</isCreditLineCommitted>
+              <lineOfCreditSize>1</lineOfCreditSize>
+              <lineOfCreditInstitutions>
+                <lineOfCreditInstitution creditInstitutionName="sdfsdasda"></lineOfCreditInstitution>
+              </lineOfCreditInstitutions>
+              <soleCreditType creditType="Sole"></soleCreditType>
+              <isCreditLineUsed>N</isCreditLineUsed>
+            </lineOfCreditDetail>
+          </lineOfCreditDetails>
+        </lineOfCredit>
+        <interfundLendingDetails isInterfundLending="Y">
+          <interfundLending interfundLendingLoanAverage="1" interfundLendingDaysOutstanding="1"></interfundLending>
+        </interfundLendingDetails>
+        <interfundBorrowingDetails isInterfundBorrowing="Y">
+          <interfundBorrowing interfundBorrowingLoanAverage="12" interfundBorrowingDaysOutstanding="12"></interfundBorrowing>
+        </interfundBorrowingDetails>
+        <liquidityClassifications>
+          <liquidityClassificationService>
+            <liquidityName>sdfsd</liquidityName>
+            <liquidityLei>LEI45678901234567890</liquidityLei>
+            <liquidityRssdId>1234567890</liquidityRssdId>
+            <liquidityOther>N/A</liquidityOther>
+            <otherDesc>66666yyyyyyyuuuuuuuu</otherDesc>
+            <liquidityStateCountry liquidityState="US-KY" liquidityCountry="US"></liquidityStateCountry>
+            <isAffiliatedPerson>N</isAffiliatedPerson>
+            <assetClassType>Short-term investment vehicle</assetClassType>
+          </liquidityClassificationService>
+        </liquidityClassifications>
+        <isLiquidityHiredTerminated>Y</isLiquidityHiredTerminated>
+      </managementInvestmentQuestion>
+    </managementInvestmentQuestionSeriesInfo>
+    <exchangeSeriesInfo>
+      <exchangeTradedFund>
+        <fundName>Fund name</fundName>
+        <etfSeriesId>S000193649</etfSeriesId>
+        <securityExchanges>
+          <securityExchange fundExchange="XNYS" fundsTickerSymbol="N/A"></securityExchange>
+        </securityExchanges>
+        <authorizedParticipants>
+          <authorizedParticipant authorizedParticipantPurchaseValue="23" authorizedParticipantCrdNo="N/A" authorizedParticipantName="Authorized participants Name" authorizedParticipantRedeemValue="5235" authorizedParticipantLei="LEI45678901234567890" authorizedParticipantFileNo="008-00002"></authorizedParticipant>
+        </authorizedParticipants>
+        <isCollateralRequired>N</isCollateralRequired>
+        <creationUnitNumOfShares>100</creationUnitNumOfShares>
+        <averagePercentagePurchased>200</averagePercentagePurchased>
+        <standardDeviationPurchased>300</standardDeviationPurchased>
+        <creationUnitPurchasedInKind>400</creationUnitPurchasedInKind>
+        <creationUnitPurchasedSDInKind>500</creationUnitPurchasedSDInKind>
+        <averagePercentageRedeemed>600</averagePercentageRedeemed>
+        <percentSDRedeemed>700</percentSDRedeemed>
+        <creationUnitPercentageRedeemedInKind>800</creationUnitPercentageRedeemedInKind>
+        <creationUnitSDRedeemedInKind>900</creationUnitSDRedeemedInKind>
+        <creationUnitTransactionFeePerUnit>1000</creationUnitTransactionFeePerUnit>
+        <creationUnitTransactionFeeManyUnits>1100</creationUnitTransactionFeeManyUnits>
+        <creationUnitTransactionFeePercentagePerUnit>1200</creationUnitTransactionFeePercentagePerUnit>
+        <creationUnitTransactionFeeCashPerUnit>1300</creationUnitTransactionFeeCashPerUnit>
+        <creationUnitTransactionFeeCashManyUnits>1400</creationUnitTransactionFeeCashManyUnits>
+        <creationUnitTransactionFeeCashPercentagePerUnit>1500</creationUnitTransactionFeeCashPercentagePerUnit>
+        <purchaseCreationUnitDollarPerUnit>1600</purchaseCreationUnitDollarPerUnit>
+        <purchaseCreationUnitDollarPerMoreUnits>1700</purchaseCreationUnitDollarPerMoreUnits>
+        <purchaseCreationUnitDollarPercentagePerUnit>1800</purchaseCreationUnitDollarPercentagePerUnit>
+        <purchaseCreationUnitCashPerUnit>1900</purchaseCreationUnitCashPerUnit>
+        <purchaseCreationUnitCashPerMoreUnits>2000</purchaseCreationUnitCashPerMoreUnits>
+        <purchaseCreationUnitCashPercentagePerUnit>2100</purchaseCreationUnitCashPercentagePerUnit>
+        <isInKindETF>Y</isInKindETF>
+      </exchangeTradedFund>
+    </exchangeSeriesInfo>
+    <attachmentsTab>
+      <isLegalProceedings>true</isLegalProceedings>
+      <isProvisionFinancialSupport>true</isProvisionFinancialSupport>
+      <isIPAReportInternalControl>true</isIPAReportInternalControl>
+      <isChangeAccPrinciples>true</isChangeAccPrinciples>
+      <isInfoRequiredEO>true</isInfoRequiredEO>
+      <isOtherInfoRequired>true</isOtherInfoRequired>
+    </attachmentsTab>
+    <signature registrantSignedName="BIG FUND TRUST inc" signature="Signature" signedDate="2025-03-04" title="Title"></signature>
+  </formData>
+</edgarSubmission>

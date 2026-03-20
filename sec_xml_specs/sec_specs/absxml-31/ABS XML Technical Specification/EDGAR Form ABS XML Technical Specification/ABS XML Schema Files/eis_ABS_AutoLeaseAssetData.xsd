@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/document/absee/autolease/assetdata" xmlns:mstns="http://www.sec.gov/edgar/document/absee/autolease/assetdata" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/eis_abs_common" targetNamespace="http://www.sec.gov/edgar/document/absee/autolease/assetdata" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/eis_abs_common" schemaLocation="eis_ABS_Common.xsd"/>
+	<xs:simpleType name="BS_RESDL_SRC_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(d)(9) - Enumerated values and descriptions: 1: Black Book, 2: Automotive Lease Guide, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LSSE_EMPLOY_VRFCTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(e)(4) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, level 3 verified Level 3 verified = Direct independent verification with a third party of the lessees current employment. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LSSE_INCM_VRFCTN_LVL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(e)(3) - Enumerated values and descriptions: 1: Not stated, not verified, 2: Stated, not verified, 3: Stated, verified but not to level 4 or level 5, 4: Stated, "level 4" verified Level 4 income verification = Previous year W-2 or tax returns, and year-to-date pay stubs, if salaried.  If self-employed, then lessee provided 2 years of tax returns.Stated, "level 5" verified Level 5 income verification = 24 months income verification (W-2s, pay stubs, bank statements and/or tax returns).  If self-employed, then lessee provided 2 years tax returns plus a CPA certification of the tax returns., 5: Stated, "level 5" verified Level 5 income verification = 24 months income verification (W-2s, pay stubs, bank statements and/or tax returns).  If self-employed, then lessee provided 2 years tax returns plus a CPA certification of the tax returns. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MOD_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(j)(1) - Enumerated values and descriptions: 1: Payment Amount, 2: Term, 3: Extension, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PYMNT_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(c)(9) - Enumerated values and descriptions: 1: Bi-Weekly, 2: Monthly, 3: Quarterly, 4: Prepaid, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REPRCH_RPLC_REASN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(h)(5) - Enumerated values and descriptions: 1: Fraud, 2: Early Payment Default, 3: Other Recourse Obligation, 4: Reps/Warrants Breach, 5: Servicer Breach, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REPRCH_STAT_ASSET_SUBJ_DMAND_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(h)(1) - Enumerated values and descriptions: 0: Asset Pending Repurchase or Replacement, 1: Asset Was Repurchased or Replaced, 2: Demand in Dispute, 3: Demand Withdrawn, 4: Demand Rejected, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRVC_ADV_METH_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(f)(4) - Enumerated values and descriptions: 1: No advancing, 2: Interest only, 3: Principal only, 4: Principal and Interest, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SUBVNT_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(c)(10) - Enumerated values and descriptions: 0: No, 1: Yes - Rate or Finance Charge Subvention, 2: Yes - Residual Subvention, 98: Yes - Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TERMNTN_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(k)(1) - Enumerated values and descriptions: 1: Payoff, 2: Return, 3: Repossession, 4: Repurchase, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_NEW_USED_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(d)(3) - Enumerated values and descriptions: 1: New, 2: Used </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_TYP_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(d)(5) - Enumerated values and descriptions: 1: Car, 2: Truck, 3: SUV, 4: Motorcycle, 98: Other, 99: Unknown </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VHCL_VAL_SRC_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(d)(7) - Enumerated values and descriptions: 1: Invoice price, 2: MSRP, 3: Kelly Blue Book, 98: Other </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="98"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZERO_BAL_CODE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Item 4(f)(19)(ii) - Enumerated values and descriptions: 1: Terminated, 2: Repurchased or Replaced, 3: Charged-off, 4: Servicing Transfer, 99: Unavailable </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ASSET_TYPE">
+		<xs:annotation>
+			<xs:documentation>This is the main repeatable group element for each major unit under assetData.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Item 4(a)(1) - Identify the source of the asset number used to specifically identify each asset in the pool. -->
+			<xs:element name="assetTypeNumber" type="ns2:STRING_100_TYPE" minOccurs="1"/>
+			<!-- Item 4(a)(2) - Provide the unique ID number of the asset. -->
+			<xs:element name="assetNumber" type="ns1:STRING_25_TYPE" minOccurs="1"/>
+			<!-- Item 4(b)(1) - Specify the beginning date of the reporting period. -->
+			<xs:element name="reportingPeriodBeginDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 4(b)(2) - Specify the ending date of the reporting period. -->
+			<xs:element name="reportingPeriodEndDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(1) - Identify the name of the entity that originated the lease.   -->
+			<xs:element name="originatorName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(2) - Provide the date the lease was originated.   -->
+			<xs:element name="originationDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(3) - Provide the original acquisition cost of the lease. -->
+			<xs:element name="acquisitionCost" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(c)(4) - Indicate the term of the lease in months at the time the lease was originated. -->
+			<xs:element name="originalLeaseTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 4(c)(5) - Indicate the month and year in which the final lease payment is scheduled to be made. -->
+			<xs:element name="scheduledTerminationDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(6) - Provide the date of the first scheduled payment after origination. -->
+			<xs:element name="originalFirstPaymentDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(7) - Indicate whether the lease met the criteria for the first level of solicitation, credit-granting or underwriting criteria used to originate the pool asset. -->
+			<xs:element name="underwritingIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(8) - Indicate the number of months during the term of the lease when no payments are due from the lessee. -->
+			<xs:element name="gracePeriod" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 4(c)(9) - Specify the code indicating the payment frequency of the lease. -->
+			<xs:element name="paymentTypeCode" type="PYMNT_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(c)(10) - Indicate yes or no as to whether a form of subsidy is received on the lease, such as cash incentives or favorable financing for the lessee. -->
+			<xs:element name="subvented" type="SUBVNT_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 4(d)(1) - Provide the name of the manufacturer of the leased vehicle. -->
+			<xs:element name="vehicleManufacturerName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(2) - Provide the name of the model of the leased vehicle. -->
+			<xs:element name="vehicleModelName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(3) - Indicate whether the leased vehicle is new or used. -->
+			<xs:element name="vehicleNewUsedCode" type="VHCL_NEW_USED_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(4) - Indicate the model year of the leased vehicle. -->
+			<xs:element name="vehicleModelYear" type="ns2:STRING_4_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(5) - Indicate the code describing the vehicle type. -->
+			<xs:element name="vehicleTypeCode" type="VHCL_TYP_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(6) - Indicate the value of the vehicle at the time of origination. -->
+			<xs:element name="vehicleValueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(d)(7) - Specify the code that describes the source of the vehicle value. -->
+			<xs:element name="vehicleValueSourceCode" type="VHCL_VAL_SRC_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(8) - Provide the securitized residual value of the leased vehicle. -->
+			<xs:element name="baseResidualValue" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(d)(9) - Specify the code that describes the source of the base residual value. -->
+			<xs:element name="baseResidualSourceCode" type="BS_RESDL_SRC_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(d)(10) - Provide the residual value, as stated on the contract, that the lessee would need to pay to purchase the vehicle at the end of the lease term. -->
+			<xs:element name="contractResidualValue" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(e)(1) - Specify the type of the standardized credit score used to evaluate the lessee during the lease origination process. -->
+			<xs:element name="lesseeCreditScoreType" type="ns2:STRING_35_TYPE" minOccurs="0"/>
+			<!-- Item 4(e)(2) - Provide the standardized credit score of the lessee used to evaluate the lessee during the lease origination process. -->
+			<xs:element name="lesseeCreditScore" type="ns2:STRING_20_TYPE" minOccurs="0"/>
+			<!-- Item 4(e)(3) - Indicate the code describing the extent to which the lessee's income was verified during the lease origination process. -->
+			<xs:element name="lesseeIncomeVerificationLevelCode" type="LSSE_INCM_VRFCTN_LVL_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(e)(4) - Indicate the code describing the extent to which the lessee's employment was verified during the lease origination process. -->
+			<xs:element name="lesseeEmploymentVerificationCode" type="LSSE_EMPLOY_VRFCTN_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(e)(5) - Indicate whether the lease has a co-lessee. -->
+			<xs:element name="coLesseePresentIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 4(e)(6) - Provide the scheduled monthly payment amount as a percentage of the total monthly income of the lessee and any other co-lessee at the origination date.  Provide the methodology for determining monthly income in the prospectus. -->
+			<xs:element name="paymentToIncomePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(e)(7) - Specify the location of the lessee by providing the current U.S. state or territory. -->
+			<xs:element name="lesseeGeographicLocation" type="ns2:STRING_100_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(1) - Indicate yes or no whether the asset was added during the reporting periodInstruction:  A response to this data point is only required when assets are added to the asset pool after the final prospectus under Securities Act Rule 424 (Section 230.424 of this chapter) is filed -->
+			<xs:element name="assetAddedIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(2) - Indicate the number of months from the end of the reporting period to the lease maturity date. -->
+			<xs:element name="remainingTermNumber" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 4(f)(3) - Indicates yes or no whether the asset was modified from its original terms during the reporting period. -->
+			<xs:element name="reportingPeriodModificationIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(4) - Specify the code that indicates a servicer's responsibility for advancing principal or interest on delinquent leases. -->
+			<xs:element name="servicingAdvanceMethodCode" type="SRVC_ADV_METH_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(5) - Provide the sum of the present values, as of the beginning of the reporting period, of the remaining schedule monthly payment amounts and the base residual value of the leased vehicle, computed using the securitization value discount rate. -->
+			<xs:element name="reportingPeriodSecuritizationValueAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(6) - Provide the discount rate of the lease for the securitization transaction. -->
+			<xs:element name="securitizationDiscountRate" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(7) - Indicate the total payment due to be collected in the next reporting period. -->
+			<xs:element name="nextReportingPeriodPaymentAmountDue" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(8) - If the servicing fee is based on a percentage, provide the percentage used to calculate the aggregate servicing fee. -->
+			<xs:element name="servicingFeePercentage" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(9) - If the servicing fee is based on a flat-fee amount, indicate the monthly servicing fee paid to all servicers. -->
+			<xs:element name="servicingFlatFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(10) - Provide the amount of all other fees earned by lease administrators that reduce the amount of funds remitted to the issuing entity (including subservicing, master servicing, trustee fees, etc.). -->
+			<xs:element name="otherLeaseLevelServicingFeesRetainedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(11) - Provide the cumulative amount of late charges and other fees that have been assessed by the servicer, but not paid by the obligor. -->
+			<xs:element name="otherAssessedUncollectedServicerFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(12) - Indicate the actual balance of the lease as of the end of the reporting period.   -->
+			<xs:element name="reportingPeriodEndingActualBalanceAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(13) - Indicate the total payment amount that was scheduled to be collected during the reporting period (including all fees). -->
+			<xs:element name="reportingPeriodScheduledPaymentAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(14) - Indicate the total lease payment received during the reporting period. -->
+			<xs:element name="totalActualAmountPaid" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(15) - Indicate the total of any amounts, other than the scheduled lease payment, collected during the reporting period, whether or not from the lessee. -->
+			<xs:element name="actualOtherCollectedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(16) - Provide the sum of the present values, as of the end of the reporting period, of the remaining schedule monthly payment amounts and the base residual value of the leased vehicle, computed using the securitization value discount rate.   -->
+			<xs:element name="reportingPeriodEndActualSecuritizationAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(17) - If amounts were advanced by the servicer during the reporting period, specify the amount. -->
+			<xs:element name="servicerAdvancedAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(f)(18) - Provide the date through which scheduled payments have been made with the payment received during the reporting period, which is the effective date from which amounts due will be calculated for the application of the next payment. -->
+			<xs:element name="paidThroughDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(19)(i) - Provide the date on which the lease balance was reduced to zero. -->
+			<xs:element name="zeroBalanceEffectiveDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 4(f)(19)(ii) - Provide the code that indicates the reason the lease's balance was reduced to zero.  -->
+			<xs:element name="zeroBalanceCode" type="ZERO_BAL_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 4(f)(20) - Indicate the number of days the lessee is delinquent past the lessee's payment due date, as determined by the governing transaction agreement.   -->
+			<xs:element name="currentDelinquencyStatus" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 4(g)(1) - Provide the name of the entity that services or will have the right to service the lease. -->
+			<xs:element name="primaryLeaseServicerName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 4(g)(2) - If a lease's servicing has been transferred, provide the effective date of the most recent servicing transfer. -->
+			<xs:element name="mostRecentServicingTransferReceivedDate" type="ns1:DATE_MM_YYYY_TYPE" minOccurs="0"/>
+			<!-- Item 4(h) - Indicate yes or no whether during the reporting period the lease was the subject of a demand to repurchase or replace for breach of representations and warranties, including investor demands upon a trustee. -->
+			<xs:element name="assetSubjectDemandIndicator" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<!-- Item 4(h)(1) - Indicate the code that describes the status of the repurchase or replacement demand as of the end of the reporting period. -->
+			<xs:element name="assetSubjectDemandStatusCode" type="REPRCH_STAT_ASSET_SUBJ_DMAND_CODE_TYPE" minOccurs="0"/>
+			<!-- Item 4(h)(2) - Provide the amount paid to repurchase the lease from the pool. -->
+			<xs:element name="repurchaseAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(h)(3) - Indicate the date the lease repurchase or replacement demand was resolved.  -->
+			<xs:element name="DemandResolutionDate" type="ns1:DATE_TYPE" minOccurs="0"/>
+			<!-- Item 4(h)(4) - Specify the name of the repurchaser. -->
+			<xs:element name="repurchaserName" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<!-- Item 4(h)(5) - Indicate the code that describes the reason for the repurchase or replacement. -->
+			<xs:element name="repurchaseOrReplacementReasonCode" type="REPRCH_RPLC_REASN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 4(i)(1) - Provide the amount charged-off on the lease. -->
+			<xs:element name="chargedOffAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(j)(1) - Indicate the code that describes the reason the lease was modified during the reporting period.  -->
+			<xs:element name="modificationTypeCode" type="MOD_TYP_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 4(j)(2) - Provide the number of months the lease was extended during the reporting period. -->
+			<xs:element name="leaseExtended" type="ns1:INTEGER_TYPE_8_A" minOccurs="0"/>
+			<!-- Item 4(k)(1) - Specify the code that describes the reason why the lease was terminated. -->
+			<xs:element name="terminationIndicator" type="TERMNTN_CODE_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Item 4(k)(2) - Specify the amount of excess fees received upon return of the vehicle, such as excess wear and tear or excess mileage. -->
+			<xs:element name="excessFeeAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+			<!-- Item 4(k)(3) - Provide the liquidation proceeds net of repossession fees, auction fees and other expenses in accordance with standard industry practice. -->
+			<xs:element name="liquidationProceedsAmount" type="ns1:DECIMAL_TYPE20_8" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="assetData">
+		<xs:annotation>
+			<xs:documentation>This is the root element for an ABS Asset Data exhibit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="assets" type="ASSET_TYPE" minOccurs="0" maxOccurs="unbounded">
+					<xs:unique name="uniqueSubvented">
+						<xs:selector xpath="mstns:subvented"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueZeroBalanceCode">
+						<xs:selector xpath="mstns:zeroBalanceCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueRepurchaseOrReplacementReasonCode">
+						<xs:selector xpath="mstns:repurchaseOrReplacementReasonCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueModificationTypeCode">
+						<xs:selector xpath="mstns:modificationTypeCode"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+					<xs:unique name="uniqueTerminationIndicator">
+						<xs:selector xpath="mstns:terminationIndicator"/>
+						<xs:field xpath="."/>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

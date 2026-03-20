@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/modulessegments" xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/modulessegments" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:complexType name="FILER_TYPE">
+		<xs:sequence>
+			<xs:element name="filerId" type="ns1:CIK_TYPE"/>
+			<xs:element name="filerCcc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>
+            Type of submission you are filing.  Choose a value from the appropriate family of
+            Submission Types.  
+            </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="MODULE"/>
+			<xs:enumeration value="SEGMENT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TYPE1_DOCUMENT_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="TYPE1"/>
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="MODULE_SEGMENT_DOCUMENT_TYPE">
+		<xs:union memberTypes="ns1:DOCUMENT_TYPE TYPE1_DOCUMENT_TYPE"/>
+	</xs:simpleType>
+	<xs:complexType name="EDGAR_DOCUMENT_TYPE">
+		<xs:annotation>
+			<xs:documentation>Document names must be lower case and no longer than thirty-two (32) characters in length.  The names must start with a letter (a-z) and may contain numbers (0-9) with no spaces.  Document names may contain one period (.), one hyphen (-), and one underscore (_) character and must end with *.htm, *.txt, *.pdf, *.fil, *.jpg, *.gif, *.xml or *.xsd extensions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nickName" type="ns1:MODULE_SEGMENT_NAME_TYPE"/>
+			<xs:element name="conformedName" type="ns1:DOCUMENT_NAME_TYPE"/>
+			<xs:element name="conformedDocumentType" type="MODULE_SEGMENT_DOCUMENT_TYPE"/>
+			<xs:element name="masterSegCik" type="ns1:CIK_TYPE" minOccurs="0" />
+			<xs:element name="description" type="ns1:DOCUMENT_DESCRIPTION_TYPE" minOccurs="0"/>
+			<xs:element name="contents" type="ns1:DOCUMENT_MIME_BLOCK_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EDGAR_DOCUMENTS_TYPE">
+		<xs:sequence>
+			<xs:element name="document" type="EDGAR_DOCUMENT_TYPE" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+				<xs:element name="flag" type="FLAG_TYPE" minOccurs="0"/>
+				<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+				<xs:element name="contact" type="ns1:CONTACT_TYPE" minOccurs="0"/>
+				<xs:element name="filer" type="FILER_TYPE"/>
+				<xs:element name="notifications" type="ns1:NOTIFICATION_TYPE" minOccurs="0"/>
+				<xs:element name="documents" type="EDGAR_DOCUMENTS_TYPE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

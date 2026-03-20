@@ -1,0 +1,183 @@
+<?xml version="1.0" ?><edgarSubmission xmlns="http://www.sec.gov/edgar/ncen">
+  <headerData>
+    <submissionType>N-CEN</submissionType>
+    <filerInfo>
+      <liveTestFlag>LIVE</liveTestFlag>
+      <filer>
+        <issuerCredentials>
+          <cik>0000350001</cik>
+          <ccc>sauces#1</ccc>
+        </issuerCredentials>
+      </filer>
+      <contact>
+        <contactName>Smitha Mondreti</contactName>
+        <contactPhoneNumber>571-331-2965</contactPhoneNumber>
+        <contactEmailAddress>mondretis@sec.gov</contactEmailAddress>
+      </contact>
+      <notifications>
+        <notificationEmailAddress>mondretis@sec.gov</notificationEmailAddress>
+      </notifications>
+      <flags>
+        <overrideInternetFlag>false</overrideInternetFlag>
+        <confirmingCopyFlag>false</confirmingCopyFlag>
+      </flags>
+      <investmentCompanyType>N-2</investmentCompanyType>
+    </filerInfo>
+  </headerData>
+  <formData>
+    <generalInfo isReportPeriodLt12="Y" reportEndingPeriod="2025-02-19"></generalInfo>
+    <registrantInfo>
+      <registrantFullName>BIG FUND TRUST inc</registrantFullName>
+      <investmentCompFileNo>811-100242</investmentCompFileNo>
+      <registrantCik>0000350001</registrantCik>
+      <registrantLei>LEI45678901234567890</registrantLei>
+      <registrantstreet1>12345</registrantstreet1>
+      <registrantstreet2>Boxwood Place</registrantstreet2>
+      <registrantcity>Herndon</registrantcity>
+      <registrantzipCode>20145</registrantzipCode>
+      <registrantstate>US-VA</registrantstate>
+      <registrantcountry>US</registrantcountry>
+      <registrantphoneNumber>703-455-3524</registrantphoneNumber>
+      <websites>
+        <website webpage="www.sec.gov"></website>
+      </websites>
+      <locationBooksRecords>
+        <locationBooksRecord>
+          <officeName>Name of books and record person</officeName>
+          <officeAddress1>1919 Union Street</officeAddress1>
+          <officeAddress2>Suite# 109</officeAddress2>
+          <officeCity>Washington</officeCity>
+          <officeStateCountry officeState="US-VA" officeCountry="US"></officeStateCountry>
+          <officeRecordsZipCode>98798</officeRecordsZipCode>
+          <officePhone>202-551-9787</officePhone>
+          <booksRecordsDesc>Description of books and records kept at the location.</booksRecordsDesc>
+        </locationBooksRecord>
+      </locationBooksRecords>
+      <isRegistrantFirstFiling>Y</isRegistrantFirstFiling>
+      <isRegistrantLastFiling>Y</isRegistrantLastFiling>
+      <registrantFamilyInvComp isRegistrantFamilyInvComp="Y" familyInvCompFullName="Name of family of investment companies"></registrantFamilyInvComp>
+      <registrantClassificationType>N-2</registrantClassificationType>
+      <isSecuritiesActRegistration>Y</isSecuritiesActRegistration>
+      <directors>
+        <director>
+          <directorName>Name of Directors</directorName>
+          <crdNumber>000000012</crdNumber>
+          <isDirectorInterestedPerson>Y</isDirectorInterestedPerson>
+          <fileNumbers>
+            <fileNumberInfo fileNumber="811-21974"></fileNumberInfo>
+          </fileNumbers>
+        </director>
+      </directors>
+      <chiefComplianceOfficers>
+        <chiefComplianceOfficer>
+          <ccoName>Name of Chief compliance officer</ccoName>
+          <crdNumber>123456789</crdNumber>
+          <ccoStreet1>12123</ccoStreet1>
+          <ccoStreet2>Boxwood Place</ccoStreet2>
+          <ccoCity>Ashburn</ccoCity>
+          <ccoStateCountry ccoCountry="US" ccoState="US-VA"></ccoStateCountry>
+          <ccoZipCode>25879</ccoZipCode>
+          <ccoPhone>703-123-1234</ccoPhone>
+          <isCcoChangedSinceLastFiling>Y</isCcoChangedSinceLastFiling>
+          <ccoEmployers>
+            <ccoEmployer ccoEmployerId="00-1234567" ccoEmployerName="Chief complionace officer name 1"></ccoEmployer>
+          </ccoEmployers>
+        </chiefComplianceOfficer>
+      </chiefComplianceOfficers>
+      <securityMatterSeriesInfo isRegistrantSubmittedMatter="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </securityMatterSeriesInfo>
+      <legalProceedingSeriesInfo isPreviousLegalProceeding="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </legalProceedingSeriesInfo>
+      <previousProceedingTerminated isPreviousProceedingTerminated="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </previousProceedingTerminated>
+      <claimFiled totalClaimAmount="10" isClaimFiled="Y"></claimFiled>
+      <coveredByInsurancePolicy isCoveredByInsurancePolicy="Y" isClaimFiledDuringPeriod="Y"></coveredByInsurancePolicy>
+      <financialSupportSeriesInfo isFinancialSupportDuringPeriod="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </financialSupportSeriesInfo>
+      <releaseNumbers isExemptionFromAct="Y">
+        <releaseNumberInfo releaseNumber="34-000000"></releaseNumberInfo>
+      </releaseNumbers>
+      <principalUnderwriters>
+        <principalUnderwriter>
+          <principalUnderwriterName>Name of Underwriters</principalUnderwriterName>
+          <principalUnderwriterFileNumber>008-01213</principalUnderwriterFileNumber>
+          <principalUnderwriterCrdNumber>121325465</principalUnderwriterCrdNumber>
+          <principalUnderwriterLei>LEI45678901234567890</principalUnderwriterLei>
+          <principalUnderwriterRssdId>1234567890</principalUnderwriterRssdId>
+          <principalUnderWriterStateCountry principalUnderWriterCountry="US" principalUnderWriterState="US-VA"></principalUnderWriterStateCountry>
+          <isPrincipalUnderwriterAffiliatedWithRegistrant>Y</isPrincipalUnderwriterAffiliatedWithRegistrant>
+        </principalUnderwriter>
+      </principalUnderwriters>
+      <isUnderwriterHiredOrTerminated>Y</isUnderwriterHiredOrTerminated>
+      <publicAccountants>
+        <publicAccountant>
+          <publicAccountantName>Name of Independent pubic accountant</publicAccountantName>
+          <pcaobNumber>N/A</pcaobNumber>
+          <publicAccountantLei>LEI45678901234567890</publicAccountantLei>
+          <publicAccountantRssdId>1234567890</publicAccountantRssdId>
+          <publicAccountantStateCountry publicAccountantState="US-VA" publicAccountantCountry="US"></publicAccountantStateCountry>
+        </publicAccountant>
+      </publicAccountants>
+      <isPublicAccountantChanged>Y</isPublicAccountantChanged>
+      <isMaterialWeakness>Y</isMaterialWeakness>
+      <auditOpinionSeries isOpinionOffered="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </auditOpinionSeries>
+      <valuationMethodsChanges isMaterialChange="Y">
+        <valuationMethodsChange>
+          <dateOfChange>2017-09-29</dateOfChange>
+          <changeExplanation>Explanation</changeExplanation>
+          <assetType>Short-term investment vehicle</assetType>
+          <investmentType>N-1 Investment Type</investmentType>
+          <statutoryRegulatoryBasis>Explanation of the change</statutoryRegulatoryBasis>
+          <valuationMethodsChangeSeries>
+            <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+          </valuationMethodsChangeSeries>
+        </valuationMethodsChange>
+      </valuationMethodsChanges>
+      <isAccountingPrincipleChange>Y</isAccountingPrincipleChange>
+      <paymentDividendSeries isPaymentDividend="Y">
+        <seriesInfo seriesName="CIK0001068130series#1" seriesId="S000193649"></seriesInfo>
+      </paymentDividendSeries>
+    </registrantInfo>
+    <closedEndManagementInvestment>
+      <securityRelatedItems>
+        <securityRelatedItem>
+          <description>Common stock</description>
+          <securityClassTitle>ztest</securityClassTitle>
+          <commonStocks>
+            <commonStock commonStockExchange="XBCX" commonStockTickerSymbol="12"></commonStock>
+          </commonStocks>
+        </securityRelatedItem>
+      </securityRelatedItems>
+      <isRightsOffering>N</isRightsOffering>
+      <isSecondaryOffering>N</isSecondaryOffering>
+      <isRepurchaseSecurity>N</isRepurchaseSecurity>
+      <isDefaultLongTermDebt>N</isDefaultLongTermDebt>
+      <isDividendsInArrears>N</isDividendsInArrears>
+      <isSecuritiesModified>N</isSecuritiesModified>
+      <managementFee>12</managementFee>
+      <netOperatingExpenses>12</netOperatingExpenses>
+      <marketPricePerShare>12</marketPricePerShare>
+      <netAssetValuePerShare>12</netAssetValuePerShare>
+    </closedEndManagementInvestment>
+    <attachmentsTab>
+      <isLegalProceedings>true</isLegalProceedings>
+      <isProvisionFinancialSupport>true</isProvisionFinancialSupport>
+      <isIPAReportInternalControl>true</isIPAReportInternalControl>
+      <isChangeAccPrinciples>true</isChangeAccPrinciples>
+      <isInfoRequiredEO>true</isInfoRequiredEO>
+      <isOtherInfoRequired>true</isOtherInfoRequired>
+      <isMaterialAmendments>false</isMaterialAmendments>
+      <isInstDefiningRights>false</isInstDefiningRights>
+      <isNewOrAmendedInvAdvContracts>false</isNewOrAmendedInvAdvContracts>
+      <isInfoItem405>false</isInfoItem405>
+      <isCodeOfEthics>false</isCodeOfEthics>
+    </attachmentsTab>
+    <signature registrantSignedName="BIG FUND TRUST inc" signature="Signature" signedDate="2025-03-10" title="Title"></signature>
+  </formData>
+</edgarSubmission>

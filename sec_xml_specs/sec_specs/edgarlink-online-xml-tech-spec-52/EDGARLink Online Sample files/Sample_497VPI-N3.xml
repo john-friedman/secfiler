@@ -1,0 +1,34 @@
+<?xml version="1.0" ?><sin:edgarSubmission xmlns:sin="http://www.sec.gov/edgar/singlefilersc" xmlns:com="http://www.sec.gov/edgar/common" xmlns:scc="http://www.sec.gov/edgar/sccommon">
+  <sin:liveTestFlag>LIVE</sin:liveTestFlag>
+  <sin:flag>
+    <sin:confirmingCopyFlag>false</sin:confirmingCopyFlag>
+    <sin:returnCopyFlag>false</sin:returnCopyFlag>
+    <sin:overrideInternetFlag>false</sin:overrideInternetFlag>
+  </sin:flag>
+  <sin:submissionType>497VPI</sin:submissionType>
+  <sin:filer>
+    <sin:filerId>0001161289</sin:filerId>
+    <sin:filerCcc>#tech123</sin:filerCcc>
+    <sin:fileNumber>333-101938</sin:fileNumber>
+  </sin:filer>
+  <sin:sros>
+    <com:sroId>NONE</com:sroId>
+  </sin:sros>
+  <sin:invCompany>N-3</sin:invCompany>
+  <sin:documents>
+    <com:document>
+      <com:conformedName>cover.txt</com:conformedName>
+      <com:conformedDocumentType>497VPI</com:conformedDocumentType>
+      <com:contents>aGpoa2hua2poZ3V5Z3UNCnhmY3ZqeWhnYmhqa2Nmaw0KdGRja3V5Z3l1aWJp
+</com:contents>
+    </com:document>
+  </sin:documents>
+  <sin:seriesClasses>
+    <sin:reportSeriesClass>
+      <scc:rptSeriesClassInfo>
+        <scc:seriesId>S000193464</scc:seriesId>
+        <scc:classId>C000004990</scc:classId>
+      </scc:rptSeriesClassInfo>
+    </sin:reportSeriesClass>
+  </sin:seriesClasses>
+</sin:edgarSubmission>

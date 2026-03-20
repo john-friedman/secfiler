@@ -1,0 +1,70 @@
+<?xml version="1.0" ?><cor:edgarSubmission xmlns:cor="http://www.sec.gov/edgar/coregfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon">
+  <cor:liveTestFlag>LIVE</cor:liveTestFlag>
+  <cor:flags>
+    <cor:confirmingCopyFlag>false</cor:confirmingCopyFlag>
+    <cor:delayingAmendmentFlag>false</cor:delayingAmendmentFlag>
+    <cor:overrideInternetFlag>false</cor:overrideInternetFlag>
+    <cor:returnCopyFlag>false</cor:returnCopyFlag>
+  </cor:flags>
+  <cor:submissionType>S-3</cor:submissionType>
+  <cor:filer>
+    <cor:filerId>0000000000</cor:filerId>
+    <cor:filerCcc>xxxxxxxx</cor:filerCcc>
+    <cor:filerFormType>S-3</cor:filerFormType>
+  </cor:filer>
+  <cor:sros>
+    <com:sroId>NONE</com:sroId>
+  </cor:sros>
+  <cor:smallBusinessFlag>false</cor:smallBusinessFlag>
+  <cor:emergingGrowthCompanyFlag>false</cor:emergingGrowthCompanyFlag>
+  <cor:acceleratedFilerStatus>Non-Accelerated Filer</cor:acceleratedFilerStatus>
+  <cor:documents>
+    <com:document>
+      <com:conformedName>Test1.txt</com:conformedName>
+      <com:conformedDocumentType>S-3</com:conformedDocumentType>
+      <com:contents>VGhpcyBpcyBmaWxlIGZyb20gdGVzdCBhbmQgdmFsaWRhdGVkLg==
+</com:contents>
+    </com:document>
+	<com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>EX-FILING FEES</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+  </cor:documents>
+  <cor:edgarFee>
+    <cor:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>25.00</feec:feeAmount>
+    </cor:submissionFee>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Indeterminate</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Exchange Traded Vehicle Securities</feec:feeOfferingSecurityName>
+    </cor:submissionOffering>
+    <cor:submissionOffering>
+      <feec:feeOfferingTypeOfPayment>Pay In Advance</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Exchange Traded Vehicle Securities</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>34</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>2.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>68.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+    <cor:submissionOffering>
+      <feec:feeOfferingSecurityName>Debt</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>25</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>4.0000</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>100.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+    <cor:submissionOffering>
+       <feec:feeOfferingTypeOfPayment>Indeterminate</feec:feeOfferingTypeOfPayment>
+      <feec:feeOfferingSecurityName>Exchange Traded Vehicle Securities</feec:feeOfferingSecurityName>
+      <feec:feeOfferingShares>0</feec:feeOfferingShares>
+      <feec:feeOfferingAmountPerShare>0.00</feec:feeOfferingAmountPerShare>
+      <feec:feeOfferingAggregatePrice>0.00</feec:feeOfferingAggregatePrice>
+    </cor:submissionOffering>
+  </cor:edgarFee>
+</cor:edgarSubmission>

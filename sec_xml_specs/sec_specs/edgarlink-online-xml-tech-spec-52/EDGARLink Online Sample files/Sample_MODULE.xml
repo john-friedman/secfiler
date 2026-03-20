@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:edgarSubmission xmlns:mod="http://www.sec.gov/edgar/modulessegments" xmlns:com="http://www.sec.gov/edgar/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/modulessegments eis_ModulesSegments.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <mod:liveTestFlag>LIVE</mod:liveTestFlag>
+  <mod:flag>
+    <mod:overrideInternetFlag>true</mod:overrideInternetFlag>
+    <mod:returnCopyFlag>true</mod:returnCopyFlag>
+  </mod:flag>
+  <mod:submissionType>MODULE</mod:submissionType>
+  <mod:contact>
+    <com:name>joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </mod:contact>
+  <mod:filer>
+    <mod:filerId>1305274</mod:filerId>
+    <mod:filerCcc>test@123</mod:filerCcc>
+  </mod:filer>
+  <mod:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </mod:notifications>
+  <mod:documents>
+    <mod:document>
+      <mod:nickName>MODULE_NAME</mod:nickName>
+      <mod:conformedName>test2.txt</mod:conformedName>
+      <mod:conformedDocumentType>TYPE1</mod:conformedDocumentType>
+      <mod:contents>dGVzdCA=
+</mod:contents>
+    </mod:document>
+  </mod:documents>
+</mod:edgarSubmission>

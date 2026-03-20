@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/ncrfiler"  xmlns:ns1="http://www.sec.gov/edgar/common" targetNamespace="http://www.sec.gov/edgar/ncrfiler"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:import namespace="http://www.sec.gov/edgar/common"	    schemaLocation="eis_Common.xsd" />
+
+    <!-- Part A: General information -->
+	<xs:complexType name="GENERAL_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Part A: General Information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		    <xs:element name="reportDate"       type="DATE_TYPE"                minOccurs="1" maxOccurs="1"/>   <!-- Item A.1    Report for [mm/dd/yyyy]. Date as of which information is reporting -->
+		    <xs:element name="registrantName"   type="ns1:STRING_150_TYPE"      minOccurs="1" maxOccurs="1"/>   <!-- Item A.2    Name of registrant.  Registrant Name -->
+            <xs:element name="registrantCik"    type="ns1:CIK_TYPE"             minOccurs="1" maxOccurs="1"/>   <!-- Item A.3    CIK Number of registrant. -->
+            <xs:element name="registrantLei"    type="LEI_TYPE"	                minOccurs="0" maxOccurs="1"/>   <!-- Item A.4    LEI of registrant. legal entity identifier -->
+            <xs:element name="seriesName"       type="SERIES_NAME_TYPE"         minOccurs="0" maxOccurs="1"/>   <!-- Item A.5    Name of series. -->
+            <xs:element name="seriesId"         type="SERIES_ID_TYPE" 	        minOccurs="0" maxOccurs="1"/>   <!-- Item A.6    EDGAR Series Identifier -->
+            <xs:element name="seriesLei"        type="LEI_TYPE"                 minOccurs="0" maxOccurs="1"/>   <!-- Item A.7    LEI of series. -->
+            <xs:element name="fileNumber"       type="ns1:FILE_NUMBER_TYPE_2"	minOccurs="0" maxOccurs="1"/>   <!-- Item A.8    Securities Act File Number. -->
+            <xs:element name="contact"          type="CONTACT_TYPE"             minOccurs="0" maxOccurs="1"/>   <!-- Item A.9    Provide the name, email address, and telephone number of the person authorized to receive information and respond to questions about this Form N-CR. -->
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- Part B: Default or event of insolvency of portfolio security issuer -->
+	<xs:complexType name="DEFAULT_OR_EVENT_OF_INSOLVENCY_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of Part B: </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="partBSecurityInformations"        type="PARTB_SECURITY_INFORMATIONS_TYPE"         minOccurs="0"   maxOccurs="1"/>  <!-- Item B.1	Security Information Repeating Part. -->
+            <xs:element name="actionDescription"                type="ns1:STRING_500_TYPE"                      minOccurs="0"   maxOccurs="1"/>  <!-- Item B.5    Brief description of actions fund plans to take, or has taken, in response to the default(s) or event(s) of insolvency.-->
+		</xs:sequence>
+	</xs:complexType>
+
+    <!--
+    Part C: Provision of financial support to fund - Disclosure
+    If an affiliated person, promoter, or principal underwriter of the fund, or an affiliated person of such a person, provides any form of financial support to the fund
+    (including any
+        (i) capital contribution,
+        (ii) purchase of a security from the fund in reliance on § 270.17a-9,
+        (iii) purchase of any defaulted or devalued security at par,
+        (iv) execution of letter of credit or letter of indemnity,
+        (v) capital support agreement (whether or not the fund ultimately received support),
+        (vi) performance guarantee, or
+        (vii) any other similar action reasonably intended to increase or stabilize the value or liquidity of the fund’s portfolio;
+        excluding, however, any
+            (i) routine waiver of fees or reimbursement of fund expenses,
+            (ii) routine inter-fund lending
+            (iii) routine inter-fund purchases of fund shares, or
+            (iv) any action that would qualify as financial support as defined above, that the board of directors has otherwise determined not to be reasonably intended to increase or stabilize the value or liquidity of the fund’s portfolio),
+        disclose the following information:
+    -->
+    <xs:complexType name="DISCLOSURE_TYPE">
+    	<xs:annotation>
+    		<xs:documentation>These elements are part of Part C: Disclosure </xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+            <xs:element name="supportDescription"        type="STRING_500_EMPTY_TYPE"            minOccurs="0"   maxOccurs="1"/>    <!-- Item C.1    Description of nature of support.  -->
+            <xs:element name="supportPersonName"         type="STRING_150_EMPTY_TYPE"            minOccurs="0"   maxOccurs="1"/>    <!-- Item C.2    Person providing support. -->
+            <xs:element name="relationshipDescription"   type="STRING_500_EMPTY_TYPE"            minOccurs="0"   maxOccurs="1"/>    <!-- Item C.3    Brief description of relationship between the person providing support and the fund. -->
+            <xs:element name="supportDate"               type="DATE_EMPTY_TYPE"                  minOccurs="0"   maxOccurs="1"/>    <!-- Item C.4    Date support provided.  -->
+            <xs:element name="supportAmtDescription"     type="NCR_12_2_EDGAR_MONEY"             minOccurs="0"   maxOccurs="1"/>    <!-- Item C.5    Amount of support. -->
+			<xs:element name="partCSecurityInformations" type="PARTC_SECURITY_INFORMATIONS_TYPE" minOccurs="0"   maxOccurs="1"/>    <!-- Item C.6	Security Information Repeating Part. This includes C.7. -->
+            <xs:element name="reasonDescription"         type="ns1:STRING_500_TYPE"              minOccurs="0"   maxOccurs="1"/>    <!-- Item C.8    Brief description of reason for support. -->
+            <xs:element name="termOfSupport"             type="ns1:STRING_500_TYPE"              minOccurs="0"   maxOccurs="1"/>    <!-- Item C.9    Term of support. -->
+            <xs:element name="contractRestrictionsDesc"  type="ns1:STRING_500_TYPE"              minOccurs="0"   maxOccurs="1"/>    <!-- Item C.10   Brief description of any contractual restrictions relating to support. -->
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PARTB_SECURITY_INFORMATIONS_TYPE">
+		<xs:sequence>
+			<xs:element name="partBSecurityInformation"      type="SECURITY_INFO_TYPE"   minOccurs="0" maxOccurs="40"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PARTC_SECURITY_INFORMATIONS_TYPE">
+		<xs:sequence>
+			<xs:element name="partCSecurityInformation"      type="SECURITY_INFO_TYPE"   minOccurs="0" maxOccurs="40"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PARTD_SECURITY_INFORMATIONS_TYPE">
+		<xs:sequence>
+			<xs:element name="partDSecurityInformation"      type="SECURITY_INFO_TYPE"   minOccurs="0" maxOccurs="40"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_INFO_TYPE">
+		<xs:sequence>
+			<xs:element name="issuerName"             type="ns1:STRING_150_TYPE"       minOccurs="0" maxOccurs="1"/>    <!-- used in Part B, C, and D -->
+			<xs:element name="issueTitle"             type="ns1:STRING_200_TYPE"       minOccurs="0" maxOccurs="1"/>    <!-- used in Part B, C, and D -->
+			<xs:element name="coupon"                 type="ns1:STRING_25_TYPE"        minOccurs="0" maxOccurs="1"/>    <!-- used in Part B, C, and D -->
+			<xs:element name="yield"                  type="ns1:STRING_25_TYPE"        minOccurs="0" maxOccurs="1"/>    <!-- used in Part B, C, and D -->
+			<xs:element name="acquiredDate"           type="DATE_TYPE"                 minOccurs="0" maxOccurs="1"/>    <!-- used in Part C -->
+			<xs:element name="securityValue"          type="SECURITY_VALUE_TYPE"       minOccurs="0" maxOccurs="1"/>    <!-- used in Part B and C -->
+			<xs:element name="eventDate"              type="DATE_TYPE"                 minOccurs="0" maxOccurs="1"/>    <!-- used in Part B -->
+			<xs:element name="percentageOfFundsTotalAssets" type="PERCENTAGE_OF_FUNDS_TOTAL_ASSETS_TYPE" minOccurs="0"  maxOccurs="1"/>  <!-- used in Part B -->
+			<xs:element name="securityIdentifiers"    type="SECURITY_IDENTIFIERS_TYPE" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_IDENTIFIERS_TYPE">
+		<xs:sequence>
+			<xs:element name="securityIdentifier"    type="SECURITY_IDENTIFIER_TYPE"  minOccurs="0" maxOccurs="5"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SECURITY_IDENTIFIER_TYPE">
+		<xs:sequence>
+			<xs:element name="IdType"        type="SECURITY_IDENTIFIER_TYPE_TYPE" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="IdValue"       type="STRING_20_NCR_TYPE"            minOccurs="0" maxOccurs="1"/>
+			<xs:element name="IdDescription" type="ns1:STRING_50_TYPE"            minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- Part D: Deviation between current net asset value per share and intended stable price per share  -->
+    <xs:complexType name="DEVIATION_ASSET_TYPE">
+    	<xs:annotation>
+    		<xs:documentation>These elements are part of Part D: </xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+            <xs:element   name="exceededOnePercentDate"    type="DATE_EMPTY_TYPE"                  minOccurs="0"   maxOccurs="1"/>  <!-- Item D.1	Date(s) on which such downward deviation exceeded ¼ of 1 percent. -->
+            <xs:element   name="extentOfDeviation"         type="EXTENT_OF_DEVIATION_TYPE"         minOccurs="0"   maxOccurs="1"/>  <!-- Item D.2	Extent of deviation between the fund’s current net asset value per share and its intended stable price per share. -->
+            <xs:element   name="reasonForDeviation"        type="ns1:STRING_500_TYPE"              minOccurs="0"   maxOccurs="1"/>  <!-- Item D.3	Principal reason or reasons for the deviation, including the name of any security whose value calculated using available market quotations (or an appropriate substitute that reflects current market conditions) or sale price, or whose issuer’s downgrade, default, or event of insolvency (or similar event), has contributed to the deviation. For any such security, disclose the name of the issuer, the title of the issue (including coupon or yield, if applicable) and at least two identifiers, if available (e.g., CUSIP, ISIN, CIK, LEI). -->
+			<xs:element   name="partDSecurityInformations" type="PARTD_SECURITY_INFORMATIONS_TYPE" minOccurs="0"   maxOccurs="1"/>  <!-- Item D.3	Security Information Repeating Part. -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Part E: Liquidity threshold events -->
+    <xs:complexType name="LIQUIDITY_THRESHOLD_EVENT_TYPE">
+    	<xs:annotation>
+    		<xs:documentation>These elements are part of Part E: </xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+            <xs:element name="dateOfWeeklyAssets"       type="DATE_EMPTY_TYPE"                       minOccurs="0"    maxOccurs="1"/> <!-- Item E.1 	Initial date on which the fund invested less than 25% of its total assets in weekly liquid assets, if applicable.  -->
+            <xs:element name="dateOfDailyAssets"        type="DATE_EMPTY_TYPE"                       minOccurs="0"    maxOccurs="1"/> <!-- Item E.2 	Initial date on which the fund invested less than 12.5% of its total assets in daily liquid assets, if applicable.  -->
+            <xs:element name="percentageOfWeeklyAssets" type="PERCENTAGE_OF_FUNDS_TOTAL_ASSETS_TYPE" minOccurs="0" maxOccurs="1"/> <!-- Item E.3 	Percentage of the fund’s total assets invested in weekly liquid assets as of any date reported in Items E.1.  -->
+			<xs:element name="percentageOfDailyAssets"  type="PERCENTAGE_OF_FUNDS_TOTAL_ASSETS_TYPE" minOccurs="0" maxOccurs="1"/> <!-- Item E.3 	Percentage of the fund’s total assets invested in daily liquid assets as of any date reported in Items E.2.  -->
+            <xs:element name="factsDescription"         type="ns1:STRING_500_TYPE"  minOccurs="0"    maxOccurs="1"/> <!-- Item E.4 	Brief description of the facts and circumstances leading to the fund investing less than 25% of its total assets in weekly liquid assets or less than 12.5% of its total assets in daily liquid assets, as applicable.  -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Part F: Optional disclosure  -->
+    <xs:complexType name="OPTIONAL_DISCLOSURE_TYPE">
+    	<xs:annotation>
+    		<xs:documentation>These elements are part of Part F: </xs:documentation>
+    	</xs:annotation>
+    	<xs:sequence>
+            <xs:element name="optionalDisclosure" type="ns1:STRING_500_TYPE"  minOccurs="0" maxOccurs="1"/> <!-- Item F.1	Optional disclosure.  -->
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:simpleType name="NCR_12_2_EDGAR_MONEY">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EXTENT_OF_DEVIATION_TYPE">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits     value="8"/>
+			<xs:fractionDigits  value="4"/>
+			<xs:maxInclusive    value="9999.9999"/>
+			<xs:minInclusive    value="-9999.9999"/>
+			<xs:pattern         value="-?\d{0,4}(\.\d{1,4})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PERCENTAGE_OF_FUNDS_TOTAL_ASSETS_TYPE">
+		<xs:restriction base="xs:decimal">
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="FILER_TYPE">
+		<xs:sequence>
+			<xs:element name="issuerCredentials" type="ISSUER_CREDENTIALS_TYPE"/>
+			<xs:element name="fileNumber"        type="ns1:FILE_NUMBER_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="CONTACT_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the CONTACT_TYPE group</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name"          type="ns1:NAME_TYPE"                minOccurs="1"/>
+            <xs:element name="phoneNumber"   type="ns1:EDGAR_PHONE_TYPE"         minOccurs="1"/>
+            <xs:element name="emailAddress"  type="ns1:INTERNET_ADDRESS_TYPE"    minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:simpleType name="DOCUMENT_NAME_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+			<xs:pattern value="([a-zA-Z0-9]+[\w\._\-]*)([\.]([xXpP][mMdD][lLfF]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="EDGAR_DOCUMENT_TYPE">
+    	<xs:sequence>
+    		<xs:element name="conformedName"            type="DOCUMENT_NAME_TYPE"/>
+    		<xs:element name="conformedDocumentType"    type="SUB_DOCUMENT_TYPE"/>
+    		<xs:element name="description"              type="ns1:DOCUMENT_DESCRIPTION_TYPE"   minOccurs="0"/>
+    		<xs:element name="contents"                 type="ns1:DOCUMENT_MIME_BLOCK_TYPE"/>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EDGAR_DOCUMENTS_TYPE">
+    	<xs:sequence>
+    		<xs:element name="document" type="EDGAR_DOCUMENT_TYPE" maxOccurs="2"/>
+    	</xs:sequence>
+    </xs:complexType>
+
+	<xs:simpleType name="PHONE_TYPE">
+		<xs:annotation>
+			<xs:documentation> Phone number of the contact person;maximum field size is 20 alphanumeric characters. Hyphens may be included to improve readability.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+			<xs:pattern value="[a-zA-Z0-9\s#(),.\-]{1,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="FLAG_TYPE">
+		<xs:sequence>
+			<xs:element name="confirmingCopyFlag"   type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="returnCopyFlag"       type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NOTIFICATION_TYPE">
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="LEI_TYPE_RSS_NA">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in up to 20 alphanumeric characters, but should also be allowed to put in less than 20 characters.  This is because the instructions sometimes allow filers to respond with "N/A" or the RSSD ID, which is a 10-digit number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Za-z]{20}|[0-9]{10}|N/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LEI_TYPE">
+		<xs:annotation>
+			<xs:documentation>Filers should be allowed to put in up to 20 alphanumeric characters</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Za-z]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SERIES_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>Name of the new series to be created. Field is up to 150 characters. Text will be conformed to remove all leading and trailing spaces and any extra spaces between words.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+			<xs:pattern value="[A-Za-z0-9!#-$%():;'@\*\+\-/=\?\^_`~{|},. \\\s&lt;&gt;&amp;&quot;\[\]]{1,150}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <!-- SERIES AND CLASSES -->
+	<xs:complexType name="ONE_SERIES_CLASS_INFO_TYPE">
+		<xs:sequence>
+			<xs:element name="seriesId"              type="SERIES_ID_TYPE"    minOccurs="1" maxOccurs="1"/>
+			<xs:element name="includeAllClassesFlag" type="TRUE_TYPE"         minOccurs="0" maxOccurs="1"/>
+			<xs:element name="classInfos"            type="CLASS_INFOS_TYPE"  minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CLASS_INFOS_TYPE">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="classInfo" type="CLASS_INFO_TYPE" minOccurs="0" maxOccurs="999"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="CLASS_INFO_TYPE">
+        <xs:annotation>
+            <xs:documentation>These elements are part of the CLASS_INFO_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="classId" type="CLASS_ID_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:simpleType name="SERIES_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied series identifier.  Field is 10 characters.  The value must start with an "S" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CLASS_ID_TYPE">
+		<xs:annotation>
+			<xs:documentation>SEC-supplied class (contract) identifier.  Field is 10 characters.  The value must start with a "C" followed by nine digits.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[C|c][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="TRUE_TYPE">
+        <xs:restriction base="xs:boolean">
+            <xs:pattern value="true" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DATE_TYPE">
+         <xs:restriction base="xs:token">
+            <xs:pattern value="\d{1,2}/\d{1,2}/\d{4}" />
+        </xs:restriction>
+  </xs:simpleType>
+
+	<xs:simpleType name="FILE_NUMBER_TYPE_2">
+		<xs:annotation>
+			<xs:documentation>Your SEC-supplied file number. Required for amendments to 1933 Act registration statements and with specific form types listed in Appendix B. Field is up to 17 characters, and only one file number for each registrant.</xs:documentation>
+			<xs:documentation />
+			<xs:documentation>The prefix may contain 1-3 digits, the sequence number may contain 1-8 digits, the optional suffix may contain 1-4 characters, and the fields are separated with a hyphen. Sample value: 333-00000-1.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="FILE_NUMBER_TYPE NEW_FILE_NUM_TYPE" />
+	</xs:simpleType>
+
+	<xs:simpleType name="FILE_NUMBER_TYPE">
+		<xs:annotation>
+			<xs:documentation>Your SEC-supplied file number. Required for
+				amendments to 1933 Act registration statements and with specific
+				form types listed in Appendix B. Field is up to 17 characters, and
+				only one file number for each registrant.</xs:documentation>
+			<xs:documentation />
+			<xs:documentation>The prefix may contain 1-3 digits, the sequence
+				number may contain 1-8 digits, the optional suffix may contain 1-4acom:EDGAR_DOCUMENTS_TYPE
+				characters, and the fields are separated with a hyphen.
+			</xs:documentation>
+			<xs:documentation>Sample value: 333-00000-1.</xs:documentation>
+			<xs:documentation />
+			<xs:documentation>Valid prefixes for this submission type are 002-,	033-, and 333-.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern	value="\d{1,3}-\d{1,8}-[a-zA-Z0-9]{1,4}|\d{1,3}-\d{1,8}|24R-\d{1,8}-[a-zA-Z0-9]{1,4}|24R-\d{1,8}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NEW_FILE_NUM_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="NEW" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DECIMAL_TYPE_NA_24">
+		<xs:union memberTypes="NA_TYPE BASE_DECIMAL_TYPE_24"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="BASE_DECIMAL_TYPE_24">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NA_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="N/A"/>
+	    </xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="STRING_150_EMPTY_TYPE">
+		<xs:union memberTypes="ns1:STRING_150_TYPE EMPTY_STRING_TYPE"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="STRING_255_EMPTY_TYPE">
+		<xs:union memberTypes="ns1:STRING_255_TYPE EMPTY_STRING_TYPE"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="STRING_500_EMPTY_TYPE">
+		<xs:union memberTypes="ns1:STRING_500_TYPE EMPTY_STRING_TYPE"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="DATE_EMPTY_TYPE">
+		<xs:union memberTypes="DATE_TYPE EMPTY_STRING_TYPE"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="EMPTY_STRING_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:length value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="STRING_11_NCR_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="11" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="STRING_20_NCR_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ISSUER_CREDENTIALS_TYPE">
+		<xs:sequence>
+			<xs:element name="cik" type="ns1:CIK_TYPE"/>
+			<xs:element name="ccc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="SUB_DOCUMENT_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="INFORMATION TABLE"/>
+			<xs:enumeration value="REQUEST LETTER"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SECURITY_VALUE_TYPE">
+		<xs:restriction base="xs:decimal">
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="COMPANY_CLASSIFICATION_TYPE">
+        <xs:annotation>
+            <xs:documentation>Enumeration for COMPANY_CLASSIFICATION_TYPE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value=""/>
+            <xs:enumeration value="NA"/>
+            <xs:enumeration value="N-1A"/>
+            <xs:enumeration value="N-3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+	<xs:simpleType name="SECURITY_IDENTIFIER_TYPE_TYPE">
+		<xs:annotation>
+			<xs:documentation>Enumeration for SECURITY_IDENTIFIER_TYPE_TYPE
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="CIK"/>
+			<xs:enumeration value="CUSIP"/>
+			<xs:enumeration value="FIGI"/>
+			<xs:enumeration value="INTERNAL ID"/>
+			<xs:enumeration value="ISIN"/>
+			<xs:enumeration value="LEI"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="SIGNATURE_BLOCK">
+		<xs:sequence>
+			<xs:element name="name"             type="ns1:STRING_150_TYPE" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="title"            type="ns1:STRING_60_TYPE"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="signature"        type="ns1:STRING_150_TYPE" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="signatureDate"    type="DATE_TYPE"           minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation>Type of submission you are filing.  Choose a value from the appropriate family of Submission Types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="N-CR"/>
+			<xs:enumeration value="N-CR/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="FILER_INFO">
+		<xs:sequence>
+			<xs:element name="liveTestFlag"             type="ns1:LIVE_TEST_TYPE"/>
+			<xs:element name="flags"                    type="FLAG_TYPE"                    minOccurs="0"/>
+			<xs:element name="filer"                    type="FILER_TYPE"/>
+			<xs:element name="contact"                  type="CONTACT_TYPE"                 minOccurs="0"/>
+			<xs:element name="notifications"            type="NOTIFICATION_TYPE"            minOccurs="0"/>
+			<xs:element name="periodOfReport"           type="DATE_TYPE"/>
+			<xs:element name="investmentCompanyType"    type="COMPANY_CLASSIFICATION_TYPE"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FORM_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FORM_DATA</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+            <xs:element name="generalInfo"                type="GENERAL_INFO_TYPE"                   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="eventOfInsolvency"          type="DEFAULT_OR_EVENT_OF_INSOLVENCY_TYPE" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="disclosure"                 type="DISCLOSURE_TYPE"                     minOccurs="0" maxOccurs="1"/>
+            <xs:element name="deviationAsset"             type="DEVIATION_ASSET_TYPE"                minOccurs="0" maxOccurs="1"/>
+            <xs:element name="liquidityThresholdEvent"    type="LIQUIDITY_THRESHOLD_EVENT_TYPE"      minOccurs="0" maxOccurs="1"/>
+            <xs:element name="optionalDisclosure"         type="OPTIONAL_DISCLOSURE_TYPE"            minOccurs="0" maxOccurs="1"/>
+            <xs:element name="signatureBlock"             type="SIGNATURE_BLOCK"                     minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="HEADER_DATA">
+		<xs:sequence>
+			<xs:element name="submissionType"   type="SUBMISSION_TYPE"            minOccurs="1" maxOccurs="1"/>
+			<xs:element name="filerInfo"        type="FILER_INFO"                 minOccurs="1" maxOccurs="1"/>
+			<xs:element name="oneSeriesClasses" type="ONE_SERIES_CLASS_INFO_TYPE" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion"    type="ns1:SCHEMA_VERSION_TYPE"  minOccurs="0"/>
+				<xs:element name="headerData"       type="HEADER_DATA"/>
+				<xs:element name="formData"         type="FORM_DATA"/>
+				<xs:element name="documents"        type="ns1:EDGAR_DOCUMENTS_TYPE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.sec.gov/edgar/sbsefcommon" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sec.gov/edgar/sbsefcommon" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/statecodes" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/statecodes" schemaLocation="eis_stateCodes.xsd"/>
+	<xs:simpleType name="SCHEMA_VERSION_TYPE">
+		<xs:annotation>
+			<xs:documentation> The schema version element applies only to the submission's primary document.	It does not apply to the submission file. This element should not be included in a Reduced Content submission. EDGAR inserts this element in the version of 	the primary document that gets disseminated. If you do provide a value for this element and it does not match the current version of this schema file being used by EDGAR, then EDGAR will generate a WARNING.	</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_256_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_256_0_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_100_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_1500_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STRING_10K_0_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0" />
+			<xs:maxLength value="10000" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INTEGER_TYPE_5">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INTEGER_TYPE_5_0">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="INTEGER_TYPE_2_0">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BUSINESS_ADDRESS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the BUSINESS_ADDRESS_TYPE group</xs:documentation>
+			<xs:documentation>businessAddressConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateOrCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+			<xs:element name="businessAddressConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MAILING_ADDRESS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the MAILING_ADDRESS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateOrCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

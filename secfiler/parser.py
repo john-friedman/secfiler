@@ -8,6 +8,7 @@ from .parsers.d import construct_d
 from .parsers.dos import construct_dos
 from .parsers.ex102 import construct_ex102
 from .parsers.ex103 import construct_ex103
+from .parsers.form4 import construct_form4
 from .parsers.f345 import construct_345
 from .parsers.form144 import construct_144
 from .parsers.informationtable import construct_information_table
@@ -92,7 +93,7 @@ _DOC_TYPE_ALIASES = {
     "CFPORTAL-W": "CFPORTAL",
     "EX-103": "EX-103",
     "EX-102": "EX-102",
-    "4": "345",
+    "4": "4",
     "4/A": "345",
     "3": "345",
     "3/A": "345",
@@ -179,6 +180,7 @@ def construct_document(rows: list, doc_type: str) -> bytes:
         "CFPORTAL": construct_cfportal,
         "EX-103": construct_ex103,
         "EX-102": construct_ex102,
+        "4": construct_form4,
         "345": construct_345,
         "MA-I": construct_mai,
         "NPORT-P": construct_nportp,

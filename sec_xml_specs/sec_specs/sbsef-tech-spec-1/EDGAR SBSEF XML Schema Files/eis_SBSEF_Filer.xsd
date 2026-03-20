@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sec.gov/edgar/sbseffiler" xmlns:ns1="http://www.sec.gov/edgar/common" xmlns:ns2="http://www.sec.gov/edgar/statecodes" xmlns:ns3="http://www.sec.gov/edgar/sbsefcommon"
+		   xmlns:exa="http://www.sec.gov/edgar/document/sbsef/exhibita"
+		   xmlns:exb="http://www.sec.gov/edgar/document/sbsef/exhibitb"
+		   xmlns:exgmn="http://www.sec.gov/edgar/document/sbsef/exhibitgmn"
+		   xmlns:ext="http://www.sec.gov/edgar/document/sbsef/exhibitt"
+		   targetNamespace="http://www.sec.gov/edgar/sbseffiler" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.sec.gov/edgar/common" schemaLocation="eis_Common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/statecodes" schemaLocation="eis_stateCodes.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/sbsefcommon" schemaLocation="eis_SBSEF_common.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/document/sbsef/exhibita" schemaLocation="eis_SBSEF_ExhibitA.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/document/sbsef/exhibitb" schemaLocation="eis_SBSEF_ExhibitB.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/document/sbsef/exhibitgmn" schemaLocation="eis_SBSEF_ExhibitGMN.xsd"/>
+	<xs:import namespace="http://www.sec.gov/edgar/document/sbsef/exhibitt" schemaLocation="eis_SBSEF_ExhibitT.xsd"/>
+	<xs:simpleType name="SUBMISSION_TYPE">
+		<xs:annotation>
+			<xs:documentation> Enumerated values and descriptions: SBSEF: Application for SBSEF Registration, SBSEF/A: Interim Amendment</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="SBSEF"/>
+			<xs:enumeration value="SBSEF/A"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="APPLICANT_TYPE">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Corporation"/>
+			<xs:enumeration value="Partnership"/>
+			<xs:enumeration value="Limited Liability Company"/>
+			<xs:enumeration value="Other Form of Organization"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="FILER_CREDENTIALS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_CREDENTIALS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cik" type="ns1:CIK_TYPE"/>
+			<xs:element name="ccc" type="ns1:CCC_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BUSINESS_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the BUSINESS_NAME_TYPE group. </xs:documentation>
+			<xs:documentation>nameOnBusinessConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nameOnBusiness" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="nameOnBusinessConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PREVIOUS_BUSINESS_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the PREVIOUS_BUSINESS_NAME_TYPE group</xs:documentation>
+			<xs:documentation>previousBusinessNameConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="previousBusinessName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="previousBusinessNameConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OFFICE_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the OFFICE_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="officeName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateOrCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filerCredentials" type="FILER_CREDENTIALS_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FLAGS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FLAGS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="overrideInternetFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONTACT_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactName" type="ns1:ENTITY_NAME_TYPE"/>
+			<xs:element name="contactPhoneNumber" type="ns1:EDGAR_PHONE_TYPE"/>
+			<xs:element name="contactEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NOTIFICATIONS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the NOTIFICATIONS_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="notificationEmailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BUSINESS_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the BUSINESS_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="businessName" type="BUSINESS_NAME_TYPE" minOccurs="0"/>
+			<xs:element name="previousBusinessName" type="PREVIOUS_BUSINESS_NAME_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTACT_INFO_GENERAL_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONTACT_INFO_GENERAL_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mailingAddress" type="ns3:MAILING_ADDRESS_TYPE" minOccurs="0"/>
+			<xs:element name="phone" type="ns1:PHONE_TYPE" minOccurs="0"/>
+			<xs:element name="faxNumber" type="ns1:PHONE_TYPE" minOccurs="0"/>
+			<xs:element name="webAddress" type="WEBSITE_URL_TYPE" minOccurs="0"/>
+			<xs:element name="emailAddress" type="ns1:INTERNET_ADDRESS_TYPE" minOccurs="0"/>
+			<xs:element name="contactInfoConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="WEBSITE_URL_TYPE">
+		<xs:restriction base="xs:string">
+				<xs:minLength value="1" />
+			<xs:maxLength value="150" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OFFICE_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the OFFICE_INFO_TYPE group</xs:documentation>
+			<xs:documentation>officeConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="office" type="OFFICE_TYPE" minOccurs="0" maxOccurs="15"/>
+			<xs:element name="officeConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUCCESSOR_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SUCCESSOR_TYPE group</xs:documentation>
+			<xs:documentation>generalInfoSuccessorConfidentialFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="generalInfoSuccessorNotApplicableFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="successionDate" type="ns1:DATE_TYPE2" minOccurs="0"/>
+			<xs:element name="predecessorName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateOrCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+			<xs:element name="businessPhone" type="ns1:PHONE_TYPE" minOccurs="0"/>
+			<xs:element name="webAddress" type="WEBSITE_URL_TYPE" minOccurs="0"/>
+			<xs:element name="generalInfoSuccessorConfidentialFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="APPLICANT_CATEGORY_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the APPLICANT_CATEGORY_TYPE group</xs:documentation>
+			<xs:documentation>applicantTypeConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="applicantType" type="APPLICANT_TYPE" minOccurs="0"/>
+			<xs:element name="applicantTypeOtherDesc" type="ns3:STRING_256_0_TYPE" minOccurs="0"/>
+			<xs:element name="applicantTypeConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BUSINESS_ORG_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the BUSINESS_ORG_INFO_TYPE group</xs:documentation>
+			<xs:documentation>dateOfIncorporationOrFormationConfFlag and stateOfIncorporationOrJurisdictionOfOrganizationConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dateOfIncorporationOrFormation" type="ns1:DATE_TYPE2" minOccurs="0"/>
+			<xs:element name="stateOfIncorporationOrJurisdictionOfOrganization" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="dateOfIncorporationOrFormationConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+			<xs:element name="stateOfIncorporationOrJurisdictionOfOrganizationConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONSENT_NAME_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONSENT_NAME_TYPE group</xs:documentation>
+			<xs:documentation>consentNameConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="personNameOrOfficerTitle" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="applicantNameOrApplcblEntity" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="consentNameConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONSENT_ADDRESS_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the CONSENT_ADDRESS_TYPE group</xs:documentation>
+			<xs:documentation>consentAddressConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+			<xs:element name="consentAddressConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILER_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FILER_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filer" type="FILER_TYPE"/>
+			<xs:element name="flags" type="FLAGS_TYPE" minOccurs="0"/>
+			<xs:element name="contact" type="CONTACT_TYPE" minOccurs="0"/>
+			<xs:element name="notifications" type="NOTIFICATIONS_TYPE" minOccurs="0"/>
+			<xs:element name="liveTestFlag" type="ns1:LIVE_TEST_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PRINCIPAL_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the PRINCIPAL_INFO_TYPE group</xs:documentation>
+			<xs:documentation>principalConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="applicantName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="street1" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="street2" type="ns1:STREET_TYPE" minOccurs="0"/>
+			<xs:element name="city" type="ns1:STRING_30_TYPE" minOccurs="0"/>
+			<xs:element name="stateOrCountry" type="ns2:STATE_COUNTRY_CODE" minOccurs="0"/>
+			<xs:element name="zipCode" type="ns1:ZIP_TYPE" minOccurs="0"/>
+			<xs:element name="amendedItemsList" type="ns3:STRING_256_TYPE" minOccurs="0"/>
+			<xs:element name="principalConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GENERAL_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the GENERAL_INFO_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="businessInfo" type="BUSINESS_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="contactInfo" type="CONTACT_INFO_GENERAL_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="officeInfo" type="OFFICE_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="successor" type="SUCCESSOR_TYPE" minOccurs="0"/>
+			<xs:element name="applicantCategory" type="APPLICANT_CATEGORY_TYPE" minOccurs="0"/>
+			<xs:element name="businessOrgInfo" type="BUSINESS_ORG_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="consentName" type="CONSENT_NAME_TYPE" minOccurs="0"/>
+			<xs:element name="consentAddress" type="CONSENT_ADDRESS_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SIGNATURE_INFO_TYPE">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the SIGNATURE_INFO_TYPE group</xs:documentation>
+			<xs:documentation>signatureConfFlag will determine if the variables in this type will be confidential</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="signatureDate" type="ns1:DATE_TYPE2" minOccurs="0"/>
+			<xs:element name="signatureApplicantName" type="ns1:STRING_150_TYPE" minOccurs="0"/>
+			<xs:element name="signatureAuthorizedPerson" type="ns1:STRING_255_TYPE" minOccurs="0"/>
+			<xs:element name="signatureTitle" type="ns1:STRING_255_TYPE" minOccurs="0"/>
+			<xs:element name="signatureConfFlag" type="ns1:TRUE_FALSE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HEADER_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the HEADER_DATA_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="submissionType" type="SUBMISSION_TYPE"/>
+			<xs:element name="filerInfo" type="FILER_INFO_TYPE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FORM_DATA">
+		<xs:annotation>
+			<xs:documentation>These elements are part of the FORM_DATA_TYPE group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="principalInfo" type="PRINCIPAL_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="generalInfo" type="GENERAL_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="signatureInfo" type="SIGNATURE_INFO_TYPE" minOccurs="0"/>
+			<xs:element name="exhibitA" type="exa:EXHIBIT_A_TYPE" minOccurs="0" />
+			<xs:element name="exhibitB" type="exb:EXHIBIT_B_TYPE" minOccurs="0" />
+			<xs:element name="exhibitG" type="exgmn:EXHIBIT_G_TYPE" minOccurs="0" />
+			<xs:element name="exhibitM" type="exgmn:EXHIBIT_M_INFO_TYPE" minOccurs="0" />
+			<xs:element name="exhibitN" type="exgmn:EXHIBIT_N_TYPE" minOccurs="0" />
+			<xs:element name="exhibitT" type="ext:EXHIBIT_T_TYPE" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgarSubmission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="ns1:SCHEMA_VERSION_TYPE" minOccurs="0"/>
+				<xs:element name="headerData" type="HEADER_DATA"/>
+				<xs:element name="formData" type="FORM_DATA" minOccurs="0"/>
+				<xs:element name="documents" type="ns1:CONFIDENTIAL_DOCUMENTS_TYPE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

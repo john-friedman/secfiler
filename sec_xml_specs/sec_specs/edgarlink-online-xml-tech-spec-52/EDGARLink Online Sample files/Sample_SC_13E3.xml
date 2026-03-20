@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sub:edgarSubmission xmlns:sub="http://www.sec.gov/edgar/subjectgroupfee" xmlns:com="http://www.sec.gov/edgar/common" xmlns:feec="http://www.sec.gov/edgar/feecommon" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.gov/edgar/subjectgroupfee eis_SubjectGroup_Fee.xsd">
+<!-- DISCLAIMER:  This is a sample XML submission document for demonstration purposes only and should not be copied verbatim as part of a submission.  Please refer to the EDGARLink Online XML Technical Specification and the related EDGARLink Online Schemas for complete filer-constructed submission information.-->
+<!-- Please be aware that these schema locations are for informational purposes only and should not be considered as required items in the EDGARLink Online Schema. -->
+<!-- If a reference to a style sheet is included the submission will be suspended by EDGAR.  Please do not include any references to style sheets.-->
+  <sub:liveTestFlag>LIVE</sub:liveTestFlag>
+  <sub:flag>
+    <sub:confirmingCopyFlag>true</sub:confirmingCopyFlag>
+    <sub:returnCopyFlag>false</sub:returnCopyFlag>
+    <sub:overrideInternetFlag>false</sub:overrideInternetFlag>
+  </sub:flag>
+  <sub:submissionType>SC 13E3</sub:submissionType>
+  <sub:filer>
+    <sub:filerId>0000000000</sub:filerId>
+    <sub:filerCcc>xxxxxxxx</sub:filerCcc>
+  </sub:filer>
+  <sub:comboFormTypes>
+    <sub:comboFormType>SC 13E3</sub:comboFormType>
+    <sub:comboFormType>SC TO-I</sub:comboFormType>
+  </sub:comboFormTypes>
+  <sub:subCompanyFiler>
+    <sub:filerId>0000000000</sub:filerId>
+    <sub:irsNumber>22-7777777</sub:irsNumber>
+    <sub:fileNumber>333-00000-1</sub:fileNumber>
+    <sub:filerName>Subject Company Name</sub:filerName>
+  </sub:subCompanyFiler>
+  <sub:contact>
+    <com:name>Joe Smith</com:name>
+    <com:phoneNumber>202-333-4444</com:phoneNumber>
+  </sub:contact>
+  <sub:sros>
+    <com:sroId>NONE</com:sroId>
+    <com:sroId>AMEX</com:sroId>
+  </sub:sros>
+  <sub:notifications>
+    <com:internetNotificationAddress>doej@sec.gov</com:internetNotificationAddress>
+  </sub:notifications>
+  <sub:moduleSegments>
+    <com:moduleSegment>
+      <com:modOrSegFlag>M</com:modOrSegFlag>
+      <com:nickName>A123456789</com:nickName>
+      <com:cik>0000000000</com:cik>
+      <com:documentType>SC 13E3</com:documentType>
+    </com:moduleSegment>
+  </sub:moduleSegments>
+  <sub:documents>
+    <com:document>
+      <com:conformedName>test2.txt</com:conformedName>
+      <com:conformedDocumentType>SC 13E3</com:conformedDocumentType>
+      <com:contents>dGVzdCA=
+</com:contents>
+    </com:document>
+		<com:document>
+      <com:conformedName>doc1.txt</com:conformedName>
+      <com:conformedDocumentType>EX-FILING FEES</com:conformedDocumentType>
+      <com:contents>KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqDQpGaXJzdCBkb2N1bWVu
+dA0KDQogICAgICAgIFNQRUNJTUVOIC0gTk9UIEFOIE9GRklDSUFMIEZJTElORw0KDQoqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCg0K
+</com:contents>
+    </com:document>
+  </sub:documents>
+  <sub:edgarFee>
+    <sub:submissionFee>
+      <feec:feePayorInformation>
+        <feec:filerId>0000000000</feec:filerId>
+        <feec:filerCcc>xxxxxxxx</feec:filerCcc>
+      </feec:feePayorInformation>
+      <feec:feeAmount>500.00</feec:feeAmount>
+      <feec:feeBasis>500.00</feec:feeBasis>
+    </sub:submissionFee>
+    <sub:submissionOffset>
+      <feec:offsetCik>0000000000</feec:offsetCik>
+      <feec:offsetFormType>424B1</feec:offsetFormType>
+      <feec:offsetFileNumber>333-00000-1</feec:offsetFileNumber>
+      <feec:offsetFilingDate>11-04-2010</feec:offsetFilingDate>
+      <feec:offsetAmount>5000.00</feec:offsetAmount>
+    </sub:submissionOffset>
+  </sub:edgarFee>
+</sub:edgarSubmission>
