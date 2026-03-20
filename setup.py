@@ -6,6 +6,4 @@ setup(
     version="0.1.0",
     description="Open sourcing SEC EDGAR filing compliance",
     url="https://github.com/john-friedman/secfiler",
-    install_requires=[
-],
 )
