@@ -127,13 +127,23 @@ def construct_ex103(rows: list) -> bytes:
         normalized_rows = [{}]
 
     root = ET.Element('comments')
-    _add_path_text(root, ['commentData', 'comment'], _first_across_rows(normalized_rows, ['comment']))
-    _add_path_text(root, ['commentData', 'fieldName'], _first_across_rows(normalized_rows, ['fieldName']))
-    _add_path_text(root, ['commentData', 'itemNumber'], _first_across_rows(normalized_rows, ['itemNumber']))
-    _add_path_text(root, ['commentData', 'commentColumn'], _first_across_rows(normalized_rows, ['commentColumn']))
-    _add_path_text(root, ['commentData', 'commentDescription'], _first_across_rows(normalized_rows, ['commentDescription']))
-    _add_path_text(root, ['commentData', 'commentNumber'], _first_across_rows(normalized_rows, ['commentNumber']))
     _add_created_with_comment(root)
+
+    for row in normalized_rows:
+        comment_data = ET.SubElement(root, 'commentData')
+        for key, tag in [
+            ('itemNumber', 'itemNumber'),
+            ('columnName', 'columnName'),
+            ('comment', 'Comment'),
+            ('fieldName', 'fieldName'),
+            ('commentColumn', 'commentColumn'),
+            ('commentDescription', 'commentDescription'),
+            ('commentNumber', 'commentNumber'),
+        ]:
+            value = row.get(key)
+            if _is_present(value):
+                child = ET.SubElement(comment_data, tag)
+                child.text = _to_text(value)
 
     tree = ET.ElementTree(root)
     ET.indent(tree, space='\t')

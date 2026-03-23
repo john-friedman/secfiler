@@ -40,14 +40,13 @@ def _normalize_values(value) -> list[str]:
     if not stripped:
         return []
 
-    if any(token in text for token in ("|", ";", "\n", "\r")):
+    if any(token in text for token in ( ";", "\n", "\r")):
         normalized = (
             text.replace("\r\n", "\n")
             .replace("\r", "\n")
-            .replace(";", "|")
-            .replace("\n", "|")
+
         )
-        return [part.strip() for part in normalized.split("|") if part.strip()]
+        return [part.strip() for part in normalized if part.strip()]
 
     return [text]
 
