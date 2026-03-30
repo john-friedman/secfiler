@@ -1,91 +1,35 @@
 import io
 import xml.etree.ElementTree as ET
-from ..utils import _add_created_with_comment
-
-
-
-def _is_present(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    return True
-
-
-def _to_text(value) -> str:
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    return str(value)
-
-
-def _first_across_rows(rows: list[dict], keys: list[str]):
-    for row in rows:
-        for key in keys:
-            value = row.get(key)
-            if _is_present(value):
-                return value
-    return None
-
-
-def _add_if_present(parent: ET.Element, tag: str, value) -> None:
-    if _is_present(value):
-        ET.SubElement(parent, tag).text = _to_text(value)
-
-
-def _add_if_defined(parent: ET.Element, tag: str, row: dict, key: str) -> None:
-    if key in row and row.get(key) is not None:
-        ET.SubElement(parent, tag).text = _to_text(row.get(key))
+from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_1z(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
-    first_row = normalized_rows[0]
+    header_row = next((r for r in rows if r.get("_table") == "onez"), rows[0] if rows else {})
 
     root = ET.Element("edgarSubmission")
     root.set("xmlns", "http://www.sec.gov/edgar/rega/onezfiler")
     root.set("xmlns:ns1", "http://www.sec.gov/edgar/common")
 
-    header_data = ET.SubElement(root, "headerData")
-    _add_if_present(header_data, "submissionType", _first_across_rows(normalized_rows, ["submissionType"]))
+    _add_path_text(root, ["headerData", "submissionType"], header_row.get("submissionType"))
+    _add_path_text(root, ["headerData", "filerInfo", "liveTestFlag"], header_row.get("liveTestFlag"))
+    _add_path_text(root, ["headerData", "filerInfo", "filer", "issuerCredentials", "cik"], header_row.get("filerCik"))
+    _add_path_text(root, ["headerData", "filerInfo", "filer", "issuerCredentials", "ccc"], header_row.get("filerCcc"))
+    _add_path_text(root, ["headerData", "filerInfo", "filer", "fileNumber"], header_row.get("fileNumber"))
+    _add_path_text(root, ["headerData", "filerInfo", "flags", "confirmingCopyFlag"], header_row.get("confirmingCopyFlag"))
+    _add_path_text(root, ["headerData", "filerInfo", "flags", "successorFilingFlag"], header_row.get("successorFilingFlag"))
+    _add_path_text(root, ["headerData", "filerInfo", "flags", "returnCopyFlag"], header_row.get("returnCopyFlag"))
+    _add_path_text(root, ["headerData", "filerInfo", "flags", "overrideInternetFlag"], header_row.get("overrideInternetFlag"))
 
-    filer_info = ET.SubElement(header_data, "filerInfo")
-    _add_if_present(filer_info, "liveTestFlag", _first_across_rows(normalized_rows, ["liveTestFlag"]))
+    _add_path_text(root, ["formData", "item1", "issuerName"], header_row.get("issuerName"))
+    _add_path_text(root, ["formData", "item1", "street1"], header_row.get("street1"))
+    _add_path_text(root, ["formData", "item1", "street2"], header_row.get("street2"))
+    _add_path_text(root, ["formData", "item1", "city"], header_row.get("city"))
+    _add_path_text(root, ["formData", "item1", "stateOrCountry"], header_row.get("stateOrCountry"))
+    _add_path_text(root, ["formData", "item1", "zipCode"], header_row.get("zipCode"))
+    _add_path_text(root, ["formData", "item1", "phone"], header_row.get("phone"))
+    _add_path_text(root, ["formData", "item1", "commissionFileNumber"], header_row.get("commissionFileNumber"))
 
-    filer = ET.SubElement(filer_info, "filer")
-    issuer_credentials = ET.SubElement(filer, "issuerCredentials")
-    _add_if_present(issuer_credentials, "cik", _first_across_rows(normalized_rows, ["filerCik"]))
-    _add_if_present(issuer_credentials, "ccc", _first_across_rows(normalized_rows, ["filerCcc"]))
-    _add_if_present(filer, "fileNumber", _first_across_rows(normalized_rows, ["fileNumber"]))
-
-    flags = ET.SubElement(filer_info, "flags")
-    _add_if_present(flags, "confirmingCopyFlag", _first_across_rows(normalized_rows, ["confirmingCopyFlag"]))
-    _add_if_present(flags, "successorFilingFlag", _first_across_rows(normalized_rows, ["successorFilingFlag"]))
-    _add_if_present(flags, "returnCopyFlag", _first_across_rows(normalized_rows, ["returnCopyFlag"]))
-    _add_if_present(flags, "overrideInternetFlag", _first_across_rows(normalized_rows, ["overrideInternetFlag"]))
-
-    form_data = ET.SubElement(root, "formData")
-
-    item1 = ET.SubElement(form_data, "item1")
-    _add_if_present(item1, "issuerName", _first_across_rows(normalized_rows, ["issuerName"]))
-    _add_if_present(item1, "street1", _first_across_rows(normalized_rows, ["street1"]))
-    if any("street2" in row for row in normalized_rows):
-        _add_if_defined(item1, "street2", first_row, "street2")
-    _add_if_present(item1, "city", _first_across_rows(normalized_rows, ["city"]))
-    _add_if_present(item1, "stateOrCountry", _first_across_rows(normalized_rows, ["stateOrCountry"]))
-    _add_if_present(item1, "zipCode", _first_across_rows(normalized_rows, ["zipCode"]))
-    _add_if_present(item1, "phone", _first_across_rows(normalized_rows, ["phone"]))
-    _add_if_present(item1, "commissionFileNumber", _first_across_rows(normalized_rows, ["commissionFileNumber"]))
-
-    summary_fields = [
+    for field in [
         "offeringQualificationDate",
         "offeringCommenceDate",
         "offeringSecuritiesQualifiedSold",
@@ -110,25 +54,19 @@ def construct_1z(rows: list) -> bytes:
         "crdNumberBrokerDealer",
         "issuerNetProceeds",
         "clarificationResponses",
-    ]
-    has_summary = any(_is_present(_first_across_rows(normalized_rows, [field])) for field in summary_fields)
-    if has_summary:
-        summary = ET.SubElement(form_data, "summaryInfoOffering")
-        for field in summary_fields:
-            _add_if_present(summary, field, _first_across_rows(normalized_rows, [field]))
+    ]:
+        _add_path_text(root, ["formData", "summaryInfoOffering", field], header_row.get(field))
 
-    certification = ET.SubElement(form_data, "certificationSuspension")
-    _add_if_present(certification, "securitiesClassTitle", _first_across_rows(normalized_rows, ["securitiesClassTitle"]))
-    _add_if_present(certification, "certificationFileNumber", _first_across_rows(normalized_rows, ["certificationFileNumber"]))
-    _add_if_present(certification, "approxRecordHolders", _first_across_rows(normalized_rows, ["approxRecordHolders"]))
+    _add_path_text(root, ["formData", "certificationSuspension", "securitiesClassTitle"], header_row.get("securitiesClassTitle"))
+    _add_path_text(root, ["formData", "certificationSuspension", "certificationFileNumber"], header_row.get("certificationFileNumber"))
+    _add_path_text(root, ["formData", "certificationSuspension", "approxRecordHolders"], header_row.get("approxRecordHolders"))
 
-    signature_tab = ET.SubElement(form_data, "signatureTab")
-    _add_if_present(signature_tab, "cik", _first_across_rows(normalized_rows, ["signatureCik"]))
-    _add_if_present(signature_tab, "regulationIssuerName1", _first_across_rows(normalized_rows, ["regulationIssuerName1"]))
-    _add_if_present(signature_tab, "regulationIssuerName2", _first_across_rows(normalized_rows, ["regulationIssuerName2"]))
-    _add_if_present(signature_tab, "signatureBy", _first_across_rows(normalized_rows, ["signatureBy"]))
-    _add_if_present(signature_tab, "date", _first_across_rows(normalized_rows, ["signatureDate"]))
-    _add_if_present(signature_tab, "title", _first_across_rows(normalized_rows, ["signatureTitle"]))
+    _add_path_text(root, ["formData", "signatureTab", "cik"], header_row.get("signatureCik"))
+    _add_path_text(root, ["formData", "signatureTab", "regulationIssuerName1"], header_row.get("regulationIssuerName1"))
+    _add_path_text(root, ["formData", "signatureTab", "regulationIssuerName2"], header_row.get("regulationIssuerName2"))
+    _add_path_text(root, ["formData", "signatureTab", "signatureBy"], header_row.get("signatureBy"))
+    _add_path_text(root, ["formData", "signatureTab", "date"], header_row.get("signatureDate"))
+    _add_path_text(root, ["formData", "signatureTab", "title"], header_row.get("signatureTitle"))
     _add_created_with_comment(root)
 
     tree = ET.ElementTree(root)

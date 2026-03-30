@@ -5,42 +5,29 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_ex103(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
-    root = ET.Element('comments')
+    root = ET.Element("comments")
     _add_created_with_comment(root)
 
-    for row in normalized_rows:
-        comment_data = ET.SubElement(root, 'commentData')
+    for row in rows:
+        comment_data = ET.SubElement(root, "commentData")
         for json_key, xml_tag in [
-            ('itemNumber', 'itemNumber'),
-            ('columnName', 'columnName'),
-            ('comment', 'Comment'),
-            ('fieldName', 'fieldName'),
-            ('commentColumn', 'commentColumn'),
-            ('commentDescription', 'commentDescription'),
-            ('commentNumber', 'commentNumber'),
+            ("itemNumber", "itemNumber"),
+            ("columnName", "columnName"),
+            ("comment", "Comment"),
+            ("fieldName", "fieldName"),
+            ("commentColumn", "commentColumn"),
+            ("commentDescription", "commentDescription"),
+            ("commentNumber", "commentNumber"),
         ]:
-            value = row.get(json_key)
-            if _is_present(value):
-                child = ET.SubElement(comment_data, xml_tag)
-                child.text = _to_text(value)
+            _add_path_text(comment_data, [xml_tag], row.get(json_key))
 
     tree = ET.ElementTree(root)
-    ET.indent(tree, space='\t')
+    ET.indent(tree, space="\t")
 
     output = io.StringIO()
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    tree.write(output, encoding='unicode', xml_declaration=False)
-    return output.getvalue().encode('utf-8')
+    tree.write(output, encoding="unicode", xml_declaration=False)
+    return output.getvalue().encode("utf-8")
 
 
 # (json_key, xml_tags relative to the assets element)
@@ -194,39 +181,25 @@ _EX102_PROPERTY_FIELDS = [
 
 
 def construct_ex102(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
-    root = ET.Element('assetData')
-    root.set('xmlns', 'http://www.sec.gov/edgar/document/absee/autoloan/assetdata')
-    root.set('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+    root = ET.Element("assetData")
+    root.set("xmlns", "http://www.sec.gov/edgar/document/absee/autoloan/assetdata")
+    root.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
     _add_created_with_comment(root)
 
-    for row in normalized_rows:
-        assets_el = ET.SubElement(root, 'assets')
+    for row in rows:
+        assets_el = ET.SubElement(root, "assets")
         for json_key, xml_tags in _EX102_ASSET_FIELDS:
-            value = row.get(json_key)
-            if _is_present(value):
-                _add_path_text(assets_el, xml_tags, value)
+            _add_path_text(assets_el, xml_tags, row.get(json_key))
         for json_key, xml_tags in _EX102_PROPERTY_FIELDS:
-            value = row.get(json_key)
-            if _is_present(value):
-                _add_path_text(assets_el, xml_tags, value)
+            _add_path_text(assets_el, xml_tags, row.get(json_key))
 
     tree = ET.ElementTree(root)
-    ET.indent(tree, space='\t')
+    ET.indent(tree, space="\t")
 
     output = io.StringIO()
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    tree.write(output, encoding='unicode', xml_declaration=False)
-    return output.getvalue().encode('utf-8')
+    tree.write(output, encoding="unicode", xml_declaration=False)
+    return output.getvalue().encode("utf-8")
 
 
 

@@ -5,21 +5,12 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_ma(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
 
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/mafiler')
     root.set('xmlns:com', 'http://www.sec.gov/edgar/common_ma')
     root.set('xmlns:com1', 'http://www.sec.gov/edgar/common')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['formData', 'calYearEnd'], row.get('calYearEnd'))
         _add_path_text(root, ['formData', 'clientsServedAsMA'], row.get('clientsServedAsMA'))
         _add_path_text(root, ['formData', 'dateOfOrganization'], row.get('dateOfOrganization'))
@@ -427,6 +418,7 @@ def construct_ma(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
+
 
 
 

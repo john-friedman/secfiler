@@ -5,19 +5,9 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_ta2(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/ta/tatwofiler')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['formVersion'], row.get('formVersion'))
         _add_path_text(root, ['periodOfReport'], row.get('periodOfReport'))
         _add_path_text(root, ['regulatoryAgency'], row.get('regulatoryAgency'))

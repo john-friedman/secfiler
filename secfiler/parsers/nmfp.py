@@ -5,15 +5,6 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_nmfp(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
 
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/nmfp')
@@ -28,7 +19,7 @@ def construct_nmfp(rows: list) -> bytes:
     root.set('xmlns:sccom', 'http://www.sec.gov/edgar/sccommon')
     root.set('xmlns:state', 'http://www.sec.gov/edgar/statecodes')
     root.set('xmlns:us-gaap', 'http://www.sec.gov/edgar/us-gaap')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['seriesLevelInformation', 'AvailableForSaleSecuritiesAmortizedCost'], row.get('availableForSaleSecuritiesAmortizedCost'))
         _add_path_text(root, ['DocumentPeriodEndDate'], row.get('documentPeriodEndDate'))
         _add_path_text(root, ['EntityCentralIndexKey'], row.get('entityCentralIndexKey'))
@@ -137,6 +128,7 @@ def construct_nmfp(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
+
 
 
 

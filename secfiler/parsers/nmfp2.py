@@ -5,21 +5,12 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_nmfp2(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
 
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/nmfp2')
     root.set('xmlns:ns3', 'http://www.sec.gov/edgar/nmfp2common')
     root.set('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['headerData', 'submissionType'], row.get('submissionType'))
         _add_path_text(root, ['formData', 'classLevelInfo', 'classesId'], row.get('classesId'))
         _add_path_text(root, ['formData', 'classLevelInfo', 'minInitialInvestment'], row.get('minInitialInvestment'))
@@ -204,6 +195,7 @@ def construct_nmfp2(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
+
 
 
 

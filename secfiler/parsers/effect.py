@@ -1,90 +1,96 @@
 import io
 import xml.etree.ElementTree as ET
-from ..utils import _add_created_with_comment
-
-
-
-def _is_present(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    return True
-
-
-def _add_if_present(parent: ET.Element, tag: str, value) -> None:
-    if _is_present(value):
-        ET.SubElement(parent, tag).text = str(value)
+from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_effect(rows: list) -> bytes:
-    row = rows[0] if rows else {}
+    header_row = next((r for r in rows if r.get("_table") == "effect"), rows[0] if rows else {})
 
     root = ET.Element("edgarSubmission")
 
-    schema_version = row.get("schemaVersion", "X0101")
-    _add_if_present(root, "schemaVersion", schema_version)
-    _add_if_present(root, "submissionType", row.get("submissionType"))
-    _add_if_present(root, "act", row.get("act"))
-    _add_if_present(root, "testOrLive", row.get("testOrLive"))
+    _add_path_text(root, ["schemaVersion"], header_row.get("schemaVersion", "X0101"))
+    _add_path_text(root, ["submissionType"], header_row.get("submissionType"))
+    _add_path_text(root, ["act"], header_row.get("act"))
+    _add_path_text(root, ["testOrLive"], header_row.get("testOrLive"))
 
-    effective_data = ET.SubElement(root, "effectiveData")
-    _add_if_present(
-        effective_data,
-        "finalEffectivenessDispDate",
-        row.get("finalEffectivenessDispDate"),
+    _add_path_text(
+        root,
+        ["effectiveData", "finalEffectivenessDispDate"],
+        header_row.get("finalEffectivenessDispDate"),
     )
-    _add_if_present(
-        effective_data,
-        "finalEffectivenessDispTime",
-        row.get("finalEffectivenessDispTime"),
+    _add_path_text(
+        root,
+        ["effectiveData", "finalEffectivenessDispTime"],
+        header_row.get("finalEffectivenessDispTime"),
     )
-    _add_if_present(effective_data, "form", row.get("form"))
+    _add_path_text(root, ["effectiveData", "form"], header_row.get("form"))
 
-    filer = ET.SubElement(effective_data, "filer")
-    _add_if_present(filer, "cik", row.get("cik"))
-    _add_if_present(filer, "entityName", row.get("entityName"))
-    _add_if_present(filer, "fileNumber", row.get("fileNumber"))
+    _add_path_text(root, ["effectiveData", "filer", "cik"], header_row.get("cik"))
+    _add_path_text(root, ["effectiveData", "filer", "entityName"], header_row.get("entityName"))
+    _add_path_text(root, ["effectiveData", "filer", "fileNumber"], header_row.get("fileNumber"))
 
-    existing_fields = (
-        "targetClassContractId",
-        "targetClassContractName",
-        "targetSeriesId",
-        "targetSeriesName",
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "existing", "classContractId"],
+        header_row.get("targetClassContractId"),
     )
-    merger_fields = (
-        "acquiringCik",
-        "acquiringClassContractId",
-        "acquiringClassContractName",
-        "acquiringEntityName",
-        "acquiringSeriesId",
-        "acquiringSeriesName",
-        "targetCik",
-        "targetEntityName",
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "existing", "classContractName"],
+        header_row.get("targetClassContractName"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "existing", "seriesId"],
+        header_row.get("targetSeriesId"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "existing", "seriesName"],
+        header_row.get("targetSeriesName"),
     )
 
-    has_existing = any(_is_present(row.get(field)) for field in existing_fields)
-    has_merger = any(_is_present(row.get(field)) for field in merger_fields)
-    if has_existing or has_merger:
-        series_class_contract_data = ET.SubElement(filer, "seriesClassContractData")
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringCik"],
+        header_row.get("acquiringCik"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringClassContractId"],
+        header_row.get("acquiringClassContractId"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringClassContractName"],
+        header_row.get("acquiringClassContractName"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringEntityName"],
+        header_row.get("acquiringEntityName"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringSeriesId"],
+        header_row.get("acquiringSeriesId"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "acquiringSeriesName"],
+        header_row.get("acquiringSeriesName"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "targetCik"],
+        header_row.get("targetCik"),
+    )
+    _add_path_text(
+        root,
+        ["effectiveData", "filer", "seriesClassContractData", "merger", "targetEntityName"],
+        header_row.get("targetEntityName"),
+    )
 
-        if has_existing:
-            existing = ET.SubElement(series_class_contract_data, "existing")
-            _add_if_present(existing, "classContractId", row.get("targetClassContractId"))
-            _add_if_present(existing, "classContractName", row.get("targetClassContractName"))
-            _add_if_present(existing, "seriesId", row.get("targetSeriesId"))
-            _add_if_present(existing, "seriesName", row.get("targetSeriesName"))
-
-        if has_merger:
-            merger = ET.SubElement(series_class_contract_data, "merger")
-            _add_if_present(merger, "acquiringCik", row.get("acquiringCik"))
-            _add_if_present(merger, "acquiringClassContractId", row.get("acquiringClassContractId"))
-            _add_if_present(merger, "acquiringClassContractName", row.get("acquiringClassContractName"))
-            _add_if_present(merger, "acquiringEntityName", row.get("acquiringEntityName"))
-            _add_if_present(merger, "acquiringSeriesId", row.get("acquiringSeriesId"))
-            _add_if_present(merger, "acquiringSeriesName", row.get("acquiringSeriesName"))
-            _add_if_present(merger, "targetCik", row.get("targetCik"))
-            _add_if_present(merger, "targetEntityName", row.get("targetEntityName"))
     _add_created_with_comment(root)
 
     tree = ET.ElementTree(root)

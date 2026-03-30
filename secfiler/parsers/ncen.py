@@ -12,19 +12,10 @@ def _add_path_attr(root: ET.Element, tags: list[str], attr_name: str, value) -> 
         target.set(attr_name, str(value))
 
 def construct_ncen(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
 
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/ncen')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['schemaVersion'], row.get('schemaVersion'))
         _add_path_text(root, ['headerData', 'submissionType'], row.get('submissionType'))
         _add_path_text(root, ['formData', 'attachmentsTab', 'isChangeAccPrinciples'], row.get('isChangeAccPrinciples'))
@@ -496,6 +487,7 @@ def construct_ncen(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
+
 
 
 

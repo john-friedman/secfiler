@@ -1,70 +1,31 @@
 import io
 import xml.etree.ElementTree as ET
-from ..utils import _add_created_with_comment
-
-
-
-def _has_value(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    return True
-
-
-def _add_if_defined(parent: ET.Element, tag: str, row: dict, key: str) -> None:
-    if key in row and row.get(key) is not None:
-        ET.SubElement(parent, tag).text = str(row.get(key))
-
-
-def _add_if_present(parent: ET.Element, tag: str, value) -> None:
-    if _has_value(value):
-        ET.SubElement(parent, tag).text = str(value)
+from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_25nse(rows: list) -> bytes:
-    row = rows[0] if rows else {}
+    header_row = next((r for r in rows if r.get("_table") == "25nse"), rows[0] if rows else {})
 
     root = ET.Element("notificationOfRemoval")
 
-    schema_version = row.get("schemaVersion", "X0203")
-    _add_if_present(root, "schemaVersion", schema_version)
-
-    exchange = ET.SubElement(root, "exchange")
-    _add_if_present(exchange, "cik", row.get("exchangeCik"))
-    _add_if_present(exchange, "entityName", row.get("exchangeEntityName"))
-
-    issuer = ET.SubElement(root, "issuer")
-    _add_if_present(issuer, "cik", row.get("issuerCik"))
-    _add_if_present(issuer, "entityName", row.get("issuerEntityName"))
-    _add_if_present(issuer, "fileNumber", row.get("issuerFileNumber"))
-
-    address_keys = (
-        "street1",
-        "street2",
-        "city",
-        "stateOrCountryCode",
-        "stateOrCountry",
-        "zipCode",
-    )
-    if any(key in row for key in address_keys):
-        address = ET.SubElement(issuer, "address")
-        _add_if_defined(address, "street1", row, "street1")
-        _add_if_defined(address, "street2", row, "street2")
-        _add_if_defined(address, "city", row, "city")
-        _add_if_defined(address, "stateOrCountryCode", row, "stateOrCountryCode")
-        _add_if_defined(address, "stateOrCountry", row, "stateOrCountry")
-        _add_if_defined(address, "zipCode", row, "zipCode")
-
-    _add_if_defined(issuer, "telephoneNumber", row, "issuerTelephoneNumber")
-
-    _add_if_present(root, "descriptionClassSecurity", row.get("descriptionClassSecurity"))
-    _add_if_present(root, "ruleProvision", row.get("ruleProvision"))
-
-    signature_data = ET.SubElement(root, "signatureData")
-    _add_if_present(signature_data, "signatureName", row.get("signatureName"))
-    _add_if_present(signature_data, "signatureTitle", row.get("signatureTitle"))
-    _add_if_present(signature_data, "signatureDate", row.get("signatureDate"))
+    _add_path_text(root, ["schemaVersion"], header_row.get("schemaVersion", "X0203"))
+    _add_path_text(root, ["exchange", "cik"], header_row.get("exchangeCik"))
+    _add_path_text(root, ["exchange", "entityName"], header_row.get("exchangeEntityName"))
+    _add_path_text(root, ["issuer", "cik"], header_row.get("issuerCik"))
+    _add_path_text(root, ["issuer", "entityName"], header_row.get("issuerEntityName"))
+    _add_path_text(root, ["issuer", "fileNumber"], header_row.get("issuerFileNumber"))
+    _add_path_text(root, ["issuer", "address", "street1"], header_row.get("street1"))
+    _add_path_text(root, ["issuer", "address", "street2"], header_row.get("street2"))
+    _add_path_text(root, ["issuer", "address", "city"], header_row.get("city"))
+    _add_path_text(root, ["issuer", "address", "stateOrCountryCode"], header_row.get("stateOrCountryCode"))
+    _add_path_text(root, ["issuer", "address", "stateOrCountry"], header_row.get("stateOrCountry"))
+    _add_path_text(root, ["issuer", "address", "zipCode"], header_row.get("zipCode"))
+    _add_path_text(root, ["issuer", "telephoneNumber"], header_row.get("issuerTelephoneNumber"))
+    _add_path_text(root, ["descriptionClassSecurity"], header_row.get("descriptionClassSecurity"))
+    _add_path_text(root, ["ruleProvision"], header_row.get("ruleProvision"))
+    _add_path_text(root, ["signatureData", "signatureName"], header_row.get("signatureName"))
+    _add_path_text(root, ["signatureData", "signatureTitle"], header_row.get("signatureTitle"))
+    _add_path_text(root, ["signatureData", "signatureDate"], header_row.get("signatureDate"))
     _add_created_with_comment(root)
 
     tree = ET.ElementTree(root)

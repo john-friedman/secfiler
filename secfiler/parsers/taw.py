@@ -5,20 +5,10 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_taw(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/ta/tawfiler')
     root.set('xmlns:com', 'http://www.sec.gov/edgar/common')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['formVersion'], row.get('formVersion'))
         _add_path_text(root, ['schemaVersion'], row.get('schemaVersion'))
         _add_path_text(root, ['submissionType'], row.get('submissionType'))

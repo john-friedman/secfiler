@@ -5,21 +5,11 @@ from ..utils import _add_created_with_comment, _add_path_text
 
 
 def construct_maw(rows: list) -> bytes:
-    normalized_rows = []
-    if rows:
-        for row in rows:
-            if isinstance(row, dict) or hasattr(row, "get"):
-                normalized_rows.append(row)
-            else:
-                normalized_rows.append(dict(row))
-    else:
-        normalized_rows = [{}]
-
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/mawfiler')
     root.set('xmlns:com', 'http://www.sec.gov/edgar/common_ma')
     root.set('xmlns:com1', 'http://www.sec.gov/edgar/common')
-    for row in normalized_rows:
+    for row in rows:
         _add_path_text(root, ['formData', 'fileNumber'], row.get('fileNumber'))
         _add_path_text(root, ['formData', 'fullLegalName'], row.get('fullLegalName'))
         _add_path_text(root, ['formData', 'isAdvisoryContract'], row.get('isAdvisoryContract'))
