@@ -1,8 +1,5 @@
 import xml.etree.ElementTree as ET
-from ..constants import CREATED_WITH_SECFILER_COMMENT
-
-def _add_created_with_comment(root: ET.Element) -> None:
-    root.insert(0, ET.Comment(CREATED_WITH_SECFILER_COMMENT))
+from ..utils import _add_created_with_comment
 
 import io
 

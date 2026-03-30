@@ -1,9 +1,6 @@
 import io
 import xml.etree.ElementTree as ET
-from ..constants import CREATED_WITH_SECFILER_COMMENT
-
-def _add_created_with_comment(root: ET.Element) -> None:
-    root.insert(0, ET.Comment(CREATED_WITH_SECFILER_COMMENT))
+from ..utils import _add_created_with_comment, _add_path_text, _ensure_path
 
 
 
@@ -58,26 +55,6 @@ def _first_across_rows(rows: list[dict], keys: list[str]):
     return None
 
 
-def _ensure_path(parent: ET.Element, tags: list[str]) -> ET.Element:
-    current = parent
-    for tag in tags:
-        found = None
-        for child in current:
-            if child.tag == tag:
-                found = child
-                break
-        if found is None:
-            found = ET.SubElement(current, tag)
-        current = found
-    return current
-
-
-def _add_path_text(root: ET.Element, tags: list[str], value) -> None:
-    if not _is_present(value):
-        return
-    target = _ensure_path(root, tags)
-    if not _is_present(target.text):
-        target.text = _to_text(value)
 
 
 def _add_repeated_child(parent: ET.Element, tag: str, values: list[str]) -> None:
@@ -226,3 +203,5 @@ def construct_dos(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding="unicode", xml_declaration=False)
     return output.getvalue().encode("utf-8")
+
+

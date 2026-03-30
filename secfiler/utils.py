@@ -40,14 +40,6 @@ def _add_path_text(root: ET.Element, tags: list[str], value) -> None:
         target.text = value
 
 
-def _add_path_attr(root: ET.Element, tags: list[str], attr_name: str, value) -> None:
-    if not _is_present(value):
-        return
-    target = _ensure_path(root, tags)
-    if attr_name not in target.attrib:
-        target.set(attr_name, value)
-
-
 def _add_footnote_ids(parent: ET.Element, path: list[str], value) -> None:
     """
     Splits a pipe-delimited footnote string and appends one <footnoteId id="..."/>
