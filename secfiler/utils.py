@@ -5,6 +5,12 @@ from .constants import CREATED_WITH_SECFILER_COMMENT
 def _add_created_with_comment(root: ET.Element) -> None:
     root.insert(0, ET.Comment(CREATED_WITH_SECFILER_COMMENT))
 
+def _add_path_attr(root: ET.Element, tags: list[str], attr_name: str, value) -> None:
+    if not _is_present(value):
+        return
+    target = _ensure_path(root, tags)
+    if attr_name not in target.attrib:
+        target.set(attr_name, value)
 
 def _is_present(value) -> bool:
     if value is None:
@@ -35,9 +41,19 @@ def _ensure_path(parent: ET.Element, tags: list[str], create_leaf: bool = False)
 def _add_path_text(root: ET.Element, tags: list[str], value) -> None:
     if value is None:
         return
-    target = _ensure_path(root, tags)
-    if not _is_present(target.text):
-        target.text = value
+    values = [v.strip() for v in str(value).split('|') if v.strip()]
+    if not values:
+        return
+    if len(values) == 1:
+        target = _ensure_path(root, tags)
+        if not _is_present(target.text):
+            target.text = values[0]
+    else:
+        parent = _ensure_path(root, tags[:-1]) if len(tags) > 1 else root
+        tag = tags[-1]
+        for v in values:
+            el = ET.SubElement(parent, tag)
+            el.text = v
 
 
 def _add_footnote_ids(parent: ET.Element, path: list[str], value) -> None:

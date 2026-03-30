@@ -2,7 +2,7 @@ from .parsers.effect import construct_effect
 from .parsers.ctr import construct_ctr
 from .parsers.f24f2nt import construct_24f2nt
 from .parsers.coverpage import construct_cover_page
-from .parsers.c import construct_c
+from .parsers2.c import construct_c
 from .parsers.cfportal import construct_cfportal
 from .parsers.d import construct_d
 from .parsers.dos import construct_dos
@@ -37,7 +37,7 @@ from .parsers.ta1 import construct_ta1
 from .parsers.ta2 import construct_ta2
 from .parsers.taw import construct_taw
 from .parsers2.thirteenfhr import construct_13fhr
-from .parsers.atsnua import construct_atsn_ua
+from .parsers2.atsnua import construct_atsn_ua
 from .parsers.x17a5 import construct_x17a5
 
 
