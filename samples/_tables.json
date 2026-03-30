@@ -1,10 +1,5 @@
 [
   {
-    "footnoteText": "Contributions to non-profit organizations.",
-    "footnoteId": "F1",
-    "_table": "345_footnote"
-  },
-  {
     "aff10B5One": "0",
     "documentType": "4",
     "notSubjectToSection16": "0",
@@ -17,9 +12,23 @@
     "_table": "345"
   },
   {
-    "signatureDate": "2025-09-02",
-    "signatureName": "/s/ PAUL DAUBER, attorney-in-fact for Jeffrey P. Bezos, Executive Chair",
-    "_table": "345_owner_signature"
+    "securityTitleValue": "Common Stock, par value $.01  per share",
+    "equitySwapInvolved": "0",
+    "transactionCode": "G",
+    "transactionFormType": "4",
+    "transactionDateValue": "2025-08-28",
+    "directOrIndirectOwnershipValue": "D",
+    "sharesOwnedFollowingTransactionValue": "883258188",
+    "transactionAcquiredDisposedCodeValue": "D",
+    "transactionPricePerShareValue": "0",
+    "transactionSharesValue": "421693",
+    "transactionCodingFootnoteIdId": "F1",
+    "_table": "345_non_derivative_transaction"
+  },
+  {
+    "footnoteText": "Contributions to non-profit organizations.",
+    "footnoteId": "F1",
+    "_table": "345_footnote"
   },
   {
     "rptOwnerCity": "SEATTLE",
@@ -38,17 +47,8 @@
     "_table": "345_reporting_owner"
   },
   {
-    "securityTitleValue": "Common Stock, par value $.01  per share",
-    "equitySwapInvolved": "0",
-    "transactionCode": "G",
-    "transactionFormType": "4",
-    "transactionDateValue": "2025-08-28",
-    "directOrIndirectOwnershipValue": "D",
-    "sharesOwnedFollowingTransactionValue": "883258188",
-    "transactionAcquiredDisposedCodeValue": "D",
-    "transactionPricePerShareValue": "0",
-    "transactionSharesValue": "421693",
-    "transactionCodingFootnoteIdId": "F1",
-    "_table": "345_non_derivative_transaction"
+    "signatureDate": "2025-09-02",
+    "signatureName": "/s/ PAUL DAUBER, attorney-in-fact for Jeffrey P. Bezos, Executive Chair",
+    "_table": "345_owner_signature"
   }
 ]
