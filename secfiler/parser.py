@@ -10,7 +10,7 @@ from .parsers.ex102 import construct_ex102
 from .parsers.ex103 import construct_ex103
 from .parsers2.f345 import construct_345
 from .parsers.form144 import construct_144
-from .parsers.informationtable import construct_information_table
+from .parsers2.informationtable import construct_information_table
 from .parsers.ma import construct_ma
 from .parsers.mai import construct_mai
 from .parsers.maw import construct_maw
@@ -36,7 +36,7 @@ from .parsers.sbse import construct_sbse
 from .parsers.ta1 import construct_ta1
 from .parsers.ta2 import construct_ta2
 from .parsers.taw import construct_taw
-from .parsers.thirteenfhr import construct_13fhr
+from .parsers2.thirteenfhr import construct_13fhr
 from .parsers.atsnua import construct_atsn_ua
 from .parsers.x17a5 import construct_x17a5
 

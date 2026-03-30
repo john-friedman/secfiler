@@ -1,87 +1,88 @@
 import io
 import xml.etree.ElementTree as ET
-from ..utils import _add_created_with_comment, _add_path_text, _ensure_path
+
+from ..utils import _add_created_with_comment, _add_path_text
 
 
+def _write_form_c(root: ET.Element, row: dict) -> None:
+    _add_path_text(root, ['headerData', 'submissionType'], row.get('submissionType'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'actReceivedMostRecentFiscalYear'], row.get('actReceivedMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'actReceivedPriorFiscalYear'], row.get('actReceivedPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'cashEquiMostRecentFiscalYear'], row.get('cashEquiMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'cashEquiPriorFiscalYear'], row.get('cashEquiPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'costGoodsSoldMostRecentFiscalYear'], row.get('costGoodsSoldMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'costGoodsSoldPriorFiscalYear'], row.get('costGoodsSoldPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'currentEmployees'], row.get('currentEmployees'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'issueJurisdictionSecuritiesOffering'], row.get('issueJurisdictionSecuritiesOffering'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'longTermDebtMostRecentFiscalYear'], row.get('longTermDebtMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'longTermDebtPriorFiscalYear'], row.get('longTermDebtPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'netIncomeMostRecentFiscalYear'], row.get('netIncomeMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'netIncomePriorFiscalYear'], row.get('netIncomePriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'revenueMostRecentFiscalYear'], row.get('revenueMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'revenuePriorFiscalYear'], row.get('revenuePriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'shortTermDebtMostRecentFiscalYear'], row.get('shortTermDebtMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'shortTermDebtPriorFiscalYear'], row.get('shortTermDebtPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'taxPaidMostRecentFiscalYear'], row.get('taxPaidMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'taxPaidPriorFiscalYear'], row.get('taxPaidPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'totalAssetMostRecentFiscalYear'], row.get('totalAssetMostRecentFiscalYear'))
+    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'totalAssetPriorFiscalYear'], row.get('totalAssetPriorFiscalYear'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'commissionCik'], row.get('commissionCik'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'commissionFileNumber'], row.get('commissionFileNumber'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'companyName'], row.get('companyName'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'crdNumber'], row.get('crdNumber'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'isAmendment'], row.get('isAmendment'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'isCoIssuer'], row.get('isCoIssuer'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'natureOfAmendment'], row.get('natureOfAmendment'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'progressUpdate'], row.get('progressUpdate'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'compensationAmount'], row.get('compensationAmount'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'deadlineDate'], row.get('deadlineDate'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'descOverSubscription'], row.get('descOverSubscription'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'financialInterest'], row.get('financialInterest'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'maximumOfferingAmount'], row.get('maximumOfferingAmount'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'noOfSecurityOffered'], row.get('noOfSecurityOffered'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'offeringAmount'], row.get('offeringAmount'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'overSubscriptionAccepted'], row.get('overSubscriptionAccepted'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'overSubscriptionAllocationType'], row.get('overSubscriptionAllocationType'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'price'], row.get('price'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'priceDeterminationMethod'], row.get('priceDeterminationMethod'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'securityOfferedOtherDesc'], row.get('securityOfferedOtherDesc'))
+    _add_path_text(root, ['formData', 'offeringInformation', 'securityOfferedType'], row.get('securityOfferedType'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'liveTestFlag'], row.get('liveTestFlag'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'period'], row.get('period'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerWebsite'], row.get('issuerWebsite'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'nameOfIssuer'], row.get('nameOfIssuer'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuer'], row.get('issuer'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuerSignature'], row.get('issuerSignature'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuerTitle'], row.get('issuerTitle'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'fileNumber'], row.get('fileNumber'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'confirmingCopyFlag'], row.get('confirmingCopyFlag'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'overrideInternetFlag'], row.get('overrideInternetFlag'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'returnCopyFlag'], row.get('returnCopyFlag'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerCik'], row.get('coIssuerCik'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerWebsite'], row.get('coIssuerWebsite'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'isEdgarFiler'], row.get('isEdgarFiler'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'nameOfCoIssuer'], row.get('nameOfCoIssuer'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'city'], row.get('city'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'stateOrCountry'], row.get('stateOrCountry'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'street1'], row.get('street1'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'street2'], row.get('street2'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'zipCode'], row.get('zipCode'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'dateIncorporation'], row.get('dateIncorporation'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'jurisdictionOrganization'], row.get('jurisdictionOrganization'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'legalStatusForm'], row.get('legalStatusForm'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'personSignature'], row.get('personSignature'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'personTitle'], row.get('personTitle'))
+    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'signatureDate'], row.get('signatureDate'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'filerCcc'], row.get('filerCcc'))
+    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'filerCik'], row.get('filerCik'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'city'], row.get('coIssuerAddressCity'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'stateOrCountry'], row.get('coIssuerAddressStateOrCountry'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'street1'], row.get('coIssuerAddressStreet1'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'zipCode'], row.get('coIssuerAddressZipCode'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'dateIncorporation'], row.get('coIssuerLegalStatusDateIncorporation'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'jurisdictionOrganization'], row.get('coIssuerLegalStatusJurisdictionOrganization'))
+    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'legalStatusForm'], row.get('coIssuerLegalStatusLegalStatusForm'))
 
-def _is_present(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, (list, tuple, set)):
-        return any(_is_present(item) for item in value)
-    return True
-
-
-def _to_text(value) -> str:
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    return str(value)
-
-
-def _normalize_values(value) -> list[str]:
-    if value is None:
-        return []
-    if isinstance(value, (list, tuple, set)):
-        out = []
-        for item in value:
-            out.extend(_normalize_values(item))
-        return out
-
-    text = _to_text(value)
-    if text == "":
-        return [""]
-
-    stripped = text.strip()
-    if not stripped:
-        return []
-
-    if any(token in text for token in ("|", ";", "\n", "\r")):
-        normalized = (
-            text.replace("\r\n", "\n")
-            .replace("\r", "\n")
-            .replace(";", "|")
-            .replace("\n", "|")
-        )
-        return [part.strip() for part in normalized.split("|") if part.strip()]
-
-    return [text]
-
-
-def _first_across_rows(rows: list[dict], keys: list[str]):
-    for row in rows:
-        for key in keys:
-            value = row.get(key)
-            if _is_present(value):
-                return value
-    return None
-
-
-
-
-
-def _collect_records(rows: list[dict], key_names: list[str]) -> list[dict]:
-    records = []
-    for row in rows:
-        value_lists = {k: _normalize_values(row.get(k)) for k in key_names}
-        max_items = max((len(v) for v in value_lists.values()), default=0)
-        if max_items == 0:
-            continue
-        for i in range(max_items):
-            record = {}
-            for key, values in value_lists.items():
-                if not values:
-                    record[key] = None
-                elif len(values) == 1:
-                    record[key] = values[0]
-                elif i < len(values):
-                    record[key] = values[i]
-                else:
-                    record[key] = None
-            if any(_is_present(v) for v in record.values()):
-                records.append(record)
-    return records
 
 def construct_c(rows: list) -> bytes:
     normalized_rows = []
@@ -97,85 +98,11 @@ def construct_c(rows: list) -> bytes:
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/formc')
     root.set('xmlns:com', 'http://www.sec.gov/edgar/common')
-    _add_path_text(root, ['headerData', 'submissionType'], _first_across_rows(normalized_rows, ['submissionType']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'actReceivedMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['actReceivedMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'actReceivedPriorFiscalYear'], _first_across_rows(normalized_rows, ['actReceivedPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'cashEquiMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['cashEquiMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'cashEquiPriorFiscalYear'], _first_across_rows(normalized_rows, ['cashEquiPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'costGoodsSoldMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['costGoodsSoldMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'costGoodsSoldPriorFiscalYear'], _first_across_rows(normalized_rows, ['costGoodsSoldPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'currentEmployees'], _first_across_rows(normalized_rows, ['currentEmployees']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'issueJurisdictionSecuritiesOffering'], _first_across_rows(normalized_rows, ['issueJurisdictionSecuritiesOffering']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'longTermDebtMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['longTermDebtMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'longTermDebtPriorFiscalYear'], _first_across_rows(normalized_rows, ['longTermDebtPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'netIncomeMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['netIncomeMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'netIncomePriorFiscalYear'], _first_across_rows(normalized_rows, ['netIncomePriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'revenueMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['revenueMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'revenuePriorFiscalYear'], _first_across_rows(normalized_rows, ['revenuePriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'shortTermDebtMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['shortTermDebtMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'shortTermDebtPriorFiscalYear'], _first_across_rows(normalized_rows, ['shortTermDebtPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'taxPaidMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['taxPaidMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'taxPaidPriorFiscalYear'], _first_across_rows(normalized_rows, ['taxPaidPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'totalAssetMostRecentFiscalYear'], _first_across_rows(normalized_rows, ['totalAssetMostRecentFiscalYear']))
-    _add_path_text(root, ['formData', 'annualReportDisclosureRequirements', 'totalAssetPriorFiscalYear'], _first_across_rows(normalized_rows, ['totalAssetPriorFiscalYear']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'commissionCik'], _first_across_rows(normalized_rows, ['commissionCik']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'commissionFileNumber'], _first_across_rows(normalized_rows, ['commissionFileNumber']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'companyName'], _first_across_rows(normalized_rows, ['companyName']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'crdNumber'], _first_across_rows(normalized_rows, ['crdNumber']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'isAmendment'], _first_across_rows(normalized_rows, ['isAmendment']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'isCoIssuer'], _first_across_rows(normalized_rows, ['isCoIssuer']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'natureOfAmendment'], _first_across_rows(normalized_rows, ['natureOfAmendment']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'progressUpdate'], _first_across_rows(normalized_rows, ['progressUpdate']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'compensationAmount'], _first_across_rows(normalized_rows, ['compensationAmount']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'deadlineDate'], _first_across_rows(normalized_rows, ['deadlineDate']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'descOverSubscription'], _first_across_rows(normalized_rows, ['descOverSubscription']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'financialInterest'], _first_across_rows(normalized_rows, ['financialInterest']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'maximumOfferingAmount'], _first_across_rows(normalized_rows, ['maximumOfferingAmount']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'noOfSecurityOffered'], _first_across_rows(normalized_rows, ['noOfSecurityOffered']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'offeringAmount'], _first_across_rows(normalized_rows, ['offeringAmount']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'overSubscriptionAccepted'], _first_across_rows(normalized_rows, ['overSubscriptionAccepted']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'overSubscriptionAllocationType'], _first_across_rows(normalized_rows, ['overSubscriptionAllocationType']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'price'], _first_across_rows(normalized_rows, ['price']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'priceDeterminationMethod'], _first_across_rows(normalized_rows, ['priceDeterminationMethod']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'securityOfferedOtherDesc'], _first_across_rows(normalized_rows, ['securityOfferedOtherDesc']))
-    _add_path_text(root, ['formData', 'offeringInformation', 'securityOfferedType'], _first_across_rows(normalized_rows, ['securityOfferedType']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'liveTestFlag'], _first_across_rows(normalized_rows, ['liveTestFlag']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'period'], _first_across_rows(normalized_rows, ['period']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerWebsite'], _first_across_rows(normalized_rows, ['issuerWebsite']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'nameOfIssuer'], _first_across_rows(normalized_rows, ['nameOfIssuer']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuer'], _first_across_rows(normalized_rows, ['issuer']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuerSignature'], _first_across_rows(normalized_rows, ['issuerSignature']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'issuerSignature', 'issuerTitle'], _first_across_rows(normalized_rows, ['issuerTitle']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'fileNumber'], _first_across_rows(normalized_rows, ['fileNumber']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'confirmingCopyFlag'], _first_across_rows(normalized_rows, ['confirmingCopyFlag']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'overrideInternetFlag'], _first_across_rows(normalized_rows, ['overrideInternetFlag']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'returnCopyFlag'], _first_across_rows(normalized_rows, ['returnCopyFlag']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerCik'], _first_across_rows(normalized_rows, ['coIssuerCik']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerWebsite'], _first_across_rows(normalized_rows, ['coIssuerWebsite']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'isEdgarFiler'], _first_across_rows(normalized_rows, ['isEdgarFiler']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'nameOfCoIssuer'], _first_across_rows(normalized_rows, ['nameOfCoIssuer']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'city'], _first_across_rows(normalized_rows, ['city']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'stateOrCountry'], _first_across_rows(normalized_rows, ['stateOrCountry']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'street1'], _first_across_rows(normalized_rows, ['street1']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'street2'], _first_across_rows(normalized_rows, ['street2']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'issuerAddress', 'zipCode'], _first_across_rows(normalized_rows, ['zipCode']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'dateIncorporation'], _first_across_rows(normalized_rows, ['dateIncorporation']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'jurisdictionOrganization'], _first_across_rows(normalized_rows, ['jurisdictionOrganization']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'issuerInfo', 'legalStatus', 'legalStatusForm'], _first_across_rows(normalized_rows, ['legalStatusForm']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'personSignature'], _first_across_rows(normalized_rows, ['personSignature']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'personTitle'], _first_across_rows(normalized_rows, ['personTitle']))
-    _add_path_text(root, ['formData', 'signatureInfo', 'signaturePersons', 'signaturePerson', 'signatureDate'], _first_across_rows(normalized_rows, ['signatureDate']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'filerCcc'], _first_across_rows(normalized_rows, ['filerCcc']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'filerCik'], _first_across_rows(normalized_rows, ['filerCik']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'city'], _first_across_rows(normalized_rows, ['coIssuerAddressCity']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'stateOrCountry'], _first_across_rows(normalized_rows, ['coIssuerAddressStateOrCountry']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'street1'], _first_across_rows(normalized_rows, ['coIssuerAddressStreet1']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerAddress', 'zipCode'], _first_across_rows(normalized_rows, ['coIssuerAddressZipCode']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'dateIncorporation'], _first_across_rows(normalized_rows, ['coIssuerLegalStatusDateIncorporation']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'jurisdictionOrganization'], _first_across_rows(normalized_rows, ['coIssuerLegalStatusJurisdictionOrganization']))
-    _add_path_text(root, ['formData', 'issuerInformation', 'coIssuers', 'coIssuerInfo', 'coIssuerLegalStatus', 'legalStatusForm'], _first_across_rows(normalized_rows, ['coIssuerLegalStatusLegalStatusForm']))
-    _add_created_with_comment(root)
 
+    for row in normalized_rows:
+        _write_form_c(root, row)
+
+    _add_created_with_comment(root)
     tree = ET.ElementTree(root)
     ET.indent(tree, space='\t')
 
@@ -183,5 +110,3 @@ def construct_c(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
-
-

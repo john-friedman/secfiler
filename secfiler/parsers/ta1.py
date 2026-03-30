@@ -1,87 +1,8 @@
 import io
 import xml.etree.ElementTree as ET
-from ..utils import _add_created_with_comment, _add_path_text, _ensure_path
 
+from ..utils import _add_created_with_comment, _add_path_text
 
-
-def _is_present(value) -> bool:
-    if value is None:
-        return False
-    if isinstance(value, str):
-        return bool(value.strip())
-    if isinstance(value, (list, tuple, set)):
-        return any(_is_present(item) for item in value)
-    return True
-
-
-def _to_text(value) -> str:
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    return str(value)
-
-
-def _normalize_values(value) -> list[str]:
-    if value is None:
-        return []
-    if isinstance(value, (list, tuple, set)):
-        out = []
-        for item in value:
-            out.extend(_normalize_values(item))
-        return out
-
-    text = _to_text(value)
-    if text == "":
-        return [""]
-
-    stripped = text.strip()
-    if not stripped:
-        return []
-
-    if any(token in text for token in ("|", ";", "\n", "\r")):
-        normalized = (
-            text.replace("\r\n", "\n")
-            .replace("\r", "\n")
-            .replace(";", "|")
-            .replace("\n", "|")
-        )
-        return [part.strip() for part in normalized.split("|") if part.strip()]
-
-    return [text]
-
-
-def _first_across_rows(rows: list[dict], keys: list[str]):
-    for row in rows:
-        for key in keys:
-            value = row.get(key)
-            if _is_present(value):
-                return value
-    return None
-
-
-
-
-
-def _collect_records(rows: list[dict], key_names: list[str]) -> list[dict]:
-    records = []
-    for row in rows:
-        value_lists = {k: _normalize_values(row.get(k)) for k in key_names}
-        max_items = max((len(v) for v in value_lists.values()), default=0)
-        if max_items == 0:
-            continue
-        for i in range(max_items):
-            record = {}
-            for key, values in value_lists.items():
-                if not values:
-                    record[key] = None
-                elif len(values) == 1:
-                    record[key] = values[0]
-                elif i < len(values):
-                    record[key] = values[i]
-                else:
-                    record[key] = None
-            if any(_is_present(v) for v in record.values()):
-                records.append(record)
-    return records
 
 def construct_ta1(rows: list) -> bytes:
     normalized_rows = []
@@ -97,118 +18,119 @@ def construct_ta1(rows: list) -> bytes:
     root = ET.Element('edgarSubmission')
     root.set('xmlns', 'http://www.sec.gov/edgar/ta/taonefiler')
     root.set('xmlns:com', 'http://www.sec.gov/edgar/common')
-    _add_path_text(root, ['formVersion'], _first_across_rows(normalized_rows, ['formVersion']))
-    _add_path_text(root, ['regulatoryAgency'], _first_across_rows(normalized_rows, ['regulatoryAgency']))
-    _add_path_text(root, ['schemaVersion'], _first_across_rows(normalized_rows, ['schemaVersion']))
-    _add_path_text(root, ['submissionType'], _first_across_rows(normalized_rows, ['submissionType']))
-    _add_path_text(root, ['testOrLive'], _first_across_rows(normalized_rows, ['testOrLive']))
-    _add_path_text(root, ['authorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['involved']))
-    _add_path_text(root, ['enjoinedInvestmentRelatedActivity', 'involved'], _first_across_rows(normalized_rows, ['enjoinedInvestmentRelatedActivityInvolved']))
-    _add_path_text(root, ['falseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['falseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['felonyOrMisdemeanor', 'involved'], _first_across_rows(normalized_rows, ['felonyOrMisdemeanorInvolved']))
-    _add_path_text(root, ['filer', 'cik'], _first_across_rows(normalized_rows, ['cik']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'fileNumber'], _first_across_rows(normalized_rows, ['finsNumber']))
-    _add_path_text(root, ['foreignAgency', 'involved'], _first_across_rows(normalized_rows, ['foreignAgencyInvolved']))
-    _add_path_text(root, ['headerData', 'submissionType'], _first_across_rows(normalized_rows, ['headerDataSubmissionType']))
-    _add_path_text(root, ['otherControlFinance', 'otherEntity'], _first_across_rows(normalized_rows, ['otherEntity']))
-    _add_path_text(root, ['otherControlManagement', 'otherEntity'], _first_across_rows(normalized_rows, ['otherControlManagementOtherEntity']))
-    _add_path_text(root, ['otherFelony', 'involved'], _first_across_rows(normalized_rows, ['otherFelonyInvolved']))
-    _add_path_text(root, ['registrant', 'conductBusinessInOtherLocations'], _first_across_rows(normalized_rows, ['conductBusinessInOtherLocations']))
-    _add_path_text(root, ['registrant', 'differentMailingAddress'], _first_across_rows(normalized_rows, ['differentMailingAddress']))
-    _add_path_text(root, ['registrant', 'engagedAsServiceCompany'], _first_across_rows(normalized_rows, ['engagedAsServiceCompany']))
-    _add_path_text(root, ['registrant', 'engagedServiceCompany'], _first_across_rows(normalized_rows, ['engagedServiceCompany']))
-    _add_path_text(root, ['registrant', 'entityName'], _first_across_rows(normalized_rows, ['entityName']))
-    _add_path_text(root, ['registrant', 'registrantType'], _first_across_rows(normalized_rows, ['registrantType']))
-    _add_path_text(root, ['registrant', 'selfTransferAgent'], _first_across_rows(normalized_rows, ['selfTransferAgent']))
-    _add_path_text(root, ['registrant', 'telephoneNumber'], _first_across_rows(normalized_rows, ['telephoneNumber']))
-    _add_path_text(root, ['registrationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['registrationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['revokedBond', 'involved'], _first_across_rows(normalized_rows, ['revokedBondInvolved']))
-    _add_path_text(root, ['signatureData', 'signatureDate'], _first_across_rows(normalized_rows, ['signatureDate']))
-    _add_path_text(root, ['signatureData', 'signatureName'], _first_across_rows(normalized_rows, ['signatureName']))
-    _add_path_text(root, ['signatureData', 'signaturePhoneNumber'], _first_across_rows(normalized_rows, ['signaturePhoneNumber']))
-    _add_path_text(root, ['signatureData', 'signatureTitle'], _first_across_rows(normalized_rows, ['signatureTitle']))
-    _add_path_text(root, ['subjectOfProceedings', 'involved'], _first_across_rows(normalized_rows, ['subjectOfProceedingsInvolved']))
-    _add_path_text(root, ['unsatisfiedJudgementsOrLiens', 'involved'], _first_across_rows(normalized_rows, ['unsatisfiedJudgementsOrLiensInvolved']))
-    _add_path_text(root, ['violationOfInvestmentRelatedRegulation', 'involved'], _first_across_rows(normalized_rows, ['violationOfInvestmentRelatedRegulationInvolved']))
-    _add_path_text(root, ['violationOfRegulations', 'involved'], _first_across_rows(normalized_rows, ['violationOfRegulationsInvolved']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'relationshipStartDate'], _first_across_rows(normalized_rows, ['corporationPartnershipDataRelationshipStartDate']))
-    _add_path_text(root, ['violationOfRegulations', 'violationOfRegulationsDetails', 'actionDescription'], _first_across_rows(normalized_rows, ['authorityDescription']))
-    _add_path_text(root, ['otherControlManagement', 'otherControlManagementDetails', 'agreementDescription'], _first_across_rows(normalized_rows, ['registrantTypeDescription']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'entityName'], _first_across_rows(normalized_rows, ['independentRegistrantCorporationPartnershipDataEntityName']))
-    _add_path_text(root, ['registrant', 'corporationPartnershipData', 'relationshipStartDate'], _first_across_rows(normalized_rows, ['relationshipStartDate']))
-    _add_path_text(root, ['formData', 'registrant', 'conductBusinessInOtherLocations'], _first_across_rows(normalized_rows, ['registrantConductBusinessInOtherLocations']))
-    _add_path_text(root, ['registrant', 'corporationPartnershipData', 'entityName'], _first_across_rows(normalized_rows, ['corporationPartnershipDataEntityName']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrAuthorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['fsrAuthorizationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFalseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['fsrFalseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'involved'], _first_across_rows(normalized_rows, ['fsrFoundOrderAgainstApplicantInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrRegistrationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['fsrRegistrationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrRevokedSuspendedLicense', 'involved'], _first_across_rows(normalized_rows, ['fsrRevokedSuspendedLicenseInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrViolationOfInvestmentRelatedRegulation', 'involved'], _first_across_rows(normalized_rows, ['fsrViolationOfInvestmentRelatedRegulationInvolved']))
-    _add_path_text(root, ['formData', 'registrant', 'entityName'], _first_across_rows(normalized_rows, ['registrantEntityName']))
-    _add_path_text(root, ['formData', 'signature', 'signatureTitle'], _first_across_rows(normalized_rows, ['signatureSignatureTitle']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'registrantType'], _first_across_rows(normalized_rows, ['independentRegistrantRegistrantType']))
-    _add_path_text(root, ['formData', 'registrant', 'differentMailingAddress'], _first_across_rows(normalized_rows, ['registrantDifferentMailingAddress']))
-    _add_path_text(root, ['formData', 'registrant', 'engagedAsServiceCompany'], _first_across_rows(normalized_rows, ['registrantEngagedAsServiceCompany']))
-    _add_path_text(root, ['formData', 'registrant', 'engagedServiceCompany'], _first_across_rows(normalized_rows, ['registrantEngagedServiceCompany']))
-    _add_path_text(root, ['formData', 'registrant', 'finsNumber'], _first_across_rows(normalized_rows, ['registrantFinsNumber']))
-    _add_path_text(root, ['formData', 'registrant', 'regulatoryAgency'], _first_across_rows(normalized_rows, ['registrantRegulatoryAgency']))
-    _add_path_text(root, ['formData', 'registrant', 'selfTransferAgent'], _first_across_rows(normalized_rows, ['registrantSelfTransferAgent']))
-    _add_path_text(root, ['formData', 'registrant', 'telephoneNumber'], _first_across_rows(normalized_rows, ['registrantTelephoneNumber']))
-    _add_path_text(root, ['formData', 'signature', 'signatureDate'], _first_across_rows(normalized_rows, ['signatureSignatureDate']))
-    _add_path_text(root, ['formData', 'signature', 'signatureName'], _first_across_rows(normalized_rows, ['signatureSignatureName']))
-    _add_path_text(root, ['formData', 'signature', 'signaturePhoneNumber'], _first_across_rows(normalized_rows, ['signatureSignaturePhoneNumber']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'liveTestFlag'], _first_across_rows(normalized_rows, ['liveTestFlag']))
-    _add_path_text(root, ['registrant', 'corporationPartnershipData', 'controlPerson'], _first_across_rows(normalized_rows, ['controlPerson']))
-    _add_path_text(root, ['registrant', 'corporationPartnershipData', 'ownershipCode'], _first_across_rows(normalized_rows, ['ownershipCode']))
-    _add_path_text(root, ['registrant', 'corporationPartnershipData', 'titleOrStatus'], _first_across_rows(normalized_rows, ['titleOrStatus']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'city'], _first_across_rows(normalized_rows, ['city']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'stateOrCountry'], _first_across_rows(normalized_rows, ['stateOrCountry']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'stateOrCountryCode'], _first_across_rows(normalized_rows, ['stateOrCountryCode']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'street1'], _first_across_rows(normalized_rows, ['street1']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'street2'], _first_across_rows(normalized_rows, ['street2']))
-    _add_path_text(root, ['registrant', 'principalOfficeAddress', 'zipCode'], _first_across_rows(normalized_rows, ['zipCode']))
-    _add_path_text(root, ['selfRegulatoryAgency', 'sraAuthorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['sraAuthorizationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['selfRegulatoryAgency', 'sraFalseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['sraFalseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['selfRegulatoryAgency', 'sraRevokedSuspendedLicense', 'involved'], _first_across_rows(normalized_rows, ['sraRevokedSuspendedLicenseInvolved']))
-    _add_path_text(root, ['selfRegulatoryAgency', 'sraViolationOfRules', 'involved'], _first_across_rows(normalized_rows, ['sraViolationOfRulesInvolved']))
-    _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'fsrFoundOrderAgainstApplicantDetails', 'entityName'], _first_across_rows(normalized_rows, ['soleProprietorshipOtherDataEntityName']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'authorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['authorizationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'enjoinedInvestmentRelatedActivity', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryEnjoinedInvestmentRelatedActivityInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'falseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryFalseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'felonyOrMisdemeanor', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryFelonyOrMisdemeanorInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'foreignAgency', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryForeignAgencyInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'otherFelony', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryOtherFelonyInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'registrationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryRegistrationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'revokedBond', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryRevokedBondInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'subjectOfProceedings', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistorySubjectOfProceedingsInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'unsatisfiedJudgementsOrLiens', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryUnsatisfiedJudgementsOrLiensInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'violationOfInvestmentRelatedRegulation', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryViolationOfInvestmentRelatedRegulationInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'violationOfRegulations', 'involved'], _first_across_rows(normalized_rows, ['disciplinaryHistoryViolationOfRegulationsInvolved']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'controlPerson'], _first_across_rows(normalized_rows, ['corporationPartnershipDataControlPerson']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'ownershipCode'], _first_across_rows(normalized_rows, ['corporationPartnershipDataOwnershipCode']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'titleOrStatus'], _first_across_rows(normalized_rows, ['corporationPartnershipDataTitleOrStatus']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'otherControlFinance', 'otherEntity'], _first_across_rows(normalized_rows, ['otherControlFinanceOtherEntity']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'otherControlManagement', 'otherEntity'], _first_across_rows(normalized_rows, ['independentRegistrantOtherControlManagementOtherEntity']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'soleProprietorshipOtherData', 'relationshipStartDate'], _first_across_rows(normalized_rows, ['soleProprietorshipOtherDataRelationshipStartDate']))
-    _add_path_text(root, ['formData', 'independentRegistrant', 'soleProprietorshipOtherData', 'titleOrStatus'], _first_across_rows(normalized_rows, ['soleProprietorshipOtherDataTitleOrStatus']))
-    _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'city'], _first_across_rows(normalized_rows, ['principalOfficeAddressCity']))
-    _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'stateOrCountry'], _first_across_rows(normalized_rows, ['principalOfficeAddressStateOrCountry']))
-    _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'street1'], _first_across_rows(normalized_rows, ['principalOfficeAddressStreet1']))
-    _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'street2'], _first_across_rows(normalized_rows, ['principalOfficeAddressStreet2']))
-    _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'zipCode'], _first_across_rows(normalized_rows, ['principalOfficeAddressZipCode']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'returnCopyFlag'], _first_across_rows(normalized_rows, ['returnCopyFlag']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrAuthorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrAuthorizationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrFalseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrFalseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrFoundOrderAgainstApplicantInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrRegistrationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrRegistrationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrRevokedSuspendedLicense', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrRevokedSuspendedLicenseInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrViolationOfInvestmentRelatedRegulation', 'involved'], _first_across_rows(normalized_rows, ['federalOrStateRegulatoryAgencyFsrViolationOfInvestmentRelatedRegulationInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraAuthorizationDeniedOrSuspended', 'involved'], _first_across_rows(normalized_rows, ['selfRegulatoryAgencySraAuthorizationDeniedOrSuspendedInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraFalseStatementOrOmission', 'involved'], _first_across_rows(normalized_rows, ['selfRegulatoryAgencySraFalseStatementOrOmissionInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraRevokedSuspendedLicense', 'involved'], _first_across_rows(normalized_rows, ['selfRegulatoryAgencySraRevokedSuspendedLicenseInvolved']))
-    _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraViolationOfRules', 'involved'], _first_across_rows(normalized_rows, ['selfRegulatoryAgencySraViolationOfRulesInvolved']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'ccc'], _first_across_rows(normalized_rows, ['ccc']))
-    _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'cik'], _first_across_rows(normalized_rows, ['filerCredentialsCik']))
+    for row in normalized_rows:
+        _add_path_text(root, ['formVersion'], row.get('formVersion'))
+        _add_path_text(root, ['regulatoryAgency'], row.get('regulatoryAgency'))
+        _add_path_text(root, ['schemaVersion'], row.get('schemaVersion'))
+        _add_path_text(root, ['submissionType'], row.get('submissionType'))
+        _add_path_text(root, ['testOrLive'], row.get('testOrLive'))
+        _add_path_text(root, ['authorizationDeniedOrSuspended', 'involved'], row.get('involved'))
+        _add_path_text(root, ['enjoinedInvestmentRelatedActivity', 'involved'], row.get('enjoinedInvestmentRelatedActivityInvolved'))
+        _add_path_text(root, ['falseStatementOrOmission', 'involved'], row.get('falseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['felonyOrMisdemeanor', 'involved'], row.get('felonyOrMisdemeanorInvolved'))
+        _add_path_text(root, ['filer', 'cik'], row.get('cik'))
+        _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'fileNumber'], row.get('finsNumber'))
+        _add_path_text(root, ['foreignAgency', 'involved'], row.get('foreignAgencyInvolved'))
+        _add_path_text(root, ['headerData', 'submissionType'], row.get('headerDataSubmissionType'))
+        _add_path_text(root, ['otherControlFinance', 'otherEntity'], row.get('otherEntity'))
+        _add_path_text(root, ['otherControlManagement', 'otherEntity'], row.get('otherControlManagementOtherEntity'))
+        _add_path_text(root, ['otherFelony', 'involved'], row.get('otherFelonyInvolved'))
+        _add_path_text(root, ['registrant', 'conductBusinessInOtherLocations'], row.get('conductBusinessInOtherLocations'))
+        _add_path_text(root, ['registrant', 'differentMailingAddress'], row.get('differentMailingAddress'))
+        _add_path_text(root, ['registrant', 'engagedAsServiceCompany'], row.get('engagedAsServiceCompany'))
+        _add_path_text(root, ['registrant', 'engagedServiceCompany'], row.get('engagedServiceCompany'))
+        _add_path_text(root, ['registrant', 'entityName'], row.get('entityName'))
+        _add_path_text(root, ['registrant', 'registrantType'], row.get('registrantType'))
+        _add_path_text(root, ['registrant', 'selfTransferAgent'], row.get('selfTransferAgent'))
+        _add_path_text(root, ['registrant', 'telephoneNumber'], row.get('telephoneNumber'))
+        _add_path_text(root, ['registrationDeniedOrSuspended', 'involved'], row.get('registrationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['revokedBond', 'involved'], row.get('revokedBondInvolved'))
+        _add_path_text(root, ['signatureData', 'signatureDate'], row.get('signatureDate'))
+        _add_path_text(root, ['signatureData', 'signatureName'], row.get('signatureName'))
+        _add_path_text(root, ['signatureData', 'signaturePhoneNumber'], row.get('signaturePhoneNumber'))
+        _add_path_text(root, ['signatureData', 'signatureTitle'], row.get('signatureTitle'))
+        _add_path_text(root, ['subjectOfProceedings', 'involved'], row.get('subjectOfProceedingsInvolved'))
+        _add_path_text(root, ['unsatisfiedJudgementsOrLiens', 'involved'], row.get('unsatisfiedJudgementsOrLiensInvolved'))
+        _add_path_text(root, ['violationOfInvestmentRelatedRegulation', 'involved'], row.get('violationOfInvestmentRelatedRegulationInvolved'))
+        _add_path_text(root, ['violationOfRegulations', 'involved'], row.get('violationOfRegulationsInvolved'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'relationshipStartDate'], row.get('corporationPartnershipDataRelationshipStartDate'))
+        _add_path_text(root, ['violationOfRegulations', 'violationOfRegulationsDetails', 'actionDescription'], row.get('authorityDescription'))
+        _add_path_text(root, ['otherControlManagement', 'otherControlManagementDetails', 'agreementDescription'], row.get('registrantTypeDescription'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'entityName'], row.get('independentRegistrantCorporationPartnershipDataEntityName'))
+        _add_path_text(root, ['registrant', 'corporationPartnershipData', 'relationshipStartDate'], row.get('relationshipStartDate'))
+        _add_path_text(root, ['formData', 'registrant', 'conductBusinessInOtherLocations'], row.get('registrantConductBusinessInOtherLocations'))
+        _add_path_text(root, ['registrant', 'corporationPartnershipData', 'entityName'], row.get('corporationPartnershipDataEntityName'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrAuthorizationDeniedOrSuspended', 'involved'], row.get('fsrAuthorizationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFalseStatementOrOmission', 'involved'], row.get('fsrFalseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'involved'], row.get('fsrFoundOrderAgainstApplicantInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrRegistrationDeniedOrSuspended', 'involved'], row.get('fsrRegistrationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrRevokedSuspendedLicense', 'involved'], row.get('fsrRevokedSuspendedLicenseInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrViolationOfInvestmentRelatedRegulation', 'involved'], row.get('fsrViolationOfInvestmentRelatedRegulationInvolved'))
+        _add_path_text(root, ['formData', 'registrant', 'entityName'], row.get('registrantEntityName'))
+        _add_path_text(root, ['formData', 'signature', 'signatureTitle'], row.get('signatureSignatureTitle'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'registrantType'], row.get('independentRegistrantRegistrantType'))
+        _add_path_text(root, ['formData', 'registrant', 'differentMailingAddress'], row.get('registrantDifferentMailingAddress'))
+        _add_path_text(root, ['formData', 'registrant', 'engagedAsServiceCompany'], row.get('registrantEngagedAsServiceCompany'))
+        _add_path_text(root, ['formData', 'registrant', 'engagedServiceCompany'], row.get('registrantEngagedServiceCompany'))
+        _add_path_text(root, ['formData', 'registrant', 'finsNumber'], row.get('registrantFinsNumber'))
+        _add_path_text(root, ['formData', 'registrant', 'regulatoryAgency'], row.get('registrantRegulatoryAgency'))
+        _add_path_text(root, ['formData', 'registrant', 'selfTransferAgent'], row.get('registrantSelfTransferAgent'))
+        _add_path_text(root, ['formData', 'registrant', 'telephoneNumber'], row.get('registrantTelephoneNumber'))
+        _add_path_text(root, ['formData', 'signature', 'signatureDate'], row.get('signatureSignatureDate'))
+        _add_path_text(root, ['formData', 'signature', 'signatureName'], row.get('signatureSignatureName'))
+        _add_path_text(root, ['formData', 'signature', 'signaturePhoneNumber'], row.get('signatureSignaturePhoneNumber'))
+        _add_path_text(root, ['headerData', 'filerInfo', 'liveTestFlag'], row.get('liveTestFlag'))
+        _add_path_text(root, ['registrant', 'corporationPartnershipData', 'controlPerson'], row.get('controlPerson'))
+        _add_path_text(root, ['registrant', 'corporationPartnershipData', 'ownershipCode'], row.get('ownershipCode'))
+        _add_path_text(root, ['registrant', 'corporationPartnershipData', 'titleOrStatus'], row.get('titleOrStatus'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'city'], row.get('city'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'stateOrCountry'], row.get('stateOrCountry'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'stateOrCountryCode'], row.get('stateOrCountryCode'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'street1'], row.get('street1'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'street2'], row.get('street2'))
+        _add_path_text(root, ['registrant', 'principalOfficeAddress', 'zipCode'], row.get('zipCode'))
+        _add_path_text(root, ['selfRegulatoryAgency', 'sraAuthorizationDeniedOrSuspended', 'involved'], row.get('sraAuthorizationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['selfRegulatoryAgency', 'sraFalseStatementOrOmission', 'involved'], row.get('sraFalseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['selfRegulatoryAgency', 'sraRevokedSuspendedLicense', 'involved'], row.get('sraRevokedSuspendedLicenseInvolved'))
+        _add_path_text(root, ['selfRegulatoryAgency', 'sraViolationOfRules', 'involved'], row.get('sraViolationOfRulesInvolved'))
+        _add_path_text(root, ['federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'fsrFoundOrderAgainstApplicantDetails', 'entityName'], row.get('soleProprietorshipOtherDataEntityName'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'authorizationDeniedOrSuspended', 'involved'], row.get('authorizationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'enjoinedInvestmentRelatedActivity', 'involved'], row.get('disciplinaryHistoryEnjoinedInvestmentRelatedActivityInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'falseStatementOrOmission', 'involved'], row.get('disciplinaryHistoryFalseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'felonyOrMisdemeanor', 'involved'], row.get('disciplinaryHistoryFelonyOrMisdemeanorInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'foreignAgency', 'involved'], row.get('disciplinaryHistoryForeignAgencyInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'otherFelony', 'involved'], row.get('disciplinaryHistoryOtherFelonyInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'registrationDeniedOrSuspended', 'involved'], row.get('disciplinaryHistoryRegistrationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'revokedBond', 'involved'], row.get('disciplinaryHistoryRevokedBondInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'subjectOfProceedings', 'involved'], row.get('disciplinaryHistorySubjectOfProceedingsInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'unsatisfiedJudgementsOrLiens', 'involved'], row.get('disciplinaryHistoryUnsatisfiedJudgementsOrLiensInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'violationOfInvestmentRelatedRegulation', 'involved'], row.get('disciplinaryHistoryViolationOfInvestmentRelatedRegulationInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'violationOfRegulations', 'involved'], row.get('disciplinaryHistoryViolationOfRegulationsInvolved'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'controlPerson'], row.get('corporationPartnershipDataControlPerson'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'ownershipCode'], row.get('corporationPartnershipDataOwnershipCode'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'corporationPartnershipData', 'titleOrStatus'], row.get('corporationPartnershipDataTitleOrStatus'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'otherControlFinance', 'otherEntity'], row.get('otherControlFinanceOtherEntity'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'otherControlManagement', 'otherEntity'], row.get('independentRegistrantOtherControlManagementOtherEntity'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'soleProprietorshipOtherData', 'relationshipStartDate'], row.get('soleProprietorshipOtherDataRelationshipStartDate'))
+        _add_path_text(root, ['formData', 'independentRegistrant', 'soleProprietorshipOtherData', 'titleOrStatus'], row.get('soleProprietorshipOtherDataTitleOrStatus'))
+        _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'city'], row.get('principalOfficeAddressCity'))
+        _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'stateOrCountry'], row.get('principalOfficeAddressStateOrCountry'))
+        _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'street1'], row.get('principalOfficeAddressStreet1'))
+        _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'street2'], row.get('principalOfficeAddressStreet2'))
+        _add_path_text(root, ['formData', 'registrant', 'principalOfficeAddress', 'zipCode'], row.get('principalOfficeAddressZipCode'))
+        _add_path_text(root, ['headerData', 'filerInfo', 'flags', 'returnCopyFlag'], row.get('returnCopyFlag'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrAuthorizationDeniedOrSuspended', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrAuthorizationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrFalseStatementOrOmission', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrFalseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrFoundOrderAgainstApplicant', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrFoundOrderAgainstApplicantInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrRegistrationDeniedOrSuspended', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrRegistrationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrRevokedSuspendedLicense', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrRevokedSuspendedLicenseInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'federalOrStateRegulatoryAgency', 'fsrViolationOfInvestmentRelatedRegulation', 'involved'], row.get('federalOrStateRegulatoryAgencyFsrViolationOfInvestmentRelatedRegulationInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraAuthorizationDeniedOrSuspended', 'involved'], row.get('selfRegulatoryAgencySraAuthorizationDeniedOrSuspendedInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraFalseStatementOrOmission', 'involved'], row.get('selfRegulatoryAgencySraFalseStatementOrOmissionInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraRevokedSuspendedLicense', 'involved'], row.get('selfRegulatoryAgencySraRevokedSuspendedLicenseInvolved'))
+        _add_path_text(root, ['formData', 'disciplinaryHistory', 'selfRegulatoryAgency', 'sraViolationOfRules', 'involved'], row.get('selfRegulatoryAgencySraViolationOfRulesInvolved'))
+        _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'ccc'], row.get('ccc'))
+        _add_path_text(root, ['headerData', 'filerInfo', 'filer', 'filerCredentials', 'cik'], row.get('filerCredentialsCik'))
     _add_created_with_comment(root)
 
     tree = ET.ElementTree(root)
@@ -218,5 +140,7 @@ def construct_ta1(rows: list) -> bytes:
     output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     tree.write(output, encoding='unicode', xml_declaration=False)
     return output.getvalue().encode('utf-8')
+
+
 
 
